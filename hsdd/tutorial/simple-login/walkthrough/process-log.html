@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="The full written record of the simple-login tutorial run: every step, every decision taken on the owner&#39;s behalf, every failure, and the findings about HSDD.">
+  <title>Process log: simple-login, from PRD to running code · HSDD</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="Process log: simple-login, from PRD to running code · HSDD">
+  <meta property="og:description" content="The full written record of the simple-login tutorial run: every step, every decision taken on the owner&#39;s behalf, every failure, and the findings about HSDD.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../../../assets/docs.css">
+  
+  <script src="../../../assets/docs.js" defer></script>
+</head>
+<body class="kind-doc">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    <button class="tool contents-toggle" id="contents-toggle" aria-expanded="false" aria-controls="toc">Contents</button>
+    <a class="brand" href="../../../" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="../../../guide/">Interactive guide</a><a href="../../../users-guide/">User's guide</a><a href="../../" aria-current="page">Tutorials</a><a href="../../../reference/">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <div class="shell has-toc">
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#how-this-run-was-done" data-id="how-this-run-was-done">How this run was done</a></li><li><a href="#step-0-inputs" data-id="step-0-inputs">Step 0: Inputs</a></li><li><a href="#step-1-decompose-the-root-hsdd-spec" data-id="step-1-decompose-the-root-hsdd-spec">Step 1: Decompose the root (hsdd-spec)</a></li><li><a href="#step-2-record-the-cross-cutting-decision-hsdd-adr" data-id="step-2-record-the-cross-cutting-decision-hsdd-adr">Step 2: Record the cross-cutting decision (hsdd-adr)</a></li><li><a href="#step-3-author-the-contracts-hsdd-contract" data-id="step-3-author-the-contracts-hsdd-contract">Step 3: Author the contracts (hsdd-contract)</a></li><li><a href="#step-4-plan-the-phases-three-leaf-parents-hsdd-phase-plan" data-id="step-4-plan-the-phases-three-leaf-parents-hsdd-phase-plan">Step 4: Plan the phases, three leaf-parents (hsdd-phase-plan)</a></li><li><a href="#step-5-drain-the-governance-updates-hsdd-reconcile" data-id="step-5-drain-the-governance-updates-hsdd-reconcile">Step 5: Drain the governance updates (hsdd-reconcile)</a></li><li><a href="#step-6-set-up-the-coding-method-hsdd-config-setup" data-id="step-6-set-up-the-coding-method-hsdd-config-setup">Step 6: Set up the coding method (hsdd-config, Setup)</a></li><li><a href="#step-7-switch-the-phase-context-hsdd-config-the-switch" data-id="step-7-switch-the-phase-context-hsdd-config-the-switch">Step 7: Switch the phase context (hsdd-config, the switch)</a></li><li><a href="#step-8-execute-the-phases-two-lanes-in-parallel-superpowers" data-id="step-8-execute-the-phases-two-lanes-in-parallel-superpowers">Step 8: Execute the phases, two lanes in parallel (superpowers)</a><ol><li><a href="#simple-loginbackend1-gate-only-2354-to-2359-wib" data-id="simple-loginbackend1-gate-only-2354-to-2359-wib">simple-login.backend.1 (gate-only), 23:54 to 23:59 WIB</a></li><li><a href="#simple-loginbackend2-full-review-0001-to-0022-wib" data-id="simple-loginbackend2-full-review-0001-to-0022-wib">simple-login.backend.2 (full-review), 00:01 to 00:22 WIB</a></li><li><a href="#the-web-lane-simple-loginweb1-to-web3-2354-to-0047-wib" data-id="the-web-lane-simple-loginweb1-to-web3-2354-to-0047-wib">The web lane: simple-login.web.1 to web.3, 23:54 to 00:47 WIB</a></li><li><a href="#simple-loginintegration1-full-review-0051-to-0119-wib" data-id="simple-loginintegration1-full-review-0051-to-0119-wib">simple-login.integration.1 (full-review), 00:51 to 01:19 WIB</a></li></ol></li><li><a href="#closing-notes-for-the-owner" data-id="closing-notes-for-the-owner">Closing notes for the owner</a><ol><li><a href="#decisions-taken-on-your-behalf-owner-proxy" data-id="decisions-taken-on-your-behalf-owner-proxy">Decisions taken on your behalf [owner proxy]</a></li><li><a href="#rulings-made-during-execution-from-the-executing-plans-ledgers" data-id="rulings-made-during-execution-from-the-executing-plans-ledgers">Rulings made during execution (from the executing-plans ledgers)</a></li><li><a href="#deferred-minors" data-id="deferred-minors">Deferred minors</a></li><li><a href="#open-for-a-person" data-id="open-for-a-person">Open for a person</a></li><li><a href="#findings-about-hsdd-itself" data-id="findings-about-hsdd-itself">Findings about HSDD itself</a></li><li><a href="#the-numbers" data-id="the-numbers">The numbers</a></li></ol></li></ol></nav>
+    <main id="main" tabindex="-1"><header class="doc-head">
+      <p class="eyebrow">Tutorial 1 · simple-login · process log</p>
+      <h1>Process log: simple-login, from PRD to running code</h1>
+      
+      <div class="cta-row"><a class="btn" href="./">← Walkthrough</a><a class="btn" href="../">Tutorial overview</a></div>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/docs/tutorial/simple-login/walkthrough/process-log.md"><code>docs/tutorial/simple-login/walkthrough/process-log.md</code></a> on GitHub</p>
+    </header>
+    <article class="prose"><p>The complete record of one HSDD run, written as it happened. The interactive
+walkthrough (<code>index.html</code> in this folder) summarizes it; this file is the
+source the walkthrough cites.</p>
+<h2 id="how-this-run-was-done"><a class="anchor" href="#how-this-run-was-done" aria-hidden="true" tabindex="-1">#</a>How this run was done</h2>
+<ul>
+<li><strong>Builder:</strong> Claude (Opus 5.5) in Claude Code, one session, started
+2026-10-29 23:39 WIB.</li>
+<li><strong>Skills:</strong> the HSDD skills were followed from this repository&#39;s
+<code>skills/</code> directory at commit <code>f3d9673</code> (v0.10.0, the release on <code>main</code>).
+The superpowers skills were invoked through the Skill tool.</li>
+<li><strong>The human role.</strong> HSDD stops for a human at a few places: the &quot;who
+builds what?&quot; question, ADR acceptance, <code>request</code> resolution in
+reconcile, and every phase&#39;s review gate. The owner was asleep and asked
+for no questions, so Claude took the human role at those stops and
+marked every such call <strong>[owner proxy]</strong> below. Each one is a decision
+the owner (or a tutorial participant) should look at, not a fact.</li>
+<li><strong>Where things live.</strong> <code>../execute/</code> is the repository the run produced:
+<code>hsdd/</code> (governance), <code>hsdd-context/</code> (per-phase contexts),
+<code>docs/superpowers/plans/</code> (one superpowers plan per phase), <code>backend/</code>,
+<code>web/</code>, and the root scripts.</li>
+<li><strong>Commits.</strong> Every step below is one or more commits on branch
+<code>feat/tutorial</code>, so <code>git log -- docs/tutorial/simple-login</code> replays the
+run in order.</li>
+</ul>
+<h2 id="step-0-inputs"><a class="anchor" href="#step-0-inputs" aria-hidden="true" tabindex="-1">#</a>Step 0: Inputs</h2>
+<ul>
+<li><code>template/hsdd/context/prd-simple-login.md</code>: a one-page PRD. Three user
+stories (sign in, see my profile, sign out), eight acceptance criteria,
+two demo accounts, the team (&quot;one backend developer, one frontend
+developer, in parallel&quot;), and success criteria.</li>
+<li><code>template/hsdd/context/rfc-simple-login.md</code>: an accepted RFC. The API
+(two endpoints, one error envelope), the session model (opaque bearer
+tokens, 30 minutes), scrypt passwords, TypeScript + Fastify for the
+backend, TypeScript + React + Vite for the web, <code>sessionStorage</code> for the
+token, the testing approach. Every choice has a table of alternatives.</li>
+<li>Both were copied unchanged into <code>execute/hsdd/context/</code>.</li>
+</ul>
+<p>Commit <code>6dfd24d</code>.</p>
+<h2 id="step-1-decompose-the-root-hsdd-spec"><a class="anchor" href="#step-1-decompose-the-root-hsdd-spec" aria-hidden="true" tabindex="-1">#</a>Step 1: Decompose the root (hsdd-spec)</h2>
+<p><strong>Prompt a participant would type:</strong> &quot;Write a high-level spec for
+simple-login from @hsdd/context/prd-simple-login.md and
+@hsdd/context/rfc-simple-login.md.&quot;</p>
+<p>What the skill did, in its own order:</p>
+<ol>
+<li><strong>Normalized the input.</strong> Purpose, three flows, hard constraints (no
+database, exactly two endpoints, laptop only), success criteria, and one
+stated assumption (AC-1.2&#39;s &quot;never says which was wrong&quot; extends to
+response timing, as RFC §4 says).</li>
+<li><strong>The axis question did not need asking.</strong> hsdd-spec must stop and ask
+&quot;who builds what?&quot; when a system spans stacks and the input is silent.
+The PRD answers it (&quot;one backend developer builds the service; one
+frontend developer builds the web app&quot;), so the split follows the
+stack: <code>simple-login.backend</code> and <code>simple-login.web</code>.</li>
+<li><strong>Inventoried the sources.</strong> Both documents went into the root&#39;s
+<code>## Sources</code>; each child&#39;s <code>Sources</code> line names only the sections that
+govern it (backend: RFC §2 to §5, §7, §9; web: RFC §1, §2, §6, §7).</li>
+<li><strong>Added an integration node.</strong> The two children exchange contracts, so
+the skill&#39;s rule adds <code>simple-login.integration</code> with <code>hard</code> edges to
+both. It owns the end-to-end test and the one command that starts
+everything.</li>
+<li><strong>Named contracts by id, typed every edge.</strong> <code>auth-api@v1</code> and
+<code>profile-api@v1</code>, both <code>contract</code> edges from backend to web. Because the
+edges are <code>contract</code>, not <code>hard</code>, the web lane can start as soon as the
+contracts are stable, without waiting for the backend.</li>
+<li><strong>Decided recursion.</strong> All three children are leaf-parents: each has one
+owner who can hold it in their head, and each splits into a handful of
+phases. The tree is two levels deep, which is as deep as this product
+needs.</li>
+<li><strong>Proposed one ADR.</strong> The session-token model spans both nodes and both
+contracts, so it is ADR-001, not a node-local <code>D{n}</code>. Fastify, React,
+scrypt and sessionStorage stay node-local: each lives on one side.</li>
+<li><strong>Minted one open question.</strong> OQ1, deployment beyond a laptop (one
+origin or CORS). Nothing in v1 waits on it.</li>
+<li><strong>Seeded conventions</strong> from the skill&#39;s template, with one override: a
+layout line for <code>hsdd/context/</code>, the input folder this tutorial uses,
+and the OQ prefixes <code>B</code>, <code>W</code>, <code>I</code>.</li>
+</ol>
+<p>Files: <code>hsdd/conventions.md</code>, <code>hsdd/spec/simple-login.md</code> (root, with the
+DAG, the contract matrix and OQ1), and one file per child:
+<code>simple-login.backend.md</code>, <code>simple-login.web.md</code>,
+<code>simple-login.integration.md</code>. <code>hsdd/scripts/gen-registry.mjs</code> was copied
+verbatim from hsdd-contract.</p>
+<p><strong>Teaching note.</strong> <code>hsdd/context/</code> (inputs, this tutorial&#39;s choice) and
+<code>hsdd-context/</code> (generated per-phase contexts, an HSDD default) differ by
+one character. The conventions line calls it out; the walkthrough does too.</p>
+<p>Commit <code>0469b87</code>.</p>
+<h2 id="step-2-record-the-cross-cutting-decision-hsdd-adr"><a class="anchor" href="#step-2-record-the-cross-cutting-decision-hsdd-adr" aria-hidden="true" tabindex="-1">#</a>Step 2: Record the cross-cutting decision (hsdd-adr)</h2>
+<p><strong>Prompt:</strong> &quot;Write the ADR for the session-token decision hsdd-spec
+proposed.&quot;</p>
+<p><code>hsdd/adr/001-session-tokens.md</code>, <code>status: accepted</code>. The RFC was already
+accepted, so the decision is the owner&#39;s, not invented: the ADR is born
+<code>accepted</code> and becomes binding in every phase context that names it.
+<code>affects</code> lists both nodes and both contracts; each carries
+<code>Governed by: [ADR-001]</code>. Only <code>## Decision</code> and <code>## Consequences</code> will be
+injected into phase contexts; <code>## Context</code> and the alternatives stay out.</p>
+<h2 id="step-3-author-the-contracts-hsdd-contract"><a class="anchor" href="#step-3-author-the-contracts-hsdd-contract" aria-hidden="true" tabindex="-1">#</a>Step 3: Author the contracts (hsdd-contract)</h2>
+<p><strong>Prompt:</strong> &quot;Define the auth-api and profile-api contracts: the backend
+produces them, the web app and the integration node consume them.&quot;</p>
+<ul>
+<li><code>hsdd/contract/auth-api.md</code>: <code>POST /api/login</code>, three outcomes (200,
+400 <code>VALIDATION_FAILED</code>, 401 <code>INVALID_CREDENTIALS</code>), six guarantees (the
+30-minute expiry, unknown user and wrong password byte-identical, the
+token is opaque, no password in any response, branch on <code>code</code> never on
+<code>message</code>).</li>
+<li><code>hsdd/contract/profile-api.md</code>: <code>GET /api/me</code>, 200 with exactly five
+profile fields, one 401 <code>UNAUTHORIZED</code> body for every rejection reason.</li>
+<li>Both start <code>status: draft</code>, <code>phase_ids: provisional</code>. <code>produced_by</code> and
+<code>consumers</code> are first-phase guesses (<code>simple-login.backend.1</code>,
+<code>simple-login.web.1</code>, <code>simple-login.integration.1</code>); only hsdd-reconcile
+may correct them, after the phase plans exist.</li>
+<li><strong>Executable validation.</strong> A contract may not become <code>stable</code> without a
+schema or fixtures, so authoring wrote both:
+<code>schema/auth-api.schema.json</code>, <code>schema/profile-api.schema.json</code>, and ten
+fixture files (five per contract): success, wrong password, unknown
+user, missing field, empty field; Ayu&#39;s profile, Budi&#39;s profile, no
+token, unknown token, expired token.</li>
+<li><strong>The fixture format is part of the contract.</strong> Each file is a request
+and the response it must get. <code>replay: exact</code> means the backend&#39;s real
+body must equal the fixture; <code>replay: schema</code> (only <code>login-success</code>,
+whose token and expiry vary) means it must validate against the schema.
+<code>{{token:ayu}}</code> and <code>{{expired-token:ayu}}</code> in a request header are
+placeholders the backend&#39;s replay fills in.</li>
+<li><strong>No shared code package.</strong> Each side writes its own TypeScript types
+from the Interface. The schema and fixtures are the only shared
+artifacts; the backend replays them, the web app stubs <code>fetch</code> with them.</li>
+<li><code>hsdd/scripts/gen-registry.mjs</code> (copied verbatim) generated
+<code>contract/INDEX.md</code> and <code>adr/INDEX.md</code>.</li>
+</ul>
+<p><strong>What went wrong, and was caught.</strong> A scratch check compiled both
+schemas with Ajv in strict mode and validated all ten fixtures. The first
+draft failed: Ajv&#39;s <code>strictTypes</code> rejects a subschema that uses
+<code>properties</code> without <code>type: &quot;object&quot;</code>. Fixed at authoring time by adding
+the type to every such subschema; all ten fixtures then validated. Had
+this slipped through, the backend&#39;s first replay would have failed, which
+is the point of making the contract executable.</p>
+<p>Commit <code>78a16b7</code>.</p>
+<h2 id="step-4-plan-the-phases-three-leaf-parents-hsdd-phase-plan"><a class="anchor" href="#step-4-plan-the-phases-three-leaf-parents-hsdd-phase-plan" aria-hidden="true" tabindex="-1">#</a>Step 4: Plan the phases, three leaf-parents (hsdd-phase-plan)</h2>
+<p><strong>Prompts:</strong> &quot;simple-login.backend is small enough to phase. Write its phase
+plan.&quot; Then the same for <code>simple-login.web</code> and <code>simple-login.integration</code>.</p>
+<p>In a team these three runs happen in parallel, one git worktree per node.
+Here they ran one after another in the same session, but each plan was
+written only from the frozen governance snapshot (conventions, the three
+node specs, the two contracts, ADR-001) and the node&#39;s own sources. No
+planner used another node&#39;s plan: that is the sibling-isolation rule, and
+it is why the three plans below disagree in one place (see step 5).</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Node</th>
+<th>Phases</th>
+<th>Tiers</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>simple-login.backend</td>
+<td>2</td>
+<td>gate-only, full-review</td>
+<td>the draft had 3; the sizing floor merged two full-review phases</td>
+</tr>
+<tr>
+<td>simple-login.web</td>
+<td>3</td>
+<td>spot-check, spot-check, full-review</td>
+<td>no merge candidates: web.1 and web.2 share a tier but not their contracts</td>
+</tr>
+<tr>
+<td>simple-login.integration</td>
+<td>1</td>
+<td>full-review</td>
+<td>a single composition phase with <code>hard</code> dependencies</td>
+</tr>
+</tbody></table></div>
+<p><strong>Six phases in total.</strong> Each one is a Phase Equivalent: at most 8 tasks
+and about 400 changed lines, sized to one review sitting.</p>
+<p><strong>The sizing floor at work (backend).</strong> The first draft split the backend
+into skeleton (gate-only), password and session logic (full-review), and
+HTTP routes (full-review). The floor&#39;s four conditions all held for the
+last two (same tier, same consumed contracts, nothing depends on one
+without the other, together still ≤ 8 tasks), so they merged. The skeleton
+stayed separate on its tier boundary. The plan records that in one
+paragraph.</p>
+<p><strong>Reading the sources changed the plan.</strong> hsdd-phase-plan reads the
+sources, not just the node spec&#39;s summary of them. Three details exist only
+in the RFC, and each landed in a phase&#39;s Scope so the coding session sees
+it: the dummy-hash comparison for unknown users (RFC §4), &quot;no password or
+token in any log line&quot; (RFC §9), and the injected clock and random source
+(RFC §7).</p>
+<p><strong>Each phase&#39;s gate.</strong> Backend: <code>npm --prefix backend run gate</code>, and for
+backend.2, which produces both contracts, the contract replay
+<code>npm --prefix backend run replay</code>. Web: <code>npm --prefix web run gate</code>
+(types, tests, build). Integration: <code>npm test</code>, which runs everything
+including the browser suite.</p>
+<p><strong>Node-local decisions.</strong> Backend D1 (usernames match exactly) and D2 (it
+listens on <code>127.0.0.1:3000</code>, <code>PORT</code> overrides). Web D1 (expiry is noticed
+on a 401, no client timer), D2 (the <code>sessionStorage</code> key), D3 (one message
+per failure), D4 (no router).</p>
+<p><strong>Governance updates, emitted, not applied.</strong> The governance freeze means
+no planner edits a contract. Each plan ends with a
+<code>## Governance updates (pending reconcile)</code> section instead:</p>
+<ul>
+<li>backend: <code>confirm</code> both contracts&#39; <code>produced_by</code> = backend.2; <code>amend</code>
+auth-api@v1 with D1 (exact username match); <code>amend</code> both contracts with
+D2 (the development address <code>http://127.0.0.1:3000</code>).</li>
+<li>web: <code>confirm</code> consumers (web.1, web.2 for auth-api; web.1, web.3 for
+profile-api); <code>request</code> &quot;where does the service listen in development?&quot;
+assuming <code>http://localhost:3000</code>; <code>request</code> &quot;is username matching
+case-sensitive; should a client trim?&quot; assuming &quot;send it as typed&quot;.</li>
+<li>integration: <code>confirm</code> integration.1 as a consumer of both; <code>request</code>
+the development address, also assuming <code>http://localhost:3000</code>.</li>
+</ul>
+<p>Nothing here was staged. The development address really is missing from
+both contracts (the API Interface says paths, not where the service runs),
+and the web planner, reading only the RFC diagram, really would assume
+<code>localhost</code>.</p>
+<p>Commit <code>4b29815</code>.</p>
+<h2 id="step-5-drain-the-governance-updates-hsdd-reconcile"><a class="anchor" href="#step-5-drain-the-governance-updates-hsdd-reconcile" aria-hidden="true" tabindex="-1">#</a>Step 5: Drain the governance updates (hsdd-reconcile)</h2>
+<p><strong>Prompt:</strong> &quot;Reconcile the phase plans: drain the pending governance
+updates.&quot;</p>
+<p>Reconcile is the single writer of governance after planning. It runs once,
+at the root, after every planning branch has merged.</p>
+<ol>
+<li><strong>Scan.</strong> Three pending sections: backend (2 confirms, 3 amends), web
+(2 confirms, 2 requests), integration (2 confirms, 1 request).</li>
+<li><strong>Group by contract and look for collisions before applying anything.</strong><ul>
+<li>auth-api@v1, development address: the backend&#39;s <code>amend</code> says
+<code>http://127.0.0.1:3000</code>; the web and integration <code>request</code>s assumed
+<code>http://localhost:3000</code>. That is a collision (a request assumption
+that conflicts with another node&#39;s entry), so it goes to the human,
+with both sides quoted. <strong>[owner proxy]</strong> Decided for
+<code>127.0.0.1</code>: the backend binds that address only (backend D2), and
+<code>localhost</code> may resolve to the IPv6 <code>::1</code> first, which would make a
+proxy pointed at <code>localhost</code> fail in a way that is slow to diagnose.
+The losing plans were updated to match: web.1&#39;s and integration.1&#39;s
+Scope lines now name <code>http://127.0.0.1:3000</code>.</li>
+<li>auth-api@v1, username matching: the web <code>request</code> (&quot;is matching
+case-sensitive; should a client trim?&quot;) is answered by the backend&#39;s
+<code>amend</code> (exact match, no trimming). The web&#39;s assumption (&quot;send it as
+typed&quot;) held. No collision, and web.2&#39;s Scope now cites the contract
+instead of an assumption.</li>
+</ul>
+</li>
+<li><strong>Applied the confirms.</strong> auth-api@v1: <code>produced_by: [simple-login.backend.2]</code>, <code>consumers: [simple-login.web.1, simple-login.web.2, simple-login.integration.1]</code>. profile-api@v1: the
+same producer; consumers web.1, web.3, integration.1. Both sides
+confirmed, so <code>phase_ids: provisional</code> became <code>final</code>.</li>
+<li><strong>Applied the answers and amends to the contract bodies.</strong> A
+&quot;Development address&quot; paragraph in both Interfaces, and an exact-match
+guarantee in auth-api@v1. Both are compatible additions, so the version
+stays <code>v1</code>; the Versioning section records the change.</li>
+<li><strong>Flipped status.</strong> <code>phase_ids: final</code>, no open request, and the schema
+and fixtures exist on disk, so both contracts went <code>draft</code> to <code>stable</code>.
+From now on, any phase may build against them.</li>
+<li><strong>Stamped each drained section</strong> with one line, regenerated the
+registries, and found no open question to sweep (OQ1 is untouched).</li>
+</ol>
+<p><strong>Why this matters for the tutorial.</strong> Three planners, working from the
+same frozen snapshot without seeing each other, found the same gap (where
+the service runs) and two of them guessed differently from the third. In a
+single-spec workflow that disagreement surfaces at integration time as a
+proxy that cannot connect. Here it surfaced as one line in a reconcile
+report, before any code.</p>
+<p>Commit <code>c28b097</code>.</p>
+<h2 id="step-6-set-up-the-coding-method-hsdd-config-setup"><a class="anchor" href="#step-6-set-up-the-coding-method-hsdd-config-setup" aria-hidden="true" tabindex="-1">#</a>Step 6: Set up the coding method (hsdd-config, Setup)</h2>
+<p><strong>Prompt:</strong> &quot;Set up HSDD for superpowers.&quot;</p>
+<ul>
+<li><code>hsdd/conventions.md</code>: <code>**Coding method:** superpowers</code>. Every phase
+switch now writes the superpowers derivative next to the generic context.</li>
+<li><code>hsdd/templates/verification.md</code> copied verbatim from hsdd-config. Every
+phase&#39;s verification doc is written from it.</li>
+<li>Companion skills found: superpowers (writing-plans, executing-plans,
+subagent-driven-development, test-driven-development,
+verification-before-completion, requesting-code-review). No language
+skill is named in conventions, so the derivative has constraints 1 to 8
+and no constraint 9.</li>
+</ul>
+<p>Commit <code>995f28a</code>.</p>
+<h2 id="step-7-switch-the-phase-context-hsdd-config-the-switch"><a class="anchor" href="#step-7-switch-the-phase-context-hsdd-config-the-switch" aria-hidden="true" tabindex="-1">#</a>Step 7: Switch the phase context (hsdd-config, the switch)</h2>
+<p><strong>Prompt:</strong> &quot;/hsdd-config simple-login.backend.1&quot; (and so on per phase).</p>
+<p>Each switch writes two files outside <code>hsdd/</code>:</p>
+<ul>
+<li><code>hsdd-context/{phase-id}.md</code>, the generic phase context: the phase&#39;s
+bullet block, its node&#39;s purpose and boundaries, the full Interface and
+Guarantees of every contract it touches, the Decision and Consequences of
+every ADR that governs it, the fixed Discipline lines, and links. Every
+line is a verbatim excerpt or fixed template text; the switch writes no
+sentence of its own.</li>
+<li><code>hsdd-context/superpowers/{phase-id}.md</code>, the derivative: eight Global
+Constraints (test-first, the task cap from the Size estimate, the gate,
+the verification doc, the governance freeze), a Plan check, and the
+generic context between markers. The equality check (<code>diff</code> of the two
+bodies) printed nothing for every phase.</li>
+</ul>
+<p>The excerpts were copied by a scratch helper that follows the skill&#39;s
+template, so nothing was retyped; the helper is not part of HSDD and was
+not committed.</p>
+<p><strong>What each phase sees.</strong> backend.1 sees no contract at all (it consumes
+and produces none) and only ADR-001. web.1 sees both contracts and
+ADR-001. Nobody sees another node&#39;s spec, another phase&#39;s plan, or any
+code outside its own directory.</p>
+<p><strong>The self-contained gate tripped, twice.</strong> Rule 2 says every contract,
+ADR and OQ id a context names must have its text inline. web.2 consumes
+only auth-api@v1, but auth-api&#39;s guarantees say a token &quot;is accepted by
+<code>profile-api@v1</code> until <code>expiresAt</code>&quot;; web.3 consumes only profile-api@v1,
+whose Interface names <code>auth-api@v1</code> as the token&#39;s source. Both contexts
+named a contract they did not carry. Fixed in the file, as the skill
+says (never the rule): each gained the referenced contract&#39;s subsection.
+The template&#39;s direction field allows only <code>consumes</code> or <code>produces</code>, so the
+subsection is headed <code>· referenced ·</code>. <strong>Finding for HSDD:</strong> contracts that
+cite each other make the gate pull in contracts a phase neither consumes
+nor produces, and the template has no word for that. Recorded for the
+owner in the closing notes below.</p>
+<p><strong>A second finding, from backend.1.</strong> backend.1 builds the contract replay
+rig, so it needs the fixture format and the placeholder rules. Those live
+in each contract&#39;s <code>## Validation</code> section, which the switch never
+injects (only Interface and Guarantees). And backend.1 consumes and
+produces no contract, so its context carries no contract text at all. The
+coding session had to follow the Links to the contract files. That is
+&quot;pull&quot;, which the skill reserves for provenance and escalation.</p>
+<p><strong>Contexts for the web lane were written up front.</strong> In a team, each phase
+is switched just before it starts. Here web.1 to web.3 were switched
+together, before the web lane was handed to a separate agent (step 8),
+because governance was frozen after reconcile and the generic context is
+pure selection from it; the next-runnable check&#39;s warning that web.2&#39;s and
+web.3&#39;s dependencies had no verification doc yet is expected and was
+accepted.</p>
+<p>Commit <code>67865d4</code>.</p>
+<h2 id="step-8-execute-the-phases-two-lanes-in-parallel-superpowers"><a class="anchor" href="#step-8-execute-the-phases-two-lanes-in-parallel-superpowers" aria-hidden="true" tabindex="-1">#</a>Step 8: Execute the phases, two lanes in parallel (superpowers)</h2>
+<p>The root DAG has <code>contract</code> edges from backend to web, so the two lanes
+start together. To make the isolation real rather than claimed, the web
+lane was given to a separate agent in its own git worktree, whose only
+specification was the three <code>hsdd-context/superpowers/simple-login.web.*.md</code>
+files. It was told not to open the backend&#39;s spec or code (the backend did
+not exist yet anyway). Claude ran the backend lane in the main checkout.</p>
+<p>Every phase follows the same superpowers sequence the derivative
+prescribes:</p>
+<ol>
+<li><code>superpowers:writing-plans</code>, given the derivative&#39;s path, never
+brainstorming (the design was already reviewed in HSDD). The plan copies
+the eight Global Constraints verbatim and is saved under
+<code>docs/superpowers/plans/</code>.</li>
+<li>The derivative&#39;s Plan check (five boxes).</li>
+<li><code>superpowers:executing-plans</code>, inline, with
+<code>superpowers:test-driven-development</code> on every task: the failing test is
+written and seen to fail before any code.</li>
+<li>The gate, then the verification doc from <code>hsdd/templates/verification.md</code>
+with Sign-off left blank.</li>
+<li>The HSDD review gate at the phase&#39;s tier, then Sign-off.</li>
+</ol>
+<p>Since v0.10.2 the derivative names the execution skill by review tier, so
+a re-run would execute backend.2, web.3 and integration.1 (full-review)
+with <code>superpowers:subagent-driven-development</code> and the rest with
+<code>executing-plans</code>. Its constraints also name <code>test-driven-development</code>,
+<code>verification-before-completion</code> and <code>systematic-debugging</code>.</p>
+<h3 id="simple-loginbackend1-gate-only-2354-to-2359-wib"><a class="anchor" href="#simple-loginbackend1-gate-only-2354-to-2359-wib" aria-hidden="true" tabindex="-1">#</a>simple-login.backend.1 (gate-only), 23:54 to 23:59 WIB</h3>
+<ul>
+<li><strong>Plan:</strong> <code>docs/superpowers/plans/2026-10-29-simple-login.backend.1.md</code>,
+5 tasks (the derivative&#39;s cap). Review Focus listed five failure modes no
+task&#39;s tests would otherwise exercise (a different working directory, a
+sixth fixture added later, a README in a fixture directory, a one-field
+body difference, a placeholder for an unknown account); each got a test.</li>
+<li><strong>Tasks:</strong> package skeleton, domain types and <code>buildApp</code>; the built-in
+accounts as scrypt data; the replay rig&#39;s loading and schema validation;
+the rig&#39;s placeholders and replay modes; the verification doc.</li>
+<li><strong>TDD evidence:</strong> every task&#39;s test failed first (<code>Cannot find module</code>,
+then <code>fillHeaders is not a function</code>), then passed.</li>
+<li><strong>Gate:</strong> <code>npm --prefix backend run gate</code>: <code>tsc</code> clean, 17 tests passed.</li>
+<li><strong>Diff:</strong> 378 lines in 10 files (74 source, 262 test, 42 config).</li>
+<li><strong>What went wrong:</strong><ul>
+<li>The first commit was rejected by the repository&#39;s local pre-commit
+guard: a base64 integrity hash in <code>package-lock.json</code> happened to
+contain a guarded word. Lockfiles are now git-ignored in the tutorial;
+the guard was not bypassed. The web agent was warned before it hit the
+same wall.</li>
+<li><code>tsc</code> rejected Ajv&#39;s default import under <code>nodenext</code> (Ajv is CommonJS).
+Fixed by taking the class from <code>.default</code>; recorded as a ruling.</li>
+</ul>
+</li>
+<li><strong>Learning (dispositioned <code>dropped</code>):</strong> the context carried no contract
+text, yet the phase builds the replay rig; see step 7.</li>
+<li><strong>Review gate [owner proxy]:</strong> gate-only, so the gate re-run (17/17) was
+the review; the diff was not read, as the tier allows. superpowers&#39;
+executing-plans asks for a fresh-reviewer final review; the HSDD tier was
+ruled to govern instead (ledgered), so the fresh reviewer is spent on the
+full-review phases.</li>
+</ul>
+<h3 id="simple-loginbackend2-full-review-0001-to-0022-wib"><a class="anchor" href="#simple-loginbackend2-full-review-0001-to-0022-wib" aria-hidden="true" tabindex="-1">#</a>simple-login.backend.2 (full-review), 00:01 to 00:22 WIB</h3>
+<ul>
+<li><strong>Switch:</strong> the context carried both contracts (as <code>produces</code>), ADR-001,
+and the Contract replay discipline line. Spec <code>7b3e10a</code>, clean.</li>
+<li><strong>Plan:</strong> <code>docs/superpowers/plans/2026-10-30-simple-login.backend.2.md</code>,
+6 tasks under a cap of 7. Full-review tier, so the plan carries design
+rationale: async scrypt, the dummy hash, <code>now &lt; expiresAt</code>, taking raw
+bodies so every malformed request reaches one parser, the
+case-insensitive Bearer scheme, logging without headers or bodies.</li>
+<li><strong>Tasks:</strong> password verification; the session store; pure parsing of
+the body and the header; the two routes plus the contract replay; the
+server entry and log hygiene; the verification doc.</li>
+<li><strong>TDD evidence:</strong> the replay test was written before the routes and
+failed with ten <code>status 404, expected …</code> lines; then all ten fixtures
+reproduced.</li>
+<li><strong>Gate:</strong> 70 tests, replay 10 of 10. Manual check with <code>curl</code> against
+the real server on <code>127.0.0.1:3000</code>: a token, Ayu&#39;s profile, two
+byte-identical 401 bodies (wrong password, unknown user), 401 with no
+token, and no password or token in the server log.</li>
+<li><strong>Diff:</strong> 525 lines in 14 files (187 source, 334 test). The plan said
+~380: the Phase Equivalent counts tests, and a test-first security phase
+is test-heavy. It still fit one review sitting.</li>
+<li><strong>Final review:</strong> a fresh reviewer (the superpowers code-reviewer, on
+the most capable model) read the whole phase diff, re-ran the gate,
+booted the server and probed every Review Focus item over real sockets.
+0 Critical, 0 Important, 6 Minor. Two Minors were re-graded by their
+effect on a user and fixed test-first: lengths were counted in UTF-16
+units where the contract says characters (a 40-emoji username got 400
+instead of 401), and <code>engines</code> said Node 24 while <code>import.meta.main</code>
+needs 24.2 (the server would exit silently). Four were deferred and
+listed.</li>
+<li><strong>What went wrong:</strong> backend.1&#39;s test &quot;no routes yet&quot; failed once the
+routes existed; it asserted a phase-1 fact and was replaced (ruling in
+the ledger).</li>
+<li><strong>Learnings (all <code>dropped</code>, each with a reason):</strong> the Scope cites
+node-local D1 and D2, which the switch does not inject (their content
+reached the session only through the contracts); the size estimate
+undershot; the two fixed findings.</li>
+<li><strong>Review gate [owner proxy]:</strong> full-review: the diff read twice (author
+and fresh reviewer), the manual check run, the edge cases confirmed.
+Signed off.</li>
+</ul>
+<h3 id="the-web-lane-simple-loginweb1-to-web3-2354-to-0047-wib"><a class="anchor" href="#the-web-lane-simple-loginweb1-to-web3-2354-to-0047-wib" aria-hidden="true" tabindex="-1">#</a>The web lane: simple-login.web.1 to web.3, 23:54 to 00:47 WIB</h3>
+<p>Run by a separate agent in its own git worktree. Its brief named the three
+derivative files as its only specification and listed what it must not
+open (the backend&#39;s spec and code, the integration plan). It followed the
+same sequence: writing-plans, Plan check, executing-plans with TDD, gate,
+verification doc, and one fresh reviewer per phase.</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Phase</th>
+<th>Tier</th>
+<th>Wall-clock</th>
+<th align="right">Tasks</th>
+<th align="right">Tests after</th>
+<th>Product lines (src + test + config)</th>
+<th>Process lines (plan + verification doc)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>web.1</td>
+<td>spot-check</td>
+<td>23:54 to 00:15</td>
+<td align="right">5</td>
+<td align="right">35</td>
+<td>604 (182 + 344 + 78)</td>
+<td>488</td>
+</tr>
+<tr>
+<td>web.2</td>
+<td>spot-check</td>
+<td>00:15 to 00:31</td>
+<td align="right">5</td>
+<td align="right">51</td>
+<td>385 (188 + 197)</td>
+<td>439</td>
+</tr>
+<tr>
+<td>web.3</td>
+<td>full-review</td>
+<td>00:31 to 00:47</td>
+<td align="right">6</td>
+<td align="right">79</td>
+<td>456 (245 + 211)</td>
+<td>570</td>
+</tr>
+</tbody></table></div>
+<p><strong>The contract edge, in practice.</strong> web.1 started at 23:54, when the
+backend had no code at all. backend.2&#39;s routes landed at 00:04 on a
+branch the web agent never saw, and no web phase needed them: the web
+app&#39;s only knowledge of the backend was the two contracts and their
+fixtures, and its fetch stub answers each request with the fixture for
+that method and path.</p>
+<p><strong>What went wrong, and was caught:</strong></p>
+<ul>
+<li>The worktree was cut from <code>main</code>, not from <code>feat/tutorial</code>, so it had no
+<code>docs/tutorial/</code>. The agent&#39;s attempt to fast-forward its branch was
+refused by the session&#39;s permission classifier, so it restored the
+tutorial inputs into its working tree, untracked, and committed only
+what it created. It checked that the 34 restored governance files were
+byte-identical to <code>feat/tutorial</code>. The lane was merged with a merge
+commit (<code>3894bc0</code>); the two lanes touched disjoint paths, so the merge
+was clean by construction.</li>
+<li>Vite rewrites <code>new URL(literal, import.meta.url)</code> into an asset URL,
+which broke the fixture loader in tests; switched to <code>node:path</code>.</li>
+<li>user-event and Testing Library&#39;s async helpers hang under Vitest fake
+timers; the busy-state tests fake the clock only while the request is in
+flight.</li>
+<li><strong>Reviews:</strong> web.1&#39;s reviewer found no request timeout (a hung backend
+would leave the form busy forever); re-graded to Important and fixed
+test-first with a 10-second abort. web.2&#39;s reviewer found that iOS
+capitalizes the first letter of the username field, and auth-api@v1
+matches usernames exactly, so <code>ayu</code> typed on a phone would fail; fixed
+with <code>autocapitalize=&quot;none&quot;</code>. That second one is the exact-match <code>amend</code>
+from reconcile paying off in a place nobody planned for.</li>
+</ul>
+<p><strong>Learnings that changed the tree (dispositions executed at the root by
+the owner proxy at the gate):</strong></p>
+<ul>
+<li>web.2: D3 named no message for <code>invalid-input</code>. <code>spec-updated</code>: D3 now
+says it shows the AC-1.2 message.</li>
+<li>web.3: the spec was silent on a network failure while checking a stored
+session. <code>spec-updated</code>: new D5 (keep the session, show Login with the
+network message, retry on the next load); the Overview sentence gained
+the exception.</li>
+<li>web.3: auth-api@v1 says &quot;characters&quot; without defining them. The agent
+proposed <code>dropped</code> (moot with built-in accounts). But the backend&#39;s
+final review had met the same ambiguity from the other side (it counted
+UTF-16 units and fixed it to code points). Two lanes, one ambiguity:
+<strong>[owner proxy]</strong> clarified auth-api@v1 through hsdd-contract (a
+character is a code point, as JSON Schema counts), a compatible change,
+still v1. The disposition vocabulary has no word for &quot;amended without a
+bump&quot;; recorded as <code>dropped</code>, superseded, with the reason.</li>
+</ul>
+<p><strong>Review gates [owner proxy]:</strong> web.1 and web.2 at spot-check (gate re-run
+in the main checkout after the merge, 79 of 79, build clean); web.3 at
+full-review (the composition and the state machine read in full). The
+real-backend walk was deferred to integration.1, which exists for it. The
+screen-reader passes were waived: there is no assistive technology here;
+they are listed for the owner below.</p>
+<h3 id="simple-loginintegration1-full-review-0051-to-0119-wib"><a class="anchor" href="#simple-loginintegration1-full-review-0051-to-0119-wib" aria-hidden="true" tabindex="-1">#</a>simple-login.integration.1 (full-review), 00:51 to 01:19 WIB</h3>
+<ul>
+<li><strong>Switch:</strong> both contracts as <code>consumes</code> (with the auth-api@v1
+clarification from the web.3 gate already in), ADR-001 through the
+contracts. Dependencies backend.2 and web.3 both had signed-off
+verification docs, so the next-runnable check was clean.</li>
+<li><strong>Plan:</strong> <code>docs/superpowers/plans/2026-10-30-simple-login.integration.1.md</code>,
+6 tasks. Design rationale: AC-2.3 by restarting the backend instead of
+seeding browser storage (seeding needs the web app&#39;s storage key, a web
+internal; profile-api@v1 guarantees an unknown token answers exactly
+like an expired one, and ADR-001 says a restart signs everyone out); the
+backend as a restartable Playwright worker fixture, the web dev server
+as a <code>webServer</code>; the installed Chrome; the PRD&#39;s words as selectors.</li>
+<li><strong>Tasks:</strong> root scripts and the dev runner; the browser rig and AC-1.1;
+the rest of US-1 to US-3; AC-2.3 through a restart; the contract replay
+through the dev proxy; the verification doc.</li>
+<li><strong>TDD for tests of behavior that already exists:</strong> each task&#39;s red came
+from missing wiring (config, fixture, helpers). To show a green test can
+still bite, a mutation check changed one message in the web app: both
+AC-1.2 tests failed, then passed after the revert.</li>
+<li><strong>Gate:</strong> <code>npm test</code>: backend 70, replay 10, web 79 and build, runner 3,
+browser 18 (9 acceptance tests, 9 fixtures replayed through the proxy).
+12 seconds end to end. Then a fresh clone: <code>npm run install:all</code> and
+<code>npm test</code>, both green.</li>
+<li><strong>The headline:</strong> every browser test passed on its first green run. The
+two halves, built in two lanes that never saw each other, needed no
+change to meet. The labels the PRD names were the labels the web agent
+had used; the address reconcile settled was the address both sides used.</li>
+<li><strong>What went wrong, and was caught:</strong><ul>
+<li>The first Playwright run, before its config existed, collected the dev
+runner&#39;s node test, started both servers and killed the runner hard;
+two orphan servers held the ports. Found by the next run (&quot;5173 is
+already used&quot;), killed, and the config now limits Playwright to <code>e2e/</code>.</li>
+<li>The first version of a runner test passed before the runner existed
+(a missing script also exits non-zero); strengthened to require the
+runner to name the server that failed.</li>
+</ul>
+</li>
+<li><strong>Final review:</strong> a fresh reviewer ran <code>npm test</code>, drove <code>npm run dev</code>
+through a real terminal, killed the backend mid-run, and probed every
+Review Focus item. 0 Critical, 2 Important, 6 Minor. Fixed test-first:
+an exported <code>PORT</code> moved the backend off the proxy&#39;s target (and the
+fixture orphaned it); a developer&#39;s running <code>npm run dev</code> made the
+runner test fail on the wrong assertion. Two Minors were re-graded by
+effect and fixed: AC-1.2 matched a substring, so a message that says
+which field was wrong would have passed the PRD&#39;s &quot;never says which&quot;;
+and a dangling timer added 20 seconds to every <code>npm test</code>. Four were
+deferred.</li>
+<li><strong>Review gate [owner proxy]:</strong> full-review, signed off. web.3&#39;s deferred
+real-backend walk was verified here.</li>
+</ul>
+<h2 id="closing-notes-for-the-owner"><a class="anchor" href="#closing-notes-for-the-owner" aria-hidden="true" tabindex="-1">#</a>Closing notes for the owner</h2>
+<h3 id="decisions-taken-on-your-behalf-owner-proxy"><a class="anchor" href="#decisions-taken-on-your-behalf-owner-proxy" aria-hidden="true" tabindex="-1">#</a>Decisions taken on your behalf <strong>[owner proxy]</strong></h3>
+<p>Each is a call HSDD leaves to a person. All are recorded where they were
+made; listed here so you can check them in one place.</p>
+<ol>
+<li><strong>The &quot;who builds what?&quot; stop</strong> was not needed: the PRD you asked for
+states the team, and I wrote that line into it. A participant whose PRD
+omits it will be asked.</li>
+<li><strong>ADR-001 accepted</strong> on the strength of the RFC&#39;s accepted status.</li>
+<li><strong>Reconcile collision:</strong> <code>127.0.0.1</code> over <code>localhost</code> for the
+development address; the web and integration plans updated to match.</li>
+<li><strong>Self-contained gate:</strong> web.2 and web.3 contexts gained the contract
+their own contract names, headed <code>· referenced ·</code> (no such word in the
+template).</li>
+<li><strong>superpowers vs the HSDD tier:</strong> no fresh-reviewer final review for
+the gate-only phase; one for every other phase.</li>
+<li><strong>Every Sign-off</strong> (six phases), including re-grading reviewer Minors
+by effect: four Minors became Important and were fixed.</li>
+<li><strong>Gate dispositions that changed the tree:</strong> web D3 (the <code>invalid-input</code>
+message) and D5 (a network failure while checking a stored session) via
+spec edits; auth-api@v1 defines a character as a code point (a
+compatible clarification, still v1), after both lanes met the ambiguity.</li>
+<li><strong>Waived:</strong> two screen-reader passes (no assistive technology here).</li>
+<li><strong>AC-2.3 by backend restart</strong> rather than seeding storage.</li>
+</ol>
+<h3 id="rulings-made-during-execution-from-the-executing-plans-ledgers"><a class="anchor" href="#rulings-made-during-execution-from-the-executing-plans-ledgers" aria-hidden="true" tabindex="-1">#</a>Rulings made during execution (from the executing-plans ledgers)</h3>
+<ul>
+<li>backend.1: lockfiles are git-ignored, because the repository&#39;s local
+pre-commit guard matched a guarded word inside a random integrity hash.
+Cost: installs float within the <code>package.json</code> ranges.</li>
+<li>backend.1: Ajv and ajv-formats are CommonJS; under <code>nodenext</code> their
+classes are taken from <code>.default</code>. Cost: none.</li>
+<li>backend.2: backend.1&#39;s &quot;no routes yet&quot; test asserted a phase-1 fact and
+was replaced by &quot;serves only the two API routes&quot;. Cost: none.</li>
+<li>backend.2 and integration.1: the fresh review ran before the
+verification-doc task, so the doc records the reviewed state. Cost: none.</li>
+<li>integration.1: <code>node --test</code> takes a glob, not a directory, on Node 24.</li>
+<li>integration.1: a runner test that passed before the runner existed was
+strengthened.</li>
+<li>integration.1: AC-2.3 by restart (see the plan&#39;s design rationale).
+Cost: the true 30-minute expiry is covered only by the backend suite,
+through the injected clock.</li>
+<li>integration.1: the config limits Playwright to <code>e2e/</code> and the runner
+stops on SIGHUP. Cost: a hard-killed runner can still orphan its
+servers.</li>
+</ul>
+<h3 id="deferred-minors"><a class="anchor" href="#deferred-minors" aria-hidden="true" tabindex="-1">#</a>Deferred minors</h3>
+<ul>
+<li>backend: expired sessions stay in memory until presented again; a thrown
+5xx escapes the error envelope; the error handler matches <code>/api/login</code>
+by prefix; three test gaps (same-user double sign-in at route level, log
+hygiene on error paths, a chunked over-limit body).</li>
+<li>web (from the web agent&#39;s reviews): an unreadable <code>sessionStorage</code> is
+untested; <code>unavailable</code> fall-through branches have no fixture-backed test;
+the failure-message mapping is not exhaustive; focus after <code>unavailable</code>;
+live-region announcement; stylesheet order; time-zone test restore.</li>
+<li>integration: the AC-1.1 clock starts at the first keystroke; the runner
+is POSIX-only; no spawn error handler; the fixture discards backend logs.</li>
+</ul>
+<h3 id="open-for-a-person"><a class="anchor" href="#open-for-a-person" aria-hidden="true" tabindex="-1">#</a>Open for a person</h3>
+<ul>
+<li>A VoiceOver pass on the Login notice and error messages (web.2, web.3).</li>
+<li>OQ1, deployment beyond a laptop (one origin or CORS), still OPEN.</li>
+</ul>
+<h3 id="findings-about-hsdd-itself"><a class="anchor" href="#findings-about-hsdd-itself" aria-hidden="true" tabindex="-1">#</a>Findings about HSDD itself</h3>
+<p>These came from running the v0.10 skills as written. None blocked the run;
+each needed a judgment the skills do not make.</p>
+<ol>
+<li><strong>Selection misses the Validation section.</strong> hsdd-config injects a
+contract&#39;s Interface and Guarantees only. backend.1 builds the replay
+rig, needs the fixture format and placeholder rules from <code>## Validation</code>,
+and, consuming no contract, got no contract text at all. It had to pull
+through the Links. Fixed in v0.10.1: every contract subsection now
+carries its Validation section, and a phase like backend.1 names the
+contracts in its Scope (<code>auth-api@v1</code>) to receive them as referenced.</li>
+<li><strong>The self-contained gate has no word for &quot;referenced&quot;.</strong> Contracts
+that cite each other make the gate pull in contracts a phase neither
+consumes nor produces. Fixed in v0.10.1: the skill now names that
+direction <code>referenced</code>, the word this run chose.</li>
+<li><strong>Node-local decisions are not injected.</strong> A phase Scope that says &quot;per
+D1&quot; points at text the context does not carry. Here the content survived
+only because reconcile had copied it into a contract. Fixed in v0.10.2:
+the switch injects every node decision the Phase block cites, under
+Decisions.</li>
+<li><strong>No disposition for a compatible contract clarification.</strong> The
+Learning vocabulary has <code>contract-bumped</code>, not &quot;amended, same version&quot;.</li>
+<li><strong>superpowers&#39; final review vs the HSDD tier.</strong> executing-plans requires
+a fresh-reviewer review of every plan; a gate-only tier says the gate is
+enough. The derivative could say which governs.</li>
+<li><strong>Phase Equivalent sizing undershoots test-first phases.</strong> Product diffs
+ran 385 to 604 lines against a ~400 ceiling; tests count, and the plans&#39;
+estimates did not allow for them.</li>
+<li><strong>Worktree base.</strong> The agent harness cut the parallel lane&#39;s worktree
+from <code>main</code>, not from the current branch. HSDD&#39;s execution protocol says
+phase branches come off the node&#39;s integration branch; with agents, the
+brief has to say so.</li>
+<li><strong>Naming.</strong> This tutorial&#39;s <code>hsdd/context/</code> is one character away from
+the generated <code>hsdd-context/</code>. Worth a different input folder name if
+the tutorial is reused.</li>
+</ol>
+<h3 id="the-numbers"><a class="anchor" href="#the-numbers" aria-hidden="true" tabindex="-1">#</a>The numbers</h3>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th></th>
+<th align="right">Lines</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Source (backend, web, the dev runner, the Playwright config)</td>
+<td align="right">962</td>
+</tr>
+<tr>
+<td>Tests (unit, contract replay, browser, runner)</td>
+<td align="right">1,664</td>
+</tr>
+<tr>
+<td>Planning artifacts (4 specs, 2 contracts, 2 schemas, 10 fixtures, ADR, conventions, registries)</td>
+<td align="right">1,292</td>
+</tr>
+<tr>
+<td>Superpowers plans (6)</td>
+<td align="right">1,538</td>
+</tr>
+<tr>
+<td>Verification docs (6)</td>
+<td align="right">731</td>
+</tr>
+<tr>
+<td>Generated phase contexts and derivatives (12 files, verbatim selection)</td>
+<td align="right">1,824</td>
+</tr>
+</tbody></table></div>
+<p>Authored process (planning, plans, verification docs): 3,561 lines, about
+3.7 times the source. Add the generated contexts and it is 5,385.</p>
+<p>Agent wall-clock: 23:39 to 01:19 WIB, 1 hour 40 minutes, for the whole run
+including the two parallel lanes and four fresh reviews. Planning, PRD to
+stable contracts: 8 minutes (23:42 to 23:50).</p>
+</article>
+    <footer class="doc-foot"><span><a href="../">Back to the simple-login tutorial</a></span><a href="#main">Back to top ↑</a></footer></main>
+  </div>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p class="foot-links"><a href="../../../changelog/">Changelog</a><a href="../../../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../../../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "mpurbo.github.io",
+  "private": true,
+  "type": "module",
+  "description": "Personal site and the HSDD documentation, built from the hsdd repository.",
+  "scripts": {
+    "build": "node tools/build-hsdd.mjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "marked": "15.0.12",
+    "mermaid": "11.17.2"
+  }
+}

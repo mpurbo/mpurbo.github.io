@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="One change to the finished project through the change flow: intake, a contract version bump, appended phases, reconcile, and the checkpoint that closes the change.">
+  <title>Tutorial: simple-login, update 1 · HSDD</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="Tutorial: simple-login, update 1 · HSDD">
+  <meta property="og:description" content="One change to the finished project through the change flow: intake, a contract version bump, appended phases, reconcile, and the checkpoint that closes the change.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../../assets/docs.css">
+  
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="kind-doc">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    <button class="tool contents-toggle" id="contents-toggle" aria-expanded="false" aria-controls="toc">Contents</button>
+    <a class="brand" href="../../" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="../../guide/">Interactive guide</a><a href="../../users-guide/">User's guide</a><a href="../" aria-current="page">Tutorials</a><a href="../../reference/">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <div class="shell has-toc">
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#the-three-folders" data-id="the-three-folders">The three folders</a></li><li><a href="#run-the-updated-app" data-id="run-the-updated-app">Run the updated app</a></li><li><a href="#what-the-change-shows" data-id="what-the-change-shows">What the change shows</a></li><li><a href="#regenerating-the-walkthroughs-data" data-id="regenerating-the-walkthroughs-data">Regenerating the walkthrough&#39;s data</a></li></ol></nav>
+    <main id="main" tabindex="-1"><header class="doc-head">
+      <p class="eyebrow">Tutorial 2 of 3</p>
+      <h1>Tutorial: simple-login, update 1</h1>
+      
+      <div class="cta-row">
+        <a class="btn primary" href="walkthrough/">Open the walkthrough →</a>
+        <a class="btn" href="walkthrough/process-log.html">Read the process log</a>
+        <a class="btn" href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/simple-login-update">Files on GitHub</a>
+      </div>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/docs/tutorial/simple-login-update/README.md"><code>docs/tutorial/simple-login-update/README.md</code></a> on GitHub</p>
+    </header>
+    <article class="prose"><p>The second simple-login tutorial: one change to a finished HSDD project.
+The <a href="../simple-login/">first tutorial</a> built a login backend and a two-screen
+web app from a PRD. Here product asks for one thing more, the user&#39;s phone
+number on the Home screen, and the change goes through HSDD&#39;s change flow:
+intake, a contract version bump, appended phases, reconcile, three
+superpowers phases, and the checkpoint that closes the intake record.</p>
+<p>Recorded with the HSDD v0.10.1 skills. A run with a later release differs
+where the walkthrough&#39;s hints say so; <a href="../../changelog/"><code>CHANGELOG.md</code></a>
+lists each change.</p>
+<h2 id="the-three-folders"><a class="anchor" href="#the-three-folders" aria-hidden="true" tabindex="-1">#</a>The three folders</h2>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Folder</th>
+<th>What it is</th>
+<th>Use it to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/simple-login-update/template" rel="noopener"><code>template/</code></a></td>
+<td>The finished simple-login project (its <code>execute/</code>, as merged) plus one new input, <a href="https://github.com/mpurbo/hsdd/blob/main/docs/tutorial/simple-login-update/template/hsdd/context/update-1-add-phone.md" rel="noopener"><code>hsdd/context/update-1-add-phone.md</code></a>, the approved change request.</td>
+<td>Run the tutorial yourself. Copy <code>template/</code> into an empty git repository and follow the walkthrough&#39;s &quot;Do it yourself&quot; mode.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/simple-login-update/execute" rel="noopener"><code>execute/</code></a></td>
+<td>The repository after the change: the intake record and the checkpoint&#39;s documents under <code>hsdd/management/</code>, <code>profile-api@v2</code> beside v1 under <code>hsdd/contract/</code>, the three appended phases in the node specs, their contexts, plans and verification docs, and the code.</td>
+<td>Compare your run with ours, file by file, or run the updated app.</td>
+</tr>
+<tr>
+<td><a href="walkthrough/"><code>walkthrough/</code></a></td>
+<td>An interactive page that tells the change stage by stage, plus the full written record, <a href="walkthrough/process-log.html"><code>process-log.md</code></a>.</td>
+<td>Present the change flow to a group (&quot;Walkthrough&quot; mode), or learn it alone (&quot;Do it yourself&quot; mode).</td>
+</tr>
+</tbody></table></div>
+<p>Open <code>walkthrough/index.html</code> in a browser. It works from disk, offline,
+with no build step. Keys: <code>←</code> <code>→</code> step, <code>M</code> switches mode, <code>T</code> the theme.
+The file panel lists only what changed since the template by default; open
+any file and press <strong>Diff vs template</strong> to see the change itself.</p>
+<h2 id="run-the-updated-app"><a class="anchor" href="#run-the-updated-app" aria-hidden="true" tabindex="-1">#</a>Run the updated app</h2>
+<p>From <code>execute/</code> (Node.js 24.2 or later):</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">npm run install:all
+npm run dev          # backend on 127.0.0.1:3000, web app on localhost:5173</code></pre></div>
+<p>Sign in as <code>ayu</code> / <code>sunrise-42</code> or <code>budi</code> / <code>harbor-17</code>: Home now shows the
+phone number. <code>npm test</code> runs every gate, the contract replay and the
+browser suite.</p>
+<h2 id="what-the-change-shows"><a class="anchor" href="#what-the-change-shows" aria-hidden="true" tabindex="-1">#</a>What the change shows</h2>
+<ul>
+<li><strong>A PRD is never a root.</strong> The change request gets an intake record, not
+a spec: <code>hsdd-intake</code> classified it <code>cross-node</code> and routed it before any
+other skill ran.</li>
+<li><strong>A contract policy decides what a change costs.</strong> <code>profile-api@v1</code> was
+<code>versioned</code> with a closed schema, so one display field minted
+<code>profile-api@v2</code>. v2 declares <code>additive-only</code>, so the next optional field
+will not.</li>
+<li><strong>A version bump ripples.</strong> Seven texts named the old version; some had an
+owning skill and some had none.</li>
+<li><strong>Shipped phases are a ledger.</strong> Each landing node appended one phase;
+nothing shipped was renumbered or rewritten.</li>
+<li><strong>Isolated planners still saw the seam.</strong> Two of them worked out, before
+any code, that the build would be red between the backend&#39;s phase and the
+integration phase, and planned for the three to land together. The build
+went red exactly there, while the product itself kept working.</li>
+<li><strong>Only a checkpoint closes the change.</strong> It found the three phases by
+their Scope citation, checked their verification docs, and ticked the
+record closed.</li>
+</ul>
+<p>Every decision taken on the owner&#39;s behalf is marked <strong>[owner proxy]</strong> in
+the process log, which also lists the findings about HSDD&#39;s change flow.</p>
+<h2 id="regenerating-the-walkthroughs-data"><a class="anchor" href="#regenerating-the-walkthroughs-data" aria-hidden="true" tabindex="-1">#</a>Regenerating the walkthrough&#39;s data</h2>
+<p><code>walkthrough/data.js</code> embeds the repository as each stage left it, read
+from git history. After changing the run, update <code>walkthrough/stages.json</code>
+(stage to commit) and run
+<code>node docs/tutorial/simple-login-update/walkthrough/build-data.mjs</code>.</p>
+</article>
+    <footer class="doc-foot"><span><a href="../">All tutorials</a> · <a href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/simple-login-update">this tutorial on GitHub</a></span><a href="#main">Back to top ↑</a></footer></main>
+  </div>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p class="foot-links"><a href="../../changelog/">Changelog</a><a href="../../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>

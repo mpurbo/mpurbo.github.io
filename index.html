@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Purbo Mohamad, software engineer in Jakarta. Home of HSDD, Hierarchical Spec-Driven Development, and other open source work.">
+  <title>Purbo Mohamad</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Purbo Mohamad">
+  <meta property="og:description" content="Software engineer in Jakarta. Home of HSDD, Hierarchical Spec-Driven Development.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <style>
+    /* The same tokens as the HSDD docs, so the two read as one site. */
+    :root {
+      --paper: #f5f6fb; --card: #ffffff; --sunk: #eceff7;
+      --ink: #1e293b; --muted: #566074; --faint: #7d879b; --rule: #dce1ec; --line: #475569;
+      --accent: #4f46e5; --accent-ink: #ffffff;
+      --flow-bg: #e0e7ff; --flow: #4f46e5;
+      --process-bg: #f3e8ff; --process: #7c3aed;
+      --impl-bg: #dbeafe; --impl: #2563eb;
+      --done-bg: #d1fae5; --done: #059669;
+      --decision-bg: #fef3c7; --decision: #b45309;
+      --shadow: 0 1px 2px rgba(30, 41, 59, 0.06), 0 4px 16px rgba(30, 41, 59, 0.06);
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --paper: #0d1324; --card: #161e33; --sunk: #1d2740;
+        --ink: #e2e8f0; --muted: #a3adc2; --faint: #7f8aa3; --rule: #2c3753; --line: #94a3b8;
+        --accent: #8b93ff; --accent-ink: #0d1324;
+        --flow-bg: #1e1b4b; --flow: #a5b4fc; --process-bg: #2e1065; --process: #c4b5fd;
+        --impl-bg: #172554; --impl: #93c5fd; --done-bg: #052e16; --done: #6ee7b7;
+        --decision-bg: #422006; --decision: #fcd34d;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --paper: #0d1324; --card: #161e33; --sunk: #1d2740;
+      --ink: #e2e8f0; --muted: #a3adc2; --faint: #7f8aa3; --rule: #2c3753; --line: #94a3b8;
+      --accent: #8b93ff; --accent-ink: #0d1324;
+      --flow-bg: #1e1b4b; --flow: #a5b4fc; --process-bg: #2e1065; --process: #c4b5fd;
+      --impl-bg: #172554; --impl: #93c5fd; --done-bg: #052e16; --done: #6ee7b7;
+      --decision-bg: #422006; --decision: #fcd34d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); }
+    a { color: var(--accent); text-underline-offset: 2px; }
+    h1, h2, h3 { margin: 0; line-height: 1.2; text-wrap: balance; }
+    p { margin: 0; }
+    code { font-family: var(--mono); font-size: 0.88em; background: var(--sunk); padding: 0.05em 0.35em; border-radius: 4px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+
+    .top { display: flex; align-items: center; gap: 12px; padding-top: max(18px, env(safe-area-inset-top, 0px)); padding-bottom: 18px; }
+    .mono-mark {
+      width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; flex: none;
+      font: 700 14px var(--mono); letter-spacing: 0.02em; color: var(--flow); background: var(--flow-bg); border: 1px solid var(--flow);
+    }
+    .top .name { font-weight: 650; color: var(--ink); text-decoration: none; }
+    .top nav { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+    .top nav a { padding: 6px 10px; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
+    .top nav a:hover { background: var(--sunk); color: var(--ink); }
+    .theme {
+      width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card);
+      color: var(--ink); cursor: pointer; font-size: 16px; display: grid; place-items: center; padding: 0;
+    }
+    .theme:hover { border-color: var(--accent); }
+
+    .hero { padding: 64px 0 40px; display: grid; gap: 18px; max-width: 760px; }
+    .hero h1 { font-size: clamp(40px, 7vw, 68px); font-weight: 780; letter-spacing: -0.035em; line-height: 1.02; }
+    .hero .sub { font-size: clamp(18px, 2.2vw, 22px); color: var(--muted); max-width: 40ch; line-height: 1.45; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; font-size: 14px; font-weight: 600;
+      border: 1px solid var(--rule); background: var(--card); color: var(--ink); text-decoration: none;
+    }
+    .pill:hover { border-color: var(--accent); }
+    .pill svg { width: 16px; height: 16px; }
+
+    .label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin: 0 0 12px; }
+    section { padding: 24px 0; }
+
+    .feature {
+      display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: center;
+      padding: 28px; border-radius: 16px; background: var(--card); border: 1px solid var(--rule); box-shadow: var(--shadow);
+      position: relative; overflow: hidden;
+    }
+    .feature::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--flow), var(--process), var(--impl), var(--done)); }
+    .feature .tag { display: flex; align-items: center; gap: 10px; }
+    .feature .tag svg { width: 30px; height: 30px; }
+    .feature .tag b { font-size: 15px; letter-spacing: 0.06em; }
+    .feature .tag span { font-size: 13px; color: var(--muted); }
+    .feature h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 750; letter-spacing: -0.02em; margin-top: 14px; }
+    .feature p { color: var(--muted); margin-top: 10px; font-size: 16.5px; }
+    .feature .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 8px; font-size: 14.5px; font-weight: 600;
+      border: 1px solid var(--rule); background: var(--card); color: var(--ink); text-decoration: none;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .ideas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .ideas li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; padding: 12px 14px; border-radius: 10px; background: var(--paper); border: 1px solid var(--rule); font-size: 14.5px; }
+    .ideas li b { display: block; font-size: 15px; }
+    .ideas li span { color: var(--muted); }
+    .ideas .dot { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; font: 700 13px var(--mono); }
+    .d1 { background: var(--flow-bg); color: var(--flow); } .d2 { background: var(--process-bg); color: var(--process); } .d3 { background: var(--done-bg); color: var(--done); }
+
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .card {
+      display: grid; gap: 6px; align-content: start; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--rule);
+      background: var(--card); color: var(--ink); text-decoration: none; transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .card h3 { font-size: 16px; font-weight: 680; }
+    .card p { font-size: 14px; color: var(--muted); }
+    .card .meta { font: 12px var(--mono); color: var(--faint); }
+    .older { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--muted); }
+    .older a { color: var(--ink); }
+
+    footer { margin-top: 40px; border-top: 1px solid var(--rule); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding-top: 18px; padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px)); font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 760px) {
+      .feature { grid-template-columns: minmax(0, 1fr); padding: 22px 18px; }
+      .hero { padding: 36px 0 24px; }
+      .top nav a.hide-sm { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="wrap top">
+    <span class="mono-mark" aria-hidden="true">PM</span>
+    <a class="name" href="./">Purbo Mohamad</a>
+    <nav aria-label="Site">
+      <a href="hsdd/">HSDD</a>
+      <a class="hide-sm" href="https://mamad.purbo.org">Blog</a>
+      <a class="hide-sm" href="https://github.com/mpurbo">GitHub</a>
+      <button class="theme" id="theme" type="button" title="Theme" aria-label="Theme: follow system">◐</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="About">
+      <h1>Purbo Mohamad</h1>
+      <p class="sub">Software engineer in Jakarta, Indonesia. I love learning and building stuff: lately, functional programming and spec-driven development with AI agents.</p>
+      <div class="links">
+        <a class="pill" href="https://github.com/mpurbo"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/mpurbo</a>
+        <a class="pill" href="https://mamad.purbo.org"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M3 3.5h10M3 8h10M3 12.5h6"/></svg>Blog: Purbo + AI</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="featured">
+      <p class="label" id="featured">Featured project</p>
+      <article class="feature">
+        <div>
+          <div class="tag">
+            <svg viewBox="0 0 28 28" aria-hidden="true">
+              <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" fill="none" stroke="var(--line)" stroke-width="1.4"/>
+              <rect x="10" y="3" width="8" height="6" rx="1.5" fill="var(--flow-bg)" stroke="var(--flow)"/>
+              <rect x="3" y="11" width="8" height="6" rx="1.5" fill="var(--process-bg)" stroke="var(--process)"/>
+              <rect x="17" y="11" width="8" height="6" rx="1.5" fill="var(--process-bg)" stroke="var(--process)"/>
+              <rect x="1" y="20" width="6" height="5" rx="1.5" fill="var(--done-bg)" stroke="var(--done)"/>
+              <rect x="8" y="20" width="6" height="5" rx="1.5" fill="var(--done-bg)" stroke="var(--done)"/>
+              <rect x="18" y="20" width="6" height="5" rx="1.5" fill="var(--done-bg)" stroke="var(--done)"/>
+            </svg>
+            <div><b>HSDD</b><br><span>Hierarchical Spec-Driven Development</span></div>
+          </div>
+          <h2>The spec is the program.</h2>
+          <p>A methodology and a set of agent skills that scale spec-driven development from a single spec to large, multi-team systems: recursive decomposition, first-class contracts, and one human-reviewed phase at a time.</p>
+          <div class="actions">
+            <a class="btn primary" href="hsdd/">Read the docs →</a>
+            <a class="btn" href="hsdd/guide/">Interactive guide</a>
+            <a class="btn" href="https://github.com/mpurbo/hsdd">GitHub</a>
+          </div>
+        </div>
+        <ul class="ideas">
+          <li><span class="dot d1" aria-hidden="true">1</span><span><b>Decompose the spec</b><span>A tree of nodes joined only by named, versioned contracts, split where ownership splits.</span></span></li>
+          <li><span class="dot d2" aria-hidden="true">2</span><span><b>Phase the leaves</b><span>Each phase is one coding cycle, sized so a human can review it in one sitting.</span></span></li>
+          <li><span class="dot d3" aria-hidden="true">3</span><span><b>Review every phase</b><span>Done means a verification doc a human signed. The human owns correctness; the agent owns throughput.</span></span></li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="more">
+      <p class="label" id="more">Also</p>
+      <div class="grid">
+        <a class="card" href="https://github.com/mpurbo/lets-get-functional-v2"><span class="meta">book · source</span><h3>Let's Get Functional</h3><p>A practitioner's guide to functional programming.</p></a>
+        <a class="card" href="https://github.com/mpurbo/functional-rust-guidelines"><span class="meta">guidelines</span><h3>Functional Rust guidelines</h3><p>Idiomatic Rust aligned with functional programming principles.</p></a>
+        <a class="card" href="https://github.com/mpurbo/purbo-skills"><span class="meta">agent skills</span><h3>purbo-skills</h3><p>A collection of AI skills.</p></a>
+        <a class="card" href="https://mamad.purbo.org"><span class="meta">blog</span><h3>Purbo + AI</h3><p>Things that I find interesting, expressed with the help of AI.</p></a>
+      </div>
+    </section>
+
+    <section aria-labelledby="earlier">
+      <p class="label" id="earlier">Earlier open source</p>
+      <p class="older">
+        <a href="https://github.com/mpurbo/MMPReactiveCoreLocation">MMPReactiveCoreLocation</a>
+        <a href="https://github.com/mpurbo/MMPReactiveNotification">MMPReactiveNotification</a>
+        <a href="https://github.com/mpurbo/MMPReactiveStompClient">MMPReactiveStompClient</a>
+        <a href="https://github.com/mpurbo/MMPCoreDataHelper">MMPCoreDataHelper</a>
+        <span>· reactive and functional libraries for iOS, in Objective-C</span>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© Purbo Mohamad</span>
+      <span><a href="hsdd/">HSDD documentation</a> · <a href="https://github.com/mpurbo">GitHub</a></span>
+    </div>
+  </footer>
+  <script>
+    (() => {
+      const KEY = "hsdd-guide", THEMES = ["system", "light", "dark"];
+      const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } };
+      let theme = THEMES.includes(read().theme) ? read().theme : "system";
+      const btn = document.getElementById("theme");
+      const apply = () => {
+        if (theme === "system") document.documentElement.removeAttribute("data-theme");
+        else document.documentElement.setAttribute("data-theme", theme);
+        btn.textContent = theme === "dark" ? "☾" : theme === "light" ? "☀" : "◐";
+        btn.setAttribute("aria-label", `Theme: ${theme === "system" ? "follow system" : theme}. Change theme.`);
+      };
+      btn.addEventListener("click", () => {
+        theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
+        try { localStorage.setItem(KEY, JSON.stringify({ ...read(), theme })); } catch { /* storage unavailable */ }
+        apply();
+      });
+      apply();
+    })();
+  </script>
+</body>
+</html>

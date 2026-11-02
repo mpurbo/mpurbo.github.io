@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Every HSDD release: what was added, changed and fixed, and how to upgrade a project in flight.">
+  <title>Changelog · HSDD</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="Changelog · HSDD">
+  <meta property="og:description" content="Every HSDD release: what was added, changed and fixed, and how to upgrade a project in flight.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../assets/docs.css">
+  
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="kind-doc">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    <button class="tool contents-toggle" id="contents-toggle" aria-expanded="false" aria-controls="toc">Contents</button>
+    <a class="brand" href="../" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="../guide/">Interactive guide</a><a href="../users-guide/">User's guide</a><a href="../tutorial/">Tutorials</a><a href="../reference/" aria-current="page">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <div class="shell has-toc">
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#unreleased" data-id="unreleased">Unreleased</a></li><li><a href="#0110---unreleased" data-id="0110---unreleased">[0.11.0] - Unreleased</a></li><li><a href="#0102---2026-10-31" data-id="0102---2026-10-31">[0.10.2] - 2026-10-31</a></li><li><a href="#0101---2026-10-30" data-id="0101---2026-10-30">[0.10.1] - 2026-10-30</a></li><li><a href="#0100---2026-10-10" data-id="0100---2026-10-10">[0.10.0] - 2026-10-10</a></li><li><a href="#090---2026-10-10-never-released-ships-in-0100" data-id="090---2026-10-10-never-released-ships-in-0100">[0.9.0] - 2026-10-10 (never released; ships in 0.10.0)</a></li><li><a href="#080---2026-08-03-never-released-ships-in-0100" data-id="080---2026-08-03-never-released-ships-in-0100">[0.8.0] - 2026-08-03 (never released; ships in 0.10.0)</a></li><li><a href="#071---2026-08-01" data-id="071---2026-08-01">[0.7.1] - 2026-08-01</a></li><li><a href="#070---2026-07-26" data-id="070---2026-07-26">[0.7.0] - 2026-07-26</a></li><li><a href="#061---2026-07-13" data-id="061---2026-07-13">0.6.1 - 2026-07-13</a></li><li><a href="#060---2026-07-13" data-id="060---2026-07-13">0.6.0 - 2026-07-13</a></li><li><a href="#051---2026-07-06" data-id="051---2026-07-06">0.5.1 - 2026-07-06</a></li><li><a href="#050---2026-07-06" data-id="050---2026-07-06">0.5.0 - 2026-07-06</a></li><li><a href="#042---2026-07-05" data-id="042---2026-07-05">0.4.2 - 2026-07-05</a></li><li><a href="#041---2026-07-02" data-id="041---2026-07-02">0.4.1 - 2026-07-02</a></li><li><a href="#040---2026-07-02" data-id="040---2026-07-02">0.4.0 - 2026-07-02</a></li><li><a href="#030---2026-07-01" data-id="030---2026-07-01">0.3.0 - 2026-07-01</a></li></ol></nav>
+    <main id="main" tabindex="-1"><header class="doc-head">
+      <p class="eyebrow">Reference</p>
+      <h1>Changelog</h1>
+      
+      
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> on GitHub</p>
+    </header>
+    <article class="prose"><p>All notable changes to this project are documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/" rel="noopener">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html" rel="noopener">Semantic Versioning</a>.</p>
+<h2 id="unreleased"><a class="anchor" href="#unreleased" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.6.1...HEAD" rel="noopener">Unreleased</a></h2>
+<h2 id="0110---unreleased"><a class="anchor" href="#0110---unreleased" aria-hidden="true" tabindex="-1">#</a>[0.11.0] - Unreleased</h2>
+<p>Unattended planning runs. <code>hsdd-auto</code> runs HSDD&#39;s planning chain without the
+owner at each ask point, one fresh subagent per skill invocation, and records
+every decision for one review sitting afterwards.</p>
+<p>Specification: <code>spec/hsdd-spec-v0_11.md</code>. Settled build decisions:
+<code>docs/superpowers/plans/2026-10-22-hsdd-auto-decisions.md</code>. Acceptance:
+<code>review/hsdd-v0_11-acceptance.md</code>.</p>
+<h3 id="upgrading-from-0102"><a class="anchor" href="#upgrading-from-0102" aria-hidden="true" tabindex="-1">#</a>Upgrading from 0.10.2</h3>
+<ul>
+<li>Reinstall the twelve skills. Nothing else changes unless <code>/hsdd-auto</code> runs.</li>
+<li>A project that never runs <code>/hsdd-auto</code> is unaffected: the new
+<code>## Unattended runs</code> sections are inert unless a skill is invoked with
+<code>--unattended</code>.</li>
+<li>A <code>hsdd/judgement/decisions.jsonl</code> written by a hand-built unattended run
+continues under <code>hsdd-auto</code>; its lines read as legacy lines, with one
+warning.</li>
+</ul>
+<h3 id="added"><a class="anchor" href="#added" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><strong><code>hsdd-auto</code></strong>, the twelfth skill, with bundled zero-dependency scripts
+(<code>state</code>, <code>next</code>, <code>dispatch</code>, <code>decide</code>, <code>ledger</code>, <code>gate</code>, <code>commit</code>,
+<code>routed</code>, <code>report</code>, <code>adapter</code>) copied verbatim to <code>hsdd/scripts/auto/</code> by
+the first <code>setup</code> step. The scripts compute the next step, render its
+prompt, gate and commit it, mint and stamp every decision, and write the
+report; the orchestrator keeps the judgement.</li>
+<li><strong>Two modes.</strong> <code>plan</code> plans an empty tree through reconcile. <code>intake</code>
+routes one change request through <code>hsdd-intake</code> and every handoff its
+record names.</li>
+<li><strong>A stop policy per segment.</strong> <code>stop</code> ends the run with <code>hsdd/judgement/STOP.md</code>
+at a stop-set condition; <code>decide-and-record</code> decides it and records the
+decision with <code>would_have_asked: true</code>. A class can be decided in advance
+with <code>predecided</code>. <code>external</code> and four other hard stops end the run under
+either policy.</li>
+<li><strong>Run records:</strong> <code>hsdd/auto/</code> (the run configuration, the plan, the queue,
+every dispatch file, step reports, one report per segment) and
+<code>hsdd/judgement/</code> (the decision ledger, the run log, <code>STOP.md</code>, and the
+owner&#39;s <code>decision-reviews.jsonl</code>).</li>
+<li><strong>A Claude Code adapter</strong> (<code>adapter.mjs install</code>, <code>adapter.mjs check</code>):
+permission deny rules and a Bash hook that keep a run inside its declared
+inputs.</li>
+<li><code>docs/guide/</code>: chapter 10, &quot;Run unattended&quot;, on handing planning to an
+agent and reviewing its decisions afterwards.</li>
+<li><code>docs/tutorial/meeting-rooms/</code>: a third recorded run, the first planned
+by <code>hsdd-auto</code>. PRD version 2 grows simple-login into meeting-room
+booking for two offices in different time zones, with PostgreSQL in
+Docker; an intake segment plans it unattended (31 steps, 231 recorded
+decisions, no stop), the owner&#39;s review follows in one sitting over the
+ledger, twelve phases are built in a backend, a web and an integration
+lane, and a checkpoint closes the intake. The <code>template/</code>, the
+<code>execute/</code> repository with its full history, and an interactive
+<code>walkthrough/</code> with the process log, including the findings about HSDD
+the run surfaced.</li>
+<li><strong>Test coverage:</strong> script tests for every script and
+<code>test/auto-e2e.test.mjs</code>, which drives the scripts through simulated plan,
+stop, procedural-stop, intake, rework and interruption runs.</li>
+</ul>
+<h3 id="changed"><a class="anchor" href="#changed" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-spec</code>, <code>hsdd-adr</code>, <code>hsdd-contract</code>, <code>hsdd-phase-plan</code>,
+<code>hsdd-reconcile</code> and <code>hsdd-intake</code> each gain an <code>## Unattended runs</code>
+section: the skill&#39;s ask points as a table, a structured stop at an ask
+point instead of a question, and each decision recorded when it is taken.</li>
+<li><code>hsdd-intake</code> gains an optional machine-readable handoff block in the
+intake record; existing records stay conformant.</li>
+<li><code>hsdd-reconcile</code> gains a named align mode.</li>
+<li><code>hsdd-contract</code>, <code>hsdd-adr</code> and <code>hsdd-spec</code> gain the citation-touch rule
+for moving citations when a source document or contract version changes.</li>
+<li>The contract file gains the optional front-matter field <code>governed_by</code>.
+Open-question and <code>Collides with</code> separators admit <code>:</code>, an en dash or
+<code>-</code> beside the em dash, and an empty cell admits <code>none</code> and <code>-</code>.</li>
+</ul>
+<h3 id="fixed"><a class="anchor" href="#fixed" aria-hidden="true" tabindex="-1">#</a>Fixed</h3>
+<p>hsdd-auto was built against 0.10.0. Before the tutorial run, a check
+against 0.10.1 and 0.10.2 found fifteen gaps (build decisions B-40 to
+B-51), and the run itself showed six more defects (B-52 to B-57). All are
+fixed here; the 775 tests the branch had grew to 815.</p>
+<ul>
+<li>Contracts are indexed by front-matter <code>id</code>, so a later version in its
+own file (<code>{slug}.v{n}.md</code>, 0.10.2) is the same contract: the gate&#39;s C4
+and C5, the facts a step receives, the target lines, C3 and the
+<code>## Produced</code> append all read the version a citation names.</li>
+<li><code>approved-prd</code> is an authority, rendered in <code>hsdd-intake</code>&#39;s words
+wherever it reaches a prompt or a record.</li>
+<li>A lower contract version counts as superseded only when it is
+<code>deprecated</code> or <code>retired</code>; citation touch and align never edit a node
+header&#39;s Produces or Consumes or an ADR&#39;s <code>affects</code>, so a <code>coexisting</code>
+version keeps its live citations.</li>
+<li>A bump&#39;s migration mode (<code>coexisting</code> or <code>lockstep</code>) has an unattended
+disposition under <code>breaking-amend</code>, and a predecided answer names it;
+hsdd-contract and hsdd-reconcile route the lockstep consumers&#39; phases
+and the ADR <code>affects</code> update as inserted steps.</li>
+<li>&quot;Shipped&quot; reads the conventions&#39; <code>**Main line:**</code>, not <code>origin/HEAD</code>.</li>
+<li>A baseline source&#39;s version matches only with its citation name, never
+as a bare token (<code>&quot;1&quot;</code> matched every <code>minLength: 1</code>).</li>
+<li>An item on a handoff waits for that handoff&#39;s own step instead of being
+handed to every earlier step on the same node.</li>
+<li>An inserted step&#39;s invocation carries its item&#39;s text; an accepted
+insert-step can be withdrawn while no step has run it.</li>
+<li><code>## Produced</code> lists new contracts and proposed ADRs and drops its
+placeholder.</li>
+<li>The parent&#39;s citation touch owns its copies of a child&#39;s lines.</li>
+<li>v0.11 reads against v0.10.2; its &quot;v0.10.0 §n&quot; prefix names the v0_10
+document as of 0.10.2.</li>
+</ul>
+<p>The tutorial&#39;s process log lists eleven further findings about HSDD
+(hsdd-config&#39;s referenced-contract closure and self-contained check, the
+verification template, the superpowers derivative, sizing, evidence),
+left unchanged for the owner.</p>
+<h3 id="notes-for-the-owner"><a class="anchor" href="#notes-for-the-owner" aria-hidden="true" tabindex="-1">#</a>Notes for the owner</h3>
+<p>The build found these errata in the specification and worked around them
+without editing it. The decisions file records each.</p>
+<ul>
+<li>C.3 writes the contract step&#39;s <code>G{n}</code>, which section 13.2 reads as a slot
+named <code>n</code>; the template renders <code>G{n}</code> through <code>G{{n}}</code> (B-13).</li>
+<li>Section 11.1 appends <code>/**</code> to every deny rule, which never matches a file
+path; the adapter writes the path itself and the path with <code>/**</code> (B-22).</li>
+<li>D1 (prose rules) on <code>run.yaml</code> blocked every segment at level <code>error</code>,
+because the file lists the banned phrases and stores the owner&#39;s
+instruction verbatim; D1 exempts <code>run.yaml</code>, <code>owner-files.json</code>,
+<code>adapter.json</code> and the <code>orchestrator_files</code> (B-23).</li>
+<li>C5&#39;s literal reading passes a citation of a contract version that does not
+exist yet, because the Versioning line names the next version; C5 accepts
+only the current version or an older one the section names (B-7).</li>
+</ul>
+<h2 id="0102---2026-10-31"><a class="anchor" href="#0102---2026-10-31" aria-hidden="true" tabindex="-1">#</a>[0.10.2] - 2026-10-31</h2>
+<p>The change flow&#39;s missing rules, found by the second tutorial run; the
+superpowers derivative names the skills it relies on; the phase-switch
+prompts in both tutorials. Specification: <code>spec/hsdd-spec-v0_10.md</code>, now at
+0.10.2; its §15.1 states the upgrade. Acceptance:
+<code>review/hsdd-v0_10-acceptance.md</code>, F1 to F7.</p>
+<h3 id="upgrading-from-0101"><a class="anchor" href="#upgrading-from-0101" aria-hidden="true" tabindex="-1">#</a>Upgrading from 0.10.1</h3>
+<ul>
+<li>Reinstall the skills. Changed: <code>hsdd-intake</code>, <code>hsdd-contract</code>,
+<code>hsdd-phase-plan</code>, <code>hsdd-reconcile</code>, <code>hsdd-config</code> and its verification
+template, <code>hsdd-checkpoint</code>, and <code>hsdd-spec</code>&#39;s conventions template.</li>
+<li>The upgrade rewrites nothing under <code>hsdd/</code> and triggers no adoption run.
+Two optional additions: the contract key <code>former_consumers</code> (absent
+means none migrated) and the conventions line <code>**Main line:**</code> (absent
+means <code>main</code>). The registry generator is unchanged, and a project&#39;s copy
+passes the new key through.</li>
+<li>Forward-only: contract versions drafted, plans written and phases
+switched after the upgrade follow the new rules. A phase context already
+written is a record. A superpowers plan in progress copied the old
+constraints; re-running its switch rewrites the derivative, and the next
+plan copies the new ones.</li>
+<li>The next checkpoint applies the new audits to the whole tree: a <code>stable</code>
+version that nothing serves, migrated consumers still in <code>consumers</code>,
+and delegated sign-offs each become findings with plan steps. A phase an
+earlier progress report counted done is never downgraded.</li>
+<li>A project&#39;s <code>hsdd/templates/verification.md</code> is kept; the switch reports
+that it differs from the skill&#39;s.</li>
+</ul>
+<h3 id="added-1"><a class="anchor" href="#added-1" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><code>docs/tutorial/simple-login-update/</code>: a second recorded run, one change
+to the finished simple-login project (the user&#39;s phone number on Home)
+taken through HSDD&#39;s change flow with the v0.10.1 skills: hsdd-intake,
+a breaking contract change minting <code>profile-api@v2</code> beside v1, phases
+appended on three nodes, reconcile, two parallel superpowers lanes and an
+integration phase, and the first hsdd-checkpoint closing the intake
+record. The <code>template/</code> (the finished project plus the change request),
+the <code>execute/</code> repository after the change, and an interactive
+<code>walkthrough/</code> with a diff against the template and a full process log,
+including twelve findings about the change flow.</li>
+</ul>
+<h3 id="changed-1"><a class="anchor" href="#changed-1" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-config</code>: the superpowers derivative names the skills its rules
+rely on, not only the behavior, because a skill&#39;s rules load only when
+something names it and <code>subagent-driven-development</code> has an implementer
+follow TDD only &quot;if task says to&quot;. Constraint 1 names
+<code>test-driven-development</code>; new constraints 9 and 10 name
+<code>verification-before-completion</code> and <code>systematic-debugging</code>, so tech
+skills now start at 11. The header and a Plan check box name the
+execution skill by review tier: <code>executing-plans</code> at gate-only and
+spot-check, <code>subagent-driven-development</code> at full-review. The switch
+warns for a named skill that is not installed.</li>
+</ul>
+<h3 id="fixed-1"><a class="anchor" href="#fixed-1" aria-hidden="true" tabindex="-1">#</a>Fixed</h3>
+<p>The twelve findings about the change flow in
+<code>docs/tutorial/simple-login-update/walkthrough/process-log.md</code> (&quot;Findings
+about HSDD&#39;s change flow&quot;), and the first run&#39;s finding 3, which is the
+same defect as finding 7. Finding 10 (<code>referenced</code> text lengthens a
+migration phase&#39;s context) stays as it is.</p>
+<ul>
+<li><code>hsdd-intake</code>: <code>approved PRD</code> is an authority value (finding 1). The
+change request&#39;s own path, not the intake record&#39;s, joins each node&#39;s
+Sources (finding 6). A record closes when its phases are done, so a
+claim keeps it open (finding 12).</li>
+<li><code>hsdd-contract</code>: a later version is a new file beside the first,
+<code>{slug}.v{n}.md</code>, with its schema and fixtures, and nothing is renamed
+(finding 2). A breaking change&#39;s migration note names its mode:
+<code>coexisting</code> keeps the window; <code>lockstep</code>, for one surface with one
+shape, deprecates the old version in the same run, its sunset when the
+new version&#39;s first producer ships (finding 4). <code>consumers</code> means live: a
+phase whose node&#39;s newest shipped phase consumes a later version has
+migrated and moves to the new <code>former_consumers</code> key (finding 5). The
+bump also amends other contracts that name the old version and adds the
+new one to ADR <code>affects</code> (finding 3). A new version starts <code>draft</code>, and
+the <code>additive-only</code> fixture test applies to changes within a version.</li>
+<li><code>hsdd-reconcile</code>: writes the version ripple, a newly confirmed version
+into the node header&#39;s <code>Produces</code>/<code>Consumes</code>, the parent&#39;s child table,
+summary (with the <code>Sources</code> append mode extended) and DAG, the root&#39;s
+contract matrix, and a new change request into the root&#39;s <code>## Sources</code>
+(finding 3). On a
+checkpoint&#39;s plan step it moves migrated consumers and retires a
+<code>deprecated</code> version past its sunset.</li>
+<li><code>hsdd-phase-plan</code>: append mode leaves the node header to reconcile
+(finding 3) and runs the sizing floor over the appended phases only
+(finding 8). A phase line carries the binding detail itself, never only a
+pointer to a source, and the checklist checks it (finding 7).</li>
+<li><code>hsdd-config</code>: the phase context carries every node decision (<code>D{n}</code>)
+the Phase block cites, under Decisions, and the self-contained gate
+checks them (finding 7; first run, finding 3). The Discipline test-first
+line and superpowers constraint 1 say what a test fails against when a
+dependency phase has already merged: the commit before that phase, or a
+named mutant (finding 11). Contracts are found by frontmatter <code>id</code> and
+<code>version</code>. Rule 2 no longer contradicts rule 1 when a Scope names
+another phase: the Scope is copied verbatim, ids and all.</li>
+<li><code>hsdd-checkpoint</code>: a sign-off delegated to an agent names the person it
+answers to, counts as done, and goes into one finding for that person to
+ratify; a Reviewer who names no person leaves the phase a claim (finding
+12); intake closure and milestone sealing count only done phases.
+Migration health: migrated consumers, <code>deprecated</code> versions past
+their sunset, and <code>stable</code> versions nothing serves are findings with plan
+steps (findings 4 and 5). &quot;Main&quot; is the conventions&#39; <code>**Main line:**</code>
+(finding 9), as it is in <code>hsdd-config</code>&#39;s pointer and next-runnable checks
+and in <code>hsdd-contract</code>&#39;s shipped phase.</li>
+<li>Verification template: the Reviewer line and the footer name delegated
+sign-offs (finding 12).</li>
+<li>Conventions template: the <code>**Main line:**</code> line (finding 9); the layout
+names later contract versions; the switch is named <code>/hsdd-config</code>, the
+installed skill, instead of the optional <code>/hsdd-phase</code> command.</li>
+<li>Both tutorials: every <code>/hsdd-phase</code> prompt is now <code>/hsdd-config</code>, since
+their setup installs only the skills, and so is each tree&#39;s conventions
+file. Each finding fixed here is marked in the process logs and the
+walkthroughs; the walkthroughs&#39; embedded snapshots (<code>data.js</code>) keep the
+text the runs recorded. Each README names the skill version its run was
+recorded with, and the walkthroughs and the first process log note where
+the superpowers derivative now differs.</li>
+<li><code>spec/hsdd-spec-v0_10.md</code> states the same in place (§2.6, §3.1, §3.4,
+§3.5, §3.6, §7.6, §8.2, §8.4, §9.2, §9.7, §9.8, §9.9, §10.2, §10.3,
+§11.2, §11.3, §12.7, §14.1, §14.2, glossary), with the upgrade in §15.1
+and nine rows in §18.1. The users-guide and the HTML guide agree.</li>
+</ul>
+<h2 id="0101---2026-10-30"><a class="anchor" href="#0101---2026-10-30" aria-hidden="true" tabindex="-1">#</a>[0.10.1] - 2026-10-30</h2>
+<p>Two phase-context corrections, found by the simple-login tutorial run, and
+the documentation added since 0.10.0. Specification:
+<code>spec/hsdd-spec-v0_10.md</code>, now at 0.10.1; its §15.1 states the upgrade.
+Acceptance: <code>review/hsdd-v0_10-acceptance.md</code>, A6 and A7.</p>
+<h3 id="upgrading-from-0100"><a class="anchor" href="#upgrading-from-0100" aria-hidden="true" tabindex="-1">#</a>Upgrading from 0.10.0</h3>
+<ul>
+<li>Reinstall the skills. Only <code>hsdd-config</code> and <code>hsdd-phase-plan</code> changed.</li>
+<li>Nothing under <code>hsdd/</code> changes, and the upgrade triggers no adoption run:
+a 0.10.0 project&#39;s newest progress report already has its
+grandfathered-contracts row.</li>
+<li>Forward-only: phases switched after the upgrade get the Validation
+blocks and <code>referenced</code> subsections. A phase context already written is a
+record and is not rewritten.</li>
+<li>A superpowers phase already in progress keeps the context it started
+with. Re-running its switch rewrites constraint 7, which its plan copied
+verbatim from the old derivative.</li>
+</ul>
+<h3 id="added-2"><a class="anchor" href="#added-2" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><p><code>docs/tutorial/simple-login/</code>: a complete, recorded HSDD run on a small
+product (a two-endpoint login backend and a two-screen web app). The
+<code>template/</code> inputs (a PRD and an RFC), the <code>execute/</code> repository the run
+produced (tree, contracts, phase contexts, superpowers plans,
+verification docs, and the tested code), and an interactive
+<code>walkthrough/</code> with a presenter mode and a do-it-yourself mode, backed by
+a full process log.</p>
+</li>
+<li><p><code>docs/guide/</code>: an interactive, offline HTML guide for newcomers. A start
+page and nine short chapters, from the problem HSDD solves to running a
+project, using the user&#39;s guide&#39;s examples, with brownfield adoption and
+change intake as chapters of their own.</p>
+</li>
+</ul>
+<h3 id="fixed-2"><a class="anchor" href="#fixed-2" aria-hidden="true" tabindex="-1">#</a>Fixed</h3>
+<p>Two defects in the v0.10.0 phase context, found by the simple-login
+tutorial run (<code>docs/tutorial/simple-login/walkthrough/process-log.md</code>,
+&quot;Findings about HSDD itself&quot;, 1 and 2) and reproduced on scratch copies of
+its tree with the v0.10.0 skill before the fix.</p>
+<ul>
+<li><code>hsdd-config</code> now copies each contract&#39;s <code>## Validation</code> section into
+its subsection, after Interface and Guarantees. The Discipline line and
+superpowers constraint 7 tell the session to test against the fixtures
+it names. Before, a consuming phase was told to test against fixtures
+its context never located, and a phase building the replay rig had no
+fixture format or placeholder rules.</li>
+<li><code>hsdd-config</code> has a third direction, <code>referenced</code>, for a contract the
+file names that the phase neither consumes nor produces: named in the
+Phase block, or inside another contract&#39;s text. It gets the same
+subsection, is collected until no contract id lacks one, and is named in
+a Discipline line: use it only as the Scope says. Before, the Contracts
+rule (Consumes and Produces only) and the self-contained gate (every
+named id inline) contradicted each other, and rule 1 forbade inventing a
+label; both reproductions headed such contracts <code>consumes</code>, contradicting
+the Phase block.</li>
+<li><code>hsdd-phase-plan</code>: a phase that works with a contract it neither
+consumes nor produces (a replay rig built ahead of the producing phase)
+names it as <code>{contract-id}@{version}</code> in its Scope, so the switch finds
+it.</li>
+<li><code>spec/hsdd-spec-v0_10.md</code> states the same in place (§1.5, §1.6, §3.4,
+§3.6, §5.3, §9.2, §9.7, §9.8, §16.1, a glossary entry for referenced
+contract), with the upgrade in §15.1 and two rows in §18.1. The user&#39;s
+guide sample context, the README and the HTML guide agree.</li>
+</ul>
+<h2 id="0100---2026-10-10"><a class="anchor" href="#0100---2026-10-10" aria-hidden="true" tabindex="-1">#</a>[0.10.0] - 2026-10-10</h2>
+<p>The release that follows 0.7.1. The 0.8.0 and 0.9.0 entries below describe
+work that was never tagged; all of it ships here, with every rule
+implemented by a skill.</p>
+<p>Specification: <code>spec/hsdd-spec-v0_10.md</code>. Basis:
+<code>review/2026-10-10-v0.9.0-review-fable-5.1.md</code> and
+<code>review/2026-10-10-successor-direction-fable-5.1.md</code>. Acceptance:
+<code>review/hsdd-v0_10-acceptance.md</code>.</p>
+<h3 id="upgrading-from-071"><a class="anchor" href="#upgrading-from-071" aria-hidden="true" tabindex="-1">#</a>Upgrading from 0.7.1</h3>
+<ul>
+<li>Reinstall the eleven skills.</li>
+<li>The first checkpoint after upgrading runs the upgrade behaviors: it
+enumerates the fixtureless <code>stable</code> contracts and emits the plan step
+that has <code>hsdd-reconcile</code> mark them <code>validation: grandfathered</code>.</li>
+<li>Add <code>**Ordering policy:** fp-progression</code> to <code>hsdd/conventions.md</code> to
+keep 0.7.1&#39;s ordering, or remove the old <code>FP ordering:</code> bullet to take
+<code>interfaces-first</code>. Until you do, the old bullet reads as
+<code>fp-progression</code>.</li>
+<li>The first phase switch replaces a verification template that has no
+<code>## Learnings</code>.</li>
+<li><code>hsdd-adopt</code> and <code>hsdd-intake</code> do nothing until invoked.</li>
+</ul>
+<h3 id="added-3"><a class="anchor" href="#added-3" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><strong>The 0.8.0 rules the skills never received.</strong> <code>hsdd-config</code>&#39;s
+verification template gains <code>## Learnings</code> (one disposition per entry
+before sign-off) and <code>## Metrics</code>; <code>hsdd-contract</code> gains <code>compatibility</code>,
+<code>external_consumers</code>, the <code>retired</code> status, the executable-validation
+rule with canonical paths (it writes the schema and fixtures when it
+authors a contract or a new version; phases only replay them) and the
+<code>validation: grandfathered</code> key; <code>hsdd-spec</code> gains the <code>Team</code> and
+<code>Status</code> fields, integration nodes, graft mode and node retirement, and
+its conventions template the <code>**Ordering policy:**</code> and <code>**Teams:**</code>
+lines; <code>hsdd-phase-plan</code> gains the named ordering policy
+(<code>interfaces-first</code> default, <code>fp-progression</code>), the Phase Equivalent, the
+producer gate replay and append mode; <code>hsdd-reconcile</code> asserts an
+executable validation artifact at the <code>draft → stable</code> flip, marks
+grandfathered contracts and discharges each once <code>hsdd-contract</code> has
+written its artifact, and retires contracts; <code>hsdd-checkpoint</code> audits
+the grandfather set by membership against the upgrade checkpoint&#39;s
+marking step (carried forward until executed) and reports the remaining
+count, files backfill findings with retro phases,
+excludes retired nodes from the atlas&#39;s active view and seals a milestone
+document when its tick turns the last gate green; <code>hsdd-milestone</code> treats
+a sealed document as a closed campaign.</li>
+<li><strong><code>hsdd-adopt</code></strong>, the brownfield entry point: a bundled, tested seam
+extractor (<code>hsdd/scripts/seams/</code>: manifests, routes, schemas, migrations and
+tables, topics, owners, co-change coupling; <code>render</code> writes the <code>## Observed surface</code> block, whose <code>modules:</code> line records the rendered prefixes, and
+<code>diff</code> re-extracts exactly those to detect drift), as-built node specs
+with required <code>unknown:</code> lines, <code>v0</code> contracts with
+<code>## Observed completeness</code>, a human confirmation of the tree before any
+node spec or contract is written, and never a refactoring proposal.
+Owners resolve by the last matching <code>CODEOWNERS</code> rule per file, read from
+the git top level; unreadable directories are skipped and reported.</li>
+<li><strong><code>hsdd-intake</code></strong>: routes a change request into the existing tree
+(<code>local</code>, <code>cross-node</code>, <code>new-capability</code>, <code>structural</code>), reads every open
+intake first and serializes collisions, promotes an as-built landing
+first, and writes the dated, never-superseded intake record before any
+handoff. A PRD is never a root.</li>
+<li><strong>Promotion mode</strong> in <code>hsdd-spec</code>; <strong>as-built drift</strong>, stale-caveat and
+intake-closure checks in <code>hsdd-checkpoint</code>, the drift check gated on the
+tree having an <code>## Observed surface</code>.</li>
+<li><strong>Chapter 15, rule by rule.</strong> One table states, for every rule since
+0.7.1, its effect on an existing project and the skill that implements
+it. Nothing in the specification is specified without a skill.</li>
+<li><strong>§15.3 Artifact stability.</strong> The artifact formats are frozen for the
+1.0 line; later changes are additive optional fields only.</li>
+<li>Everything 0.9.0 added (below): the generic phase context and its two
+derivatives, the coding method, <code>hsdd-summary</code> and chapter 13.</li>
+</ul>
+<h3 id="changed-2"><a class="anchor" href="#changed-2" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-config</code>&#39;s switch copies the verification template when it is missing,
+for either method, and replaces a pre-0.10 copy that has no <code>## Learnings</code>;
+a superpowers-only project previously never got it, and an upgrading project
+kept its old copy.</li>
+<li>The specification describes the phase context once: a session receives
+its phase, the Interface and Guarantees of the contracts it consumes and
+produces, and its ADRs&#39; decisions (six places that still said &quot;consumes
+only&quot; were corrected).</li>
+<li>Ordering policy and teams mode are lines in the conventions body, not
+frontmatter.</li>
+<li>README leads with the review sitting as the rationale; bounded context is
+a consequence.</li>
+<li>Skills no longer mention pre-0.5 layouts; the specification supports
+0.6.1 and later.</li>
+</ul>
+<h3 id="removed"><a class="anchor" href="#removed" aria-hidden="true" tabindex="-1">#</a>Removed</h3>
+<ul>
+<li>The claim that 0.8.0&#39;s consolidation &quot;ships for the first time&quot; in 0.9.0.</li>
+</ul>
+<h2 id="090---2026-10-10-never-released-ships-in-0100"><a class="anchor" href="#090---2026-10-10-never-released-ships-in-0100" aria-hidden="true" tabindex="-1">#</a>[0.9.0] - 2026-10-10 (never released; ships in 0.10.0)</h2>
+<p>Design:
+<code>docs/superpowers/specs/2026-10-09-v0_9-phase-context-and-summaries-design.md</code>.</p>
+<h3 id="added-4"><a class="anchor" href="#added-4" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><strong>The generic phase context.</strong> Before each phase, <code>hsdd-config</code> writes
+<code>hsdd-context/{phase-id}.md</code> in the implementation repo: the phase, the
+Interface and Guarantees of every contract it consumes and produces, the
+Decision and Consequences of its ADRs, its open questions, and pinned
+links. Every line is copied from a governance file or is fixed text.</li>
+<li><strong>Coding methods.</strong> The phase context is wrapped, word for word, for
+OpenSpec (<code>openspec/config.yaml</code>) or for superpowers
+(<code>hsdd-context/superpowers/{phase-id}.md</code>, a spec for <code>writing-plans</code>
+whose Global Constraints carry test-first, the task cap, the gate and the
+verification doc). <code>**Coding method:**</code> in conventions sets the default;
+<code>/hsdd-phase {id} --method</code> overrides it.</li>
+<li><strong><code>hsdd-summary</code></strong>, a new skill with zero-dependency scripts: the plan
+page and the checkpoint page, offline HTML reading aids with three
+audiences each, stamped against their inputs.</li>
+<li><strong>Chapter 13, Reading Aids</strong>, in <code>spec/hsdd-spec-v0_9.md</code>.</li>
+</ul>
+<h3 id="changed-3"><a class="anchor" href="#changed-3" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-config</code>: no longer OpenSpec-only. OpenSpec&#39;s phase block is now a
+superset of what earlier releases injected; <code>rules:</code> are unchanged.</li>
+<li><code>hsdd-checkpoint</code>: <code>hsdd-context/</code> counts as in-progress evidence; when
+<code>hsdd/summary/</code> exists, its step 7 renders the checkpoint page.</li>
+<li>The invariant &quot;one phase = one OpenSpec change&quot; reads &quot;one phase = one
+coding cycle&quot;; the atlas non-goal is narrowed, not reversed.</li>
+</ul>
+<h3 id="removed-1"><a class="anchor" href="#removed-1" aria-hidden="true" tabindex="-1">#</a>Removed</h3>
+<ul>
+<li>The README and users guide no longer describe the brownfield entry point or
+change intake: their skills have not shipped. The specification still
+defines both (chapters 6 and 11); the skills and their walkthroughs arrive in
+v0.10.0.</li>
+</ul>
+<h2 id="080---2026-08-03-never-released-ships-in-0100"><a class="anchor" href="#080---2026-08-03-never-released-ships-in-0100" aria-hidden="true" tabindex="-1">#</a>[0.8.0] - 2026-08-03 (never released; ships in 0.10.0)</h2>
+<p>A <strong>consolidation, not a delta.</strong> <code>spec/hsdd-spec-v0_8.md</code> is a single
+standalone specification absorbing v0.3 through v0.7.1 and the tool-free half
+of the shelved vNext exploration. The delta series remains in <code>spec/</code> as
+history; nothing requires reading it. The delta format is retired for major
+revisions.</p>
+<p>Two new chapters carry the release&#39;s substance, both from one observation:
+<strong>the tree does not complete — phases complete, so after the first change
+every project is brownfield.</strong> Greenfield is a three-month bootstrap; the
+rest of a system&#39;s life is the steady state.</p>
+<p>Design: <code>docs/superpowers/specs/2026-07-29-v0_8-consolidation-brownfield-design.md</code>.
+Acceptance record: <code>review/hsdd-v0_8-acceptance.md</code> (13/13 criteria PASS).</p>
+<h3 id="added-5"><a class="anchor" href="#added-5" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><strong>Chapter 6 — Entry B: Brownfield Adoption.</strong> A codebase that already
+exists becomes a structural peer of the greenfield entry, not a special
+case. <code>hsdd-adopt</code> (forthcoming skill) extracts seams by bundled script,
+proposes a shallow tree on the seams that exist, and writes as-built node
+specs carrying an <code>## Observed surface</code> section stamped with the extraction
+SHA — with <code>unknown:</code> lines required, because a node with no unknowns is a
+node nobody looked at. It stops there: no decomposition below what the
+first change needs, and never a proposal to refactor the system into a
+nicer tree. Adoption cost scales with <strong>seam count, not LOC</strong>.</li>
+<li><strong>Chapter 11 — Steady State: Change Intake.</strong> <code>hsdd-intake</code> (forthcoming
+skill) routes an incoming change request into the existing tree —
+<code>local</code> / <code>cross-node</code> / <code>new-capability</code> / <code>structural</code> — and writes the
+routing decision before the handoff. The load-bearing rule: <strong>a PRD is
+never a root; there is one tree and it is the system&#39;s.</strong> Intake records
+accumulate, dated and never superseded — the rule that replaces &quot;wipe
+<code>hsdd/</code> and rebuild.&quot; Includes phase-plan append mode, spec graft mode,
+node retirement, collision serialization across open intakes, and a
+<strong>legal bypass</strong> for production incidents (hotfix → backfill finding →
+retro phase, escalating if unclosed across two checkpoints).</li>
+<li><strong>Chapter 14 (chapter 15 in the current specification) — Upgrading and Compatibility.</strong> v0.8.0 is additive; the
+vehicle is checkpoint&#39;s existing adoption run. The one rule with teeth —
+<code>stable</code> contracts need executable validation — is <strong>grandfathered and
+discharged on touch</strong>: the set closes at upgrade, each contract gains
+fixtures only when a phase next touches it, and the remaining count is
+reported every checkpoint and can only fall.</li>
+<li>Adopted contracts start at <strong><code>v0</code></strong> with a required <code>## Observed completeness</code> caveat. <code>v0</code> is a permanent property, not a waypoint;
+<code>v0 → v1</code> is the contract-level adoption exit, taken only on redesign.</li>
+<li>Per-contract-version <strong><code>compatibility:</code> policy</strong> — <code>additive-only</code> (the
+Protobuf discipline, claimable only if existing fixtures still pass),
+<code>versioned</code> (default), <code>frozen</code> — plus the <code>retired</code> status,
+<code>external_consumers</code>, and a live-consumer retirement finding.</li>
+<li><strong>Per-campaign milestone documents</strong>, sealed when every gate is green and
+moved to <code>management/archive/</code>; sealing is evidence-backed, never declared.</li>
+<li>From vNext: executable validation for <code>stable</code>, both gates running the
+contract, integration nodes, the <code>## Learnings</code> loop dispositioned at the
+gate, mid-phase contract renegotiation, the unified <strong>Phase Equivalent</strong>,
+phase ordering as a named policy (<code>interfaces-first</code> default), the <code>Team</code>
+field, and the <code>## Metrics</code> block.</li>
+</ul>
+<h3 id="changed-4"><a class="anchor" href="#changed-4" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><strong>Honest claims</strong> (chapter 15, now chapter 16, mirrored in the README): context isolation
+is <em>probabilistic, not enforced</em> — the defense is prose and structure,
+pressure-tested and holding, not a mechanism. HSDD bounds per-session token
+cost; it <em>does not reduce the total</em>.</li>
+<li>The settled-decisions table gains a required <strong>provenance column</strong>
+(<code>field-tested</code> / <code>pressure-tested</code> / <code>reasoned-only</code>) so new material
+cannot inherit credibility from tested material. Most of what this release
+adds is <code>reasoned-only</code>, and the document says so.</li>
+<li>README and users guide: the reading path collapses to one specification,
+the skill table grows to ten, and the guide gains a brownfield walkthrough
+(adopt → intake → promote).</li>
+</ul>
+<h3 id="not-included"><a class="anchor" href="#not-included" aria-hidden="true" tabindex="-1">#</a>Not included</h3>
+<ul>
+<li><strong>No <code>hsdd</code> CLI.</strong> No <code>context</code>, <code>lint</code>, <code>status</code>, <code>rename</code>, <code>check-scope</code>,
+or <code>template</code>. Mechanical invariants stay prose- and structure-enforced, on
+the 0.6.0 pressure-campaign evidence. Scripts are permitted only under one
+boundary: <strong>bundled with a new skill, never changing how an existing skill
+behaves.</strong> The mechanization line stays on the shelf as a later candidate.</li>
+<li>No <code>hsdd-review</code> skill, no multi-team enforcement, no back-application of
+v0.8.0 rules to existing artifacts, and no support for projects below
+0.6.1 (upgrade to 0.6.1 first).</li>
+<li><strong>Skill files are unchanged in this release.</strong> <code>hsdd-adopt</code> and
+<code>hsdd-intake</code> and the amendments to the existing eight follow in a separate
+cycle, after this specification is approved.</li>
+</ul>
+<h2 id="071---2026-08-01"><a class="anchor" href="#071---2026-08-01" aria-hidden="true" tabindex="-1">#</a>[0.7.1] - 2026-08-01</h2>
+<p>Driven by the first real-world <code>hsdd-checkpoint</code> run (the moka-microsite
+adoption checkpoint of 2026-07-31) read against the hand-prompted 07-24 plan it
+superseded, plus operator feedback of 2026-08-01. The emission conformed to
+v0.7 §2.4&#39;s letter and was still harder for its human audience to execute:
+every regression fell on the plan surface only humans consume, which §2.4
+never made required. Delta spec: <code>spec/hsdd-spec-v0_7_1.md</code>.</p>
+<h3 id="changed-5"><a class="anchor" href="#changed-5" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-checkpoint</code> execution-plan shape — three structural anchors for the
+human-facing surface, no new invariants:<ul>
+<li>&quot;Copy-paste prompts with validation&quot; generalizes to <strong>Step details</strong>:
+every step gets exactly one detail block. 🤖/🤝 steps keep the exact
+prompt + <em>Validate:</em> line; 👤 steps gain a <strong>briefing</strong> (<em>Why / Do /
+Done when</em>) — one checkbox per action, each naming its concrete target.
+Table cells shrink to a one-sentence summary: the cell indexes, the
+block instructs.</li>
+<li>New required <strong>Plan graph</strong> section: one Mermaid flowchart (load-bearing
+syncs as junctions, step batches in lane subgraphs, edges from the
+Depends column), derived from the tables and regenerated whole — when
+graph and tables disagree, the tables win. ~20-node ceiling; no
+per-phase charting; applies in scoped mode too.</li>
+<li>New required <strong>Sync sections</strong>: every load-bearing sync (one any step,
+decision, or lane start depends on) gets Entry / Agenda / Exit /
+Unblocks, with its decisions defined once in the Agenda (question,
+options, landing artifact) and only cited elsewhere. A step may depend
+only on a sectioned sync. The standing weekly stays a table row.</li>
+<li>Five new quality gates and three new anti-rationalization rows anchor
+the above.</li>
+</ul>
+</li>
+<li>Users guide: the weekly-checkpoint walkthrough describes the new plan
+surface and states the briefing rule&#39;s reason — the human is the one
+executor who cannot be re-prompted.</li>
+</ul>
+<h3 id="acceptance"><a class="anchor" href="#acceptance" aria-hidden="true" tabindex="-1">#</a>Acceptance</h3>
+<ul>
+<li>Re-tested per the delta&#39;s §7 against the microsite fixture, 2026-08-01: a
+clean-room re-emission of the 2026-07-31 execution plan from the same
+evidence (the updated skill text, the progress report, and the superseded
+plan — the prior emission withheld) produced all three previously missing
+behaviors: <em>Why / Do / Done when</em> briefings on every 👤 step, a 19-node
+plan graph consistent with the step tables, and sectioned syncs with
+their decisions defined once and cited by ID — with all 27 findings
+still landing as steps or explicit waivers. A loophole hunt over the
+three new anti-rationalization rows found no dodge the quality gates do
+not close.</li>
+</ul>
+<h2 id="070---2026-07-26"><a class="anchor" href="#070---2026-07-26" aria-hidden="true" tabindex="-1">#</a>[0.7.0] - 2026-07-26</h2>
+<p>Driven by the moka-microsite field deployment (2026-07-10 → 07-24: three repos,
+two developers, 89 phases under v0.6.1). Delta spec: <code>spec/hsdd-spec-v0_7.md</code>.</p>
+<h3 id="added-6"><a class="anchor" href="#added-6" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li>The management layer: <code>management/</code> as a fourth artifact class (cite, never
+define) — dated progress reports, execution plans, and milestone documents
+chained by exact-filename supersedes links, plus a living, regenerated
+<code>atlas.md</code> (spec tree with phase status, contract graph, ADR coverage map).</li>
+<li><code>hsdd-checkpoint</code> (+ <code>/hsdd-checkpoint</code>): one evidence pass across the spec
+repo and every implementation repo emitting all four views, in full or scoped
+mode; the findings→plan loop (every finding becomes a plan step or an explicit
+waiver); the first run on an existing project is an adoption run. Sibling repo
+paths come from the invoking prompt; the skill asks when they are absent.</li>
+<li><code>hsdd-milestone</code> (+ <code>/hsdd-milestone</code>): the stakeholder milestone document — a
+demo and a gate per milestone, with a computed contingent tail excluded from
+the launch gate — generated once every leaf-parent is phase-planned, and
+re-baselined on the slip or scope trigger with both windows stated.</li>
+<li>Open-question convention: stable IDs (<code>OQ{n}</code> / <code>OQ-{prefix}{n}</code>), one
+definition home, the <code>| ID | Question | Status | Waits on | Affects |</code> table
+with <code>OPEN</code> / <code>PARTIAL</code> / <code>RESOLVED (date)</code>, anchored structurally in
+<code>hsdd-spec</code> (templates + minting), <code>hsdd-phase-plan</code> (a contingency must name
+its question — a stop), <code>hsdd-contract</code> / <code>hsdd-adr</code> (cite-only), and
+<code>hsdd-reconcile</code> (resolution citation sweep).</li>
+<li>Standalone-spec-repo profile for multi-repo projects: the HSDD tree is its own
+repo, mounted as a submodule <strong>at <code>hsdd/</code></strong> — so every path is unchanged and no
+skill needs profile-specific resolution. Adds the run-location rule (skills run
+from an implementation repo, never from a standalone clone of the spec repo)
+and four incident-backed rules: pointers reference spec-repo main only, a phase
+is done when its verification doc is on spec-repo main, cross-repo branch pairs
+land or are discarded atomically, and multi-phase epics are never
+squash-merged.</li>
+<li>Users guide: a &quot;Running the project&quot; chapter covering the developer/lead role
+split, the weekly rhythm, milestones, open questions, the multi-repo profile,
+and adoption on a project already underway.</li>
+</ul>
+<h3 id="changed-6"><a class="anchor" href="#changed-6" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-config</code> checks the submodule pointer as the <strong>first</strong> step of the phase
+context switch under the profile — it gates every later step, all of which read
+through <code>hsdd/</code>.</li>
+<li>The vNext mechanization draft renumbers from 0.7.0 candidate to 0.8 candidate.
+v0.7 is additive over v0.6.1 by contract (spec §7.1), with microsite-hsdd as
+the acceptance fixture (§7.3).</li>
+</ul>
+<h3 id="acceptance-1"><a class="anchor" href="#acceptance-1" aria-hidden="true" tabindex="-1">#</a>Acceptance</h3>
+<ul>
+<li><strong>Gate discharged (spec §7.3), 2026-07-26.</strong> Both skills ran against the
+microsite reference project — a live v0.6.1 project mid-implementation — from
+an implementation repo in a cold-context session, and produced conforming
+documents without manual repair. The adoption run caught 7/7 seeded findings
+plus a High finding the expectations missed (a signed verification doc whose
+implementation exists nowhere in the repo), and all 26 register entries trace
+to a plan step or an explicit waiver. <code>hsdd-milestone</code> adopted the existing
+baseline and declined to generate. Four skill defects surfaced and were
+fixed: <code>hsdd-checkpoint</code> ended by asking the operator to adjudicate findings
+instead of pointing at the plan steps that already recorded them; and
+<code>hsdd-milestone</code> lacked a slip-trigger bootstrap rule, a home for
+internally-blocked work, and a route for its own findings into the
+findings→plan loop. Full record: <code>review/hsdd-v0_7-acceptance-microsite.md</code>.</li>
+</ul>
+<h2 id="061---2026-07-13"><a class="anchor" href="#061---2026-07-13" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.6.0...v0.6.1" rel="noopener">0.6.1</a> - 2026-07-13</h2>
+<p>Driven by the v0.6.0 pressure-test campaign
+(<code>review/hsdd-skills-v0_6_0-pressure-test-fable-xhigh.md</code>) and a field
+observation on source-document provenance. Delta spec:
+<code>spec/hsdd-spec-v0_6_1.md</code>.</p>
+<h3 id="added-7"><a class="anchor" href="#added-7" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li>Source provenance: the root spec carries a <code>## Sources</code> section and every
+node a <code>Sources</code> field that trickles down at each decomposition level;
+quality gates ensure no source is silently dropped and none is listed on
+a node it does not govern. <code>hsdd-phase-plan</code> reads the node&#39;s sources and
+lands binding details in phase lines or contract entries; phase contexts
+are unchanged (sources are never injected).</li>
+<li>Sizing-floor checklist item in <code>hsdd-phase-plan</code> (the ceiling always had
+one), a one-line kept-split reason whenever a merge candidate stays
+separate, and an anti-enumeration-anchoring row.</li>
+</ul>
+<h3 id="changed-7"><a class="anchor" href="#changed-7" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li>The &quot;who builds what?&quot; clarifying question is a mandatory stop when the
+input does not state team structure and the system plausibly spans
+stacks; proceeding on an assumed axis is no longer allowed.</li>
+<li><code>hsdd-spec</code> step 7 writes one spec file per node: every child gets its
+own <code>hsdd/spec/{child-id}.md</code> at decomposition time.</li>
+<li>Format clarifications in <code>hsdd-phase-plan</code>: the summary table opens the
+<code>## Phase Plan</code> section; phase ids in tables and <code>Collides with</code> match
+the section headers; <code>Collides with</code> may carry a one-line reason.</li>
+</ul>
+<h2 id="060---2026-07-13"><a class="anchor" href="#060---2026-07-13" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.5.1...v0.6.0" rel="noopener">0.6.0</a> - 2026-07-13</h2>
+<p>Driven by the second field test (FT-2) and its review
+(<code>review/hsdd-process-v0_5_1-review-fable-xhigh.md</code>). Delta spec:
+<code>spec/hsdd-spec-v0_6.md</code>.</p>
+<h3 id="added-8"><a class="anchor" href="#added-8" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li>Phase summary table: every phase plan opens with a per-phase overview
+(phase, name, tier, size, dependencies, collisions) for the human
+reviewer; <code>hsdd-config</code> still injects only the detailed section.</li>
+<li>Sizing floor in <code>hsdd-phase-plan</code>: adjacent phases with the same tier,
+the same contracts, and a clean dependency shape merge instead of each
+paying a full OpenSpec cycle; artifacts-exceed-diff is the default merge
+smell. The anti-merge anti-rationalization row is replaced by two
+motive-aware rows.</li>
+<li>Tier-scaled artifact profile: gate-only phases skip <code>design.md</code> and get a
+slim verification doc; spot-check skips design unless a real decision
+exists; full-review keeps the full set. Tasks and spec deltas never
+scale, and every phase still produces a verification doc.</li>
+<li>Execution protocol (conventions template, <code>hsdd-config</code>, users guide):
+<code>openspec/config.yaml</code>&#39;s phase block is ephemeral (take either side on
+merge, re-run <code>/hsdd-phase</code>); one integration branch per node; plans and
+reconcile live on exactly one lineage; <code>Collides with:</code> marks textual
+contention and serializes execution; capabilities are named after stable
+feature areas, not phases.</li>
+<li>Ownership-first decomposition axis in <code>hsdd-spec</code>: split stack-first when
+different teams own different parts of the stack; capability slices apply
+within one owner&#39;s territory. &quot;Who builds what?&quot; is the canonical
+clarifying question.</li>
+<li>Bundled verification-doc template (<code>hsdd-config</code>, copied to
+<code>hsdd/templates/verification.md</code> at setup) with Outstanding and Sign-off
+sections; the review gate is not passed while an Outstanding item lacks a
+disposition.</li>
+</ul>
+<h3 id="changed-8"><a class="anchor" href="#changed-8" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li>Node and phase templates emit field blocks as bullet lists (bare
+<code>**Field:** value</code> lines collapse into one paragraph in every compliant
+renderer); empty contract lists render &quot;none&quot;; standalone node specs no
+longer duplicate their title as an inner heading.</li>
+<li><code>hsdd-phase-plan</code>&#39;s dependency graph is a Mermaid flowchart (pastel style
+if installed; cross-node dependencies dashed); the ASCII example is
+retired. A phase plan may declare a node-level default gate.</li>
+<li><code>hsdd-config</code>&#39;s compound tasks rule is split into three rules; the phase
+context switch warns when the requested phase is not next-runnable.</li>
+<li>Users guide: examples reformatted to the new templates, review-tier
+section updated, execution-stage walkthrough added (Step 8).</li>
+</ul>
+<h2 id="051---2026-07-06"><a class="anchor" href="#051---2026-07-06" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.5.0...v0.5.1" rel="noopener">0.5.1</a> - 2026-07-06</h2>
+<ul>
+<li><code>hsdd-phase-plan</code> no longer implies it should create verification documents.
+The phase template&#39;s Verification field said the description &quot;becomes the
+verification doc at hsdd/verify/{phase-id}.verification.md&quot;, which agents
+read as an instruction to write that file during planning. The field is now
+explicitly a 1-3 line statement of intent, with a rule that the plan&#39;s only
+output is the node&#39;s plan file: the verification doc is written at apply by
+the documentation task <code>hsdd-config</code> injects, once implementation details
+exist, for the human to verify the completed change before archive. Added a
+matching anti-rationalization entry.</li>
+</ul>
+<h2 id="050---2026-07-06"><a class="anchor" href="#050---2026-07-06" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.4.2...v0.5.0" rel="noopener">0.5.0</a> - 2026-07-06</h2>
+<h3 id="changed-9"><a class="anchor" href="#changed-9" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><p><strong>Breaking:</strong> every HSDD artifact now lives under one root directory,
+<code>hsdd/</code>, with singular directory names (<code>spec/hsdd-spec-v0_5.md</code>):</p>
+<ul>
+<li><code>docs/conventions.md</code> -&gt; <code>hsdd/conventions.md</code></li>
+<li><code>docs/spec/</code> -&gt; <code>hsdd/spec/</code></li>
+<li><code>docs/verify/</code> -&gt; <code>hsdd/verify/</code></li>
+<li><code>contracts/</code> -&gt; <code>hsdd/contract/</code></li>
+<li><code>adr/</code> -&gt; <code>hsdd/adr/</code></li>
+<li><code>scripts/gen-registry.mjs</code> -&gt; <code>hsdd/scripts/gen-registry.mjs</code></li>
+</ul>
+<p><code>openspec/</code> is unchanged; OpenSpec owns that location. The layout stays a
+default: a project may override any path in its conventions file.</p>
+</li>
+<li><p><code>gen-registry.mjs</code> defaults: root is <code>./hsdd</code> (was cwd), scanning
+<code>contract/</code> and <code>adr/</code> under it. <code>--root &lt;dir&gt;</code> is unchanged. Standard
+invocation is now <code>node hsdd/scripts/gen-registry.mjs</code>.</p>
+</li>
+<li><p>Skills that load conventions read <code>hsdd/conventions.md</code> first and fall back
+to <code>docs/conventions.md</code> for pre-0.5 projects, honoring the layout that
+file states and offering to migrate.</p>
+</li>
+<li><p>README, users guide, and all six skills updated to the new paths, including
+trigger phrases (<code>hsdd/contract/INDEX.md</code>, <code>@hsdd/spec/foo.md</code>).</p>
+</li>
+</ul>
+<h3 id="migration-existing-projects"><a class="anchor" href="#migration-existing-projects" aria-hidden="true" tabindex="-1">#</a>Migration (existing projects)</h3>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">mkdir -p hsdd/scripts
+git mv docs/conventions.md hsdd/conventions.md
+git mv docs/spec hsdd/spec
+git mv docs/verify hsdd/verify        # if present
+git mv contracts hsdd/contract
+git mv adr hsdd/adr                   # if present
+git mv scripts/gen-registry.mjs hsdd/scripts/gen-registry.mjs</code></pre></div>
+<p>Then update the layout section of <code>hsdd/conventions.md</code> (or re-seed it from
+the template) and re-copy the bundled generator, since the old copy scans the
+old paths. Keeping the old layout is also fine: state it in the conventions
+file and the skills honor it.</p>
+<h2 id="042---2026-07-05"><a class="anchor" href="#042---2026-07-05" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.4.1...v0.4.2" rel="noopener">0.4.2</a> - 2026-07-05</h2>
+<h3 id="added-9"><a class="anchor" href="#added-9" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><code>hsdd-reconcile</code> skill: drain the <code>## Governance updates (pending reconcile)</code>
+sections emitted by <code>hsdd-phase-plan</code>, resolve contract-gap requests with the
+human, finalize contract phase ids, and regenerate the registries. Runs at
+the repo root after (parallel) phase-plan branches merge.</li>
+<li><code>/hsdd-reconcile</code> slash command.</li>
+<li>Governance freeze protocol (<code>spec/hsdd-spec-v0_4_2.md</code>): <code>contracts/</code>,
+<code>adr/</code>, <code>docs/conventions.md</code>, and the INDEX registries are read-only during
+phase planning; intended changes ride the node&#39;s own plan file as
+<code>confirm</code>/<code>note</code>/<code>amend</code>/<code>request</code> entries. Parallel phase planning in
+git worktrees becomes conflict-free by construction.</li>
+<li>Contract frontmatter field <code>phase_ids: provisional | final</code>, flipped only by
+<code>hsdd-reconcile</code>. No generator change: unknown fields are ignored by the
+projection. <code>status</code> flips <code>draft</code> to <code>stable</code> at the end of the same
+reconcile pass, once <code>phase_ids</code> is <code>final</code> and no unresolved <code>request</code>
+names the contract (interface-frozen semantics).</li>
+</ul>
+<h3 id="changed-10"><a class="anchor" href="#changed-10" aria-hidden="true" tabindex="-1">#</a>Changed</h3>
+<ul>
+<li><code>hsdd-phase-plan</code> no longer updates <code>docs/conventions.md</code> (old process step
+6); it emits a pending-governance section, asks the human when a contract
+gap changes the plan&#39;s shape, and never reads sibling worktrees.</li>
+<li><code>hsdd-contract</code>: contracts are written at the root only; prose &quot;update the
+phase ids later&quot; notes are replaced by the <code>phase_ids</code> field; a new quality
+gate requires naming the canonical path and owning phase of any code-level
+artifact both sides consume.</li>
+<li><code>hsdd-config</code>: the tasks rule no longer instructs the apply step to update
+<code>docs/conventions.md</code>; the phase context switch warns when a consumed
+contract is still provisional and stops when the phase is contingent on an
+unresolved request.</li>
+<li>Conventions template: the hand-maintained <code>## Established contracts</code> list is
+replaced by a pointer to the generated <code>contracts/INDEX.md</code>, plus a new
+<code>## Parallel development protocol</code> section.</li>
+<li>Users guide: reconcile in the loop and the workflow diagram; a serial
+reconcile note in Example 1 and a parallel-worktrees walkthrough in
+Example 2.</li>
+</ul>
+<h2 id="041---2026-07-02"><a class="anchor" href="#041---2026-07-02" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.4.0...v0.4.1" rel="noopener">0.4.1</a> - 2026-07-02</h2>
+<h3 id="fixed-3"><a class="anchor" href="#fixed-3" aria-hidden="true" tabindex="-1">#</a>Fixed</h3>
+<ul>
+<li><code>hsdd-contract</code> and <code>hsdd-adr</code> now require copying the bundled
+<code>scripts/gen-registry.mjs</code> verbatim and explicitly forbid reimplementing it from
+the skill description. A retyped generator silently mis-projects the registry (for
+example emitting the ADR <code>affects</code> column for contracts, which use
+<code>owner</code>/<code>consumers</code>), and a regenerate-and-diff check does not catch it.</li>
+<li><code>hsdd-adr</code> closes a bootstrap gap: the registry generator ships only with
+<code>hsdd-contract</code>, but ADRs are frequently materialized before the first contract.
+The skill now says so and points to the <code>hsdd-contract</code> skill&#39;s bundled copy
+instead of implying the generator is already present.</li>
+</ul>
+<h2 id="040---2026-07-02"><a class="anchor" href="#040---2026-07-02" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.3.0...v0.4.0" rel="noopener">0.4.0</a> - 2026-07-02</h2>
+<h3 id="added-10"><a class="anchor" href="#added-10" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><code>hsdd-adr</code> skill: author and maintain cross-cutting Architecture Decision
+Records as first-class files (<code>adr/{nnn}-{title}.md</code>) with registry-compatible
+frontmatter, a status lifecycle (proposed/accepted/superseded/deprecated), and
+bidirectional <code>Affects</code>/<code>Governed by</code> links.</li>
+<li><code>/hsdd-adr</code> slash command.</li>
+<li><code>spec/hsdd-spec-v0_4.md</code>: delta spec over v0.3.</li>
+<li>Documented where to run <code>openspec init</code> (once, at the repo root; one OpenSpec
+project per HSDD tree) in the spec, README, user&#39;s guide, and conventions template.</li>
+</ul>
+<h3 id="fixed-4"><a class="anchor" href="#fixed-4" aria-hidden="true" tabindex="-1">#</a>Fixed</h3>
+<ul>
+<li>Broken ADR handoff: <code>hsdd-spec</code> now hands accepted ADRs to <code>hsdd-adr</code> to
+materialize as files instead of leaving them as inline prose; <code>hsdd-config</code>
+stops and authors a referenced-but-missing ADR rather than fabricating or
+dropping it.</li>
+<li>Reconciled the ADR artifact with <code>gen-registry.mjs</code>: ADRs now carry YAML
+frontmatter (the generator reads <code>id</code>/<code>status</code>/<code>affects</code>), superseding the
+body-field example in v0.3 §12.4. No generator change required.</li>
+</ul>
+<h2 id="030---2026-07-01"><a class="anchor" href="#030---2026-07-01" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/releases/tag/v0.3.0" rel="noopener">0.3.0</a> - 2026-07-01</h2>
+<h3 id="added-11"><a class="anchor" href="#added-11" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><code>hsdd-spec</code> skill: turn a brain-dump into a high-level spec and decompose nodes into subsystems.</li>
+<li><code>hsdd-phase-plan</code> skill: break a leaf-parent node into ordered, independently implementable phases.</li>
+<li><code>hsdd-contract</code> skill: define, version, and update first-class contracts between nodes.</li>
+<li><code>hsdd-config</code> skill: set up/update OpenSpec <code>config.yaml</code> and switch phase context.</li>
+<li>Slash commands under <code>commands/</code>.</li>
+<li>Docs (<code>docs/</code>), specs (<code>spec/</code>), and review assets (<code>review/</code>).</li>
+</ul>
+</article>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/main/CHANGELOG.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+  </div>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>

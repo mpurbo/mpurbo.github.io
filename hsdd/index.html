@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="HSDD scales spec-driven development from a single spec to large, multi-team systems: recursive decomposition, first-class contracts, and one human-reviewed phase at a time. Agent skills for Claude Code, Cursor, Codex and more.">
+  <title>HSDD · Hierarchical Spec-Driven Development</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="HSDD · Hierarchical Spec-Driven Development">
+  <meta property="og:description" content="HSDD scales spec-driven development from a single spec to large, multi-team systems: recursive decomposition, first-class contracts, and one human-reviewed phase at a time. Agent skills for Claude Code, Cursor, Codex and more.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="./assets/docs.css">
+  
+  <script src="./assets/docs.js" defer></script>
+</head>
+<body class="kind-home">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    
+    <a class="brand" href="./" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="guide/">Interactive guide</a><a href="users-guide/">User's guide</a><a href="tutorial/">Tutorials</a><a href="reference/">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <main id="main" class="page-home" tabindex="-1"><style>
+  .tree-dg { display: block; width: 100%; height: auto; }
+  .tree-dg text { fill: var(--ink); font-family: var(--sans); font-size: 13px; }
+  .tree-dg .t-id { font-family: var(--mono); font-size: 12.5px; font-weight: 600; }
+  .tree-dg .t-sub { fill: var(--muted); font-size: 11.5px; }
+  .tree-dg .t-label { fill: var(--muted); font-size: 11.5px; font-family: var(--mono); }
+  .tree-dg .edge { fill: none; stroke: var(--line); stroke-width: 1.4; }
+  .tree-dg .edge.contract { stroke: var(--accent); stroke-dasharray: 5 4; stroke-width: 1.6; }
+  .tree-dg rect.box { stroke-width: 1.4; }
+  .tree-dg .k-root rect { fill: var(--flow-bg); stroke: var(--flow); }
+  .tree-dg .k-internal rect { fill: var(--process-bg); stroke: var(--process); }
+  .tree-dg .k-leafparent rect { fill: var(--impl-bg); stroke: var(--impl); }
+  .tree-dg .k-phase rect { fill: var(--done-bg); stroke: var(--done); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 10px 0 0; padding: 0 4px; }
+</style>
+    <section class="hero">
+      <div>
+        <ul class="chips"><li class="chip flow">Open source · Apache-2.0</li><li class="chip"><a href="changelog/" style="color:inherit;text-decoration:none">v0.11.0 · unreleased</a></li><li class="chip">Agent skills</li></ul>
+        <h1>The spec is the program.</h1>
+        <p class="lede">HSDD scales spec-driven development from a single spec to large, multi-team systems: recursive decomposition, first-class contracts, and one human-reviewed phase at a time.</p>
+        <div class="cta">
+          <a class="btn primary" href="guide/">Start the interactive guide →</a>
+          <a class="btn" href="users-guide/">Read the user's guide</a>
+          <a class="btn" href="#install">Install</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <svg class="tree-dg" viewBox="0 0 660 340" role="img" aria-labelledby="tree-title tree-desc">
+      <title id="tree-title">An HSDD tree</title>
+      <desc id="tree-desc">The acme root splits into acme.backend and acme.web. The backend splits into two leaf-parents, auth and billing. Auth's three phases are the leaves. The backend and the web app meet only through a contract.</desc>
+      <path class="edge" d="M395 64 V84 H250 V104"/><path class="edge" d="M395 64 V84 H540 V104"/>
+      <path class="edge" d="M250 154 V175 H120 V196"/><path class="edge" d="M250 154 V175 H380 V196"/>
+      <path class="edge" d="M120 246 V267 H52 V288"/><path class="edge" d="M120 246 V267 H152 V288"/><path class="edge" d="M120 246 V267 H252 V288"/>
+      <path class="edge contract" d="M326 129 H464"/>
+      <text x="395" y="121" text-anchor="middle" class="t-label">auth-token@v1</text>
+      <g class="k-root"><rect class="box" x="320" y="14" width="150" height="50" rx="8"/><text x="395" y="36" text-anchor="middle" class="t-id">acme</text><text x="395" y="52" text-anchor="middle" class="t-sub">root system</text></g>
+      <g class="k-internal"><rect class="box" x="175" y="104" width="150" height="50" rx="8"/><text x="250" y="126" text-anchor="middle" class="t-id">acme.backend</text><text x="250" y="142" text-anchor="middle" class="t-sub">Team: backend</text></g>
+      <g class="k-internal"><rect class="box" x="465" y="104" width="150" height="50" rx="8"/><text x="540" y="126" text-anchor="middle" class="t-id">acme.web</text><text x="540" y="142" text-anchor="middle" class="t-sub">Team: web</text></g>
+      <g class="k-leafparent"><rect class="box" x="30" y="196" width="180" height="50" rx="8"/><text x="120" y="218" text-anchor="middle" class="t-id">acme.backend.auth</text><text x="120" y="234" text-anchor="middle" class="t-sub">leaf-parent</text></g>
+      <g class="k-leafparent"><rect class="box" x="290" y="196" width="180" height="50" rx="8"/><text x="380" y="218" text-anchor="middle" class="t-id">acme.backend.billing</text><text x="380" y="234" text-anchor="middle" class="t-sub">leaf-parent</text></g>
+      <g class="k-phase"><rect class="box" x="4" y="288" width="96" height="46" rx="8"/><text x="52" y="308" text-anchor="middle" class="t-id">auth.1</text><text x="52" y="324" text-anchor="middle" class="t-sub">types + contracts</text></g><g class="k-phase"><rect class="box" x="104" y="288" width="96" height="46" rx="8"/><text x="152" y="308" text-anchor="middle" class="t-id">auth.2</text><text x="152" y="324" text-anchor="middle" class="t-sub">token issuance</text></g><g class="k-phase"><rect class="box" x="204" y="288" width="96" height="46" rx="8"/><text x="252" y="308" text-anchor="middle" class="t-id">auth.3</text><text x="252" y="324" text-anchor="middle" class="t-sub">session store</text></g>
+    </svg>
+        <ul class="legend"><li class="chip flow">root</li><li class="chip process">internal node</li><li class="chip impl">leaf-parent</li><li class="chip done">phase</li><li class="chip">- - contract</li></ul>
+        <figcaption>Only the green leaf phases drive coding cycles. Each one consumes contract interfaces by id, never another node's internals, so its session stays small.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="why-hsdd">
+      <header><p class="eyebrow">Why HSDD</p><h2>One spec stops scaling. A tree of small ones does not.</h2>
+        <p>Single-spec workflows work well for small systems. As the system grows, the one spec becomes too large, every session re-reads all of it, and model focus degrades. HSDD decomposes the spec the way you would decompose the program.</p></header>
+      <blockquote class="quote"><p>The unit of spec-driven development is not the product. It is the smallest independently verifiable phase with explicit contracts.</p></blockquote>
+      <div class="grid" style="margin-top:16px">
+        <div class="card k-decision"><div class="card-icon" aria-hidden="true">✓</div><h3>Human review is the pacing unit</h3><p>Agents produce faster than people can read. Every phase is sized to one review sitting, one Phase Equivalent, and done means a verification doc a human signed.</p></div>
+        <div class="card k-process"><div class="card-icon" aria-hidden="true">⌥</div><h3>Modularity in the spec</h3><p>The spec is a tree of nodes coupled only through named, versioned contracts, split where ownership splits, with a typed dependency graph in place of whole-spec coupling.</p></div>
+        <div class="card k-impl"><div class="card-icon" aria-hidden="true">ƒ</div><h3>A functional model underneath</h3><p>Each node is a function from the contracts it consumes to the contracts it produces. The dependency graph is the composition; internals stay private.</p></div>
+        <div class="card k-done"><div class="card-icon" aria-hidden="true">▢</div><h3>Bounded context per session</h3><p>A phase's session gets its phase, the contracts it touches and the decisions that govern it. Per-session context tracks the phase, not the system; the total still grows with phase count.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <header><p class="eyebrow">Documentation</p><h2>Where to start</h2>
+        <p>Four ways in, from a visual tour to the rules themselves. They share the same examples, so you can move between them at any point.</p></header>
+      <div class="grid">
+        <a class="card k-flow" href="guide/"><span class="num">11 chapters</span><h3>Interactive guide</h3><p>The method on one page you click through: the tree, contracts, phases, brownfield adoption, change intake, running the project and unattended runs.</p><span class="go">Start here →</span></a>
+        <a class="card k-process" href="users-guide/"><span class="num">3 worked examples</span><h3>User's guide</h3><p>A single-level CLI, a multi-team platform and a brownfield service, prompt by prompt; then running the project week to week.</p><span class="go">Read →</span></a>
+        <a class="card k-done" href="tutorial/"><span class="num">3 recorded runs</span><h3>Tutorials</h3><p>Real runs on a real repository, from a one-page PRD to running code, a change through intake, and a product-sized change planned unattended.</p><span class="go">Follow along →</span></a>
+        <a class="card k-impl" href="reference/"><span class="num">12 skills</span><h3>Reference</h3><p>Every skill and slash command, the glossary, common questions, the specification and the changelog.</p><span class="go">Look it up →</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <header><p class="eyebrow">How it works</p><h2>Two ways in, one shared loop</h2>
+        <p>Greenfield starts from an idea and decomposes. Brownfield starts from a codebase and adopts it shallowly. From then on every change enters through intake into the same tree: the tree does not complete, phases complete.</p></header>
+      <div class="entries">
+        <div class="entry"><b>Greenfield</b><span>A brain-dump, PRD or RFC goes to <code>hsdd-spec</code>, which decomposes the system into nodes until each is small enough to phase.</span></div>
+        <div class="entry"><b>Brownfield</b><span><code>hsdd-adopt</code> extracts the seams by script, writes an as-built tree with <code>v0</code> contracts that describe current behavior, and stops.</span></div>
+        <div class="entry"><b>Every later change</b><span><code>hsdd-intake</code> routes a PRD, RFC, ticket or incident into the existing tree. A PRD is never a root.</span></div>
+      </div>
+      <ol class="steps">
+        <li class="k-process"><b>Decompose</b><span>Split the system into a tree of nodes with <code>hsdd-spec</code>; cross-cutting decisions become ADRs.</span></li>
+        <li class="k-process"><b>Contract</b><span>Every boundary is a versioned file with a schema or fixtures (<code>hsdd-contract</code>).</span></li>
+        <li class="k-process"><b>Phase-plan</b><span>Each leaf-parent becomes ordered phases with gates and review tiers (<code>hsdd-phase-plan</code>).</span></li>
+        <li class="k-process"><b>Reconcile</b><span>Drain the pending governance updates at the root (<code>hsdd-reconcile</code>).</span></li>
+        <li class="k-impl"><b>Configure and build</b><span>One phase context (<code>hsdd-config</code>), then one coding cycle, OpenSpec or superpowers.</span></li>
+        <li class="k-decision"><b>Review</b><span>A human reads the diff and runs the verification at the phase's tier, then signs.</span></li>
+      </ol>
+      <p class="note"><code>hsdd-auto</code> runs steps 1 to 4, and intake handoffs, unattended: one fresh subagent per skill invocation, every step gated and committed, every decision recorded for one review sitting. It never implements a phase or passes a review gate. Once implementation starts, <code>hsdd-checkpoint</code> runs the weekly evidence pass and <code>hsdd-milestone</code> keeps the stakeholder dates.</p>
+    </section>
+
+    <section class="section" id="install">
+      <header><p class="eyebrow">Install</p><h2>Twelve skills, one command</h2>
+        <p>HSDD ships as agent skills, installable with the <a href="https://github.com/vercel-labs/skills">skills</a> CLI, which works with Claude Code, Cursor, Codex and 70+ other agents.</p></header>
+      <div class="install">
+        <div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code># All twelve HSDD skills
+npx skills add mpurbo/hsdd
+
+# Or a single skill
+npx skills add mpurbo/hsdd --skill hsdd-spec</code></pre></div>
+        <div class="install-notes">
+          <p><b>Recommended companion:</b> Obra's <a href="https://github.com/obra/superpowers">superpowers</a> plugin. HSDD composes with its test-driven development, verification and code-review skills instead of re-implementing them, and <code>hsdd-config</code> wires them into each phase's coding session.</p>
+          <p><b>Slash commands</b> are optional and not installed by the CLI: copy <a href="https://github.com/mpurbo/hsdd/tree/main/commands"><code>commands/*.md</code></a> into your project's <code>.claude/commands/</code>.</p>
+          <p><b>Then</b> follow <a href="users-guide/#example-1-a-simple-project-single-level">Example 1</a> of the user's guide, or the first <a href="tutorial/">tutorial</a>.</p>
+        </div>
+      </div>
+      <div class="code is-prompt" id="quickstart" style="margin-top:14px"><div class="code-tab"><span>first prompts</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code>"Write a high-level spec for a merchant onboarding platform."      -> hsdd-spec (root)
+"Break down @hsdd/spec/acme.md into backend, mobile, and web."     -> hsdd-spec (internal node)
+"Define the auth-token contract: auth produces, billing consumes." -> hsdd-contract
+"Write the ADR for the auth provider decision."                    -> hsdd-adr
+"acme.backend.auth is small enough. Write its phase plan."         -> hsdd-phase-plan
+"Reconcile the worktrees."                                         -> hsdd-reconcile
+"/hsdd-phase acme.backend.auth.2"   (switch the phase context, then run the cycle)
+"/hsdd-auto"                        (plan the tree unattended, review the ledger after)</code></pre></div>
+    </section>
+
+    <section class="section" id="the-skill-set">
+      <header><p class="eyebrow">The skill set</p><h2>What each skill is for</h2>
+        <p>Each skill owns one step of the method and writes one kind of artifact. The <a href="reference/">reference</a> has the full entry for each.</p></header>
+      <div class="skill-groups">
+        <div class="skill-group"><p>Build the tree</p><a class="skill-link" href="reference/#hsdd-spec"><b>hsdd-spec</b><span>Turn a brain-dump into a high-level spec, or decompose any node into child nodes.</span></a><a class="skill-link" href="reference/#hsdd-contract"><b>hsdd-contract</b><span>Define and version the first-class contracts between nodes.</span></a><a class="skill-link" href="reference/#hsdd-adr"><b>hsdd-adr</b><span>Author and maintain cross-cutting Architecture Decision Records as first-class files, with registry-compatible frontmatter and a status lifecycle.</span></a></div><div class="skill-group"><p>Plan the phases</p><a class="skill-link" href="reference/#hsdd-phase-plan"><b>hsdd-phase-plan</b><span>Break a small-enough node into ordered, independently implementable phases, each sized for one coding cycle and one review window.</span></a><a class="skill-link" href="reference/#hsdd-reconcile"><b>hsdd-reconcile</b><span>Drain the pending governance updates emitted by phase planning: finalize contract phase ids, resolve contract-gap requests with you, and regenerate the registries.</span></a></div><div class="skill-group"><p>Execute a phase</p><a class="skill-link" href="reference/#hsdd-config"><b>hsdd-config</b><span>Before each phase, write one self-contained phase context (the phase, the text of the contracts it touches, its decisions, pinned links) and wrap it for the project&#39;s coding method: OpenSpec&#39;s <code>config.yaml</code>, or a spec for superpowers&#39; <code>writing-plans</code>.</span></a></div><div class="skill-group"><p>Existing systems and change</p><a class="skill-link" href="reference/#hsdd-adopt"><b>hsdd-adopt</b><span>Bring an existing codebase into the tree: script-extracted seams, as-built node specs with an <code>## Observed surface</code> section, and <code>v0</code> contracts describing current behavior.</span></a><a class="skill-link" href="reference/#hsdd-intake"><b>hsdd-intake</b><span>Route an incoming change request (PRD, RFC, ticket, incident) into the existing tree: classify it, detect collisions with open intakes, write the routing record, and hand off.</span></a></div><div class="skill-group"><p>Run the project</p><a class="skill-link" href="reference/#hsdd-checkpoint"><b>hsdd-checkpoint</b><span>Run the weekly (or context-triggered) evidence pass across the spec repo and every implementation repo, emitting a progress report, a revised execution plan, a regenerated atlas, and ticked milestone gates.</span></a><a class="skill-link" href="reference/#hsdd-milestone"><b>hsdd-milestone</b><span>Generate a campaign&#39;s stakeholder milestone document once every leaf-parent in its scope is phase-planned.</span></a><a class="skill-link" href="reference/#hsdd-summary"><b>hsdd-summary</b><span>Render offline HTML reading aids: the plan page (root to phase cards, for a reviewer, a stakeholder or an implementer) and the checkpoint page (the newest progress report and execution plan, for the lead running the sync, each lane&#39;s executor, and stakeholders).</span></a></div><div class="skill-group"><p>Unattended</p><a class="skill-link" href="reference/#hsdd-auto"><b>hsdd-auto</b><span>Run HSDD&#39;s planning chain unattended: compute the next step, dispatch one fresh subagent per skill invocation, answer or stop on each ask point per the owner&#39;s stop policy, gate and commit each step, and record every decision for one review sitting.</span></a></div>
+      </div>
+    </section></main>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p class="foot-links"><a href="./changelog/">Changelog</a><a href="./spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>

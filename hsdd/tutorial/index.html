@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Three recorded HSDD runs on one small product: a PRD to running code, a change through intake, and a product-sized change planned unattended by hsdd-auto.">
+  <title>Tutorials · HSDD</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="Tutorials · HSDD">
+  <meta property="og:description" content="Three recorded HSDD runs on one small product: a PRD to running code, a change through intake, and a product-sized change planned unattended by hsdd-auto.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../assets/docs.css">
+  
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="kind-index">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    
+    <a class="brand" href="../" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="../guide/">Interactive guide</a><a href="../users-guide/">User's guide</a><a href="./" aria-current="page">Tutorials</a><a href="../reference/">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <main id="main" class="page-index" tabindex="-1"><header class="doc-head">
+      <p class="eyebrow">Tutorials</p>
+      <h1>Tutorials</h1>
+      <div class="lede"><p>Three recorded HSDD runs on one small product, each starting where the one
+before it ended. Every run was made with the released skills on a real
+repository, and every decision taken on the owner&#39;s behalf is marked
+<strong>[owner proxy]</strong> in its process log.</p>
+</div>
+    </header>
+    <section class="tut"><article class="tut-card" id="simple-login">
+        <div class="tut-num" aria-hidden="true">1</div>
+        <div>
+          <h3><a href="simple-login/">simple-login</a></h3>
+          <p class="lede">A one-page PRD to running, tested code through every HSDD step: a backend node and a web node joined by two contracts, an integration node, and superpowers as the coding method.</p>
+          <ul class="chips"><li class="chip">one-page PRD</li><li class="chip">3 leaf-parents</li><li class="chip">2 contracts</li><li class="chip">superpowers</li><li class="chip flow">skills v0.10.0</li></ul>
+          <div class="actions">
+            <a class="btn primary" href="simple-login/walkthrough/">Walkthrough →</a>
+            <a class="btn" href="simple-login/">Overview and how to run it</a>
+            <a class="btn" href="simple-login/walkthrough/process-log.html">Process log</a>
+            <a class="btn" href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/simple-login">Files on GitHub</a>
+          </div>
+        </div>
+      </article><article class="tut-card" id="simple-login-update">
+        <div class="tut-num" aria-hidden="true">2</div>
+        <div>
+          <h3><a href="simple-login-update/">simple-login, update 1</a></h3>
+          <p class="lede">One change to the finished project through the change flow: intake, a contract version bump, appended phases, reconcile, and the checkpoint that closes the change.</p>
+          <ul class="chips"><li class="chip">intake: cross-node</li><li class="chip">profile-api@v2</li><li class="chip">3 appended phases</li><li class="chip">checkpoint closes it</li><li class="chip flow">skills v0.10.1</li></ul>
+          <div class="actions">
+            <a class="btn primary" href="simple-login-update/walkthrough/">Walkthrough →</a>
+            <a class="btn" href="simple-login-update/">Overview and how to run it</a>
+            <a class="btn" href="simple-login-update/walkthrough/process-log.html">Process log</a>
+            <a class="btn" href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/simple-login-update">Files on GitHub</a>
+          </div>
+        </div>
+      </article><article class="tut-card" id="meeting-rooms">
+        <div class="tut-num" aria-hidden="true">3</div>
+        <div>
+          <h3><a href="meeting-rooms/">simple-login, meeting rooms</a></h3>
+          <p class="lede">A product-sized change planned unattended by <code>hsdd-auto</code>: PRD version 2 adds meeting-room booking for two offices in different time zones. 31 steps, 231 recorded decisions, one review sitting, twelve phases in three lanes.</p>
+          <ul class="chips"><li class="chip">hsdd-auto, intake mode</li><li class="chip">231 decisions</li><li class="chip">12 phases</li><li class="chip">PostgreSQL in Docker</li><li class="chip flow">skills v0.11.0</li></ul>
+          <div class="actions">
+            <a class="btn primary" href="meeting-rooms/walkthrough/">Walkthrough →</a>
+            <a class="btn" href="meeting-rooms/">Overview and how to run it</a>
+            <a class="btn" href="meeting-rooms/walkthrough/process-log.html">Process log</a>
+            <a class="btn" href="https://github.com/mpurbo/hsdd/tree/main/docs/tutorial/meeting-rooms">Files on GitHub</a>
+          </div>
+        </div>
+      </article></section>
+    <article class="prose folders"><p>Each tutorial has the same three folders:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Folder</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>template/</code></td>
+<td>The starting point. Copy it into an empty git repository to run the tutorial yourself.</td>
+</tr>
+<tr>
+<td><code>execute/</code></td>
+<td>The repository the recorded run produced: the HSDD tree, the phase contexts, the plans, and the code.</td>
+</tr>
+<tr>
+<td><code>walkthrough/</code></td>
+<td>An interactive page that tells the run stage by stage, in a &quot;Walkthrough&quot; mode with talking points and a &quot;Do it yourself&quot; mode with prompts and checks, plus the full written record, <code>process-log.md</code>.</td>
+</tr>
+</tbody></table></div>
+<p>Open any <code>walkthrough/index.html</code> in a browser. It works from disk,
+offline, with no build step. Keys: <code>←</code> <code>→</code> step, <code>M</code> switches mode, <code>T</code>
+the theme.</p>
+</article></main>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>

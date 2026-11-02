@@ -1,0 +1,1663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="HSDD on three worked examples, prompt by prompt, then running the project: checkpoints, milestones, unattended runs, and what to do when a project drifts outside the method.">
+  <title>HSDD User&#39;s Guide · HSDD</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="HSDD User&#39;s Guide · HSDD">
+  <meta property="og:description" content="HSDD on three worked examples, prompt by prompt, then running the project: checkpoints, milestones, unattended runs, and what to do when a project drifts outside the method.">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/vendor/mermaid.min.js" defer></script>
+  <script src="../assets/docs.js" defer></script>
+</head>
+<body class="kind-doc">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    <button class="tool contents-toggle" id="contents-toggle" aria-expanded="false" aria-controls="toc">Contents</button>
+    <a class="brand" href="../" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="../guide/">Interactive guide</a><a href="./" aria-current="page">User's guide</a><a href="../tutorial/">Tutorials</a><a href="../reference/">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <div class="shell has-toc">
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#before-you-start" data-id="before-you-start">Before you start</a></li><li><a href="#how-hsdd-works" data-id="how-hsdd-works">How HSDD works</a><ol><li><a href="#plain-openspec-vs-hsdd" data-id="plain-openspec-vs-hsdd">Plain OpenSpec vs HSDD</a></li><li><a href="#the-hsdd-workflow" data-id="the-hsdd-workflow">The HSDD workflow</a></li><li><a href="#review-tiers" data-id="review-tiers">Review tiers</a></li><li><a href="#where-everything-lives" data-id="where-everything-lives">Where everything lives</a></li></ol></li><li><a href="#example-1-a-simple-project-single-level" data-id="example-1-a-simple-project-single-level">Example 1: A simple project (single level)</a><ol><li><a href="#step-1-spec-it" data-id="step-1-spec-it">Step 1: Spec it</a></li><li><a href="#step-2-one-contract" data-id="step-2-one-contract">Step 2: One contract</a></li><li><a href="#step-3-phase-plan" data-id="step-3-phase-plan">Step 3: Phase-plan</a></li><li><a href="#step-4-configure-run-review" data-id="step-4-configure-run-review">Step 4: Configure, run, review</a></li></ol></li><li><a href="#example-2-a-multi-level-system" data-id="example-2-a-multi-level-system">Example 2: A multi-level system</a><ol><li><a href="#step-1-decompose-the-root" data-id="step-1-decompose-the-root">Step 1: Decompose the root</a></li><li><a href="#step-2-recurse-into-the-backend" data-id="step-2-recurse-into-the-backend">Step 2: Recurse into the backend</a></li><li><a href="#step-3-contracts-and-a-decision" data-id="step-3-contracts-and-a-decision">Step 3: Contracts and a decision</a></li><li><a href="#step-4-phase-plan-the-leaf-parent" data-id="step-4-phase-plan-the-leaf-parent">Step 4: Phase-plan the leaf-parent</a></li><li><a href="#step-5-configure-and-switch-phase-context" data-id="step-5-configure-and-switch-phase-context">Step 5: Configure and switch phase context</a></li><li><a href="#step-6-run-verify-parallelize" data-id="step-6-run-verify-parallelize">Step 6: Run, verify, parallelize</a></li><li><a href="#step-7-parallel-leaf-parents-worktrees-reconcile" data-id="step-7-parallel-leaf-parents-worktrees-reconcile">Step 7: Parallel leaf-parents, worktrees, reconcile</a></li><li><a href="#step-8-execute-phases-on-branches" data-id="step-8-execute-phases-on-branches">Step 8: Execute phases on branches</a></li><li><a href="#the-resulting-tree" data-id="the-resulting-tree">The resulting tree</a></li></ol></li><li><a href="#example-3-a-brownfield-system-adopt-intake-promote" data-id="example-3-a-brownfield-system-adopt-intake-promote">Example 3: A brownfield system (adopt, intake, promote)</a><ol><li><a href="#step-1-extract-the-seams" data-id="step-1-extract-the-seams">Step 1: Extract the seams</a></li><li><a href="#step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written" data-id="step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written">Step 2: Confirm the tree before any node spec or contract is written</a></li><li><a href="#step-3-as-built-node-specs" data-id="step-3-as-built-node-specs">Step 3: As-built node specs</a></li><li><a href="#step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach" data-id="step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach">Step 4: Contracts at v0, with what the fixtures do not reach</a></li><li><a href="#step-5-prove-the-tree-and-stop" data-id="step-5-prove-the-tree-and-stop">Step 5: Prove the tree, and stop</a></li><li><a href="#step-6-route-the-prd-through-intake" data-id="step-6-route-the-prd-through-intake">Step 6: Route the PRD through intake</a></li><li><a href="#step-7-promote-the-node-then-phase-plan-it" data-id="step-7-promote-the-node-then-phase-plan-it">Step 7: Promote the node, then phase-plan it</a></li><li><a href="#step-8-living-with-a-mixed-tree" data-id="step-8-living-with-a-mixed-tree">Step 8: Living with a mixed tree</a></li><li><a href="#the-other-way-in-a-governed-tree-with-unadopted-surroundings" data-id="the-other-way-in-a-governed-tree-with-unadopted-surroundings">The other way in: a governed tree with unadopted surroundings</a></li></ol></li><li><a href="#running-the-project" data-id="running-the-project">Running the project</a><ol><li><a href="#two-roles" data-id="two-roles">Two roles</a></li><li><a href="#the-weekly-checkpoint" data-id="the-weekly-checkpoint">The weekly checkpoint</a></li><li><a href="#reading-aids" data-id="reading-aids">Reading aids</a></li><li><a href="#milestones" data-id="milestones">Milestones</a></li><li><a href="#open-questions" data-id="open-questions">Open questions</a></li><li><a href="#multi-repo-projects" data-id="multi-repo-projects">Multi-repo projects</a></li><li><a href="#adopting-on-a-project-already-underway" data-id="adopting-on-a-project-already-underway">Adopting on a project already underway</a></li></ol></li><li><a href="#unattended-runs" data-id="unattended-runs">Unattended runs</a><ol><li><a href="#first-run" data-id="first-run">First run</a></li><li><a href="#plan-and-intake-segments" data-id="plan-and-intake-segments">Plan and intake segments</a></li><li><a href="#the-stop-policy" data-id="the-stop-policy">The stop policy</a></li><li><a href="#answering-stopmd" data-id="answering-stopmd">Answering STOP.md</a></li><li><a href="#reviewing-a-segment" data-id="reviewing-a-segment">Reviewing a segment</a></li><li><a href="#isolation-on-claude-code" data-id="isolation-on-claude-code">Isolation on Claude Code</a></li></ol></li><li><a href="#outside-the-loop" data-id="outside-the-loop">Outside the loop</a><ol><li><a href="#estimating-in-pe-before-the-first-spec" data-id="estimating-in-pe-before-the-first-spec">Estimating in PE before the first spec</a></li><li><a href="#a-knowledge-base-beside-the-tree" data-id="a-knowledge-base-beside-the-tree">A knowledge base beside the tree</a></li><li><a href="#small-fixes-and-small-requests-on-a-launched-system" data-id="small-fixes-and-small-requests-on-a-launched-system">Small fixes and small requests on a launched system</a></li><li><a href="#sealing-a-released-tree" data-id="sealing-a-released-tree">Sealing a released tree</a></li></ol></li><li><a href="#tips" data-id="tips">Tips</a></li><li><a href="#upgrading" data-id="upgrading">Upgrading</a><ol><li><a href="#from-0102-to-0110" data-id="from-0102-to-0110">From 0.10.2 to 0.11.0</a></li><li><a href="#from-0101-to-0102" data-id="from-0101-to-0102">From 0.10.1 to 0.10.2</a></li><li><a href="#from-0100-to-0101" data-id="from-0100-to-0101">From 0.10.0 to 0.10.1</a></li><li><a href="#from-061-or-later-to-0100" data-id="from-061-or-later-to-0100">From 0.6.1 or later to 0.10.0</a></li></ol></li></ol><div class="toc-foot"><a href="../guide/">Interactive guide →</a><a href="../tutorial/">Tutorials →</a><a href="../reference/">Skills and glossary →</a></div></nav>
+    <main id="main" tabindex="-1"><header class="doc-head">
+      <p class="eyebrow">User's guide</p>
+      <h1>HSDD User&#39;s Guide</h1>
+      
+      
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
+    </header>
+    <article class="prose"><p>This guide shows HSDD on three worked examples, then covers running a
+project week to week. Each example goes prompt by prompt: what you type,
+which skill answers, and the files it writes. The rules behind every step
+are in the <a href="../spec/v0.10/">methodology specification</a>, the
+single current spec, with the <a href="../spec/v0.11/">v0.11 delta</a>
+for unattended runs; the superseded delta series remains in <code>spec/</code> as
+history. The <a href="../guide/">interactive guide</a> draws the same examples
+step by step, and the <a href="../tutorial/">tutorials</a> are complete recorded runs on
+a real repository.</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>If you</th>
+<th>Start with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>are new to HSDD</td>
+<td><a href="#how-hsdd-works">How HSDD works</a>, then <a href="#example-1-a-simple-project-single-level">Example 1</a></td>
+</tr>
+<tr>
+<td>are planning a system several teams build</td>
+<td><a href="#example-2-a-multi-level-system">Example 2</a></td>
+</tr>
+<tr>
+<td>are bringing an existing codebase in</td>
+<td><a href="#example-3-a-brownfield-system-adopt-intake-promote">Example 3</a></td>
+</tr>
+<tr>
+<td>lead the project once implementation starts</td>
+<td><a href="#running-the-project">Running the project</a></td>
+</tr>
+<tr>
+<td>want the planning chain to run without you</td>
+<td><a href="#unattended-runs">Unattended runs</a></td>
+</tr>
+<tr>
+<td>have a project that drifted outside the method</td>
+<td><a href="#outside-the-loop">Outside the loop</a></td>
+</tr>
+<tr>
+<td>are upgrading a project to a newer release</td>
+<td><a href="#upgrading">Upgrading</a></td>
+</tr>
+</tbody></table></div>
+<h2 id="before-you-start"><a class="anchor" href="#before-you-start" aria-hidden="true" tabindex="-1">#</a>Before you start</h2>
+<p>Install the twelve skills (see the <a href="../">README</a>) and, ideally,
+<a href="https://github.com/obra/superpowers" rel="noopener">Obra&#39;s superpowers</a> plugin. HSDD
+composes with its test-driven development, verification and code-review
+skills instead of re-implementing them. The HSDD loop, in one line:</p>
+<blockquote>
+<p>decompose -&gt; contract -&gt; phase-plan (parallel across leaf-parents) -&gt;
+reconcile -&gt; configure -&gt; one coding cycle per phase (OpenSpec or
+superpowers) -&gt; human review -&gt; repeat.</p>
+</blockquote>
+<p>One principle is worth taking in early: <strong>depth and ceremony are costs.</strong>
+Use exactly as many levels and artifacts as the system needs, and no more.
+In Example 1 the root is its own leaf-parent; Example 2 needs two levels of
+nodes under its root. Each is right for its system.</p>
+<hr>
+<h2 id="how-hsdd-works"><a class="anchor" href="#how-hsdd-works" aria-hidden="true" tabindex="-1">#</a>How HSDD works</h2>
+<p class="xref"><span class="xref-label">In the interactive guide</span><a href="../guide/#why-1">Why HSDD</a> <a href="../guide/#tree-1">Decompose</a></p>
+<h3 id="plain-openspec-vs-hsdd"><a class="anchor" href="#plain-openspec-vs-hsdd" aria-hidden="true" tabindex="-1">#</a>Plain OpenSpec vs HSDD</h3>
+<p>Plain OpenSpec drives the whole system from one spec through one cycle, so every
+session carries the entire spec as context. HSDD decomposes the system into a tree
+of nodes coupled by versioned contracts, then runs one isolated OpenSpec cycle per
+leaf phase. Each cycle sees only its phase plus the contract interfaces it
+consumes.</p>
+<figure class="diagram"><pre class="mermaid">%%{init:{&#39;theme&#39;:&#39;base&#39;,&#39;themeVariables&#39;:{&#39;primaryTextColor&#39;:&#39;#1e293b&#39;,&#39;lineColor&#39;:&#39;#475569&#39;,&#39;edgeLabelBackground&#39;:&#39;#ffffff&#39;,&#39;tertiaryTextColor&#39;:&#39;#1e293b&#39;}}}%%
+flowchart TB
+    subgraph os [&quot;Plain OpenSpec: one spec, one cycle&quot;]
+        direction TB
+        os_spec[&quot;Whole-system spec&quot;]
+        os_cycle[&quot;One OpenSpec cycle&lt;br/&gt;context: the entire spec&quot;]
+        os_sys[&quot;Whole system&quot;]
+        os_spec --&gt; os_cycle --&gt; os_sys
+    end
+
+    subgraph hs [&quot;HSDD: tree of nodes, one cycle per leaf phase&quot;]
+        direction TB
+        h_root[&quot;Root spec&quot;]
+        h_nodes[&quot;Recursive nodes&lt;br/&gt;+ versioned contracts&quot;]
+        h_leaves[&quot;Leaf phases&quot;]
+        h_cyc[&quot;One isolated OpenSpec cycle per phase&lt;br/&gt;context: one phase + consumed contracts&quot;]
+        h_sys[&quot;Integrated system&quot;]
+        h_root --&gt; h_nodes --&gt; h_leaves --&gt; h_cyc --&gt; h_sys
+    end
+
+    style os fill:none,stroke:#d97706,stroke-dasharray: 5 5,stroke-width:2px,color:#d97706
+    style hs fill:none,stroke:#059669,stroke-dasharray: 5 5,stroke-width:2px,color:#059669
+    style os_spec fill:#e0e7ff,stroke:#4f46e5,color:#1e293b
+    style os_cycle fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style os_sys fill:#d1fae5,stroke:#059669,color:#1e293b
+    style h_root fill:#e0e7ff,stroke:#4f46e5,color:#1e293b
+    style h_nodes fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style h_leaves fill:#d1fae5,stroke:#059669,color:#1e293b
+    style h_cyc fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style h_sys fill:#d1fae5,stroke:#059669,color:#1e293b</pre></figure>
+<p>The OpenSpec cycle itself is unchanged. HSDD only decides what each cycle sees and
+in what order cycles run. The same holds for superpowers, the other coding method:
+HSDD writes the phase context, and the method&#39;s own skills plan and build the phase
+(Example 2, Step 5).</p>
+<h3 id="the-hsdd-workflow"><a class="anchor" href="#the-hsdd-workflow" aria-hidden="true" tabindex="-1">#</a>The HSDD workflow</h3>
+<p>The one-line loop above, drawn out. Planning is done once per node and rarely
+rewritten. Execution repeats once per phase: switch the context, run the cycle,
+generate the verification doc, and pass a human review gate before moving on.</p>
+<figure class="diagram"><pre class="mermaid">%%{init:{&#39;theme&#39;:&#39;base&#39;,&#39;themeVariables&#39;:{&#39;primaryTextColor&#39;:&#39;#1e293b&#39;,&#39;lineColor&#39;:&#39;#475569&#39;,&#39;edgeLabelBackground&#39;:&#39;#ffffff&#39;,&#39;tertiaryTextColor&#39;:&#39;#1e293b&#39;}}}%%
+flowchart TD
+    bd[&quot;Brain-dump / product idea&quot;]
+
+    subgraph plan [&quot;Plan (intent): once per node&quot;]
+        direction TB
+        decompose[&quot;hsdd-spec&lt;br/&gt;decompose into nodes (recursive)&quot;]
+        contracts[&quot;hsdd-contract&lt;br/&gt;versioned contracts + registry&quot;]
+        leaf{&quot;Node small&lt;br/&gt;enough to phase?&quot;}
+        phaseplan[&quot;hsdd-phase-plan&lt;br/&gt;ordered phases, gates, review tiers&quot;]
+        reconcile[&quot;hsdd-reconcile&lt;br/&gt;drain pending governance updates&quot;]
+        decompose --&gt; contracts --&gt; leaf
+        leaf -- &quot;no: decompose further&quot; --&gt; decompose
+        leaf -- yes --&gt; phaseplan
+        phaseplan --&gt; reconcile
+    end
+
+    subgraph exec [&quot;Execute (mechanism): one loop per phase&quot;]
+        direction TB
+        config[&quot;hsdd-config&lt;br/&gt;inject phase + consumed contracts only&quot;]
+        cycle[&quot;OpenSpec cycle&lt;br/&gt;new -&gt; design -&gt; tasks -&gt; apply -&gt; archive&quot;]
+        verify[&quot;Verification doc&lt;br/&gt;hsdd/verify/{phase-id}.verification.md&quot;]
+        gate{&quot;Human review&lt;br/&gt;+ manual verify&quot;}
+        config --&gt; cycle --&gt; verify --&gt; gate
+        gate -- changes --&gt; cycle
+    end
+
+    more{&quot;More phases&lt;br/&gt;or nodes?&quot;}
+    done[&quot;Integrated system&quot;]
+
+    bd --&gt; decompose
+    reconcile --&gt; config
+    gate -- approved --&gt; more
+    more -- &quot;yes: next phase&quot; --&gt; config
+    more -- all done --&gt; done
+
+    style plan fill:none,stroke:#7c3aed,stroke-dasharray: 5 5,stroke-width:2px,color:#7c3aed
+    style exec fill:none,stroke:#2563eb,stroke-dasharray: 5 5,stroke-width:2px,color:#2563eb
+
+    style bd fill:#e0e7ff,stroke:#4f46e5,color:#1e293b
+    style decompose fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style contracts fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style leaf fill:#e0e7ff,stroke:#4f46e5,color:#1e293b
+    style phaseplan fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style reconcile fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style config fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style cycle fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style verify fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style gate fill:#fef3c7,stroke:#d97706,color:#1e293b
+    style more fill:#e0e7ff,stroke:#4f46e5,color:#1e293b
+    style done fill:#d1fae5,stroke:#059669,color:#1e293b</pre></figure>
+<p>The single amber node is the human review gate. Every leaf phase ends there, at a
+depth set by its review tier (<code>gate-only</code>, <code>spot-check</code>, or <code>full-review</code>).</p>
+<h3 id="review-tiers"><a class="anchor" href="#review-tiers" aria-hidden="true" tabindex="-1">#</a>Review tiers</h3>
+<p><code>hsdd-phase-plan</code> assigns one tier per phase, based on risk rather than size. The
+tier sets how much attention the gate gets <strong>and</strong> the artifact profile of the
+cycle: a <code>gate-only</code> phase skips <code>design.md</code> and gets a slim verification doc;
+a <code>spot-check</code> phase skips <code>design.md</code> unless the phase settles a real design
+decision, and gets a short verification doc; a <code>full-review</code> phase produces the
+full set. Every phase still ends at the gate and still produces a verification
+doc. Only the depth scales with the tier.</p>
+<ul>
+<li><strong><code>gate-only</code></strong> is for scaffolding, types and boilerplate. A wrong turn here
+is cheap and mechanical to catch, so the automated gate (e.g. <code>cargo test</code>)
+passing is enough: you&#39;re notified and move on without reading the diff.
+Examples: <code>linkcheck.1</code> and <code>acme.backend.auth.1</code>, both &quot;Types + contract&quot;
+phases with no logic yet to get wrong.</li>
+<li><strong><code>spot-check</code></strong> is for well-constrained phases with a clear contract, where
+the output&#39;s shape is easy to eyeball without tracing every line. Glance at
+the diff, confirm the gate passed, proceed. Examples: <code>linkcheck.2</code>, a pure
+<code>HTML -&gt; [Url]</code> extractor, and <code>acme.backend.auth.3</code>, the session store,
+both narrow, single-purpose and easy to sanity-check at a glance.</li>
+<li><strong><code>full-review</code></strong> is for orchestration, business logic, integrations and
+security, where mistakes are expensive and not obviously visible in a diff.
+Read the diff, run the manual verification steps from the phase&#39;s
+verification doc, and think through edge cases before approving. Examples:
+<code>linkcheck.3</code>, the HTTP checker with retries and timeouts, and
+<code>acme.backend.auth.2</code>, token issuance, whose manual verification runs
+before sign-off in Step 6 of Example 2.</li>
+</ul>
+<p>See the <a href="../spec/v0.10/">methodology spec</a>, chapter 7 for how the
+tier interacts with the review sitting and the sizing floor, and chapter 10
+for the tier-scaled artifact profile.</p>
+<h3 id="where-everything-lives"><a class="anchor" href="#where-everything-lives" aria-hidden="true" tabindex="-1">#</a>Where everything lives</h3>
+<p>Every HSDD artifact lives under one root directory, <code>hsdd/</code>, with singular
+directory names; only OpenSpec&#39;s own files and the per-phase contexts stay
+outside it. This is the default layout the skills emit (override it in
+<code>hsdd/conventions.md</code>; spec §14.1 has the full tree):</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">hsdd/conventions.md                        naming, layout, and process conventions
+hsdd/spec/{node-id}.md                     node specs and phase plans
+hsdd/verify/{phase-id}.verification.md     per-phase verification docs
+hsdd/contract/{slug}.md + INDEX.md         first-class contracts (registry generated)
+hsdd/contract/schema/, hsdd/contract/fixture/  executable validation; a contract is stable only with one of these
+hsdd/adr/{nnn}-{title}.md + INDEX.md       cross-cutting decisions (hsdd-adr, registry generated)
+hsdd/scripts/gen-registry.mjs              registry generator (copied from hsdd-contract)
+hsdd/scripts/seams/                        seam extractor (copied from hsdd-adopt; adopted trees only)
+hsdd/scripts/summary/                      hsdd-summary&#39;s scripts (copied verbatim)
+hsdd/scripts/auto/                         hsdd-auto&#39;s scripts (copied by its first setup step; unattended runs only)
+hsdd/templates/verification.md             verification-doc template, copied from hsdd-config
+hsdd/management/                           management layer (progress reports, execution plans, milestones, intake records, atlas), written only by hsdd-checkpoint, hsdd-milestone and hsdd-intake (intake records)
+hsdd/management/archive/                   sealed milestone documents (closed campaigns)
+hsdd/summary/                              optional reading aids (hsdd-summary): summary.html, checkpoint.html
+hsdd/auto/, hsdd/judgement/                an unattended run&#39;s records and its decision ledger (hsdd-auto)
+openspec/                                  config.yaml + one change per phase (OpenSpec method)
+hsdd-context/{phase-id}.md                 generic phase context, written by /hsdd-phase before each phase
+hsdd-context/superpowers/{phase-id}.md     the same context as a spec for superpowers&#39; writing-plans (superpowers method)</code></pre></div>
+<p><strong>Where to run <code>openspec init</code>:</strong> once, at the repo root (the directory that
+holds <code>hsdd/</code>). One HSDD tree has one OpenSpec project. Every phase, across
+every node, is a change under that single <code>openspec/changes/</code>; phases are
+kept apart by the per-phase context switch (<code>hsdd-config</code>), not by separate
+projects. A project on the superpowers method has no OpenSpec project to
+initialize.</p>
+<p>When the code lives in several repositories, the tree still has one home.
+The standalone-spec-repo profile keeps one HSDD tree in its own repo,
+mounted at <code>hsdd/</code> in each implementation repo, and <code>openspec init</code> runs
+once per implementation repo. Never give a second repo its own
+<code>hsdd/spec/</code>; one project has one tree (see
+<a href="#multi-repo-projects">Multi-repo projects</a>).</p>
+<hr>
+<h2 id="example-1-a-simple-project-single-level"><a class="anchor" href="#example-1-a-simple-project-single-level" aria-hidden="true" tabindex="-1">#</a>Example 1: A simple project (single level)</h2>
+<p class="xref"><span class="xref-label">In the interactive guide</span><a href="../guide/#tree-1">Decompose</a> <a href="../guide/#phases-1">Plan phases</a></p>
+<p>Sometimes the whole system is small enough that there is nothing to decompose:
+the root node is already a leaf-parent, and you go straight to phases. HSDD does
+not force a tree on you.</p>
+<p><strong>The project:</strong> <code>linkcheck</code>, a CLI that crawls a site and reports broken links.</p>
+<h3 id="step-1-spec-it"><a class="anchor" href="#step-1-spec-it" aria-hidden="true" tabindex="-1">#</a>Step 1: Spec it</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Write a high-level spec for linkcheck, a CLI that crawls a site and
+      reports broken links.&quot;</code></pre></div>
+<p><code>hsdd-spec</code> runs at the root. It recognizes the project is one coherent
+responsibility that fits a handful of phases, so it marks the root a
+<strong>leaf-parent</strong> rather than inventing sub-nodes. <code>hsdd/spec/linkcheck.md</code>:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown"># linkcheck: Broken Link Checker CLI
+
+- **Kind:** leaf-parent
+- **Purpose:** crawl a site, check every link, report the broken ones
+- **Consumes:** none
+- **Produces:** [linkcheck-report@v1]
+- **Decomposes into:** phases (see phase plan)
+- **Isolation strategy:** pure HTML parsing and pure report formatting are testable
+  with fixtures; the HTTP checker is mocked in tests.</code></pre></div>
+<p>For a project this small there is just one outward contract (the report format).
+The &quot;contracts&quot; between phases are simply the domain types defined in phase 1.</p>
+<h3 id="step-2-one-contract"><a class="anchor" href="#step-2-one-contract" aria-hidden="true" tabindex="-1">#</a>Step 2: One contract</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Define the linkcheck-report contract.&quot;</code></pre></div>
+<p><code>hsdd-contract</code> writes <code>hsdd/contract/linkcheck-report.md</code> with frontmatter plus the
+report schema (JSON shape and exit codes), and the contract&#39;s executable
+validation artifact, <code>hsdd/contract/schema/linkcheck-report.schema.json</code>,
+from that Interface. Then it regenerates the registry:</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">node hsdd/scripts/gen-registry.mjs</code></pre></div>
+<h3 id="step-3-phase-plan"><a class="anchor" href="#step-3-phase-plan" aria-hidden="true" tabindex="-1">#</a>Step 3: Phase-plan</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Write the phase plan for linkcheck.&quot;</code></pre></div>
+<p><code>hsdd-phase-plan</code> orders the phases by the project&#39;s ordering policy (<code>interfaces-first</code> unless <code>hsdd/conventions.md</code> says otherwise), each one PE (&lt;= 8 OpenSpec tasks), opening
+with the phase summary table:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th align="right">Phase</th>
+<th>Name</th>
+<th>Tier</th>
+<th>Size</th>
+<th>Depends on</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">linkcheck.1</td>
+<td>Types + report contract</td>
+<td>gate-only</td>
+<td>small</td>
+<td>-</td>
+</tr>
+<tr>
+<td align="right">linkcheck.2</td>
+<td>HTML link extractor</td>
+<td>spot-check</td>
+<td>small</td>
+<td>1</td>
+</tr>
+<tr>
+<td align="right">linkcheck.3</td>
+<td>HTTP checker</td>
+<td>full-review</td>
+<td>medium</td>
+<td>1</td>
+</tr>
+<tr>
+<td align="right">linkcheck.4</td>
+<td>Crawl + report + CLI</td>
+<td>full-review</td>
+<td>medium</td>
+<td>2, 3</td>
+</tr>
+</tbody></table></div>
+<p>and the dependency graph as a Mermaid flowchart:</p>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    l1[&quot;linkcheck.1&lt;br/&gt;Types + report contract&quot;]
+    l2[&quot;linkcheck.2&lt;br/&gt;HTML link extractor&quot;]
+    l3[&quot;linkcheck.3&lt;br/&gt;HTTP checker&quot;]
+    l4[&quot;linkcheck.4&lt;br/&gt;Crawl + report + CLI&quot;]
+
+    l1 --&gt; l2
+    l1 --&gt; l3
+    l2 --&gt; l4
+    l3 --&gt; l4</pre></figure>
+<p>Phase 1 produces <code>linkcheck-report@v1</code>, so its Gate includes the contract
+replay: the phase&#39;s real output must validate against the schema
+<code>hsdd-contract</code> wrote in Step 2, and the contract can only become <code>stable</code>
+because that artifact exists. Read the schema before you plan on it:</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">$EDITOR hsdd/contract/schema/linkcheck-report.schema.json   # the JSON shape the report emits</code></pre></div>
+<p>The contract&#39;s <code>## Validation</code> section names that path. A phase never
+writes it; a schema that turns out wrong is caught by the replay and fixed
+at the root through <code>hsdd-contract</code>.</p>
+<p>The plan ends with a <code>## Governance updates (pending reconcile)</code> section
+(confirming the <code>linkcheck-report@v1</code> phase ids). Even serial, finish planning
+with a quick reconcile:</p>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Drain the pending governance updates.&quot;</code></pre></div>
+<p><code>hsdd-reconcile</code> applies the confirms, flips the contract to
+<code>phase_ids: final</code> and <code>status: stable</code>, and regenerates the registry. With
+one node this takes a minute; the same step is what makes parallel planning
+safe in Example 2.</p>
+<h3 id="step-4-configure-run-review"><a class="anchor" href="#step-4-configure-run-review" aria-hidden="true" tabindex="-1">#</a>Step 4: Configure, run, review</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Set up OpenSpec config for this project.&quot;
+You: &quot;/hsdd-phase linkcheck.1&quot;      (switch context, then run the cycle)
+You: &quot;opsx: new ...&quot;                 (proposal -&gt; design -&gt; tasks -&gt; apply -&gt; archive)</code></pre></div>
+<p>At <code>apply</code>, the agent writes <code>hsdd/verify/linkcheck.1.verification.md</code>. Because
+phase 1 is <code>gate-only</code>, you confirm the gate passed and move on. Phase 3 (the HTTP
+checker) is <code>full-review</code>: you read the diff and run the manual verification
+before approving. Repeat for <code>.2</code>, <code>.3</code>, <code>.4</code>.</p>
+<p><strong>That is the whole project.</strong> No internal nodes, one contract, four phases. The
+methodology stayed out of the way.</p>
+<hr>
+<h2 id="example-2-a-multi-level-system"><a class="anchor" href="#example-2-a-multi-level-system" aria-hidden="true" tabindex="-1">#</a>Example 2: A multi-level system</h2>
+<p class="xref"><span class="xref-label">In the interactive guide</span><a href="../guide/#tree-1">Decompose</a> <a href="../guide/#contracts-1">Contracts</a> <a href="../guide/#phases-1">Plan phases</a> <a href="../guide/#execute-1">Execute a phase</a></p>
+<p><strong>The project:</strong> <code>acme</code>, a full-stack merchant onboarding platform with a
+backend, a mobile app and a web console, built by separate teams. This one
+needs the tree.</p>
+<p>The root splits by stack because each stack has its own team. That is the
+decomposition-axis rule (<a href="../spec/v0.10/">spec §2.5</a>): the axis
+follows ownership, which is why <code>acme</code> does not decompose into
+<code>auth-end-to-end</code> / <code>billing-end-to-end</code> slices spanning both stacks.</p>
+<h3 id="step-1-decompose-the-root"><a class="anchor" href="#step-1-decompose-the-root" aria-hidden="true" tabindex="-1">#</a>Step 1: Decompose the root</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Write a high-level spec for acme, the merchant onboarding platform in
+      docs/onboarding-prd.md, with a backend, a mobile app, and a web console.&quot;</code></pre></div>
+<p><code>hsdd-spec</code> splits the root into three internal nodes and names the contracts
+between them. Because the input is a document, <code>hsdd/spec/acme.md</code> records it
+in a <code>## Sources</code> section, and each node it governs carries a
+<code>- **Sources:** docs/onboarding-prd.md (§...)</code> line. Sources trickle down at
+every split, so a later phase planner reads the original instead of trusting
+the summary (<a href="../spec/v0.10/">spec §2.6</a>). The root spec also
+includes this typed dependency DAG:</p>
+<figure class="diagram"><pre class="mermaid">%%{init:{&#39;theme&#39;:&#39;base&#39;,&#39;themeVariables&#39;:{&#39;primaryTextColor&#39;:&#39;#1e293b&#39;,&#39;lineColor&#39;:&#39;#475569&#39;,&#39;edgeLabelBackground&#39;:&#39;#ffffff&#39;,&#39;tertiaryTextColor&#39;:&#39;#1e293b&#39;}}}%%
+flowchart LR
+    be[&quot;acme.backend&quot;]
+    mo[&quot;acme.mobile&quot;]
+    we[&quot;acme.web&quot;]
+
+    be -- &quot;auth-token@v1 (contract)&quot; --&gt; mo
+    be -- &quot;auth-token@v1 (contract)&quot; --&gt; we
+    be -- &quot;merchant-model@v1 (shared-model)&quot; --&gt; we
+    be -- &quot;onboarding-events@v1 (event)&quot; --&gt; mo
+
+    style be fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style mo fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style we fill:#f3e8ff,stroke:#7c3aed,color:#1e293b</pre></figure>
+<p>Because the edges are <code>contract</code>, <code>shared-model</code>, and <code>event</code> (not <code>hard</code>), the
+mobile and web teams can build against mocks as soon as the contracts are
+<code>stable</code>. They do not wait for the backend implementation.</p>
+<h3 id="step-2-recurse-into-the-backend"><a class="anchor" href="#step-2-recurse-into-the-backend" aria-hidden="true" tabindex="-1">#</a>Step 2: Recurse into the backend</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Break down @hsdd/spec/acme.backend.md into auth, billing, and catalog subsystems.&quot;</code></pre></div>
+<p><code>hsdd-spec</code> runs again, now for an internal node, producing
+<code>acme.backend.auth.md</code>, <code>acme.backend.billing.md</code>, <code>acme.backend.catalog.md</code>. The
+<code>auth</code> node is small enough to phase, so it is marked <code>leaf-parent</code>. If <code>billing</code>
+were too big, you would recurse once more (insert an internal node) rather than
+forcing a flat phase split.</p>
+<h3 id="step-3-contracts-and-a-decision"><a class="anchor" href="#step-3-contracts-and-a-decision" aria-hidden="true" tabindex="-1">#</a>Step 3: Contracts and a decision</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Define the auth-token contract: auth produces it, billing and mobile consume it.&quot;</code></pre></div>
+<p><code>hsdd-contract</code> writes <code>hsdd/contract/auth-token.md</code> (frontmatter + interface +
+guarantees + <code>v1</code>) and, as in Example 1, its executable validation artifact:
+<code>hsdd/contract/schema/auth-token.schema.json</code> from the Interface, and example
+payloads under <code>hsdd/contract/fixture/auth-token/</code>, the fixtures billing and
+mobile will build against. The choice of auth provider affects more than one
+node and must outlive the auth subsystem, so <code>hsdd-spec</code> proposes an ADR and
+hands it to <code>hsdd-adr</code> to materialize:</p>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Write the ADR for the auth provider decision.&quot;</code></pre></div>
+<p><code>hsdd-adr</code> writes <code>hsdd/adr/001-auth-provider.md</code>. The frontmatter mirrors a contract,
+so the same generator projects it into <code>hsdd/adr/INDEX.md</code>:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown">---
+id: ADR-001
+status: accepted
+affects: [acme.backend.auth, auth-token@v1]
+date: 2026-07-02
+---
+
+# ADR-001: Auth provider
+
+## Context
+Login must work across mobile and web, and key material must rotate.
+## Decision
+Use provider X with rotating asymmetric keys.
+## Consequences
+- token verification needs the public JWKS endpoint
+- key rotation is a hard dependency for auth.2</code></pre></div>
+<p>It also sets <code>Governed by: [ADR-001]</code> on <code>acme.backend.auth</code> and <code>auth-token@v1</code>,
+then regenerates the registry (<code>node hsdd/scripts/gen-registry.mjs</code>). The ADR is a
+file, not a section in the node spec, so <code>hsdd-config</code> can later inject only its
+Decision and Consequences into the <code>auth.2</code> phase context.</p>
+<h3 id="step-4-phase-plan-the-leaf-parent"><a class="anchor" href="#step-4-phase-plan-the-leaf-parent" aria-hidden="true" tabindex="-1">#</a>Step 4: Phase-plan the leaf-parent</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;acme.backend.auth is small enough to phase. Write its phase plan.&quot;</code></pre></div>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th align="right">Phase</th>
+<th>Name</th>
+<th>Tier</th>
+<th>Size</th>
+<th>Depends on</th>
+<th>Collides with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">acme.backend.auth.1</td>
+<td>Types + auth-token contract</td>
+<td>gate-only</td>
+<td>small</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td align="right">acme.backend.auth.2</td>
+<td>Token issuance (provider X)</td>
+<td>full-review</td>
+<td>medium</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr>
+<td align="right">acme.backend.auth.3</td>
+<td>Session store</td>
+<td>spot-check</td>
+<td>small</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td align="right">acme.backend.auth.4</td>
+<td>Auth API + wiring</td>
+<td>full-review</td>
+<td>medium</td>
+<td>2, 3</td>
+<td>3</td>
+</tr>
+</tbody></table></div>
+<p>The plan ends with a pending-governance section; drain it with a quick
+reconcile before configuring, as in Example 1. The contract can become
+<code>stable</code> there because its schema and fixtures already exist (Step 3).</p>
+<h3 id="step-5-configure-and-switch-phase-context"><a class="anchor" href="#step-5-configure-and-switch-phase-context" aria-hidden="true" tabindex="-1">#</a>Step 5: Configure and switch phase context</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Set up OpenSpec config for this project.&quot;
+You: &quot;/hsdd-phase acme.backend.auth.2&quot;</code></pre></div>
+<p>The phase switch injects only what <code>auth.2</code> needs. The OpenSpec session for
+<code>auth.2</code> never sees the billing spec, the web spec, or sibling phases:</p>
+<div class="code"><div class="code-tab"><span>yaml</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-yaml">  &lt;!-- hsdd-phase-context:begin --&gt;
+  # Current Phase: acme.backend.auth.2 - Token issuance (provider X)
+
+  ## Goal
+  Issue JWTs on login via provider X; sign, set claims, handle errors.
+
+  ## Where it sits
+  - Node: acme.backend.auth · Sign merchants in and issue the tokens other nodes verify.
+  - Owns: login, token issuance, sessions
+  - Does not own: merchant profiles, billing
+  - Isolation strategy: provider X&#39;s sandbox and auth-token@v1 fixtures
+
+  ## Phase
+  - **Consumes:** none
+  - **Produces:** auth-token@v1
+  - **Governed by:** ADR-001
+  - **Scope:** Issue JWTs on login via provider X; sign, set claims, handle errors.
+  - **Size estimate:** ~6 files (~400 lines), &lt;= 6 OpenSpec tasks
+  - **Gate:** `cargo test` plus contract replay for auth-token
+  - **Verification:** a sandbox login returns a token whose claims match auth-token@v1
+  - **Review tier:** full-review
+  - **Dependencies:** acme.backend.auth.1 (the auth-token types)
+
+  ## Contracts
+  ### auth-token@v1 · produces · stable
+  **Interface**
+  A signed JWT with the claims `{ sub, exp, iat, scopes }`.
+  **Guarantees**
+  - `exp &gt; iat`
+  - `sub` never changes for a merchant.
+  **Validation**
+  - schema: hsdd/contract/schema/auth-token.schema.json
+  - fixture: hsdd/contract/fixture/auth-token/
+
+  ## Decisions
+  ### ADR-001: Auth provider · accepted
+  **Decision**
+  Use provider X with rotating asymmetric keys.
+  **Consequences**
+  - token verification needs the public JWKS endpoint
+  - key rotation is a hard dependency for auth.2
+
+  ## Discipline
+  - Test-first: write each behavior&#39;s failing test, and see it fail, before
+    the code that makes it pass.
+  - Governance freeze: change nothing under hsdd/ except this phase&#39;s
+    verification doc; contracts, ADRs, specs and conventions change only
+    through hsdd-contract, hsdd-adr and hsdd-reconcile.
+  - Consume contracts only: build against the Interface and Guarantees of
+    each contract above that this phase consumes or produces, test against
+    the fixtures their Validation names, and never build against another
+    node&#39;s internals.
+  - Contract wrong mid-phase: pause at a task boundary; write the gap, in
+    request or amend wording, under the verification doc&#39;s Outstanding and
+    stop; the human records it in the node&#39;s plan, renegotiates at the root
+    through hsdd-contract, and propagates the change into this phase&#39;s branch;
+    re-run the phase switch; resume. Never improvise around the contract.
+  - Verification doc: hsdd/verify/acme.backend.auth.2.verification.md from
+    hsdd/templates/verification.md at full-review depth. Every Learning
+    carries one disposition before sign-off; &quot;- none&quot; is valid, silence is not.
+  - Contract replay: the gate validates this phase&#39;s real output against the
+    schema and reproduces the fixtures of auth-token@v1.
+
+  ## Links (spec 4f2a9c1)
+  - Phase section: hsdd/spec/acme.backend.auth.md, heading &quot;### acme.backend.auth.2: Token issuance (provider X)&quot;
+  - Node spec: hsdd/spec/acme.backend.auth.md
+  - auth-token@v1: hsdd/contract/auth-token.md
+  - ADR-001: hsdd/adr/001-auth-provider.md
+  - Conventions: hsdd/conventions.md
+  - Verification template: hsdd/templates/verification.md
+  &lt;!-- hsdd-phase-context:end --&gt;</code></pre></div>
+<p>The same switch writes <code>hsdd-context/acme.backend.auth.2.md</code> first: the
+method-neutral phase context that the <code>config.yaml</code> block above is copied
+from, word for word. A team on superpowers instead of OpenSpec runs:</p>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;/hsdd-phase acme.backend.auth.2 --method superpowers&quot;</code></pre></div>
+<p>and starts the phase&#39;s session with
+<code>Use superpowers:writing-plans to plan hsdd-context/superpowers/acme.backend.auth.2.md</code>.
+The file&#39;s header names the execution skill by review tier:
+<code>subagent-driven-development</code> here, a full-review phase, and
+<code>executing-plans</code> at gate-only and spot-check. Its Global Constraints carry
+<code>test-driven-development</code>, the task cap, the gate, the verification doc,
+<code>verification-before-completion</code> and <code>systematic-debugging</code> into every task
+the plan runs.
+Set <code>**Coding method:** superpowers</code> in <code>hsdd/conventions.md</code> to make it the
+default.</p>
+<h3 id="step-6-run-verify-parallelize"><a class="anchor" href="#step-6-run-verify-parallelize" aria-hidden="true" tabindex="-1">#</a>Step 6: Run, verify, parallelize</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;opsx: new ...&quot;   (proposal -&gt; design -&gt; tasks -&gt; apply -&gt; archive)</code></pre></div>
+<p><code>apply</code> writes <code>hsdd/verify/acme.backend.auth.2.verification.md</code>. The phase is
+<code>full-review</code>, so you read the diff and run its manual verification before you
+sign. The doc&#39;s <code>## Learnings</code> section carries anything the gate taught you
+about the tree, each line with a disposition (<code>spec-updated</code>,
+<code>contract-bumped</code>, <code>adr-proposed</code>, <code>dropped</code>), or <code>- none</code>; the gate is not
+passed while a line lacks one.</p>
+<p>Meanwhile, in a separate session or by another teammate, the web team starts
+<code>acme.web.dashboard</code> against the <code>auth-token@v1</code> mock, and billing starts
+against the same contract. Three teams, three small contexts, one shared
+contract.</p>
+<h3 id="step-7-parallel-leaf-parents-worktrees-reconcile"><a class="anchor" href="#step-7-parallel-leaf-parents-worktrees-reconcile" aria-hidden="true" tabindex="-1">#</a>Step 7: Parallel leaf-parents, worktrees, reconcile</h3>
+<p>When two leaf-parents are independent (their only edges are contracts), plan
+them concurrently, one git worktree per node:</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">git worktree add ../acme-auth plan-auth
+git worktree add ../acme-billing plan-billing</code></pre></div>
+<p>Run <code>hsdd-phase-plan</code> in each worktree. Under the governance freeze, neither
+run edits <code>hsdd/contract/</code>, <code>hsdd/adr/</code>, or <code>hsdd/conventions.md</code>; each emits its
+intended changes into its own plan file, so the branches touch disjoint files.
+Billing&#39;s section might read:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown">## Governance updates (pending reconcile)
+
+&gt; Emitted by hsdd-phase-plan on 2026-07-05. Drained by hsdd-reconcile;
+&gt; do not apply by hand.
+
+- confirm `auth-token@v1` consumers: [acme.backend.billing.2]
+- request `auth-token@v1`: which fixture do consumers mock against?
+  - assumption: `hsdd/contract/fixture/auth-token/`
+  - contingent phases: acme.backend.billing.2</code></pre></div>
+<p>Merge both branches (clean by construction), then at the root:</p>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Reconcile the worktrees.&quot;</code></pre></div>
+<p><code>hsdd-reconcile</code> drains both sections: applies the <code>confirm</code> ids, resolves the
+fixture <code>request</code> with you, flips <code>auth-token@v1</code> to <code>phase_ids: final</code> and
+<code>status: stable</code>, and
+regenerates the registry. Only then do billing&#39;s per-phase OpenSpec cycles start.</p>
+<h3 id="step-8-execute-phases-on-branches"><a class="anchor" href="#step-8-execute-phases-on-branches" aria-hidden="true" tabindex="-1">#</a>Step 8: Execute phases on branches</h3>
+<p>Planning worktrees (Step 7) keep governance frozen while node specs are built.
+Execution has its own branch discipline, one level down. Each node gets one
+<strong>integration branch</strong>. The phase branches of <code>acme.backend.auth</code>,
+<code>acme.backend.auth.1</code> through <code>.4</code>, merge into <code>integration/acme.backend.auth</code>
+as each phase&#39;s OpenSpec cycle lands; <code>acme.backend.billing</code>&#39;s phases merge
+into their own <code>integration/acme.backend.billing</code> the same way. Node
+integration branches then merge into the root branch. A node&#39;s plan file
+(<code>hsdd/spec/acme.backend.auth.md</code>) is written on exactly one lineage and is
+never re-planned or copied onto a diverged sibling lineage. <code>hsdd-reconcile</code>
+runs once, at the root, after the node&#39;s integration branch lands there,
+never per worktree or per phase.</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">git checkout -b integration/acme.backend.auth main
+git merge acme.backend.auth.1
+git merge acme.backend.auth.2
+# ... one merge per phase, in dependency order
+git checkout main
+git merge integration/acme.backend.auth</code></pre></div>
+<p><code>openspec/config.yaml</code>&#39;s <code>## Current Phase</code> block is rewritten by every
+<code>/hsdd-phase</code> switch, so a merge conflict on it carries no information: take
+either side and re-run <code>/hsdd-phase {next-phase}</code> before starting the next
+cycle. If <code>acme.backend.auth.2</code> and <code>acme.backend.auth.3</code> land on
+<code>integration/acme.backend.auth</code> in either order, do not hand-merge their two
+<code>Current Phase</code> blocks; pick either one, then switch. Set
+<code>openspec/config.yaml merge=ours</code> on integration branches in <code>.gitattributes</code>
+to skip the conflict prompt entirely.</p>
+<p>Not every pair of a node&#39;s phases parallelizes cleanly. If
+<code>acme.backend.auth.3</code> (session store) and <code>acme.backend.auth.4</code> (auth API +
+wiring) both touch the same router file, the phase plan says so with
+<code>- **Collides with:** [acme.backend.auth.4]</code> on <code>.3</code>&#39;s section, and the
+summary table from Step 4 shows the column. Colliding phases execute serially
+on the node&#39;s integration branch; spawn a worktree per phase only where the
+table shows no collision between them, the same way Step 7 spawned one
+worktree per non-colliding leaf-parent.</p>
+<p>Finally, name the OpenSpec capability each phase&#39;s proposal targets after a
+stable feature area of the node, such as <code>auth-sessions</code> or
+<code>auth-token-issuance</code>, not after the phase (<code>acme-backend-auth-3</code>). A phase-named capability has nothing
+left to say once that phase archives; a feature-area name keeps accumulating
+requirements as later phases, or future changes, touch the same area. Accept
+that phases sharing a capability serialize their archive; the phases that
+collide on files usually collide on capability too.</p>
+<h3 id="the-resulting-tree"><a class="anchor" href="#the-resulting-tree" aria-hidden="true" tabindex="-1">#</a>The resulting tree</h3>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">hsdd/
+  conventions.md
+  spec/
+    acme.md  acme.backend.md  acme.mobile.md  acme.web.md
+    acme.backend.auth.md  acme.backend.billing.md  acme.backend.catalog.md
+  contract/
+    INDEX.md  auth-token.md  merchant-model.md  onboarding-events.md
+  adr/
+    INDEX.md  001-auth-provider.md
+  verify/
+    acme.backend.auth.1.verification.md  ...  acme.backend.auth.4.verification.md
+  scripts/
+    gen-registry.mjs
+  templates/
+    verification.md
+hsdd-context/
+  acme.backend.auth.1.md  ...  acme.backend.auth.4.md
+openspec/
+  config.yaml  changes/...</code></pre></div>
+<hr>
+<h2 id="example-3-a-brownfield-system-adopt-intake-promote"><a class="anchor" href="#example-3-a-brownfield-system-adopt-intake-promote" aria-hidden="true" tabindex="-1">#</a>Example 3: A brownfield system (adopt, intake, promote)</h2>
+<p class="xref"><span class="xref-label">In the interactive guide</span><a href="../guide/#adopt-1">Adopt a codebase</a> <a href="../guide/#change-1">Route every change</a></p>
+<p><strong>The project:</strong> <code>legacy-pay</code>, a production payments service built long
+before HSDD: no specs, some tests, three teams in <code>CODEOWNERS</code> (payments,
+treasury and platform). A PRD arrives: merchant payout scheduling. Instead of speccing the PRD as its
+own project, adopt the system once, route the PRD into the tree, and promote
+only the node the change lands on. Cost scales with the number of seams
+(routes, topics, tables, owners), never with lines of code: the skill
+extracts structure by script and reads nothing else.</p>
+<p>This example adopts a whole repository. The same steps, scoped to named
+modules, adopt the code around an already governed tree; see the end of the
+example.</p>
+<h3 id="step-1-extract-the-seams"><a class="anchor" href="#step-1-extract-the-seams" aria-hidden="true" tabindex="-1">#</a>Step 1: Extract the seams</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Adopt this codebase into HSDD.&quot;</code></pre></div>
+<p><code>hsdd-adopt</code> first copies its scripts verbatim into <code>hsdd/scripts/seams/</code>
+(the same precedent as the registry generator) and adds <code>.hsdd-seams.json</code>
+to <code>.gitignore</code> and commits that line, then runs the extractor:</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">node hsdd/scripts/seams/extract-seams.mjs extract -o .hsdd-seams.json</code></pre></div>
+<p>The model records what tooling can see, stamped with the commit it looked
+at: manifests (<code>package.json</code>, <code>go.mod</code>), modules (<code>src/billing</code>,
+<code>src/payouts</code>, <code>src/merchant</code>, <code>db</code>, <code>cmd/server</code>), route registrations
+with their <code>file:line</code>, schemas (<code>src/payouts/openapi.yaml</code>,
+<code>src/merchant/schema.graphql</code>), migrations and the tables they create,
+topics produced and consumed, <code>CODEOWNERS</code>, and which directories change
+together in git history. Routes and topics are regex candidates; the model
+says where each came from. <code>.hsdd-seams.json</code> is scratch and is never
+committed.</p>
+<h3 id="step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written"><a class="anchor" href="#step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written" aria-hidden="true" tabindex="-1">#</a>Step 2: Confirm the tree before any node spec or contract is written</h3>
+<p>The skill proposes a shallow tree on the seams that exist and stops:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">legacy-pay                     (root, internal)
+  legacy-pay.billing           leaf-parent, as-built   src/billing   @payments-team
+  legacy-pay.payouts           leaf-parent, as-built   src/payouts   @payments-team (+ @treasury)
+  legacy-pay.merchant          leaf-parent, as-built   src/merchant  (no CODEOWNERS entry)
+  (db/ and cmd/server are shared infrastructure, folded into the nodes that own their tables and entry point; @platform owns cmd/)
+
+unknowns so far: settlement retry logic (no tests); merchant has no owner line</code></pre></div>
+<p><code>CODEOWNERS</code> answers &quot;who builds what?&quot;, so the mandatory axis stop becomes
+a confirmation. Treasury co-owns <code>src/payouts/</code> in <code>CODEOWNERS</code>, but a node
+has exactly one owning team: payments owns it, treasury is recorded as a
+stakeholder in the node&#39;s Purpose. You confirm, or move a module, and only
+then does the skill write node specs and contracts. Depth is 1 to 2;
+nothing below what the first change will need.</p>
+<h3 id="step-3-as-built-node-specs"><a class="anchor" href="#step-3-as-built-node-specs" aria-hidden="true" tabindex="-1">#</a>Step 3: As-built node specs</h3>
+<p>The tree has no <code>hsdd/conventions.md</code> yet, so once you confirm, the skill
+seeds it from <code>hsdd-spec</code>&#39;s template and copies the registry generator. Then
+one file per node. <code>hsdd/spec/legacy-pay.payouts.md</code>:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown"># legacy-pay.payouts: Payouts (as built)
+
+- **Kind:** leaf-parent
+- **Purpose:** schedule and settle merchant payouts, as currently deployed;
+  treasury signs off on settlement runs
+- **Team:** payments-team
+- **Owns:** payouts and payout_batches tables, the settlement job, GET and
+  POST /v1/payouts
+- **Does not own:** invoicing (legacy-pay.billing), merchant profiles
+  (legacy-pay.merchant)
+- **Consumes:** [kyc-verified-events@v0]
+- **Produces:** [payouts-api@v0, payout-settled-events@v0]
+- **Sources:** none
+- **Adopted:** as-built
+- **Decomposes into:** phases (only when this subtree changes)
+- **Isolation strategy:** exercised today through tests/payouts/ and the
+  staging environment; the settlement job has no tests
+
+## Observed surface
+
+- extracted: 2026-10-10 @ 9f3c2ab  (hsdd/scripts/seams/extract-seams.mjs)
+- modules: src/payouts/
+- routes: 2  (GET /v1/payouts, POST /v1/payouts)
+- tables: none found
+- topics: produces payout.settled; consumes kyc.verified
+- owners: @payments-team, @treasury
+- unknown: settlement retry logic (no tests, no docs)
+- unknown: who consumes payout.settled outside this repository
+- unknown: the payouts and payout_batches tables live in db/migrations, outside this module; tooling did not attribute them</code></pre></div>
+<p>The split is per section. The bullet header claims intent and is yours.
+<code>## Observed surface</code> claims only what tooling saw: the skill pastes the
+output of <code>node hsdd/scripts/seams/extract-seams.mjs render --prefix src/payouts</code> verbatim and never edits a bullet by hand. Its <code>modules:</code> line
+records that prefix, which is exactly what the checkpoint re-extracts later;
+an unprefixed render records <code>./</code>, the whole repository. That is why <code>Owns</code>
+names the two tables while the surface says <code>tables: none found</code>: the
+migrations live under <code>db/</code>, outside the module, so the extractor
+attributes no table to it, and the third <code>unknown:</code> line says so. The
+<code>unknown:</code> lines are yours again, and they are required: a node with none
+is a node nobody looked at. <code>Isolation strategy</code> says how the node is
+tested today, not how you wish it were.</p>
+<h3 id="step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach"><a class="anchor" href="#step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach" aria-hidden="true" tabindex="-1">#</a>Step 4: Contracts at v0, with what the fixtures do not reach</h3>
+<p>Each seam between two nodes becomes a contract at <code>version: v0</code>: the
+interface as the system already implements it, warts included. The schema
+comes from the code or the OpenAPI file; the fixtures are lifted from
+existing tests or captured payloads, so the contract is <code>stable</code> from day
+one and the code gains a validation harness it never had.
+<code>hsdd/contract/payouts-api.md</code>:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown">---
+id: payouts-api
+version: v0
+status: stable
+kind: api
+owner: legacy-pay.payouts
+compatibility: additive-only
+produced_by: [legacy-pay.payouts]      # the as-built node; a phase id once promoted
+consumers: [legacy-pay.merchant]
+external_consumers: [treasury-ledger]
+phase_ids: provisional
+---
+
+# Contract: payouts-api
+
+## Interface
+GET /v1/payouts?merchant_id=   -&gt; 200 [{ id, merchant_id, amount, status }]
+POST /v1/payouts { merchant_id, amount } -&gt; 201 { id, status: &quot;scheduled&quot; }
+Errors use the { error: { code, message } } envelope from src/payouts/openapi.yaml.
+
+## Guarantees / invariants
+- A payout id is never reused.
+- status moves scheduled -&gt; settled -&gt; paid and never backwards.
+
+## Versioning
+- v0 is observed behavior. Additive changes keep v0; a redesign mints v1
+  with a migration note.
+
+## Validation
+- schema: hsdd/contract/schema/payouts-api.schema.json
+- fixture: hsdd/contract/fixture/payouts-api/
+
+## Observed completeness
+- covered by fixtures: happy path, 4xx envelope, pagination
+- NOT exercised: partial-batch failure, idempotency-key replay
+- inferred from code, never observed in traffic: retry-after semantics</code></pre></div>
+<p>Until promotion gives an adopted node phases, <code>produced_by</code> and
+<code>consumers</code> name node ids and <code>phase_ids</code> stays <code>provisional</code>; the first
+phase plan on each side confirms them through <code>hsdd-reconcile</code> as usual.
+<code>## Observed completeness</code> is required on every <code>v0</code> contract and is
+maintained: a fixture added later through <code>hsdd-contract</code> updates the
+block in the same edit, and a block left stale while fixtures arrive is a
+checkpoint finding. <code>v0</code> is permanent: extension under <code>additive-only</code>
+never exits it; only a genuine redesign mints <code>v1</code>.</p>
+<h3 id="step-5-prove-the-tree-and-stop"><a class="anchor" href="#step-5-prove-the-tree-and-stop" aria-hidden="true" tabindex="-1">#</a>Step 5: Prove the tree, and stop</h3>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">node hsdd/scripts/gen-registry.mjs</code></pre></div>
+<p>The registry lists two <code>v0</code> contracts, and <code>kyc-verified-events@v0</code>
+consumed from outside the tree; every other id in <code>Consumes</code> and
+<code>Produces</code> resolves; every <code>## Observed surface</code> written from this
+repository carries its sha. The skill stops here: no phases, no
+decomposition below what the first change needs. What you review at the
+stop: the tree shape (minutes, it mirrors the code you already know), the
+<code>unknown:</code> lines, and each contract&#39;s <code>## Observed completeness</code>. Commit
+<code>hsdd/</code>; <code>.hsdd-seams.json</code> stays uncommitted.</p>
+<h3 id="step-6-route-the-prd-through-intake"><a class="anchor" href="#step-6-route-the-prd-through-intake" aria-hidden="true" tabindex="-1">#</a>Step 6: Route the PRD through intake</h3>
+<div class="code is-prompt"><div class="code-tab"><span>prompt</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You: &quot;Here&#39;s the payout-scheduling PRD, docs/prd-payout-scheduling.md.
+      Where does it go?&quot;</code></pre></div>
+<p><code>hsdd-intake</code> reads every open intake record first (none yet), reads the
+tree, and finds the landing: <code>legacy-pay.payouts</code>, which is as-built. That
+is not a routing class of its own; the node is promoted first (Step 7),
+and the change is then <code>local</code> to it. The record is written before any
+handoff, at <code>hsdd/management/2026-10-10-intake-payout-scheduling.md</code>:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown"># Intake: Merchant payout scheduling
+
+- **Date:** 2026-10-10
+- **Request:** docs/prd-payout-scheduling.md (draft)
+- **Class:** local
+- **Lands on:** [legacy-pay.payouts] · **Contracts:** [payouts-api@v0]
+- **Promotes:** [legacy-pay.payouts]
+- **Collisions:** none
+- **Status:** open
+
+## Request
+Merchants choose a payout schedule (daily, weekly, on a date). Payouts are
+batched per schedule. Treasury wants a preview of tomorrow&#39;s batches.
+
+## Routing
+local, after promoting legacy-pay.payouts. The PRD lands in that node&#39;s
+Sources. Handoff: &quot;/hsdd-spec promote legacy-pay.payouts using
+docs/prd-payout-scheduling.md&quot;, then &quot;/hsdd-phase-plan legacy-pay.payouts per
+hsdd/management/2026-10-10-intake-payout-scheduling.md&quot;.
+payouts-api@v0 gains an optional schedule field (additive, no bump).
+
+## Produced
+(hsdd-checkpoint appends phases from Scope citations; grafts and bumps may
+be appended by hand)
+
+## Change log
+- 2026-10-10: created, routed local</code></pre></div>
+<p>The PRD never becomes a root; the tree stays the system&#39;s. The record is
+dated and never superseded; after five change requests there are five
+records, and that is the rule that replaces &quot;wipe <code>hsdd/</code> and rebuild&quot;.
+A second request touching <code>payouts-api</code> would be serialized here, named
+under <code>**Collisions:**</code> in both records.</p>
+<h3 id="step-7-promote-the-node-then-phase-plan-it"><a class="anchor" href="#step-7-promote-the-node-then-phase-plan-it" aria-hidden="true" tabindex="-1">#</a>Step 7: Promote the node, then phase-plan it</h3>
+<p><code>hsdd-spec</code> runs in promotion mode: the node&#39;s <code>## Observed surface</code> and
+the PRD are both primary sources, the decomposition is drawn as in Example
+2, and the skill stops for your confirmation before the promoted spec is
+authoritative, the same shape as the &quot;who builds what?&quot; stop. After you
+confirm, the header reads <code>- **Adopted:** promoted</code> and the
+<code>## Observed surface</code> section stays as provenance. Promotion happens once:
+a later change to the same node consumes the promoted spec.</p>
+<p>Then <code>hsdd-phase-plan</code>, reconcile, phase context, cycles and gates, exactly
+as Example 2. Phase 1 confirms <code>payouts-api@v0</code>&#39;s <code>produced_by</code> as
+<code>legacy-pay.payouts.1</code>; the contract keeps <code>v0</code>. Each phase names the
+intake record in its Scope, and the PRD stays in the node&#39;s Sources.
+The weekly checkpoint finds those Scope citations and appends the phases to
+the record&#39;s <code>## Produced</code> ledger; when every listed phase has its
+verification doc on main, it ticks the record <code>**Status:** closed</code>.</p>
+<h3 id="step-8-living-with-a-mixed-tree"><a class="anchor" href="#step-8-living-with-a-mixed-tree" aria-hidden="true" tabindex="-1">#</a>Step 8: Living with a mixed tree</h3>
+<p><code>payouts</code> is promoted and governed; <code>billing</code> and <code>merchant</code> are still
+as-built. That is normal and permanent, not a transitional embarrassment.
+Every <code>/hsdd-checkpoint</code> on a tree that has an <code>## Observed surface</code>
+re-runs the extractor per node and diffs it against what was recorded
+(<code>node hsdd/scripts/seams/extract-seams.mjs diff hsdd/spec/legacy-pay.billing.md</code>);
+a difference such as <code>routes.count changed 2 -&gt; 3</code> is a finding with a plan
+step, never an error. On an as-built node such as <code>billing</code> the step is a
+reviewed re-render (<code>hsdd-adopt</code> renders the same prefixes again and keeps
+the <code>unknown:</code> lines); on the promoted <code>payouts</code>, code that no phase covers
+is a backfill. A <code>v0</code> contract whose fixtures grew while its
+<code>## Observed completeness</code> stood still is a finding too. The atlas marks
+each node <code>(as-built)</code> or <code>(promoted)</code>. A tree with no <code>## Observed surface</code>
+never runs the extractor.</p>
+<h3 id="the-other-way-in-a-governed-tree-with-unadopted-surroundings"><a class="anchor" href="#the-other-way-in-a-governed-tree-with-unadopted-surroundings" aria-hidden="true" tabindex="-1">#</a>The other way in: a governed tree with unadopted surroundings</h3>
+<p>A project built with HSDD from day one usually still has code around the
+tree that was never in it. Run <code>/hsdd-adopt</code> naming those modules
+(<code>&quot;Adopt src/legacy and cmd/batch into the tree&quot;</code>): the same eight steps,
+scoped to those paths, graft as-built nodes beside the governed ones. Where
+an as-built node and a governed node exchange a contract, that is exactly
+where an integration node earns its place.</p>
+<p><a href="#adopting-on-a-project-already-underway">Adopting on a project already underway</a>,
+under Running the project, is a different thing: the first checkpoint on a
+project that already uses HSDD. It adopts documents, not code.</p>
+<hr>
+<h2 id="running-the-project"><a class="anchor" href="#running-the-project" aria-hidden="true" tabindex="-1">#</a>Running the project</h2>
+<p class="xref"><span class="xref-label">In the interactive guide</span><a href="../guide/#manage-1">Evidence and milestones</a></p>
+<p>Planning artifacts tell you what to build; the <strong>management layer</strong> tells you how
+it is going. Once implementation starts and more than one person is involved, add
+a weekly rhythm on top of the loop you already have.</p>
+<h3 id="two-roles"><a class="anchor" href="#two-roles" aria-hidden="true" tabindex="-1">#</a>Two roles</h3>
+<p>HSDD work splits across two roles. The split is real but not clean. On a small
+team one person wears both hats, and the handoffs matter more than the labels:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th></th>
+<th><strong>Developer</strong></th>
+<th><strong>Lead / manager</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Plan</strong></td>
+<td>drafts the decomposition, contracts, and phase plans (<code>hsdd-spec</code>, <code>hsdd-contract</code>, <code>hsdd-adr</code>, <code>hsdd-phase-plan</code>), often sitting <em>with</em> a lead for the axis call</td>
+<td><strong>verifies</strong> the result: is the ownership axis right, are contracts frozen where they must be, are phases sized to the window? Arbitrates <code>hsdd-reconcile</code></td>
+</tr>
+<tr>
+<td><strong>Execute</strong></td>
+<td>owns it: phase context switch, OpenSpec cycle, TDD, gate, verification doc</td>
+<td>reviews at the tier the phase declares; full-review phases get real attention</td>
+</tr>
+<tr>
+<td><strong>Manage</strong></td>
+<td>supplies the evidence, because a phase is done only when its verification doc is merged to main</td>
+<td>owns it: <code>hsdd-checkpoint</code> weekly, <code>hsdd-milestone</code> at generation and re-baseline; carries the stakeholder conversation</td>
+</tr>
+</tbody></table></div>
+<p>The one hard rule in that table: <strong>the lead verifies the decomposition before
+phases open.</strong> A wrong ownership axis reworks every node beneath it, and it is
+cheapest to fix on the day it is drawn.</p>
+<figure class="diagram"><pre class="mermaid">%%{init:{&#39;theme&#39;:&#39;base&#39;,&#39;themeVariables&#39;:{&#39;primaryTextColor&#39;:&#39;#1e293b&#39;,&#39;lineColor&#39;:&#39;#475569&#39;,&#39;edgeLabelBackground&#39;:&#39;#ffffff&#39;,&#39;tertiaryTextColor&#39;:&#39;#1e293b&#39;}}}%%
+flowchart TB
+    bd[&quot;Brain-dump · PRD · RFCs&quot;]
+
+    subgraph plan [&quot;1 · Plan · devs draft, often with a lead; the lead verifies&quot;]
+        direction TB
+        spec[&quot;hsdd-spec&lt;br/&gt;decompose into nodes&quot;]
+        contract[&quot;hsdd-contract · hsdd-adr&lt;br/&gt;freeze interfaces + decisions&quot;]
+        pplan[&quot;hsdd-phase-plan&lt;br/&gt;ordered phases per leaf-parent&quot;]
+        rec[&quot;hsdd-reconcile&lt;br/&gt;drain governance updates&quot;]
+        gate{&quot;Lead verifies:&lt;br/&gt;axis · contracts · sizing&quot;}
+        spec --&gt; contract --&gt; pplan --&gt; rec --&gt; gate
+        gate -- &quot;rework&quot; --&gt; spec
+    end
+
+    subgraph exec [&quot;2 · Execute · devs build; the lead reviews at tier&quot;]
+        direction TB
+        cfg[&quot;/hsdd-phase&lt;br/&gt;switch phase context&quot;]
+        cyc[&quot;OpenSpec cycle&lt;br/&gt;TDD · gate command&quot;]
+        rev{&quot;Review at the phase&#39;s tier&lt;br/&gt;dev + lead&quot;}
+        ver[&quot;verification doc&lt;br/&gt;merged to spec-repo main&quot;]
+        cfg --&gt; cyc --&gt; rev --&gt; ver
+    end
+
+    subgraph mgmt [&quot;3 · Manage · leads&quot;]
+        direction TB
+        chk[&quot;/hsdd-checkpoint&lt;br/&gt;one evidence pass&quot;]
+        prog[&quot;progress report · atlas&lt;br/&gt;what is actually true&quot;]
+        xplan[&quot;execution plan&lt;br/&gt;steps · prompts · guardrails&quot;]
+        ms[&quot;/hsdd-milestone&lt;br/&gt;generate · re-baseline&quot;]
+        msdoc[&quot;milestones&lt;br/&gt;demo + gate + window&quot;]
+        chk --&gt; prog --&gt; xplan
+        prog --&gt; ms --&gt; msdoc
+    end
+
+    bd --&gt; spec
+    gate -- &quot;phases ready&quot; --&gt; cfg
+    ver -- &quot;evidence&quot; --&gt; chk
+    xplan -- &quot;this week&#39;s steps&quot; --&gt; cfg
+    xplan -- &quot;spec fixes&quot; --&gt; spec
+    xplan -- &quot;reconcile&quot; --&gt; rec
+    msdoc --&gt; stake[&quot;stakeholders&quot;]
+
+    style plan fill:none,stroke:#7c3aed,stroke-dasharray: 5 5,stroke-width:2px,color:#7c3aed
+    style exec fill:none,stroke:#2563eb,stroke-dasharray: 5 5,stroke-width:2px,color:#2563eb
+    style mgmt fill:none,stroke:#059669,stroke-dasharray: 5 5,stroke-width:2px,color:#059669
+
+    style bd fill:#e0e7ff,stroke:#4f46e5,color:#1e293b
+    style spec fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style contract fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style pplan fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style rec fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style gate fill:#fef3c7,stroke:#d97706,color:#1e293b
+    style cfg fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style cyc fill:#dbeafe,stroke:#2563eb,color:#1e293b
+    style rev fill:#fef3c7,stroke:#d97706,color:#1e293b
+    style ver fill:#d1fae5,stroke:#059669,color:#1e293b
+    style chk fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style ms fill:#f3e8ff,stroke:#7c3aed,color:#1e293b
+    style prog fill:#d1fae5,stroke:#059669,color:#1e293b
+    style xplan fill:#d1fae5,stroke:#059669,color:#1e293b
+    style msdoc fill:#d1fae5,stroke:#059669,color:#1e293b
+    style stake fill:#e0e7ff,stroke:#4f46e5,color:#1e293b</pre></figure>
+<p>Read the two edges out of the management band as the loop that keeps the project
+honest. Evidence flows <strong>up</strong>: a phase is done when its verification doc is on
+main, and nothing else counts. Work flows <strong>back down</strong> as named steps, into
+execution <em>and</em> into the spec tree when the review found drift.</p>
+<h3 id="the-weekly-checkpoint"><a class="anchor" href="#the-weekly-checkpoint" aria-hidden="true" tabindex="-1">#</a>The weekly checkpoint</h3>
+<p>Before the team sync, the lead runs:</p>
+<blockquote>
+<p><code>/hsdd-checkpoint</code> full checkpoint before Monday&#39;s sync. Repos:
+<code>~/git/acme-be</code>, <code>~/git/acme-fe</code>.</p>
+</blockquote>
+<p>The skill makes one evidence pass over the spec repo and every implementation
+repo, then writes four outputs:</p>
+<ul>
+<li>a dated <strong>progress report</strong>: what is actually done, velocity, ranked
+blockers, and a findings register;</li>
+<li>a dated <strong>execution plan</strong> that supersedes last week&#39;s: a plan graph of the
+week&#39;s shape; a section for each sync the week depends on, with its entry
+criteria, the decisions it settles, its exit criteria and what it unblocks
+per lane; step tables where every step carries a detail block; external
+tracks; and append-only guardrails;</li>
+<li>a regenerated <strong>atlas</strong>, <code>hsdd/management/atlas.md</code>, with the tree and its
+phase status, the contract graph and the ADR coverage map;</li>
+<li>ticked <strong>milestone gates</strong>.</li>
+</ul>
+<p>Pass the repo paths in the prompt. They differ per machine, and the skill asks
+if you leave them out. Every finding becomes a plan step or an explicit
+waiver: the review compiles into next week&#39;s work, it never just advises.</p>
+<p>The plan is written for its readers, not its author. Agent-run steps (🤖/🤝)
+carry the exact prompt to paste and a <em>Validate:</em> line. Human-only steps (👤)
+carry a <em>Why / Do / Done when</em> briefing, the fullest write-up in the plan
+rather than the tersest, because an agent mid-task can be re-prompted while
+the human at Monday&#39;s sync has only what the plan gave them.</p>
+<p><strong>When new context lands mid-week</strong> (a PRD revision, a design drop, a decision):</p>
+<blockquote>
+<p><code>/hsdd-checkpoint</code> scoped. New context landed in commits <code>abc1234</code> and
+<code>def5678</code>; check spec integrity against it and revise the plan.</p>
+</blockquote>
+<p>The pass narrows to the touched artifacts plus their closure, and patches the
+plan the same day instead of letting drift pile up until Friday.</p>
+<h3 id="reading-aids"><a class="anchor" href="#reading-aids" aria-hidden="true" tabindex="-1">#</a>Reading aids</h3>
+<p>Two optional pages, both one offline HTML file under <code>hsdd/summary/</code>, both
+derived and never edited:</p>
+<ul>
+<li><p><strong>The plan page</strong> (<code>summary.html</code>): the tree from the root&#39;s parts down to
+each phase&#39;s card, with What to check at every level, for a reviewer, a
+stakeholder or an implementer. Render it after a spec level or a phase
+plan, so the reviewer opens it in the same MR:</p>
+<blockquote>
+<p><code>/hsdd-summary</code> render the plan page.</p>
+</blockquote>
+</li>
+<li><p><strong>The checkpoint page</strong> (<code>checkpoint.html</code>): the newest progress report
+and execution plan laid out for the sync. The lead sees the read, the
+gates and their movement, the syncs, the plan graph, the blockers, and
+how long each finding has been carried; each executor picks a lane and
+works its steps in order, copying prompts from the page; stakeholders see
+the verdict and the milestones in plain words. Once <code>hsdd/summary/</code>
+exists, every checkpoint renders it at step 7, before the commit lands.</p>
+</li>
+</ul>
+<p><code>/hsdd-summary</code> check lists any page or prose that has gone stale.</p>
+<h3 id="milestones"><a class="anchor" href="#milestones" aria-hidden="true" tabindex="-1">#</a>Milestones</h3>
+<p>Once every leaf-parent in the campaign&#39;s scope is phase-planned, which is
+the first moment total scope is computable, generate the stakeholder
+document:</p>
+<blockquote>
+<p><code>/hsdd-milestone</code> generate the milestone document.</p>
+</blockquote>
+<p>Each milestone is a <strong>demo</strong> (something a stakeholder can watch work) plus a
+<strong>gate</strong> (yes/no checkboxes). Externally-gated phases go to the <strong>contingent
+tail</strong>: excluded from the launch gate, each with a pre-agreed degradation path,
+so an external team&#39;s silence is a plan rather than a slip. The weekly
+checkpoint ticks the gates. <code>hsdd-milestone</code> runs again only to re-baseline,
+on a gate red two checkpoints running or a scope change the dates cannot
+absorb, and a re-baseline states the old window and the new one together, so
+slips stay visible.</p>
+<h3 id="open-questions"><a class="anchor" href="#open-questions" aria-hidden="true" tabindex="-1">#</a>Open questions</h3>
+<p>Open questions get the same discipline as contracts: minted once in the owning
+spec (<code>OQ{n}</code> at the root, <code>OQ-B3</code>-style in nodes, prefixes declared in
+<code>conventions.md</code>) with a status table (<code>OPEN</code> / <code>PARTIAL</code> / <code>RESOLVED (date)</code>);
+every other artifact cites the ID. Phase plans mark contingent phases
+<code>contingent (OQ-…)</code>, and both the milestone tail and the checkpoint&#39;s health
+pass are built from those markers. An ID that is cited but never defined, the
+classic <code>OQ-B3</code> phantom, is a finding, not a typo.</p>
+<h3 id="multi-repo-projects"><a class="anchor" href="#multi-repo-projects" aria-hidden="true" tabindex="-1">#</a>Multi-repo projects</h3>
+<p>When backend and frontend live in separate repos, keep the HSDD tree in its own
+<strong>spec repo</strong> and mount it as a git submodule <strong>at <code>hsdd/</code></strong> in each
+implementation repo (<code>Profile: standalone-spec-repo</code> in <code>conventions.md</code>).
+Because the mount point is <code>hsdd/</code>, every path you already know, such as
+<code>hsdd/spec/…</code>, <code>hsdd/contract/…</code> or <code>hsdd/management/…</code>, stays literally
+correct, and no skill needs a profile-specific path.</p>
+<p>What the profile does change is <strong>where you run</strong>: every <code>/hsdd-*</code> skill runs
+from an implementation repo, never from a standalone clone of the spec repo. A
+standalone clone is a third working copy whose edits leave every submodule
+pointer behind, and a session without the code cannot verify what it asserts.
+Governance edits are committed and pushed <em>inside</em> the submodule, then each
+implementation repo&#39;s pointer is bumped.</p>
+<p>Four rules keep the truth unforked, each one written after an incident:</p>
+<ol>
+<li>Submodule pointers only ever reference spec-repo main commits.</li>
+<li>A phase is done when its verification doc is on spec-repo main, the same
+day as sign-off, not parked on a branch.</li>
+<li>Branch pairs spanning an implementation repo and the spec repo land together
+or are discarded together, never one side alone.</li>
+<li>Never squash-merge a multi-phase epic: per-phase history is your velocity
+data and your audit trail.</li>
+</ol>
+<h3 id="adopting-on-a-project-already-underway"><a class="anchor" href="#adopting-on-a-project-already-underway" aria-hidden="true" tabindex="-1">#</a>Adopting on a project already underway</h3>
+<p>The first <code>/hsdd-checkpoint</code> is an <strong>adoption run</strong>. Existing management
+documents become the head of the supersedes chain, existing numbered guardrails
+keep their numbers, nonconformances become findings with migration steps rather
+than errors, and the first atlas is generated however messy the tree is.
+Historical documents are never rewritten; conformance starts from the next
+document forward. To move the project itself to a newer release, see
+<a href="#upgrading">Upgrading</a>.</p>
+<hr>
+<h2 id="unattended-runs"><a class="anchor" href="#unattended-runs" aria-hidden="true" tabindex="-1">#</a>Unattended runs</h2>
+<p class="xref"><span class="xref-label">In the interactive guide</span><a href="../guide/#auto-1">Run unattended</a></p>
+<p><code>/hsdd-auto</code> plans the tree, or routes one change request into it, without
+you at each ask point. It dispatches one fresh subagent per skill
+invocation, gates and commits every step, and records every decision. It
+never implements a phase, never runs <code>hsdd-config</code> and never passes a review
+gate. Your review moves from each ask point to one sitting over the
+decisions afterwards. The <a href="../tutorial/meeting-rooms/">meeting-rooms tutorial</a>
+is a recorded intake run: 31 steps, 231 decisions, no stop, and the owner&#39;s
+review in one sitting.</p>
+<p>Start it from a clean working tree in the repository that holds <code>hsdd/</code>,
+with Node.js 20 or later and the six planning skills installed.</p>
+<h3 id="first-run"><a class="anchor" href="#first-run" aria-hidden="true" tabindex="-1">#</a>First run</h3>
+<p>With no <code>hsdd/auto/run.yaml</code> on any local branch, <code>/hsdd-auto</code> asks ten
+questions in one batch, each with a proposed default:
+the run&#39;s name, root, branch, base and skills directory; who builds what;
+the sources; read-only and out-of-bounds paths; owner facts; toolchain
+prefixes; stop policy and stop set; owner files; prose rules; commit
+trailers. The proposals come from
+<code>node hsdd/scripts/auto/state.mjs defaults</code> plus the root spec&#39;s
+<code>## Sources</code>, <code>hsdd/conventions.md</code> and your agent instruction files. It
+writes the answers to <code>hsdd/auto/run.yaml</code> and never asks again. Answer
+&quot;decide&quot; to who builds what and the root step decides the axis itself and
+records it with <code>would_have_asked: true</code>. Later configuration changes are
+<code>setup</code> decisions of a new segment. <code>run.yaml</code> lives on the run branch: run
+<code>/hsdd-auto</code> from another branch and it names the branch that holds the file
+and asks you to check it out, instead of asking the questions again.</p>
+<h3 id="plan-and-intake-segments"><a class="anchor" href="#plan-and-intake-segments" aria-hidden="true" tabindex="-1">#</a>Plan and intake segments</h3>
+<p>A run is made of segments. Each one is opened by one instruction from you,
+runs in one mode under one stop policy, and ends with one report.</p>
+<p>A <strong>plan segment</strong>, <code>/hsdd-auto</code>, plans an empty tree through reconcile: the
+root decomposition, the ADRs and contracts it names, each mid-level node,
+each leaf-parent&#39;s phase plan, the consistency items, an align, and the
+report.</p>
+<p>An <strong>intake segment</strong>, <code>/hsdd-auto intake {request path}</code>, routes one change
+request: <code>hsdd-intake</code> writes the record, then one step per handoff the
+record names, then the consistency items, an align and the report.
+<code>--authority accepted-rfc|approved-prd|draft|ticket|incident|braindump</code>
+states how much the request binds (default <code>draft</code>). It never closes the
+intake record; the checkpoint does, as for any intake.</p>
+<p><code>/hsdd-auto status</code> shows where the run is and changes nothing.</p>
+<h3 id="the-stop-policy"><a class="anchor" href="#the-stop-policy" aria-hidden="true" tabindex="-1">#</a>The stop policy</h3>
+<p>You choose it per segment with <code>--stop-policy stop|decide-and-record</code>.
+Under <code>stop</code>, a stop-set condition (<code>axis</code>, <code>shape</code>, <code>promotion</code>,
+<code>breaking-amend</code>, <code>collision</code>, <code>external</code>, <code>gate-twice</code>) ends the run with
+<code>hsdd/judgement/STOP.md</code>. Under <code>decide-and-record</code> the run decides it and
+records the decision with <code>would_have_asked: true</code> and the class. Either
+way, <code>external</code> with no in-repository alternative, a second <code>gate-twice</code>
+and three other hard stops end the run with <code>STOP.md</code>. When a segment will
+meet one class many times (an intake that breaks several stable contracts),
+decide it once, under <code>decide-and-record</code> only: the decision goes into
+<code>predecided</code> in <code>run.yaml</code> and every later prompt carries it. A predecided
+answer never covers a breaking change to a <code>frozen</code> or <code>v0</code> contract. A
+<code>breaking-amend</code> answer, predecided or given to <code>STOP.md</code>, names the
+migration mode, <code>coexisting</code> or <code>lockstep</code>; when it names none, the step
+decides the mode and records the decision for your review.</p>
+<h3 id="answering-stopmd"><a class="anchor" href="#answering-stopmd" aria-hidden="true" tabindex="-1">#</a>Answering STOP.md</h3>
+<p><code>hsdd/judgement/STOP.md</code> holds the stopped step, the stop class, the
+question verbatim, the options with a recommendation, what the stop
+blocks, and how to resume. A bare <code>/hsdd-auto</code> is refused while it exists.
+Answer in one message and run <code>/hsdd-auto</code> with it: the answer opens a new
+segment, is recorded as an owner decision, and the stopped step continues
+with it.</p>
+<h3 id="reviewing-a-segment"><a class="anchor" href="#reviewing-a-segment" aria-hidden="true" tabindex="-1">#</a>Reviewing a segment</h3>
+<p>The review is one sitting over the segment&#39;s records:</p>
+<ol>
+<li>Read <code>hsdd/auto/report/{segment id}.md</code>. The report&#39;s &quot;Decisions to look
+at first&quot; section lists every answer the run gave on your behalf (the
+<code>would_have_asked</code> decisions); the other sections cover the steps, the
+assumptions about your intent and what the generated record leaves out.</li>
+<li>For each decision you disagree with, or that the run should have asked
+you, append a line to <code>hsdd/judgement/decision-reviews.jsonl</code>:
+<code>decision</code>, <code>at</code>, <code>review</code> (<code>agree</code>, <code>disagree</code> or <code>should-have-asked</code>)
+and a <code>reason</code> for the last two. The run never writes this file.</li>
+<li>Guidance: to reverse a decision, write the reversal as a short request
+document and route it with <code>/hsdd-auto intake {path}</code>, or run the owning
+skill yourself.</li>
+<li><code>/hsdd-summary</code> re-renders the reading aids afterwards; the run does not
+drive it.</li>
+</ol>
+<h3 id="isolation-on-claude-code"><a class="anchor" href="#isolation-on-claude-code" aria-hidden="true" tabindex="-1">#</a>Isolation on Claude Code</h3>
+<p>On Claude Code, the first <code>setup</code> installs permission deny rules and a Bash
+hook that keep a run inside its declared inputs. Hosts read them at session
+start, so they apply from the next session; the setup records that as a
+decision. The adapter stays installed after the run:
+<code>node hsdd/scripts/auto/adapter.mjs uninstall</code> removes exactly what install
+added. For the strongest memory isolation, start the session with
+<code>CLAUDE_CONFIG_DIR</code> set to a directory used only for the run.</p>
+<hr>
+<h2 id="outside-the-loop"><a class="anchor" href="#outside-the-loop" aria-hidden="true" tabindex="-1">#</a>Outside the loop</h2>
+<p>Four situations recur on real projects, and the loop above does not name
+them: a stakeholder wants a size before any spec exists; the team keeps a
+knowledge base the spec should draw on; a launched system takes small fixes
+faster than phases can be planned; and a released tree has gone stale and
+nobody will verify it phase by phase. Each one runs on the skills as they
+are. What changes is the prompt, and in two cases a section you add to
+<code>hsdd/conventions.md</code>, the file every skill reads first.</p>
+<h3 id="estimating-in-pe-before-the-first-spec"><a class="anchor" href="#estimating-in-pe-before-the-first-spec" aria-hidden="true" tabindex="-1">#</a>Estimating in PE before the first spec</h3>
+<p>Stakeholders ask for a size before anyone has run <code>hsdd-spec</code>, and the only
+input is the PRD. A plain agent that has heard of HSDD will produce a number.
+What it will not do is condition the number on the assumption that moves it
+most, the ownership axis: a stack split across teams adds contract phases and
+integration nodes that one full-stack owner never pays for. The estimate is
+a dry run of <code>hsdd-spec</code>&#39;s process, steps 1 to 5 (normalize the input and
+inventory the sources, identify children by contract boundary, name
+contracts by id, map the typed DAG, decide recursion per child), with the
+axis turned from a stop into a table dimension, followed by
+<code>hsdd-phase-plan</code>&#39;s sizing rules per leaf-parent. Nothing under <code>hsdd/</code> is
+written; there is no tree yet.</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Read hsdd-spec/SKILL.md and hsdd-phase-plan/SKILL.md from the directory the
+skills CLI installed them to (.claude/skills/ in this project, or the
+user-level skills directory) as reference. Write nothing under hsdd/.
+Estimate @docs/prd-fieldlog.md in Phase Equivalents.
+1. Normalize the input as hsdd-spec step 1, but do not stop at &quot;who builds
+   what?&quot;: make the axis a table dimension, one column per plausible
+   ownership shape (one full-stack owner; backend and frontend split across
+   teams; a third only if the PRD implies one).
+2. Per column, decompose to leaf-parents as steps 2 to 5 would, listing each
+   by id with one line, integration nodes included where children exchange
+   contracts.
+3. Per leaf-parent, count phases under hsdd-phase-plan&#39;s sizing rules,
+   interfaces-first, one PE each, with the tier mix and the assumption
+   behind the count in a few words.
+4. Total PE per column with a band of plus or minus one phase per
+   leaf-parent, and the three assumptions that move the number most.
+Output: one table, leaf-parents by columns, with totals; the assumptions;
+the Sources list with each document&#39;s authority. Under 60 lines.</code></pre></div>
+<p>Keep the output beside the PRD, <code>docs/estimates/YYYY-MM-DD-{slug}.md</code>, not
+under <code>hsdd/management/</code>, which only the three management skills write.
+When the project starts, the root spec lists it under <code>## Sources</code> as
+&quot;informative only, not decomposed&quot;, so it stays reachable. After the first
+checkpoint, compare its leaf-parent and phase counts with the progress
+report&#39;s, by hand. That comparison is the only thing a dedicated skill
+would add, and after three projects it is also the only thing that makes
+the fourth estimate better than a guess.</p>
+<h3 id="a-knowledge-base-beside-the-tree"><a class="anchor" href="#a-knowledge-base-beside-the-tree" aria-hidden="true" tabindex="-1">#</a>A knowledge base beside the tree</h3>
+<p>Karpathy&#39;s <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" rel="noopener">LLM Wiki</a>
+is a local git repository with immutable source documents under <code>raw/</code>,
+pages an agent writes and maintains under <code>wiki/</code> with an <code>index.md</code> and a
+<code>log.md</code>, and a <code>CLAUDE.md</code> that is the wiki&#39;s schema: how pages are
+organized and how the three operations run, ingest, query and lint. In HSDD
+terms a wiki page is a derived source: a synthesis of raw documents,
+maintained by an agent, dated. The provenance model already has the slot. A
+page enters <code>Sources</code> like any document, the raw documents it drew on enter
+beside it under their own authority, and the rule that a summary indexes a
+source and never replaces it applies to the page as to everything else.
+What needs care is how the query runs, because the wiki&#39;s <code>CLAUDE.md</code> is
+instructions for working in the wiki, the repo&#39;s <code>CLAUDE.md</code> is instructions
+for working in the repo, and a session that loads both follows a mixture.</p>
+<p><strong>Setup.</strong> Clone the wiki outside every implementation repo. A submodule
+inside the repo puts the wiki&#39;s <code>CLAUDE.md</code> where the harness loads it for
+coding sessions, and the seam extractor would walk it. Allow the agent to
+read the clone&#39;s path by rule rather than adding it as a second working
+directory, for the same reason. Then declare it at the root, in
+<code>hsdd/conventions.md</code>; every skill reads this file first, so the protocol
+reaches every session without a skill change:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown">## Knowledge base
+**Knowledge base:** git@github.com:acme/wiki.git (schema: `CLAUDE.md`; raw
+sources under `raw/`, pages under `wiki/`, filed answers under
+`wiki/queries/`)
+
+The knowledge base is upstream context, never an HSDD artifact. When the
+invoking prompt names a local clone:
+- Query only through a filed answer. A session working inside the clone
+  runs the wiki&#39;s own query operation and files the answer under
+  `wiki/queries/` with the raw documents it drew on. The HSDD session reads
+  the filed page, never the wiki at large.
+- A filed answer enters Sources as `{clone}/wiki/queries/{page}.md @ {wiki
+  sha}` with authority `draft (LLM Wiki answer, derived)`; the raw documents
+  it cites enter Sources beside it with their own authority.
+- Never inline wiki text into a phase context. A coding session reads wiki
+  text only through a Source named by section, like any other document.
+- After reconcile or a checkpoint, ingest the changed ADRs, contracts and
+  intake records back as pointer pages: a page about this system links the
+  `hsdd/` path and never restates a decision, an interface or a phase.</code></pre></div>
+<p><strong>Query, then spec.</strong> Before <code>hsdd-spec</code> at the root or in promotion mode,
+run the query in a fresh session or subagent whose working directory is the
+clone, so the wiki&#39;s <code>CLAUDE.md</code> governs it and nothing else does:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You are working inside the LLM Wiki at this directory; follow its CLAUDE.md.
+Run a query for an HSDD decomposition of the merchant onboarding platform
+described in ~/git/acme/docs/prd-onboarding.md. Answer, each with the wiki
+pages and raw documents you drew on:
+1. Which existing systems, services or teams does this touch, and who owns
+   each?
+2. Which terms in the PRD already have a definition here, and what is it?
+3. Which past decisions, incidents or constraints bear on it?
+4. What does the wiki not know that the decomposition will need?
+File the answer under wiki/queries/ per the wiki&#39;s conventions, with a
+Sources section naming every raw/ document used. Reply with the filed
+page&#39;s path, the wiki&#39;s commit sha and whether the tree is dirty, and the
+raw documents with one line each on what it governs. Nothing else.</code></pre></div>
+<p>The reply is one bounded document. Hand it to <code>hsdd-spec</code> as a source, with
+the raw documents beside it:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Write a high-level spec for the merchant onboarding platform. Sources:
+- docs/prd-onboarding.md (approved PRD): product scope, v1 features
+- ~/wiki/wiki/queries/2026-11-02-onboarding-decomposition.md @ 3f9c2a1
+  (draft; LLM Wiki answer, derived): systems touched, owners, prior
+  decisions
+- ~/wiki/raw/rfc-017-merchant-identity.md (accepted RFC): the identity
+  model the platform consumes
+- ~/wiki/raw/incident-2026-06-kyc-timeout.md (incident): the KYC vendor&#39;s
+  timeout behavior
+Who builds what: take the ownership the wiki answer records and show it to
+me at the axis stop; I will confirm or correct it.</code></pre></div>
+<p>The axis stop stays a stop: the wiki supplies the fact, and you confirm it.
+Promotion, intake and phase planning take the same shape. Run the query
+with the question set that step needs (for intake, which services and
+owners the request touches; for phase planning, which constraints and
+incidents bear on this node), then name the filed page and its raw
+documents in the prompt. The skills do the rest under the trickle-down
+rule: the sources a node needs land in its <code>Sources</code>, and the phase context
+later carries the sections the phase cites. Nothing reaches a coding
+session by any other path.</p>
+<p><strong>Ingest back.</strong> After <code>hsdd-reconcile</code> or a checkpoint, run inside the
+clone:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">You are working inside the LLM Wiki at this directory; follow its CLAUDE.md.
+Ingest the HSDD governance that changed in ~/git/acme since 2026-10-26:
+hsdd/adr/, hsdd/contract/ (contract files only, not fixtures) and the
+intake records under hsdd/management/. Treat them as sources that live
+outside this wiki: create or update entity pages for the system, its nodes
+and its contracts as pointer pages, each saying what the artifact is and
+linking its path, never restating a decision, an interface or a phase. If
+the wiki&#39;s conventions require a copy under raw/, copy with the repo commit
+sha in the filename and keep the pointer rule for the page. Update index.md
+and log.md. Reply with the pages touched.</code></pre></div>
+<p>Three failure modes to watch. A wiki page can lag the raw document under
+it; that is why the raw document sits in Sources too, where a version move
+is a citation touch. A session that reads the wiki at large instead of a
+filed answer pulls an unbounded amount of text into its context; the
+filed-answer rule exists for that. And a public tree over a private wiki
+leaks nothing as long as Sources lines stay one line and a pointer, which
+is what the rule already says.</p>
+<h3 id="small-fixes-and-small-requests-on-a-launched-system"><a class="anchor" href="#small-fixes-and-small-requests-on-a-launched-system" aria-hidden="true" tabindex="-1">#</a>Small fixes and small requests on a launched system</h3>
+<p>After launch most changes are small, and the planning chain costs the same
+for a twenty-line fix as for a feature. Two lanes keep the tree honest
+without paying that cost twice. Both apply only after launch. Before it, a
+fix belongs to the phase it fixes, on that phase&#39;s branch, and backfill does
+not exist yet.</p>
+<p>The dividing line is the contract surface, not the diff size. A change that
+moves no route, schema, topic or table is invisible to every other node by
+construction, so the tree needs one thing from it: which node it happened
+in. A change that moves one is not small whatever its line count; it goes
+through <code>hsdd-intake</code> and a contract bump.</p>
+<p><strong>Which node?</strong> When you do not know:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Read hsdd/management/atlas.md (hsdd/spec/ if there is no atlas). Which node
+owns these paths: src/payouts/schedule.ts,
+src/payouts/__tests__/schedule.test.ts? Use each node&#39;s Isolation strategy,
+its phases&#39; Scope lines, and any `modules:` line under an Observed surface.
+Answer with one node id and the phases whose Scope names these files, or
+say the paths span two nodes and name both. Write nothing.</code></pre></div>
+<p>Two nodes is the first sign the change is not small.</p>
+<p><strong>A request</strong> (a ticket, a product ask) goes through intake as always; the
+saving is in what you ask the next skills for. Route it:</p>
+<blockquote>
+<p><code>/hsdd-intake</code> route <code>docs/tickets/PAY-412.md</code> (ticket): merchants want
+the payout preview to show the fee line. Small, inside payouts.</p>
+</blockquote>
+<p>The record lands as class <code>local</code> with the handoff prompt written in it.
+Run it, asking for the smallest phase the rules allow:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-phase-plan acme.backend.payouts per
+hsdd/management/2026-11-02-intake-pay-412.md: append the phases this ticket
+needs. I expect one, review tier spot-check, gate &quot;npm test -- payouts&quot;,
+Verification: the preview shows the fee line for a scheduled payout. If you
+need more than one phase or a contract change, say why before writing.</code></pre></div>
+<p>Then <code>/hsdd-reconcile acme.backend.payouts</code> drains the pending section (a
+lone appended phase with no governance updates makes this a few seconds),
+<code>/hsdd-phase acme.backend.payouts.9</code> writes the context, and the fix runs as
+a cycle or by hand. However it was made, the phase is done when its
+verification doc is on main:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Write hsdd/verify/acme.backend.payouts.9.verification.md from
+hsdd/templates/verification.md for the fix in commit 8c1e4f2: the commands
+that prove it, what you observe when you run them now (dated), Outstanding
+for anything you could not run here, Learnings or &quot;- none&quot;. Sign-off:
+Claude for {owner} (delegated), tier spot-check. Run the commands; do not
+invent an observation.</code></pre></div>
+<p>The next checkpoint appends the phase to the record&#39;s <code>## Produced</code>, ticks
+the record closed, and lists the delegated sign-off for the owner to
+ratify. To spend no attention on the chain at all, run it unattended and
+review the segment report&#39;s decisions in one sitting:</p>
+<blockquote>
+<p><code>/hsdd-auto intake docs/tickets/PAY-412.md --authority ticket --stop-policy decide-and-record</code></p>
+</blockquote>
+<p><strong>A fix already made</strong> (a hotfix, a QA finding fixed on the spot) is the
+legal bypass the spec names: ship it, and the next checkpoint&#39;s code-vs-plan
+pass files a backfill finding whose plan step appends a retro phase.
+Waiting for the checkpoint is allowed. Appending the retro phase yourself
+the same day is cheaper, because the checkpoint then finds nothing to file:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-phase-plan acme.backend.payouts: add a retro phase for the hotfix in
+commit 5d2b9a0 (preview rounded the fee to the wrong currency unit). The
+Scope cites the commit and says there is no checkpoint finding yet. Review
+tier gate-only. If the diff moved a route, schema, topic or table, stop and
+tell me; that is an intake, not a retro phase.</code></pre></div>
+<p>Then its verification doc, marked retroactive:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Write hsdd/verify/acme.backend.payouts.10.verification.md from
+hsdd/templates/verification.md for the retro phase. Commands to run: the
+test that covers the fix. Observed: run it now, dated, and open with
+&quot;Retroactive: written after the fix shipped in 5d2b9a0&quot;. Outstanding and
+Learnings per the template. Sign-off: Claude for {owner} (delegated), tier
+gate-only.</code></pre></div>
+<p><strong>Make attribution cheap.</strong> The code-vs-plan pass has to decide which
+commits have a phase and which do not. A project convention tells every
+later checkpoint where to look, since every skill reads <code>conventions.md</code>
+first:</p>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown">## Manual lane (project convention)
+After launch, a fix that moves no contract surface (route, schema, topic,
+table) may ship before its phase exists. Every such commit carries the
+trailers `HSDD-Node: {node-id}` and `HSDD-Kind: fix | chore | docs |
+refactor`, and its retro phase is appended the same day
+(`/hsdd-phase-plan {node}: add a retro phase for commit {sha}`) with a
+retroactive verification doc. The checkpoint&#39;s code-vs-plan pass
+attributes unphased commits by trailer first; a commit with no trailer is
+scope creep as the spec defines it. A fix that moved a contract surface is
+not in this lane: route it through hsdd-intake.</code></pre></div>
+<p>With the trailer in place, run <code>/hsdd-checkpoint</code> scoped after a batch of
+fixes, naming the commits, and full only before a release. The spec&#39;s own
+cadence rule allows it: weekly is a convention, not a mechanism.</p>
+<h3 id="sealing-a-released-tree"><a class="anchor" href="#sealing-a-released-tree" aria-hidden="true" tabindex="-1">#</a>Sealing a released tree</h3>
+<p>This is for a system that shipped, that QA verified, and whose tree then
+went stale: verification docs unsigned, phases planned and never built,
+intake records open, an execution plan full of syncs nobody will hold.
+Rebuilding the history is the expensive path, one retro phase per manual
+change, and reviewing what it generates is harder than the work it records.
+Sealing costs one run and spends your attention only where the next change
+will look: contracts and ADRs.</p>
+<p>Everything the seal needs is already admissible. A sign-off an agent takes
+for a named person counts as done, and the next checkpoint lists those
+sign-offs in one finding for that person to ratify. An Outstanding item may
+be waived with a reason. A verification doc written after the fact is the
+retroactive doc the spec&#39;s bypass rule names. Every finding may be waived in
+the plan with a reason instead of becoming a step. A campaign whose gates
+are all green is sealed and archived by the checkpoint that ticked the last
+one. And a protocol stated in <code>conventions.md</code> reaches every skill.</p>
+<p>One thing is missing: the method has no status for a phase that was planned
+and never built. The prompt adds one as a project convention,
+<code>- **Status:** dropped (date, reason)</code> on the phase record, mirroring node
+retirement. Until a spec version names it, every later checkpoint prompt
+has to restate that dropped phases are out of scope, or the pass counts
+them as not done.</p>
+<p>Two things to decide before you run it. Everything in the campaign must end
+up done or dropped, because <code>hsdd-milestone</code> keeps one unsealed document at
+a time: work you want to keep for later stays unshipped, keeps the document
+open, and belongs in a new campaign generated after the seal. And if an
+earlier catch-up attempt generated OpenSpec changes after the fact for
+phases nobody ran OpenSpec on, delete them: they record cycles that never
+happened, and the retroactive verification docs carry the honest record. A
+recorded bypass beats a hidden one.</p>
+<p>The run, with the facts filled in:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Seal the HSDD tree for the released system. Facts:
+- Owner: {name}. Every delegated sign-off names this person.
+- Release: tag {tag}, released {YYYY-MM-DD}, in production since.
+- QA evidence: {path or URL of the QA sign-off and the test runs}.
+- Profile: {default | standalone-spec-repo}. Under the profile, run from
+  this implementation repo and commit inside hsdd/, then bump the pointer.
+
+Policy. This chooses among options the spec already allows; it overrides
+no rule.
+
+1. Every phase that shipped in {tag} is done by delegated sign-off. For
+   each phase with no signed verification doc on the main line, write
+   hsdd/verify/{phase-id}.verification.md from
+   hsdd/templates/verification.md with exactly this content and no
+   narrative:
+   - Commands to run: &quot;none, retroactive&quot;
+   - Expected output: &quot;see QA evidence&quot;
+   - Observed: &quot;Not observed by this run. Released in {tag} on {date}. QA
+     evidence: {link}. Retroactive.&quot;
+   - Outstanding: one item, &quot;individual verification not performed&quot;,
+     disposition: waived (released and QA-verified)
+   - Learnings: &quot;- none&quot;
+   - Sign-off: &quot;Claude for {owner} (delegated)&quot;, today&#39;s date, the review
+     tier the phase plan names.
+   A doc that already has content keeps it; fill only its missing Sign-off
+   and dispositions the same way. Never invent an observation.
+2. Phases planned but never built and not in {tag}: list them to me and
+   stop. After I confirm, add &quot;- **Status:** dropped ({date}, not built
+   before release)&quot; to each phase record, and add under &quot;## Phase design&quot;
+   in hsdd/conventions.md: &quot;A phase with Status: dropped is out of every
+   campaign scope and every done count.&quot;
+3. Run hsdd-milestone on the scope trigger: the dropped phases leave the
+   gates, the dates hold because the system is released, absorb in place
+   with a change-log entry.
+4. Run hsdd-checkpoint in full mode with this standing decision: every
+   finding whose remedy is a verification, the ratification of a delegated
+   sign-off, a sync, a queued decision, or a plan step on a shipped or
+   dropped phase is waived in the plan with the reason &quot;sealed at release
+   {tag}&quot;. Only findings about a contract or an ADR remain as steps. Close
+   every intake record whose phases are done, tick the gates, seal the
+   milestone document and move it to hsdd/management/archive/.
+5. Delete the OpenSpec changes and archives that were generated after the
+   fact for phases nobody ran OpenSpec on, and say so in the progress
+   report.
+6. Edit no node spec body, contract or ADR, except the Status lines in
+   step 2.
+7. Commit on the main line as you go, one commit per step above.
+
+Report in one screen: phases sealed by delegated sign-off, phases dropped,
+intake records closed, milestone sealed yes or no and why not, findings
+waived with the count, and the contract or ADR items that need me, one
+line each. Nothing else needs my answer.</code></pre></div>
+<p>What you have afterwards is a tree whose ledger is complete and honest:
+every shipped phase has a doc that says it was not individually observed
+and why that was accepted, every unbuilt phase says it was dropped, the
+campaign is in the archive, and the execution plan&#39;s only live steps are
+the contract and ADR items the next change will depend on. Work those
+through <code>hsdd-contract</code> and <code>hsdd-adr</code> at your own pace.</p>
+<p>Then stop running checkpoints on a cadence. The next one runs when
+something lands, scoped and naming the commits, and it carries the standing
+decision from step 4 until the spec names the dropped status. New work
+enters through the lanes of the previous section; a feature large enough
+for several phases enters through <code>hsdd-intake</code> and opens a new campaign.</p>
+<hr>
+<h2 id="tips"><a class="anchor" href="#tips" aria-hidden="true" tabindex="-1">#</a>Tips</h2>
+<ul>
+<li><strong>Size to the window.</strong> If a phase will not fit one ~5h review window (AI run
+plus your review and verification), it is too big. Ask <code>hsdd-phase-plan</code> to
+split it. Too small is also a smell: merge adjacent phases under the sizing
+floor&#39;s conditions (same tier, same consumed contracts, no third phase
+depends on one without the other, still fits the window) rather than paying
+a full cycle for a phase that will not earn it.</li>
+<li><strong>Switch context before <code>opsx:new</code>, every time.</strong> This is the one easy-to-forget
+step. <code>/hsdd-phase {phase-id}</code> exists for exactly this.</li>
+<li><strong>Config conflicts are noise.</strong> A merge conflict on <code>openspec/config.yaml</code>&#39;s
+<code>Current Phase</code> block carries no information, because the block is ephemeral
+per-session working state. Take either side and re-run <code>/hsdd-phase {next-phase}</code> before
+the next cycle.</li>
+<li><strong>Add a level, do not widen.</strong> When a leaf-parent grows past a handful of
+phases, insert an internal node (&quot;feature&quot;) instead of piling on phases.</li>
+<li><strong>Split where ownership splits.</strong> Decompose along team, owner, or
+deploy-target boundaries first (backend vs. mobile vs. web); capability
+slicing over technology buckets applies only within one owner&#39;s territory.</li>
+<li><strong>Point at the doc, don&#39;t paste it.</strong> When the spec is generated from PRDs
+or RFCs, the root&#39;s <code>## Sources</code> section and each node&#39;s <code>Sources</code> field
+keep them reachable. A summary thins at every level; the pointer does not.
+Phase planning reads the node&#39;s sources, not just the node spec.</li>
+<li><strong>Keep <code>hard</code> edges rare.</strong> They are the critical path. Prefer <code>contract</code>,
+<code>event</code>, and <code>shared-model</code> edges so teams parallelize.</li>
+<li><strong>Plan against frozen governance.</strong> <code>hsdd/contract/</code>, <code>hsdd/adr/</code>, and
+<code>hsdd/conventions.md</code> are read-only during phase planning, even at the root.
+Changes ride the plan&#39;s pending-governance section until <code>hsdd-reconcile</code>
+applies them; never resolve a contract gap by editing the contract mid-plan.</li>
+<li><strong>Regenerate the registry</strong> after any contract or ADR change:
+<code>node hsdd/scripts/gen-registry.mjs</code>. Never hand-edit <code>INDEX.md</code>.</li>
+<li><strong>Materialize ADRs as files, not prose.</strong> A cross-cutting decision belongs in
+<code>hsdd/adr/{nnn}-{title}.md</code> with frontmatter (via <code>hsdd-adr</code>), so the registry and
+the phase context can find it. A decision internal to one node stays a <code>D{n}</code> in
+that node&#39;s spec.</li>
+<li><strong>Match review depth to risk.</strong> Reserve <code>full-review</code> for orchestration,
+business logic, integrations, and security. Let scaffolding be <code>gate-only</code>.</li>
+</ul>
+<hr>
+<h2 id="upgrading"><a class="anchor" href="#upgrading" aria-hidden="true" tabindex="-1">#</a>Upgrading</h2>
+<p>Upgrades are additive: reinstall the skills, and nothing already written is
+rewritten. Each release&#39;s entry in the <a href="../changelog/">changelog</a> has the
+full list of changes. The notes below say what changes for a project in
+flight, newest release first.</p>
+<h3 id="from-0102-to-0110"><a class="anchor" href="#from-0102-to-0110" aria-hidden="true" tabindex="-1">#</a>From 0.10.2 to 0.11.0</h3>
+<p>Reinstall the twelve skills. Nothing else changes unless <code>/hsdd-auto</code> runs:
+the skills&#39; new <code>## Unattended runs</code> sections are inert unless a skill is
+invoked with <code>--unattended</code>. A <code>hsdd/judgement/decisions.jsonl</code> written by a
+hand-built unattended run continues under <code>hsdd-auto</code>; its lines read as
+legacy lines, with one warning.</p>
+<h3 id="from-0101-to-0102"><a class="anchor" href="#from-0101-to-0102" aria-hidden="true" tabindex="-1">#</a>From 0.10.1 to 0.10.2</h3>
+<p>Nothing is rewritten: reinstall the skills. The change flow gains the rules
+the second tutorial found missing:</p>
+<ul>
+<li>A later contract version is its own file, <code>{slug}.v{n}.md</code>, beside the
+first.</li>
+<li>A breaking change&#39;s migration note names its mode, and a <code>lockstep</code> bump
+(one endpoint, one shape) deprecates the old version at once.</li>
+<li>The checkpoint finds consumers that migrated and reconcile moves them to
+<code>former_consumers</code>, so <code>consumers</code> means live.</li>
+<li>Reconcile, not append mode, writes a new version into the node headers
+and the root spec.</li>
+<li>A phase line carries the detail it relies on, not a pointer to a source,
+and the phase context now carries the node decisions (<code>D1</code>) a phase
+cites.</li>
+<li>A sign-off an agent takes for you names you, counts as done, and comes
+back to you at the next checkpoint to ratify.</li>
+<li>The superpowers derivative names the skills it relies on:
+<code>test-driven-development</code> on every task, <code>verification-before-completion</code>,
+<code>systematic-debugging</code>, and the execution skill by review tier.</li>
+</ul>
+<p>Absent fields keep the 0.10.1 behavior; the spec&#39;s §15.1 has the table.</p>
+<h3 id="from-0100-to-0101"><a class="anchor" href="#from-0100-to-0101" aria-hidden="true" tabindex="-1">#</a>From 0.10.0 to 0.10.1</h3>
+<p>No artifact changes: reinstall the skills, and the next phase switch adds
+each contract&#39;s Validation section and any <code>referenced</code> contract to the
+phase context. A superpowers phase already in progress keeps the context it
+started with.</p>
+<h3 id="from-061-or-later-to-0100"><a class="anchor" href="#from-061-or-later-to-0100" aria-hidden="true" tabindex="-1">#</a>From 0.6.1 or later to 0.10.0</h3>
+<p>The upgrade is additive and nothing is rewritten. The first checkpoint
+after upgrading runs the upgrade behaviors, although the project already
+has a checkpoint chain; you can tell it is the first because its newest
+progress report has no grandfathered-contracts row. Each new rule states
+its effect in the spec&#39;s upgrading chapter: absent fields default to the
+old behavior, and <code>Learnings</code>/<code>Metrics</code> apply to future verification docs
+only.</p>
+<ul>
+<li><strong>Ordering policy.</strong> A conventions file that still carries 0.7.1&#39;s
+<code>FP ordering:</code> bullet keeps <code>fp-progression</code>; add
+<code>**Ordering policy:** fp-progression</code> to say so, or remove the bullet to
+take <code>interfaces-first</code>.</li>
+<li><strong>Executable validation, grandfathered and discharged on touch.</strong> The one
+rule with teeth is that <code>stable</code> contracts need executable validation.
+The upgrade checkpoint lists every existing fixtureless <code>stable</code> contract
+and emits one plan step; <code>hsdd-reconcile</code> marks each
+<code>validation: grandfathered</code>; the set is closed. A phase that next touches
+such a contract cannot pass its gate until its schema or fixtures exist,
+written at the root through <code>hsdd-contract</code>; the next checkpoint then
+files a discharge finding and reconcile removes the mark.</li>
+<li><strong>Counting down.</strong> Every progress report shows the remaining count next
+to the previous one and cites the upgrade step that names the set. A
+contract carrying the mark that the step does not name is a High finding.
+A checkpoint that runs before anyone has executed the marking step
+carries the step forward unchanged.</li>
+</ul>
+</article>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/main/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+  </div>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>
