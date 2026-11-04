@@ -44,12 +44,33 @@
       <h1>Changelog</h1>
       
       
-      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> on GitHub</p>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/CHANGELOG.md"><code>CHANGELOG.md</code></a> on GitHub</p>
     </header>
     <article class="prose"><p>All notable changes to this project are documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/" rel="noopener">Keep a Changelog</a>,
 and this project adheres to <a href="https://semver.org/spec/v2.0.0.html" rel="noopener">Semantic Versioning</a>.</p>
 <h2 id="unreleased"><a class="anchor" href="#unreleased" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.6.1...HEAD" rel="noopener">Unreleased</a></h2>
+<h3 id="added"><a class="anchor" href="#added" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<ul>
+<li><strong><code>hsdd-seal</code></strong>, the thirteenth skill: seal a released tree whose HSDD
+artifacts went stale, by script and with no model in the loop. <code>plan</code>
+reads the tree and writes a seal plan with a default class per phase
+(<code>done</code>, <code>sign</code>, <code>drop</code>, <code>keep</code>, <code>skip</code>); the owner edits the class;
+<code>apply sign|drop|prune|close</code> writes retroactive verification docs by
+delegated sign-off, marks unbuilt phases <code>- **Status:** dropped</code> under a
+project convention appended to <code>hsdd/conventions.md</code>, removes OpenSpec
+change directories an earlier catch-up invented, closes intake records
+whose produced phases are done, ticks milestone gates and seals the
+campaign document into the archive; <code>report</code> appends the result and the
+list of what only the owner can do. Every write is a dry run until
+<code>--write</code>; <code>--commit</code> commits only the paths it touched and refuses a
+detached submodule. <code>plan</code> validates <code>--catchup</code> before reading anything
+and never overwrites an existing plan without <code>--force</code>; apply re-derives
+every path from the phase id or a fresh scan, so the owner&#39;s edit surface
+is the <code>class</code> field and nothing else. The scripts are copied
+verbatim to <code>hsdd/scripts/seal/</code>; <code>md.mjs</code> and <code>extract-plan.mjs</code> are
+copies of <code>hsdd-summary</code>&#39;s, kept identical by a test.</li>
+</ul>
 <h2 id="0110---unreleased"><a class="anchor" href="#0110---unreleased" aria-hidden="true" tabindex="-1">#</a>[0.11.0] - Unreleased</h2>
 <p>Unattended planning runs. <code>hsdd-auto</code> runs HSDD&#39;s planning chain without the
 owner at each ask point, one fresh subagent per skill invocation, and records
@@ -67,7 +88,7 @@ every decision for one review sitting afterwards.</p>
 continues under <code>hsdd-auto</code>; its lines read as legacy lines, with one
 warning.</li>
 </ul>
-<h3 id="added"><a class="anchor" href="#added" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-1"><a class="anchor" href="#added-1" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><strong><code>hsdd-auto</code></strong>, the twelfth skill, with bundled zero-dependency scripts
 (<code>state</code>, <code>next</code>, <code>dispatch</code>, <code>decide</code>, <code>ledger</code>, <code>gate</code>, <code>commit</code>,
@@ -202,7 +223,7 @@ earlier progress report counted done is never downgraded.</li>
 <li>A project&#39;s <code>hsdd/templates/verification.md</code> is kept; the switch reports
 that it differs from the skill&#39;s.</li>
 </ul>
-<h3 id="added-1"><a class="anchor" href="#added-1" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-2"><a class="anchor" href="#added-2" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><code>docs/tutorial/simple-login-update/</code>: a second recorded run, one change
 to the finished simple-login project (the user&#39;s phone number on Home)
@@ -313,7 +334,7 @@ record and is not rewritten.</li>
 with. Re-running its switch rewrites constraint 7, which its plan copied
 verbatim from the old derivative.</li>
 </ul>
-<h3 id="added-2"><a class="anchor" href="#added-2" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-3"><a class="anchor" href="#added-3" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><p><code>docs/tutorial/simple-login/</code>: a complete, recorded HSDD run on a small
 product (a two-endpoint login backend and a two-screen web app). The
@@ -381,7 +402,7 @@ keep 0.7.1&#39;s ordering, or remove the old <code>FP ordering:</code> bullet to
 <code>## Learnings</code>.</li>
 <li><code>hsdd-adopt</code> and <code>hsdd-intake</code> do nothing until invoked.</li>
 </ul>
-<h3 id="added-3"><a class="anchor" href="#added-3" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-4"><a class="anchor" href="#added-4" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><strong>The 0.8.0 rules the skills never received.</strong> <code>hsdd-config</code>&#39;s
 verification template gains <code>## Learnings</code> (one disposition per entry
@@ -453,7 +474,7 @@ a consequence.</li>
 <h2 id="090---2026-10-10-never-released-ships-in-0100"><a class="anchor" href="#090---2026-10-10-never-released-ships-in-0100" aria-hidden="true" tabindex="-1">#</a>[0.9.0] - 2026-10-10 (never released; ships in 0.10.0)</h2>
 <p>Design:
 <code>docs/superpowers/specs/2026-10-09-v0_9-phase-context-and-summaries-design.md</code>.</p>
-<h3 id="added-4"><a class="anchor" href="#added-4" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-5"><a class="anchor" href="#added-5" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><strong>The generic phase context.</strong> Before each phase, <code>hsdd-config</code> writes
 <code>hsdd-context/{phase-id}.md</code> in the implementation repo: the phase, the
@@ -499,7 +520,7 @@ every project is brownfield.</strong> Greenfield is a three-month bootstrap; the
 rest of a system&#39;s life is the steady state.</p>
 <p>Design: <code>docs/superpowers/specs/2026-07-29-v0_8-consolidation-brownfield-design.md</code>.
 Acceptance record: <code>review/hsdd-v0_8-acceptance.md</code> (13/13 criteria PASS).</p>
-<h3 id="added-5"><a class="anchor" href="#added-5" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-6"><a class="anchor" href="#added-6" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><strong>Chapter 6 — Entry B: Brownfield Adoption.</strong> A codebase that already
 exists becomes a structural peer of the greenfield entry, not a special
@@ -619,7 +640,7 @@ not close.</li>
 <h2 id="070---2026-07-26"><a class="anchor" href="#070---2026-07-26" aria-hidden="true" tabindex="-1">#</a>[0.7.0] - 2026-07-26</h2>
 <p>Driven by the moka-microsite field deployment (2026-07-10 → 07-24: three repos,
 two developers, 89 phases under v0.6.1). Delta spec: <code>spec/hsdd-spec-v0_7.md</code>.</p>
-<h3 id="added-6"><a class="anchor" href="#added-6" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-7"><a class="anchor" href="#added-7" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li>The management layer: <code>management/</code> as a fourth artifact class (cite, never
 define) — dated progress reports, execution plans, and milestone documents
@@ -682,7 +703,7 @@ findings→plan loop. Full record: <code>review/hsdd-v0_7-acceptance-microsite.m
 (<code>review/hsdd-skills-v0_6_0-pressure-test-fable-xhigh.md</code>) and a field
 observation on source-document provenance. Delta spec:
 <code>spec/hsdd-spec-v0_6_1.md</code>.</p>
-<h3 id="added-7"><a class="anchor" href="#added-7" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-8"><a class="anchor" href="#added-8" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li>Source provenance: the root spec carries a <code>## Sources</code> section and every
 node a <code>Sources</code> field that trickles down at each decomposition level;
@@ -709,7 +730,7 @@ the section headers; <code>Collides with</code> may carry a one-line reason.</li
 <p>Driven by the second field test (FT-2) and its review
 (<code>review/hsdd-process-v0_5_1-review-fable-xhigh.md</code>). Delta spec:
 <code>spec/hsdd-spec-v0_6.md</code>.</p>
-<h3 id="added-8"><a class="anchor" href="#added-8" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-9"><a class="anchor" href="#added-9" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li>Phase summary table: every phase plan opens with a per-phase overview
 (phase, name, tier, size, dependencies, collisions) for the human
@@ -805,7 +826,7 @@ the template) and re-copy the bundled generator, since the old copy scans the
 old paths. Keeping the old layout is also fine: state it in the conventions
 file and the skills honor it.</p>
 <h2 id="042---2026-07-05"><a class="anchor" href="#042---2026-07-05" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.4.1...v0.4.2" rel="noopener">0.4.2</a> - 2026-07-05</h2>
-<h3 id="added-9"><a class="anchor" href="#added-9" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-10"><a class="anchor" href="#added-10" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><code>hsdd-reconcile</code> skill: drain the <code>## Governance updates (pending reconcile)</code>
 sections emitted by <code>hsdd-phase-plan</code>, resolve contract-gap requests with the
@@ -857,7 +878,7 @@ The skill now says so and points to the <code>hsdd-contract</code> skill&#39;s b
 instead of implying the generator is already present.</li>
 </ul>
 <h2 id="040---2026-07-02"><a class="anchor" href="#040---2026-07-02" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/compare/v0.3.0...v0.4.0" rel="noopener">0.4.0</a> - 2026-07-02</h2>
-<h3 id="added-10"><a class="anchor" href="#added-10" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-11"><a class="anchor" href="#added-11" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><code>hsdd-adr</code> skill: author and maintain cross-cutting Architecture Decision
 Records as first-class files (<code>adr/{nnn}-{title}.md</code>) with registry-compatible
@@ -879,7 +900,7 @@ frontmatter (the generator reads <code>id</code>/<code>status</code>/<code>affec
 body-field example in v0.3 §12.4. No generator change required.</li>
 </ul>
 <h2 id="030---2026-07-01"><a class="anchor" href="#030---2026-07-01" aria-hidden="true" tabindex="-1">#</a><a href="https://github.com/OWNER/REPO/releases/tag/v0.3.0" rel="noopener">0.3.0</a> - 2026-07-01</h2>
-<h3 id="added-11"><a class="anchor" href="#added-11" aria-hidden="true" tabindex="-1">#</a>Added</h3>
+<h3 id="added-12"><a class="anchor" href="#added-12" aria-hidden="true" tabindex="-1">#</a>Added</h3>
 <ul>
 <li><code>hsdd-spec</code> skill: turn a brain-dump into a high-level spec and decompose nodes into subsystems.</li>
 <li><code>hsdd-phase-plan</code> skill: break a leaf-parent node into ordered, independently implementable phases.</li>
@@ -889,11 +910,11 @@ body-field example in v0.3 §12.4. No generator change required.</li>
 <li>Docs (<code>docs/</code>), specs (<code>spec/</code>), and review assets (<code>review/</code>).</li>
 </ul>
 </article>
-    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/main/CHANGELOG.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/CHANGELOG.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
   </div>
   <footer class="site-foot">
     <div class="foot-inner">
-      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/4bf636957c0c39ee88b9aa9d9ab701688839742d"><code>mpurbo/hsdd@4bf6369</code></a>, 2026-11-04.</p>
       <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
     </div>
   </footer>

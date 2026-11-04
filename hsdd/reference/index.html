@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="HSDD reference: the twelve skills and their slash commands, the glossary, common questions, the specification and the changelog.">
+  <meta name="description" content="HSDD reference: the thirteen skills and their slash commands, the glossary, common questions, the specification and the changelog.">
   <title>Reference · HSDD</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
   <meta property="og:title" content="Reference · HSDD">
-  <meta property="og:description" content="HSDD reference: the twelve skills and their slash commands, the glossary, common questions, the specification and the changelog.">
+  <meta property="og:description" content="HSDD reference: the thirteen skills and their slash commands, the glossary, common questions, the specification and the changelog.">
   <meta property="og:type" content="website">
   <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="../assets/docs.css">
@@ -42,76 +42,80 @@
     <main id="main" tabindex="-1"><header class="doc-head">
       <p class="eyebrow">Reference</p>
       <h1>Reference</h1>
-      <p class="lede">The twelve skills and their commands, the terms the method uses, the questions people ask first, and where the rules are written down.</p>
+      <p class="lede">The thirteen skills and their commands, the terms the method uses, the questions people ask first, and where the rules are written down.</p>
     </header>
     <article class="prose">
       <h2 id="skills"><a class="anchor" href="#skills" aria-hidden="true" tabindex="-1">#</a>Skills</h2>
-      <p>Install all twelve with <code>npx skills add mpurbo/hsdd</code>. Each one is a <code>SKILL.md</code> an agent loads when your request matches it; you can also name it in the prompt.</p>
+      <p>Install all thirteen with <code>npx skills add mpurbo/hsdd</code>. Each one is a <code>SKILL.md</code> an agent loads when your request matches it; you can also name it in the prompt.</p>
       <h3 id="group-build-the-tree"><a class="anchor" href="#group-build-the-tree" aria-hidden="true" tabindex="-1">#</a>Build the tree</h3>
       <div class="ref-skills"><article class="ref-skill" id="hsdd-spec">
         <header><h3>hsdd-spec</h3><span class="chip process">Build the tree</span><code>/hsdd-spec</code></header>
         <p>Turn a brain-dump into a high-level spec, or decompose any node into child nodes. Recursive: runs at the root and every internal level.</p>
-        <p class="links"><a href="../guide/#tree-1">Interactive guide: Decompose</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-spec/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#tree-1">Interactive guide: Decompose</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-spec/SKILL.md">SKILL.md on GitHub</a></p>
       </article><article class="ref-skill" id="hsdd-contract">
         <header><h3>hsdd-contract</h3><span class="chip process">Build the tree</span><code>/hsdd-contract</code></header>
         <p>Define and version the first-class contracts between nodes.</p>
-        <p class="links"><a href="../guide/#contracts-1">Interactive guide: Contracts</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-contract/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#contracts-1">Interactive guide: Contracts</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-contract/SKILL.md">SKILL.md on GitHub</a></p>
       </article><article class="ref-skill" id="hsdd-adr">
         <header><h3>hsdd-adr</h3><span class="chip process">Build the tree</span><code>/hsdd-adr</code></header>
         <p>Author and maintain cross-cutting Architecture Decision Records as first-class files, with registry-compatible frontmatter and a status lifecycle.</p>
-        <p class="links"><a href="../guide/#contracts-1">Interactive guide: Contracts</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-adr/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#contracts-1">Interactive guide: Contracts</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-adr/SKILL.md">SKILL.md on GitHub</a></p>
       </article></div>
 <h3 id="group-plan-the-phases"><a class="anchor" href="#group-plan-the-phases" aria-hidden="true" tabindex="-1">#</a>Plan the phases</h3>
       <div class="ref-skills"><article class="ref-skill" id="hsdd-phase-plan">
         <header><h3>hsdd-phase-plan</h3><span class="chip process">Plan the phases</span><code>/hsdd-phase-plan</code></header>
         <p>Break a small-enough node into ordered, independently implementable phases, each sized for one coding cycle and one review window.</p>
-        <p class="links"><a href="../guide/#phases-1">Interactive guide: Plan phases</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-phase-plan/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#phases-1">Interactive guide: Plan phases</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-phase-plan/SKILL.md">SKILL.md on GitHub</a></p>
       </article><article class="ref-skill" id="hsdd-reconcile">
         <header><h3>hsdd-reconcile</h3><span class="chip process">Plan the phases</span><code>/hsdd-reconcile</code></header>
         <p>Drain the pending governance updates emitted by phase planning: finalize contract phase ids, resolve contract-gap requests with you, and regenerate the registries. Runs on the root lineage after parallel plan branches merge.</p>
-        <p class="links"><a href="../guide/#phases-1">Interactive guide: Plan phases</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-reconcile/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#phases-1">Interactive guide: Plan phases</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-reconcile/SKILL.md">SKILL.md on GitHub</a></p>
       </article></div>
 <h3 id="group-execute-a-phase"><a class="anchor" href="#group-execute-a-phase" aria-hidden="true" tabindex="-1">#</a>Execute a phase</h3>
       <div class="ref-skills"><article class="ref-skill" id="hsdd-config">
         <header><h3>hsdd-config</h3><span class="chip process">Execute a phase</span><code>/hsdd-phase</code></header>
         <p>Before each phase, write one self-contained phase context (the phase, the text of the contracts it touches, its decisions, pinned links) and wrap it for the project&#39;s coding method: OpenSpec&#39;s <code>config.yaml</code>, or a spec for superpowers&#39; <code>writing-plans</code>.</p>
-        <p class="links"><a href="../guide/#execute-1">Interactive guide: Execute a phase</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-config/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#execute-1">Interactive guide: Execute a phase</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-config/SKILL.md">SKILL.md on GitHub</a></p>
       </article></div>
 <h3 id="group-existing-systems-and-change"><a class="anchor" href="#group-existing-systems-and-change" aria-hidden="true" tabindex="-1">#</a>Existing systems and change</h3>
       <div class="ref-skills"><article class="ref-skill" id="hsdd-adopt">
         <header><h3>hsdd-adopt</h3><span class="chip process">Existing systems and change</span><code>/hsdd-adopt</code></header>
         <p>Bring an existing codebase into the tree: script-extracted seams, as-built node specs with an <code>## Observed surface</code> section, and <code>v0</code> contracts describing current behavior. Brownfield&#39;s entry point.</p>
-        <p class="links"><a href="../guide/#adopt-1">Interactive guide: Adopt a codebase</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-adopt/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#adopt-1">Interactive guide: Adopt a codebase</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-adopt/SKILL.md">SKILL.md on GitHub</a></p>
       </article><article class="ref-skill" id="hsdd-intake">
         <header><h3>hsdd-intake</h3><span class="chip process">Existing systems and change</span><code>/hsdd-intake</code></header>
         <p>Route an incoming change request (PRD, RFC, ticket, incident) into the existing tree: classify it, detect collisions with open intakes, write the routing record, and hand off. A PRD is never a root.</p>
-        <p class="links"><a href="../guide/#change-1">Interactive guide: Route every change</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-intake/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#change-1">Interactive guide: Route every change</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-intake/SKILL.md">SKILL.md on GitHub</a></p>
+      </article><article class="ref-skill" id="hsdd-seal">
+        <header><h3>hsdd-seal</h3><span class="chip process">Existing systems and change</span><code>/hsdd-seal</code></header>
+        <p>Seal a released tree whose artifacts went stale, by script and with no model in the loop: a plan with a default class per phase, the owner&#39;s edit of that class, then retroactive verification docs by delegated sign-off, <code>Status: dropped</code> on unbuilt phases, pruned catch-up OpenSpec directories, closed intake records and the campaign document sealed into the archive.</p>
+        <p class="links"><a href="../guide/#change-1">Interactive guide: Route every change</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-seal/SKILL.md">SKILL.md on GitHub</a></p>
       </article></div>
 <h3 id="group-run-the-project"><a class="anchor" href="#group-run-the-project" aria-hidden="true" tabindex="-1">#</a>Run the project</h3>
       <div class="ref-skills"><article class="ref-skill" id="hsdd-checkpoint">
         <header><h3>hsdd-checkpoint</h3><span class="chip process">Run the project</span><code>/hsdd-checkpoint</code></header>
         <p>Run the weekly (or context-triggered) evidence pass across the spec repo and every implementation repo, emitting a progress report, a revised execution plan, a regenerated atlas, and ticked milestone gates. One pass, four views; every finding becomes a plan step or an explicit waiver.</p>
-        <p class="links"><a href="../guide/#manage-1">Interactive guide: Evidence and milestones</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-checkpoint/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#manage-1">Interactive guide: Evidence and milestones</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-checkpoint/SKILL.md">SKILL.md on GitHub</a></p>
       </article><article class="ref-skill" id="hsdd-milestone">
         <header><h3>hsdd-milestone</h3><span class="chip process">Run the project</span><code>/hsdd-milestone</code></header>
         <p>Generate a campaign&#39;s stakeholder milestone document once every leaf-parent in its scope is phase-planned. Each checkpoint is a demo and a gate; externally-gated work sits in a contingent tail outside the launch gate. Re-baseline the document when the dates move.</p>
-        <p class="links"><a href="../guide/#manage-1">Interactive guide: Evidence and milestones</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-milestone/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#manage-1">Interactive guide: Evidence and milestones</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-milestone/SKILL.md">SKILL.md on GitHub</a></p>
       </article><article class="ref-skill" id="hsdd-summary">
         <header><h3>hsdd-summary</h3><span class="chip process">Run the project</span><code>/hsdd-summary</code></header>
         <p>Render offline HTML reading aids: the plan page (root to phase cards, for a reviewer, a stakeholder or an implementer) and the checkpoint page (the newest progress report and execution plan, for the lead running the sync, each lane&#39;s executor, and stakeholders).</p>
-        <p class="links"><a href="../guide/#manage-1">Interactive guide: Evidence and milestones</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-summary/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#manage-1">Interactive guide: Evidence and milestones</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-summary/SKILL.md">SKILL.md on GitHub</a></p>
       </article></div>
 <h3 id="group-unattended"><a class="anchor" href="#group-unattended" aria-hidden="true" tabindex="-1">#</a>Unattended</h3>
       <div class="ref-skills"><article class="ref-skill" id="hsdd-auto">
         <header><h3>hsdd-auto</h3><span class="chip process">Unattended</span><code>/hsdd-auto</code></header>
         <p>Run HSDD&#39;s planning chain unattended: compute the next step, dispatch one fresh subagent per skill invocation, answer or stop on each ask point per the owner&#39;s stop policy, gate and commit each step, and record every decision for one review sitting.</p>
-        <p class="links"><a href="../guide/#auto-1">Interactive guide: Run unattended</a><a href="https://github.com/mpurbo/hsdd/blob/main/skills/hsdd-auto/SKILL.md">SKILL.md on GitHub</a></p>
+        <p class="links"><a href="../guide/#auto-1">Interactive guide: Run unattended</a><a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/skills/hsdd-auto/SKILL.md">SKILL.md on GitHub</a></p>
       </article></div>
 
       <h2 id="slash-commands"><a class="anchor" href="#slash-commands" aria-hidden="true" tabindex="-1">#</a>Slash commands</h2>
       <p>Optional shortcuts for Claude Code. The skills CLI does not install them: copy <a href="https://github.com/mpurbo/hsdd/tree/main/commands"><code>commands/*.md</code></a> into your project's <code>.claude/commands/</code>. Each one invokes a skill with your arguments.</p>
       <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Command</th><th>What it does</th><th>Skill</th></tr></thead><tbody>
-        <tr><td><code>/hsdd-adopt</code></td><td>Adopt an existing codebase (or the unadopted code around a tree) into HSDD as as-built nodes and v0 contracts</td><td><a href="#hsdd-adopt"><code>hsdd-adopt</code></a></td></tr><tr><td><code>/hsdd-adr</code></td><td>Author or update an HSDD Architecture Decision Record</td><td><a href="#hsdd-adr"><code>hsdd-adr</code></a></td></tr><tr><td><code>/hsdd-auto</code></td><td>Run HSDD&#39;s planning chain unattended (plan an empty tree, or route one change request through every handoff), recording every decision for one review sitting</td><td><a href="#hsdd-auto"><code>hsdd-auto</code></a></td></tr><tr><td><code>/hsdd-checkpoint</code></td><td>Run an HSDD checkpoint - evidence pass, progress report, revised plan, atlas</td><td><a href="#hsdd-checkpoint"><code>hsdd-checkpoint</code></a></td></tr><tr><td><code>/hsdd-contract</code></td><td>Define or version an HSDD contract between nodes</td><td><a href="#hsdd-contract"><code>hsdd-contract</code></a></td></tr><tr><td><code>/hsdd-intake</code></td><td>Route an incoming change request (PRD, RFC, ticket, incident) into the existing HSDD tree and write the intake record</td><td><a href="#hsdd-intake"><code>hsdd-intake</code></a></td></tr><tr><td><code>/hsdd-milestone</code></td><td>Generate or re-baseline the HSDD milestone document (stakeholder checkpoints)</td><td><a href="#hsdd-milestone"><code>hsdd-milestone</code></a></td></tr><tr><td><code>/hsdd-phase-plan</code></td><td>Break an HSDD leaf-parent node into ordered implementation phases</td><td><a href="#hsdd-phase-plan"><code>hsdd-phase-plan</code></a></td></tr><tr><td><code>/hsdd-phase</code></td><td>Switch the HSDD phase context before implementing a phase</td><td><a href="#hsdd-config"><code>hsdd-config</code></a></td></tr><tr><td><code>/hsdd-reconcile</code></td><td>Drain pending HSDD governance updates and finalize contracts</td><td><a href="#hsdd-reconcile"><code>hsdd-reconcile</code></a></td></tr><tr><td><code>/hsdd-spec</code></td><td>Decompose a brain-dump or an existing spec node into child nodes, or promote, graft or retire a node (HSDD)</td><td><a href="#hsdd-spec"><code>hsdd-spec</code></a></td></tr><tr><td><code>/hsdd-summary</code></td><td>Render or refresh the HSDD reading aids under hsdd/summary/</td><td><a href="#hsdd-summary"><code>hsdd-summary</code></a></td></tr>
+        <tr><td><code>/hsdd-adopt</code></td><td>Adopt an existing codebase (or the unadopted code around a tree) into HSDD as as-built nodes and v0 contracts</td><td><a href="#hsdd-adopt"><code>hsdd-adopt</code></a></td></tr><tr><td><code>/hsdd-adr</code></td><td>Author or update an HSDD Architecture Decision Record</td><td><a href="#hsdd-adr"><code>hsdd-adr</code></a></td></tr><tr><td><code>/hsdd-auto</code></td><td>Run HSDD&#39;s planning chain unattended (plan an empty tree, or route one change request through every handoff), recording every decision for one review sitting</td><td><a href="#hsdd-auto"><code>hsdd-auto</code></a></td></tr><tr><td><code>/hsdd-checkpoint</code></td><td>Run an HSDD checkpoint - evidence pass, progress report, revised plan, atlas</td><td><a href="#hsdd-checkpoint"><code>hsdd-checkpoint</code></a></td></tr><tr><td><code>/hsdd-contract</code></td><td>Define or version an HSDD contract between nodes</td><td><a href="#hsdd-contract"><code>hsdd-contract</code></a></td></tr><tr><td><code>/hsdd-intake</code></td><td>Route an incoming change request (PRD, RFC, ticket, incident) into the existing HSDD tree and write the intake record</td><td><a href="#hsdd-intake"><code>hsdd-intake</code></a></td></tr><tr><td><code>/hsdd-milestone</code></td><td>Generate or re-baseline the HSDD milestone document (stakeholder checkpoints)</td><td><a href="#hsdd-milestone"><code>hsdd-milestone</code></a></td></tr><tr><td><code>/hsdd-phase-plan</code></td><td>Break an HSDD leaf-parent node into ordered implementation phases</td><td><a href="#hsdd-phase-plan"><code>hsdd-phase-plan</code></a></td></tr><tr><td><code>/hsdd-phase</code></td><td>Switch the HSDD phase context before implementing a phase</td><td><a href="#hsdd-config"><code>hsdd-config</code></a></td></tr><tr><td><code>/hsdd-reconcile</code></td><td>Drain pending HSDD governance updates and finalize contracts</td><td><a href="#hsdd-reconcile"><code>hsdd-reconcile</code></a></td></tr><tr><td><code>/hsdd-seal</code></td><td>Seal a released HSDD tree by script (plan, owner edit, apply, report), no model in the loop</td><td><a href="#hsdd-seal"><code>hsdd-seal</code></a></td></tr><tr><td><code>/hsdd-spec</code></td><td>Decompose a brain-dump or an existing spec node into child nodes, or promote, graft or retire a node (HSDD)</td><td><a href="#hsdd-spec"><code>hsdd-spec</code></a></td></tr><tr><td><code>/hsdd-summary</code></td><td>Render or refresh the HSDD reading aids under hsdd/summary/</td><td><a href="#hsdd-summary"><code>hsdd-summary</code></a></td></tr>
       </tbody></table></div>
 
       <h2 id="glossary"><a class="anchor" href="#glossary" aria-hidden="true" tabindex="-1">#</a>Glossary</h2>
@@ -131,7 +135,7 @@
   </div>
   <footer class="site-foot">
     <div class="foot-inner">
-      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/4bf636957c0c39ee88b9aa9d9ab701688839742d"><code>mpurbo/hsdd@4bf6369</code></a>, 2026-11-04.</p>
       <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
     </div>
   </footer>

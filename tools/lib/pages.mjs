@@ -9,7 +9,7 @@ const SKILL_GROUPS = [
   ["Build the tree", ["hsdd-spec", "hsdd-contract", "hsdd-adr"]],
   ["Plan the phases", ["hsdd-phase-plan", "hsdd-reconcile"]],
   ["Execute a phase", ["hsdd-config"]],
-  ["Existing systems and change", ["hsdd-adopt", "hsdd-intake"]],
+  ["Existing systems and change", ["hsdd-adopt", "hsdd-intake", "hsdd-seal"]],
   ["Run the project", ["hsdd-checkpoint", "hsdd-milestone", "hsdd-summary"]],
   ["Unattended", ["hsdd-auto"]],
 ];
@@ -18,8 +18,12 @@ const SKILL_CHAPTER = {
   "hsdd-spec": "tree", "hsdd-contract": "contracts", "hsdd-adr": "contracts", "hsdd-phase-plan": "phases",
   "hsdd-reconcile": "phases", "hsdd-config": "execute", "hsdd-adopt": "adopt", "hsdd-intake": "change",
   "hsdd-checkpoint": "manage", "hsdd-milestone": "manage", "hsdd-summary": "manage", "hsdd-auto": "auto",
+  "hsdd-seal": "change",
 };
 const groupOf = (name) => SKILL_GROUPS.find(([, names]) => names.includes(name))?.[0] || "";
+const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen"];
+const countWord = (n) => WORDS[n] ?? String(n);
+const cap = (s) => s[0].toUpperCase() + s.slice(1);
 
 function checkGroups(skills) {
   const grouped = SKILL_GROUPS.flatMap(([, n]) => n).sort().join();
@@ -141,10 +145,10 @@ export function homePage({ out, shell, build, skills, tutorials, specs, guide, i
     </section>
 
     <section class="section" id="install">
-      <header><p class="eyebrow">Install</p><h2>Twelve skills, one command</h2>
+      <header><p class="eyebrow">Install</p><h2>${cap(countWord(skills.length))} skills, one command</h2>
         <p>HSDD ships as agent skills, installable with the <a href="https://github.com/vercel-labs/skills">skills</a> CLI, which works with Claude Code, Cursor, Codex and 70+ other agents.</p></header>
       <div class="install">
-        <div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code># All twelve HSDD skills
+        <div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code># All ${countWord(skills.length)} HSDD skills
 npx skills add mpurbo/hsdd
 
 # Or a single skill
@@ -209,11 +213,11 @@ export function referencePage({ out, shell, tocHtml, build, skills, commands, gu
   const body = `<header class="doc-head">
       <p class="eyebrow">Reference</p>
       <h1>Reference</h1>
-      <p class="lede">The twelve skills and their commands, the terms the method uses, the questions people ask first, and where the rules are written down.</p>
+      <p class="lede">The ${countWord(skills.length)} skills and their commands, the terms the method uses, the questions people ask first, and where the rules are written down.</p>
     </header>
     <article class="prose">
       <h2 id="skills"><a class="anchor" href="#skills" aria-hidden="true" tabindex="-1">#</a>Skills</h2>
-      <p>Install all twelve with <code>npx skills add mpurbo/hsdd</code>. Each one is a <code>SKILL.md</code> an agent loads when your request matches it; you can also name it in the prompt.</p>
+      <p>Install all ${countWord(skills.length)} with <code>npx skills add mpurbo/hsdd</code>. Each one is a <code>SKILL.md</code> an agent loads when your request matches it; you can also name it in the prompt.</p>
       ${SKILL_GROUPS.map(([g, names]) => `<h3 id="group-${g.toLowerCase().replace(/[^a-z]+/g, "-")}"><a class="anchor" href="#group-${g.toLowerCase().replace(/[^a-z]+/g, "-")}" aria-hidden="true" tabindex="-1">#</a>${esc(g)}</h3>
       <div class="ref-skills">${names.map((n) => skillCard(skills.find((s) => s.name === n))).join("")}</div>`).join("\n")}
 
@@ -240,7 +244,7 @@ export function referencePage({ out, shell, tocHtml, build, skills, commands, gu
   return shell({
     out, active: "reference", build,
     title: "Reference · HSDD",
-    description: "HSDD reference: the twelve skills and their slash commands, the glossary, common questions, the specification and the changelog.",
+    description: `HSDD reference: the ${countWord(skills.length)} skills and their slash commands, the glossary, common questions, the specification and the changelog.`,
     toc: tocHtml(headings),
     body,
   });

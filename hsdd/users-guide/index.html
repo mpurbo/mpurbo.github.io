@@ -44,7 +44,7 @@
       <h1>HSDD User&#39;s Guide</h1>
       
       
-      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
     </header>
     <article class="prose"><p>This guide shows HSDD on three worked examples, then covers running a
 project week to week. Each example goes prompt by prompt: what you type,
@@ -92,7 +92,7 @@ a real repository.</p>
 </tr>
 </tbody></table></div>
 <h2 id="before-you-start"><a class="anchor" href="#before-you-start" aria-hidden="true" tabindex="-1">#</a>Before you start</h2>
-<p>Install the twelve skills (see the <a href="../">README</a>) and, ideally,
+<p>Install the thirteen skills (see the <a href="../">README</a>) and, ideally,
 <a href="https://github.com/obra/superpowers" rel="noopener">Obra&#39;s superpowers</a> plugin. HSDD
 composes with its test-driven development, verification and code-review
 skills instead of re-implementing them. The HSDD loop, in one line:</p>
@@ -1229,9 +1229,11 @@ added. For the strongest memory isolation, start the session with
 them: a stakeholder wants a size before any spec exists; the team keeps a
 knowledge base the spec should draw on; a launched system takes small fixes
 faster than phases can be planned; and a released tree has gone stale and
-nobody will verify it phase by phase. Each one runs on the skills as they
-are. What changes is the prompt, and in two cases a section you add to
-<code>hsdd/conventions.md</code>, the file every skill reads first.</p>
+nobody will verify it phase by phase. Three of them run on the skills as
+they are: what changes is the prompt, and in two cases a section you add
+to <code>hsdd/conventions.md</code>, the file every skill reads first. The fourth has
+a skill of its own, <code>hsdd-seal</code>, because it is clerical work a script does
+better than a model.</p>
 <h3 id="estimating-in-pe-before-the-first-spec"><a class="anchor" href="#estimating-in-pe-before-the-first-spec" aria-hidden="true" tabindex="-1">#</a>Estimating in PE before the first spec</h3>
 <p>Stakeholders ask for a size before anyone has run <code>hsdd-spec</code>, and the only
 input is the PRD. A plain agent that has heard of HSDD will produce a number.
@@ -1457,94 +1459,98 @@ went stale: verification docs unsigned, phases planned and never built,
 intake records open, an execution plan full of syncs nobody will hold.
 Rebuilding the history is the expensive path, one retro phase per manual
 change, and reviewing what it generates is harder than the work it records.
-Sealing costs one run and spends your attention only where the next change
-will look: contracts and ADRs.</p>
+Sealing costs one script run and spends your attention only where the next
+change will look: which phases shipped, and the contracts and ADRs.</p>
 <p>Everything the seal needs is already admissible. A sign-off an agent takes
 for a named person counts as done, and the next checkpoint lists those
 sign-offs in one finding for that person to ratify. An Outstanding item may
 be waived with a reason. A verification doc written after the fact is the
-retroactive doc the spec&#39;s bypass rule names. Every finding may be waived in
-the plan with a reason instead of becoming a step. A campaign whose gates
-are all green is sealed and archived by the checkpoint that ticked the last
-one. And a protocol stated in <code>conventions.md</code> reaches every skill.</p>
-<p>One thing is missing: the method has no status for a phase that was planned
-and never built. The prompt adds one as a project convention,
+retroactive doc the spec&#39;s bypass rule names. An intake record closes when
+its produced phases are done. A campaign whose gates are all green is
+sealed and archived. And a protocol stated in <code>conventions.md</code> reaches every
+skill. One thing is missing: the method has no status for a phase that was
+planned and never built. The seal adds one as a project convention,
 <code>- **Status:** dropped (date, reason)</code> on the phase record, mirroring node
 retirement. Until a spec version names it, every later checkpoint prompt
 has to restate that dropped phases are out of scope, or the pass counts
 them as not done.</p>
-<p>Two things to decide before you run it. Everything in the campaign must end
+<p>Nothing in a seal needs judgment except which phases shipped, and that is
+your knowledge, not a model&#39;s. So the seal is the <code>hsdd-seal</code> skill&#39;s
+script: it computes a plan from the tree, you edit one field, it applies
+the plan, and no model reads a file. On a project billed per token that is
+the difference between a seal and a week of review. Copy the skill&#39;s
+<code>scripts/</code> directory verbatim to <code>hsdd/scripts/seal/</code> (Node 20), then plan:</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">node hsdd/scripts/seal/seal.mjs plan --release 2.4.0 --date 2026-09-15 \
+  --owner &quot;Dewi Lestari&quot; --evidence &quot;QA regression 2.4.0, Jira PAY fix version 2.4.0&quot; \
+  --catchup a1b2c3d..f4e5d6c</code></pre></div>
+<p><code>--catchup</code> names the commits an earlier catch-up attempt made (a revspec,
+<code>since:YYYY-MM-DD</code>, or comma-separated shas), so the plan can tell which
+verification docs and OpenSpec change directories were invented after the
+fact. The value is checked before anything is read, and under the
+standalone-spec-repo profile only <code>since:</code> reaches both the implementation
+repo and the submodule. The command writes <code>hsdd/management/{today}-seal-plan.json</code>
+and a markdown rendering, with a default class per phase: <code>done</code> (a signed
+doc), <code>sign</code> (the newest progress report counts it done, its phase context
+exists, an OpenSpec change names it, or a doc existed before the catch-up),
+<code>drop</code> (nothing else), <code>skip</code> (already dropped, or a retired node). When
+in doubt the default is <code>drop</code>: a built phase wrongly dropped is re-planned
+by a later intake; an unbuilt phase wrongly signed makes the contracts
+claim behavior the code lacks. Read the markdown once, edit the <code>class</code>
+field in the JSON where the default is wrong, and leave everything else:
+the script re-derives every path at apply time and refuses one that leaves
+the project root. Then:</p>
+<div class="code"><div class="code-tab"><span>bash</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-bash">P=hsdd/management/2026-11-03-seal-plan.json
+for step in sign drop prune close; do
+  node hsdd/scripts/seal/seal.mjs apply $step --plan $P                   # dry run, read it
+  node hsdd/scripts/seal/seal.mjs apply $step --plan $P --write --commit  # apply, commit &quot;seal: $step&quot;
+done
+node hsdd/scripts/seal/seal.mjs report --plan $P --write --commit</code></pre></div>
+<ul>
+<li><code>sign</code> writes a retroactive doc for every <code>sign</code> phase whose doc is
+missing or was added by the catch-up: Observed reads &quot;Not observed by
+this run. Released in 2.4.0 on 2026-09-15. QA evidence: ... Retroactive
+(spec §11.8)&quot;, Sign-off reads <code>Claude for Dewi Lestari (delegated), {today}</code>,
+Outstanding is waived. A doc with a real run keeps its body and gets only
+its Sign-off rewritten; Learnings it already carries are sealed as
+<code>dropped (sealed at release 2.4.0; not actioned)</code> and the report lists
+the phase, because the seal never claims a disposition nobody made.</li>
+<li><code>drop</code> adds the Status line after each dropped phase&#39;s <code>Review tier</code> and
+the convention paragraph under <code>## Phase design</code> in <code>hsdd/conventions.md</code>.</li>
+<li><code>prune</code> deletes each <code>openspec/changes/</code> directory whose every file the
+catch-up added; they record cycles that never ran, and the retroactive
+docs carry the honest record. <code>openspec/specs/</code> is never touched.</li>
+<li><code>close</code> re-scans, closes intake records whose produced phases are all
+done, ticks every gate whose phases are done or dropped, records the
+dropped ones in the milestone&#39;s change log as an absorb, and when every
+gate is ticked adds <code>- **Sealed:** {today}</code> and moves the document to
+<code>hsdd/management/archive/</code>.</li>
+<li><code>report</code> appends a <code>## Result</code> to the plan markdown with the counts and
+a <strong>Needs the owner</strong> list: <code>request</code> entries for <code>hsdd-reconcile</code>, gates
+still open, records still open, Learnings to read, catch-up docs left on
+dropped phases, unparsed items. That list is the whole of what you act
+on afterwards.</li>
+</ul>
+<p>Every step is a dry run until <code>--write</code>, is idempotent, and with <code>--commit</code>
+commits only the paths it touched (under the profile: inside the submodule,
+then the pointer bump; it refuses to write while <code>hsdd/</code> has a detached
+HEAD). One decision before you run it: everything in the campaign must end
 up done or dropped, because <code>hsdd-milestone</code> keeps one unsealed document at
-a time: work you want to keep for later stays unshipped, keeps the document
-open, and belongs in a new campaign generated after the seal. And if an
-earlier catch-up attempt generated OpenSpec changes after the fact for
-phases nobody ran OpenSpec on, delete them: they record cycles that never
-happened, and the retroactive verification docs carry the honest record. A
-recorded bypass beats a hidden one.</p>
-<p>The run, with the facts filled in:</p>
-<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Seal the HSDD tree for the released system. Facts:
-- Owner: {name}. Every delegated sign-off names this person.
-- Release: tag {tag}, released {YYYY-MM-DD}, in production since.
-- QA evidence: {path or URL of the QA sign-off and the test runs}.
-- Profile: {default | standalone-spec-repo}. Under the profile, run from
-  this implementation repo and commit inside hsdd/, then bump the pointer.
-
-Policy. This chooses among options the spec already allows; it overrides
-no rule.
-
-1. Every phase that shipped in {tag} is done by delegated sign-off. For
-   each phase with no signed verification doc on the main line, write
-   hsdd/verify/{phase-id}.verification.md from
-   hsdd/templates/verification.md with exactly this content and no
-   narrative:
-   - Commands to run: &quot;none, retroactive&quot;
-   - Expected output: &quot;see QA evidence&quot;
-   - Observed: &quot;Not observed by this run. Released in {tag} on {date}. QA
-     evidence: {link}. Retroactive.&quot;
-   - Outstanding: one item, &quot;individual verification not performed&quot;,
-     disposition: waived (released and QA-verified)
-   - Learnings: &quot;- none&quot;
-   - Sign-off: &quot;Claude for {owner} (delegated)&quot;, today&#39;s date, the review
-     tier the phase plan names.
-   A doc that already has content keeps it; fill only its missing Sign-off
-   and dispositions the same way. Never invent an observation.
-2. Phases planned but never built and not in {tag}: list them to me and
-   stop. After I confirm, add &quot;- **Status:** dropped ({date}, not built
-   before release)&quot; to each phase record, and add under &quot;## Phase design&quot;
-   in hsdd/conventions.md: &quot;A phase with Status: dropped is out of every
-   campaign scope and every done count.&quot;
-3. Run hsdd-milestone on the scope trigger: the dropped phases leave the
-   gates, the dates hold because the system is released, absorb in place
-   with a change-log entry.
-4. Run hsdd-checkpoint in full mode with this standing decision: every
-   finding whose remedy is a verification, the ratification of a delegated
-   sign-off, a sync, a queued decision, or a plan step on a shipped or
-   dropped phase is waived in the plan with the reason &quot;sealed at release
-   {tag}&quot;. Only findings about a contract or an ADR remain as steps. Close
-   every intake record whose phases are done, tick the gates, seal the
-   milestone document and move it to hsdd/management/archive/.
-5. Delete the OpenSpec changes and archives that were generated after the
-   fact for phases nobody ran OpenSpec on, and say so in the progress
-   report.
-6. Edit no node spec body, contract or ADR, except the Status lines in
-   step 2.
-7. Commit on the main line as you go, one commit per step above.
-
-Report in one screen: phases sealed by delegated sign-off, phases dropped,
-intake records closed, milestone sealed yes or no and why not, findings
-waived with the count, and the contract or ADR items that need me, one
-line each. Nothing else needs my answer.</code></pre></div>
+a time. Work you want to keep for later (<code>--keep</code>) holds its gate red and
+belongs in a new campaign generated after the seal; the simpler path is to
+drop it and let it re-enter through <code>hsdd-intake</code>.</p>
 <p>What you have afterwards is a tree whose ledger is complete and honest:
 every shipped phase has a doc that says it was not individually observed
 and why that was accepted, every unbuilt phase says it was dropped, the
-campaign is in the archive, and the execution plan&#39;s only live steps are
-the contract and ADR items the next change will depend on. Work those
-through <code>hsdd-contract</code> and <code>hsdd-adr</code> at your own pace.</p>
-<p>Then stop running checkpoints on a cadence. The next one runs when
-something lands, scoped and naming the commits, and it carries the standing
-decision from step 4 until the spec names the dropped status. New work
-enters through the lanes of the previous section; a feature large enough
-for several phases enters through <code>hsdd-intake</code> and opens a new campaign.</p>
+campaign is in the archive, and your remaining work is the Needs the owner
+list. No checkpoint ran: the expensive evidence pass was paid for before the
+seal and nothing in the code changed. The first checkpoint after it, scoped
+to the seal commits, supersedes the pre-seal execution plan, lists the
+seal&#39;s delegated sign-offs in one finding for you to ratify, and carries the
+standing decision that every finding except a contract or ADR item is
+waived &quot;sealed at release 2.4.0&quot;. A reconcile runs when the first intake
+needs one. New work enters through the lanes of the previous section; a
+feature large enough for several phases enters through <code>hsdd-intake</code> and
+opens a new campaign.</p>
 <hr>
 <h2 id="tips"><a class="anchor" href="#tips" aria-hidden="true" tabindex="-1">#</a>Tips</h2>
 <ul>
@@ -1651,11 +1657,11 @@ A checkpoint that runs before anyone has executed the marking step
 carries the step forward unchanged.</li>
 </ul>
 </article>
-    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/main/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
   </div>
   <footer class="site-foot">
     <div class="foot-inner">
-      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/cff095fde3700fea9c33510aefe1d347d77f30f6"><code>mpurbo/hsdd@cff095f</code></a>, 2026-11-02.</p>
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/4bf636957c0c39ee88b9aa9d9ab701688839742d"><code>mpurbo/hsdd@4bf6369</code></a>, 2026-11-04.</p>
       <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
     </div>
   </footer>
