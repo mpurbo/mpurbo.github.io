@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="The HSDD methodology specification: v0.10, the complete current specification, and the v0.11 delta that adds unattended runs.">
+  <meta name="description" content="The HSDD methodology specification: v0.10, the complete current specification, the v0.11 delta that adds unattended runs, and the v0.12 delta that adds sealing a released tree.">
   <title>Specification · HSDD</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
   <meta property="og:title" content="Specification · HSDD">
-  <meta property="og:description" content="The HSDD methodology specification: v0.10, the complete current specification, and the v0.11 delta that adds unattended runs.">
+  <meta property="og:description" content="The HSDD methodology specification: v0.10, the complete current specification, the v0.11 delta that adds unattended runs, and the v0.12 delta that adds sealing a released tree.">
   <meta property="og:type" content="website">
   <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="../assets/docs.css">
@@ -41,7 +41,7 @@
     <header class="doc-head" style="margin-top:40px">
       <p class="eyebrow">Reference</p>
       <h1>Specification</h1>
-      <p class="lede">The full model and every settled decision, with its provenance. v0.10 is the complete current specification; v0.11 is a delta on it that adds <code>hsdd-auto</code> and changes nothing else. Read them in that order.</p>
+      <p class="lede">The full model and every settled decision, with its provenance. v0.10 is the complete current specification; v0.11 is a delta on it that adds <code>hsdd-auto</code>, and v0.12 a delta that adds <code>hsdd-seal</code> and the dropped phase status. Read them in that order.</p>
       <p class="source">The superseded delta series, v0.1 to v0.9, remains in <a href="https://github.com/mpurbo/hsdd/tree/feat/hsdd-seal/spec"><code>spec/</code></a> on GitHub as history. Nothing requires reading it.</p>
     </header>
     <section class="section" id="v0-10">
@@ -50,10 +50,13 @@
     </section><section class="section" id="v0-11">
       <header><p class="eyebrow">Version 0.11.0 (draft) · For review</p><h2><a href="v0.11/">HSDD: Hierarchical Spec-Driven Development (v0.11 delta: unattended runs)</a></h2></header>
       <ol class="spec-chapters"><li><a href="v0.11/#1-what-011-changes-and-why">1. What 0.11 Changes and Why</a></li><li><a href="v0.11/#2-vocabulary">2. Vocabulary</a></li><li><a href="v0.11/#3-the-skill">3. The Skill</a></li><li><a href="v0.11/#4-files-and-layout">4. Files and Layout</a></li><li><a href="v0.11/#5-the-run-configuration">5. The Run Configuration</a></li><li><a href="v0.11/#6-run-records">6. Run Records</a></li><li><a href="v0.11/#7-the-step-model">7. The Step Model</a></li><li><a href="v0.11/#8-the-loop">8. The Loop</a></li><li><a href="v0.11/#9-modes">9. Modes</a></li><li><a href="v0.11/#10-the-scripts">10. The Scripts</a></li><li><a href="v0.11/#11-the-claude-code-adapter">11. The Claude Code Adapter</a></li><li><a href="v0.11/#12-changes-to-the-existing-skills">12. Changes to the Existing Skills</a></li><li><a href="v0.11/#13-templates-and-prompts">13. Templates and Prompts</a></li><li><a href="v0.11/#14-evidence-informative">14. Evidence (informative)</a></li><li><a href="v0.11/#15-compatibility">15. Compatibility</a></li><li><a href="v0.11/#16-decisions">16. Decisions</a></li><li><a href="v0.11/#17-acceptance">17. Acceptance</a></li><li><a href="v0.11/#appendix-a-schemas">Appendix A. Schemas</a></li><li><a href="v0.11/#appendix-b-the-step-preamble">Appendix B. The Step Preamble</a></li><li><a href="v0.11/#appendix-c-step-section-templates">Appendix C. Step Section Templates</a></li></ol>
+    </section><section class="section" id="v0-12">
+      <header><p class="eyebrow">Version 0.12.0 (draft) · For review</p><h2><a href="v0.12/">HSDD: Hierarchical Spec-Driven Development (v0.12 delta: sealing a released tree)</a></h2></header>
+      <ol class="spec-chapters"><li><a href="v0.12/#1-what-012-changes-and-why">1. What 0.12 Changes and Why</a></li><li><a href="v0.12/#2-vocabulary">2. Vocabulary</a></li><li><a href="v0.12/#3-the-dropped-phase-status">3. The Dropped Phase Status</a></li><li><a href="v0.12/#4-the-seal">4. The Seal</a></li><li><a href="v0.12/#5-the-skill">5. The Skill</a></li><li><a href="v0.12/#6-edits-to-existing-skills">6. Edits to Existing Skills</a></li><li><a href="v0.12/#7-compatibility">7. Compatibility</a></li><li><a href="v0.12/#8-evidence-informative">8. Evidence (informative)</a></li><li><a href="v0.12/#9-decisions">9. Decisions</a></li><li><a href="v0.12/#10-acceptance">10. Acceptance</a></li></ol>
     </section></main>
   <footer class="site-foot">
     <div class="foot-inner">
-      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/4bf636957c0c39ee88b9aa9d9ab701688839742d"><code>mpurbo/hsdd@4bf6369</code></a>, 2026-11-04.</p>
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/47a95ffc11a3bc7c5ef83d3ddf9fd7bd9cc4b008"><code>mpurbo/hsdd@47a95ff</code></a>, 2026-11-04.</p>
       <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
     </div>
   </footer>

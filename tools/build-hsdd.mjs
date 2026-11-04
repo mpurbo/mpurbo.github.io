@@ -44,6 +44,7 @@ const build = {
 const SPECS = [
   { file: "hsdd-spec-v0_10.md", slug: "v0.10", label: "v0.10" },
   { file: "hsdd-spec-v0_11.md", slug: "v0.11", label: "v0.11 delta" },
+  { file: "hsdd-spec-v0_12.md", slug: "v0.12", label: "v0.12 delta" },
 ];
 const TUTORIALS = readTutorials(SRC);
 
