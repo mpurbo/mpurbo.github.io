@@ -38,13 +38,13 @@
     </div>
   </header>
   <div class="shell has-toc">
-    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#before-you-start" data-id="before-you-start">Before you start</a></li><li><a href="#how-hsdd-works" data-id="how-hsdd-works">How HSDD works</a><ol><li><a href="#plain-openspec-vs-hsdd" data-id="plain-openspec-vs-hsdd">Plain OpenSpec vs HSDD</a></li><li><a href="#the-hsdd-workflow" data-id="the-hsdd-workflow">The HSDD workflow</a></li><li><a href="#review-tiers" data-id="review-tiers">Review tiers</a></li><li><a href="#where-everything-lives" data-id="where-everything-lives">Where everything lives</a></li></ol></li><li><a href="#example-1-a-simple-project-single-level" data-id="example-1-a-simple-project-single-level">Example 1: A simple project (single level)</a><ol><li><a href="#step-1-spec-it" data-id="step-1-spec-it">Step 1: Spec it</a></li><li><a href="#step-2-one-contract" data-id="step-2-one-contract">Step 2: One contract</a></li><li><a href="#step-3-phase-plan" data-id="step-3-phase-plan">Step 3: Phase-plan</a></li><li><a href="#step-4-configure-run-review" data-id="step-4-configure-run-review">Step 4: Configure, run, review</a></li></ol></li><li><a href="#example-2-a-multi-level-system" data-id="example-2-a-multi-level-system">Example 2: A multi-level system</a><ol><li><a href="#step-1-decompose-the-root" data-id="step-1-decompose-the-root">Step 1: Decompose the root</a></li><li><a href="#step-2-recurse-into-the-backend" data-id="step-2-recurse-into-the-backend">Step 2: Recurse into the backend</a></li><li><a href="#step-3-contracts-and-a-decision" data-id="step-3-contracts-and-a-decision">Step 3: Contracts and a decision</a></li><li><a href="#step-4-phase-plan-the-leaf-parent" data-id="step-4-phase-plan-the-leaf-parent">Step 4: Phase-plan the leaf-parent</a></li><li><a href="#step-5-configure-and-switch-phase-context" data-id="step-5-configure-and-switch-phase-context">Step 5: Configure and switch phase context</a></li><li><a href="#step-6-run-verify-parallelize" data-id="step-6-run-verify-parallelize">Step 6: Run, verify, parallelize</a></li><li><a href="#step-7-parallel-leaf-parents-worktrees-reconcile" data-id="step-7-parallel-leaf-parents-worktrees-reconcile">Step 7: Parallel leaf-parents, worktrees, reconcile</a></li><li><a href="#step-8-execute-phases-on-branches" data-id="step-8-execute-phases-on-branches">Step 8: Execute phases on branches</a></li><li><a href="#the-resulting-tree" data-id="the-resulting-tree">The resulting tree</a></li></ol></li><li><a href="#example-3-a-brownfield-system-adopt-intake-promote" data-id="example-3-a-brownfield-system-adopt-intake-promote">Example 3: A brownfield system (adopt, intake, promote)</a><ol><li><a href="#step-1-extract-the-seams" data-id="step-1-extract-the-seams">Step 1: Extract the seams</a></li><li><a href="#step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written" data-id="step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written">Step 2: Confirm the tree before any node spec or contract is written</a></li><li><a href="#step-3-as-built-node-specs" data-id="step-3-as-built-node-specs">Step 3: As-built node specs</a></li><li><a href="#step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach" data-id="step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach">Step 4: Contracts at v0, with what the fixtures do not reach</a></li><li><a href="#step-5-prove-the-tree-and-stop" data-id="step-5-prove-the-tree-and-stop">Step 5: Prove the tree, and stop</a></li><li><a href="#step-6-route-the-prd-through-intake" data-id="step-6-route-the-prd-through-intake">Step 6: Route the PRD through intake</a></li><li><a href="#step-7-promote-the-node-then-phase-plan-it" data-id="step-7-promote-the-node-then-phase-plan-it">Step 7: Promote the node, then phase-plan it</a></li><li><a href="#step-8-living-with-a-mixed-tree" data-id="step-8-living-with-a-mixed-tree">Step 8: Living with a mixed tree</a></li><li><a href="#the-other-way-in-a-governed-tree-with-unadopted-surroundings" data-id="the-other-way-in-a-governed-tree-with-unadopted-surroundings">The other way in: a governed tree with unadopted surroundings</a></li></ol></li><li><a href="#running-the-project" data-id="running-the-project">Running the project</a><ol><li><a href="#two-roles" data-id="two-roles">Two roles</a></li><li><a href="#the-weekly-checkpoint" data-id="the-weekly-checkpoint">The weekly checkpoint</a></li><li><a href="#reading-aids" data-id="reading-aids">Reading aids</a></li><li><a href="#milestones" data-id="milestones">Milestones</a></li><li><a href="#open-questions" data-id="open-questions">Open questions</a></li><li><a href="#multi-repo-projects" data-id="multi-repo-projects">Multi-repo projects</a></li><li><a href="#adopting-on-a-project-already-underway" data-id="adopting-on-a-project-already-underway">Adopting on a project already underway</a></li></ol></li><li><a href="#unattended-runs" data-id="unattended-runs">Unattended runs</a><ol><li><a href="#first-run" data-id="first-run">First run</a></li><li><a href="#plan-and-intake-segments" data-id="plan-and-intake-segments">Plan and intake segments</a></li><li><a href="#the-stop-policy" data-id="the-stop-policy">The stop policy</a></li><li><a href="#answering-stopmd" data-id="answering-stopmd">Answering STOP.md</a></li><li><a href="#reviewing-a-segment" data-id="reviewing-a-segment">Reviewing a segment</a></li><li><a href="#isolation-on-claude-code" data-id="isolation-on-claude-code">Isolation on Claude Code</a></li></ol></li><li><a href="#outside-the-loop" data-id="outside-the-loop">Outside the loop</a><ol><li><a href="#estimating-in-pe-before-the-first-spec" data-id="estimating-in-pe-before-the-first-spec">Estimating in PE before the first spec</a></li><li><a href="#a-knowledge-base-beside-the-tree" data-id="a-knowledge-base-beside-the-tree">A knowledge base beside the tree</a></li><li><a href="#small-fixes-and-small-requests-on-a-launched-system" data-id="small-fixes-and-small-requests-on-a-launched-system">Small fixes and small requests on a launched system</a></li><li><a href="#sealing-a-released-tree" data-id="sealing-a-released-tree">Sealing a released tree</a></li></ol></li><li><a href="#tips" data-id="tips">Tips</a></li><li><a href="#upgrading" data-id="upgrading">Upgrading</a><ol><li><a href="#from-0110-to-0120" data-id="from-0110-to-0120">From 0.11.0 to 0.12.0</a></li><li><a href="#from-0102-to-0110" data-id="from-0102-to-0110">From 0.10.2 to 0.11.0</a></li><li><a href="#from-0101-to-0102" data-id="from-0101-to-0102">From 0.10.1 to 0.10.2</a></li><li><a href="#from-0100-to-0101" data-id="from-0100-to-0101">From 0.10.0 to 0.10.1</a></li><li><a href="#from-061-or-later-to-0100" data-id="from-061-or-later-to-0100">From 0.6.1 or later to 0.10.0</a></li></ol></li></ol><div class="toc-foot"><a href="../guide/">Interactive guide →</a><a href="../tutorial/">Tutorials →</a><a href="../reference/">Skills and glossary →</a></div></nav>
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#before-you-start" data-id="before-you-start">Before you start</a></li><li><a href="#how-hsdd-works" data-id="how-hsdd-works">How HSDD works</a><ol><li><a href="#plain-openspec-vs-hsdd" data-id="plain-openspec-vs-hsdd">Plain OpenSpec vs HSDD</a></li><li><a href="#the-hsdd-workflow" data-id="the-hsdd-workflow">The HSDD workflow</a></li><li><a href="#review-tiers" data-id="review-tiers">Review tiers</a></li><li><a href="#where-everything-lives" data-id="where-everything-lives">Where everything lives</a></li></ol></li><li><a href="#example-1-a-simple-project-single-level" data-id="example-1-a-simple-project-single-level">Example 1: A simple project (single level)</a><ol><li><a href="#step-1-spec-it" data-id="step-1-spec-it">Step 1: Spec it</a></li><li><a href="#step-2-one-contract" data-id="step-2-one-contract">Step 2: One contract</a></li><li><a href="#step-3-phase-plan" data-id="step-3-phase-plan">Step 3: Phase-plan</a></li><li><a href="#step-4-configure-run-review" data-id="step-4-configure-run-review">Step 4: Configure, run, review</a></li></ol></li><li><a href="#example-2-a-multi-level-system" data-id="example-2-a-multi-level-system">Example 2: A multi-level system</a><ol><li><a href="#step-1-decompose-the-root" data-id="step-1-decompose-the-root">Step 1: Decompose the root</a></li><li><a href="#step-2-recurse-into-the-backend" data-id="step-2-recurse-into-the-backend">Step 2: Recurse into the backend</a></li><li><a href="#step-3-contracts-and-a-decision" data-id="step-3-contracts-and-a-decision">Step 3: Contracts and a decision</a></li><li><a href="#step-4-phase-plan-the-leaf-parent" data-id="step-4-phase-plan-the-leaf-parent">Step 4: Phase-plan the leaf-parent</a></li><li><a href="#step-5-configure-and-switch-phase-context" data-id="step-5-configure-and-switch-phase-context">Step 5: Configure and switch phase context</a></li><li><a href="#step-6-run-verify-parallelize" data-id="step-6-run-verify-parallelize">Step 6: Run, verify, parallelize</a></li><li><a href="#step-7-parallel-leaf-parents-worktrees-reconcile" data-id="step-7-parallel-leaf-parents-worktrees-reconcile">Step 7: Parallel leaf-parents, worktrees, reconcile</a></li><li><a href="#step-8-execute-phases-on-branches" data-id="step-8-execute-phases-on-branches">Step 8: Execute phases on branches</a></li><li><a href="#the-resulting-tree" data-id="the-resulting-tree">The resulting tree</a></li></ol></li><li><a href="#example-3-a-brownfield-system-adopt-intake-promote" data-id="example-3-a-brownfield-system-adopt-intake-promote">Example 3: A brownfield system (adopt, intake, promote)</a><ol><li><a href="#step-1-extract-the-seams" data-id="step-1-extract-the-seams">Step 1: Extract the seams</a></li><li><a href="#step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written" data-id="step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written">Step 2: Confirm the tree before any node spec or contract is written</a></li><li><a href="#step-3-as-built-node-specs" data-id="step-3-as-built-node-specs">Step 3: As-built node specs</a></li><li><a href="#step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach" data-id="step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach">Step 4: Contracts at v0, with what the fixtures do not reach</a></li><li><a href="#step-5-prove-the-tree-and-stop" data-id="step-5-prove-the-tree-and-stop">Step 5: Prove the tree, and stop</a></li><li><a href="#step-6-route-the-prd-through-intake" data-id="step-6-route-the-prd-through-intake">Step 6: Route the PRD through intake</a></li><li><a href="#step-7-promote-the-node-then-phase-plan-it" data-id="step-7-promote-the-node-then-phase-plan-it">Step 7: Promote the node, then phase-plan it</a></li><li><a href="#step-8-living-with-a-mixed-tree" data-id="step-8-living-with-a-mixed-tree">Step 8: Living with a mixed tree</a></li><li><a href="#the-other-way-in-a-governed-tree-with-unadopted-surroundings" data-id="the-other-way-in-a-governed-tree-with-unadopted-surroundings">The other way in: a governed tree with unadopted surroundings</a></li></ol></li><li><a href="#running-the-project" data-id="running-the-project">Running the project</a><ol><li><a href="#two-roles" data-id="two-roles">Two roles</a></li><li><a href="#the-weekly-checkpoint" data-id="the-weekly-checkpoint">The weekly checkpoint</a></li><li><a href="#reading-aids" data-id="reading-aids">Reading aids</a></li><li><a href="#milestones" data-id="milestones">Milestones</a></li><li><a href="#open-questions" data-id="open-questions">Open questions</a></li><li><a href="#multi-repo-projects" data-id="multi-repo-projects">Multi-repo projects</a></li><li><a href="#adopting-on-a-project-already-underway" data-id="adopting-on-a-project-already-underway">Adopting on a project already underway</a></li></ol></li><li><a href="#unattended-runs" data-id="unattended-runs">Unattended runs</a><ol><li><a href="#first-run" data-id="first-run">First run</a></li><li><a href="#plan-and-intake-segments" data-id="plan-and-intake-segments">Plan and intake segments</a></li><li><a href="#the-stop-policy" data-id="the-stop-policy">The stop policy</a></li><li><a href="#answering-stopmd" data-id="answering-stopmd">Answering STOP.md</a></li><li><a href="#reviewing-a-segment" data-id="reviewing-a-segment">Reviewing a segment</a></li><li><a href="#isolation-on-claude-code" data-id="isolation-on-claude-code">Isolation on Claude Code</a></li></ol></li><li><a href="#outside-the-loop" data-id="outside-the-loop">Outside the loop</a><ol><li><a href="#estimating-in-pe-before-the-first-spec" data-id="estimating-in-pe-before-the-first-spec">Estimating in PE before the first spec</a></li><li><a href="#a-knowledge-base-beside-the-tree" data-id="a-knowledge-base-beside-the-tree">A knowledge base beside the tree</a></li><li><a href="#small-fixes-and-small-requests-on-a-launched-system" data-id="small-fixes-and-small-requests-on-a-launched-system">Small fixes and small requests on a launched system</a></li><li><a href="#sealing-a-released-tree" data-id="sealing-a-released-tree">Sealing a released tree</a></li></ol></li><li><a href="#tips" data-id="tips">Tips</a></li><li><a href="#upgrading" data-id="upgrading">Upgrading</a><ol><li><a href="#from-0120-to-0130" data-id="from-0120-to-0130">From 0.12.0 to 0.13.0</a></li><li><a href="#from-0110-to-0120" data-id="from-0110-to-0120">From 0.11.0 to 0.12.0</a></li><li><a href="#from-0102-to-0110" data-id="from-0102-to-0110">From 0.10.2 to 0.11.0</a></li><li><a href="#from-0101-to-0102" data-id="from-0101-to-0102">From 0.10.1 to 0.10.2</a></li><li><a href="#from-0100-to-0101" data-id="from-0100-to-0101">From 0.10.0 to 0.10.1</a></li><li><a href="#from-061-or-later-to-0100" data-id="from-061-or-later-to-0100">From 0.6.1 or later to 0.10.0</a></li></ol></li></ol><div class="toc-foot"><a href="../guide/">Interactive guide →</a><a href="../tutorial/">Tutorials →</a><a href="../reference/">Skills and glossary →</a></div></nav>
     <main id="main" tabindex="-1"><header class="doc-head">
       <p class="eyebrow">User's guide</p>
       <h1>HSDD User&#39;s Guide</h1>
       
       
-      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-sweep/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
     </header>
     <article class="prose"><p>This guide shows HSDD on three worked examples, then covers running a
 project week to week. Each example goes prompt by prompt: what you type,
@@ -1229,11 +1229,12 @@ added. For the strongest memory isolation, start the session with
 them: a stakeholder wants a size before any spec exists; the team keeps a
 knowledge base the spec should draw on; a launched system takes small fixes
 faster than phases can be planned; and a released tree has gone stale and
-nobody will verify it phase by phase. Three of them run on the skills as
-they are: what changes is the prompt, and in two cases a section you add
-to <code>hsdd/conventions.md</code>, the file every skill reads first. The fourth has
-a skill of its own, <code>hsdd-seal</code>, because it is clerical work a script does
-better than a model.</p>
+nobody will verify it phase by phase. Two of them run on the skills as
+they are: what changes is the prompt, and in one case a section you add to
+<code>hsdd/conventions.md</code>, the file every skill reads first. The third is
+<code>hsdd-intake</code>&#39;s <code>manual</code> class and sweep mode. The fourth has a skill of its
+own, <code>hsdd-seal</code>, because it is clerical work a script does better than a
+model.</p>
 <h3 id="estimating-in-pe-before-the-first-spec"><a class="anchor" href="#estimating-in-pe-before-the-first-spec" aria-hidden="true" tabindex="-1">#</a>Estimating in PE before the first spec</h3>
 <p>Stakeholders ask for a size before anyone has run <code>hsdd-spec</code>, and the only
 input is the PRD. A plain agent that has heard of HSDD will produce a number.
@@ -1371,15 +1372,23 @@ leaks nothing as long as Sources lines stay one line and a pointer, which
 is what the rule already says.</p>
 <h3 id="small-fixes-and-small-requests-on-a-launched-system"><a class="anchor" href="#small-fixes-and-small-requests-on-a-launched-system" aria-hidden="true" tabindex="-1">#</a>Small fixes and small requests on a launched system</h3>
 <p>After launch most changes are small, and the planning chain costs the same
-for a twenty-line fix as for a feature. Two lanes keep the tree honest
-without paying that cost twice. Both apply only after launch. Before it, a
-fix belongs to the phase it fixes, on that phase&#39;s branch, and backfill does
-not exist yet.</p>
+for a twenty-line fix as for a feature. <code>hsdd-intake</code> takes a change in
+either tense: ask it before the code exists, or sweep the commits after they
+shipped. A change that moves no surface and stales no claim costs one table
+row. Both tenses apply only after launch. Before it, a fix belongs to the
+phase it fixes, on that phase&#39;s branch, and backfill does not exist yet.</p>
 <p>The dividing line is the contract surface, not the diff size. A change that
 moves no route, schema, topic or table is invisible to every other node by
 construction, so the tree needs one thing from it: which node it happened
 in. A change that moves one is not small whatever its line count; it goes
 through <code>hsdd-intake</code> and a contract bump.</p>
+<p>The second test is the claim: a sentence in the owning node&#39;s closure that
+the code can make false without moving the surface, such as a phase&#39;s Scope
+or Verification line, a Guarantee of a contract the node produces, or the
+Decision of an ADR that governs it. A change that stales a claim earns a
+phase, because the tree now says something the code no longer does. On an
+as-built node the second test is not applied: only the surface decides, and
+promotion waits for the first change that needs a phase.</p>
 <p><strong>Which node?</strong> When you do not know:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Read hsdd/management/atlas.md (hsdd/spec/ if there is no atlas). Which node
 owns these paths: src/payouts/schedule.ts,
@@ -1388,8 +1397,36 @@ its phases&#39; Scope lines, and any `modules:` line under an Observed surface.
 Answer with one node id and the phases whose Scope names these files, or
 say the paths span two nodes and name both. Write nothing.</code></pre></div>
 <p>Two nodes is the first sign the change is not small.</p>
-<p><strong>A request</strong> (a ticket, a product ask) goes through intake as always; the
-saving is in what you ask the next skills for. Route it:</p>
+<p><strong>Ask first.</strong> Before the code exists, route the request, however small:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake route docs/tickets/PAY-431.md (ticket): add the merchant id to
+the log line when a payout preview fails. Small, inside payouts.</code></pre></div>
+<p>Intake applies both tests to the request as described. This one moves no
+surface and stales no claim, so it is class <code>manual</code>, and the skill writes
+nothing under <code>hsdd/</code>. Its report:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Class manual, no record.
+Node: acme.backend.payouts
+Trailer: HSDD-Node: acme.backend.payouts
+Ship it on the main line. It is attributed by /hsdd-intake sweep after it
+merges, by you or by a lead before the next checkpoint. If you find the
+change moves a route, schema, topic or table, bring the request back through
+request mode before it merges.</code></pre></div>
+<p>Put the trailer on the commit:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">payouts: merchant id in the preview failure log
+
+HSDD-Node: acme.backend.payouts</code></pre></div>
+<p>There is no record because the sweep row the commit will get is the audit
+trail. The trailer carries intake&#39;s answer to that row: it places the commit
+on a node and attributes nothing on its own. <code>manual</code> is an interactive
+answer: <code>/hsdd-auto intake</code> routes the same request <code>local</code> and records the
+decision, so the segment&#39;s review shows a phase the interactive answer would
+not have paid for.</p>
+<p>When the description does not let intake tell, the class is not <code>manual</code>:
+the phase is the safe answer, and a sweep can still find later that the diff
+stayed below the line. &quot;Rename the fee line to charge&quot; is a different case.
+It stales a Verification line that says &quot;shows the fee line&quot;, so it is
+<code>local</code>, a phase.</p>
+<p><strong>A request above the line</strong> (a ticket, a product ask) goes through intake
+as always; the saving is in what you ask the next skills for. Route it:</p>
 <blockquote>
 <p><code>/hsdd-intake</code> route <code>docs/tickets/PAY-412.md</code> (ticket): merchants want
 the payout preview to show the fee line. Small, inside payouts.</p>
@@ -1419,40 +1456,126 @@ review the segment report&#39;s decisions in one sitting:</p>
 <blockquote>
 <p><code>/hsdd-auto intake docs/tickets/PAY-412.md --authority ticket --stop-policy decide-and-record</code></p>
 </blockquote>
-<p><strong>A fix already made</strong> (a hotfix, a QA finding fixed on the spot) is the
-legal bypass the spec names: ship it, and the next checkpoint&#39;s code-vs-plan
-pass files a backfill finding whose plan step appends a retro phase.
-Waiting for the checkpoint is allowed. Appending the retro phase yourself
-the same day is cheaper, because the checkpoint then finds nothing to file:</p>
-<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-phase-plan acme.backend.payouts: add a retro phase for the hotfix in
-commit 5d2b9a0 (preview rounded the fee to the wrong currency unit). The
-Scope cites the commit and says there is no checkpoint finding yet. Review
-tier gate-only. If the diff moved a route, schema, topic or table, stop and
-tell me; that is an intake, not a retro phase.</code></pre></div>
-<p>Then its verification doc, marked retroactive:</p>
-<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Write hsdd/verify/acme.backend.payouts.10.verification.md from
-hsdd/templates/verification.md for the retro phase. Commands to run: the
-test that covers the fix. Observed: run it now, dated, and open with
-&quot;Retroactive: written after the fix shipped in 5d2b9a0&quot;. Outstanding and
-Learnings per the template. Sign-off: Claude for {owner} (delegated), tier
-gate-only.</code></pre></div>
-<p><strong>Make attribution cheap.</strong> The code-vs-plan pass has to decide which
-commits have a phase and which do not. A project convention tells every
-later checkpoint where to look, since every skill reads <code>conventions.md</code>
-first:</p>
-<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown">## Manual lane (project convention)
-After launch, a fix that moves no contract surface (route, schema, topic,
-table) may ship before its phase exists. Every such commit carries the
-trailers `HSDD-Node: {node-id}` and `HSDD-Kind: fix | chore | docs |
-refactor`, and its retro phase is appended the same day
-(`/hsdd-phase-plan {node}: add a retro phase for commit {sha}`) with a
-retroactive verification doc. The checkpoint&#39;s code-vs-plan pass
-attributes unphased commits by trailer first; a commit with no trailer is
-scope creep as the spec defines it. A fix that moved a contract surface is
-not in this lane: route it through hsdd-intake.</code></pre></div>
-<p>With the trailer in place, run <code>/hsdd-checkpoint</code> scoped after a batch of
-fixes, naming the commits, and full only before a release. The spec&#39;s own
-cadence rule allows it: weekly is a convention, not a mechanism.</p>
+<p><strong>Already made.</strong> A hotfix or a QA finding fixed on the spot is the legal
+bypass the spec names: ship it, then sweep it. A merged <code>manual</code> answer ends
+here too. From the implementation repository&#39;s root, the directory that
+holds <code>hsdd/</code>:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep --run-by &quot;Dewi Lestari&quot;</code></pre></div>
+<p>The first sweep copies the script to <code>hsdd/scripts/sweep/</code>, which needs Node
+20 or later. The script sets aside merges, governance-only commits, commits
+whose message names a phase id, commits a phase&#39;s Scope cites, and commits an
+earlier record classified.
+Every other commit is a candidate and gets a row. The script applies the
+surface test to the diff and proposes a node, from the <code>HSDD-Node:</code> trailer
+or the one <code>modules:</code> line that covers every path. The agent applies the
+claim test and fills what the script left, asking you once for the nodes the
+tree does not answer. The result is
+<code>hsdd/management/2026-11-12-sweep-acme-be-e91b2d4.md</code>:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Commit</th>
+<th>Node</th>
+<th>Class</th>
+<th>Reason</th>
+<th>Subject</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a4e19c7</td>
+<td>acme.backend.payouts</td>
+<td>log</td>
+<td>none</td>
+<td>payouts: merchant id in the preview failure log</td>
+</tr>
+<tr>
+<td>5d2b9a0</td>
+<td>acme.backend.payouts</td>
+<td>retro</td>
+<td>acme.backend.payouts.9 Verification: &quot;the preview shows the fee line&quot;</td>
+<td>payouts: the preview&#39;s fee line reads charge</td>
+</tr>
+<tr>
+<td>c7d03be</td>
+<td>acme.backend.payouts</td>
+<td>intake</td>
+<td>route added GET /payouts/fees</td>
+<td>payouts: fee lookup endpoint</td>
+</tr>
+<tr>
+<td>e91b2d4</td>
+<td>none</td>
+<td>unplaced</td>
+<td>src/legacy/report.ts</td>
+<td>report: null check</td>
+</tr>
+</tbody></table></div>
+<p>What each class costs:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Class</th>
+<th>Means</th>
+<th>Costs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>log</code></td>
+<td>no surface move, no claim staled</td>
+<td>one row, the whole record of the commit</td>
+</tr>
+<tr>
+<td><code>retro</code></td>
+<td>no surface move, the diff stales the claim the reason names</td>
+<td>one phase per node per record, however many commits it lists, with its reconcile and a retroactive verification doc signed by delegation</td>
+</tr>
+<tr>
+<td><code>intake</code></td>
+<td>a surface move, or paths that span two nodes</td>
+<td>one run of request mode per row, authority <code>commit</code>; the phases it produces are retro phases, and the contract bump it orders is the one the code already made</td>
+</tr>
+<tr>
+<td><code>unplaced</code></td>
+<td>no node owns the paths and nobody placed the commit</td>
+<td>no handoff: the report names it, the next checkpoint files it as a finding whose step is <code>hsdd-adopt</code> on the paths, and the record stays open until a person places the row, which <code>hsdd-adopt</code> alone does not do</td>
+</tr>
+</tbody></table></div>
+<p>The record&#39;s <code>## Routing</code> section carries the filled prompts for the <code>retro</code>
+and <code>intake</code> rows, which the agent runs in order or hands to whoever will.
+The agent may raise a class and never lowers one. You may lower any class
+before the record is committed, with a change-log line that names you; after
+publication nobody lowers a class. <code>check</code> and <code>commit</code> gate first
+publication: <code>check</code> reads the record back against a fresh draft of its range
+and refuses with the row named, and <code>commit</code> commits the record alone and
+never pushes. Under the profile, push inside <code>hsdd/</code> before pushing the
+implementation repository, as every governance edit is pushed, or the pointer
+names a commit no clone has. A later edit, such as placing an <code>unplaced</code> row,
+is committed with git directly. The next checkpoint closes the record once every <code>retro</code>
+and <code>intake</code> row has its product in <code>## Produced</code> and no <code>unplaced</code> row
+remains; a record of only <code>log</code> rows is written closed by the sweep itself.</p>
+<p>The sweep reads one contiguous range, from the end of the previous sweep to
+the head, not one range per problem. If a colleague merged three commits
+after your hotfix, the sweep classifies all four. On the first sweep, name
+the start with <code>--from</code>, which is itself not swept, so give the last commit
+of the launch:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep --from 3fa81c0 --run-by &quot;Dewi Lestari&quot;</code></pre></div>
+<p>A <code>--from</code> later than the previous record&#39;s end is refused, because it would
+leave commits no sweep reads. An earlier one is accepted, and the overlap is
+set aside as classified. A range with no candidates writes no record.</p>
+<p><strong>Who runs it.</strong> Whoever merged the small changes: a developer after
+merging, a lead before a checkpoint, over the same range with the same
+procedure. The record&#39;s <code>Run by</code> line names a person, who answers for the
+classification; a lead sweeping the week&#39;s range does not answer for the
+code. When nobody reads the record, run it by delegation:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep --run-by &quot;Claude for {person} (delegated)&quot;</code></pre></div>
+<p>The next checkpoint lists a delegated sweep with the delegated sign-offs, for
+that person to ratify.</p>
+<p>Waiting for the checkpoint is allowed. A range nobody swept is one backfill
+finding per repository, whose plan step is <code>/hsdd-intake sweep --from {sha}</code>,
+never a retro phase per commit. With sweeps in place, run <code>/hsdd-checkpoint</code>
+scoped after a batch of fixes, naming the commits, and full only before a
+release. The spec&#39;s own cadence rule allows it: weekly is a convention, not
+a mechanism.</p>
 <h3 id="sealing-a-released-tree"><a class="anchor" href="#sealing-a-released-tree" aria-hidden="true" tabindex="-1">#</a>Sealing a released tree</h3>
 <p>This is for a system that shipped, that QA verified, and whose tree then
 went stale: verification docs unsigned, phases planned and never built,
@@ -1596,6 +1719,25 @@ business logic, integrations, and security. Let scaffolding be <code>gate-only</
 rewritten. Each release&#39;s entry in the <a href="../changelog/">changelog</a> has the
 full list of changes. The notes below say what changes for a project in
 flight, newest release first.</p>
+<h3 id="from-0120-to-0130"><a class="anchor" href="#from-0120-to-0130" aria-hidden="true" tabindex="-1">#</a>From 0.12.0 to 0.13.0</h3>
+<p>Reinstall the thirteen skills. Nothing is rewritten. The <code>manual</code> class
+applies from the next request forward and writes no record. Sweep mode is
+opt-in: a project that never sweeps is unaffected, its post-launch commits
+with no phase are backfill findings as before, and the finding&#39;s step now
+names a sweep. The sweep record is a new management document outside the
+chain rules, and the reading aids ignore it by its slug. The <code>commit</code>
+authority is a new value of an existing field, so existing records are
+unchanged. A retro phase over several commits is forward-only: retro phases
+already planned stand. A commit whose retro phase cites it by sha is
+attributed. A retro phase that cites only a finding id attributes nothing, so
+start the first sweep after such commits. The amended scripts rule changes
+nothing on a project: request mode runs no script.</p>
+<p>A project that adopted the manual lane from the 0.12 guide is conformant: its
+trailers are read as hints, its same-day retro phases stand, and its first
+sweep names its own <code>--from</code>. Remove the <code>## Manual lane</code> paragraph from
+<code>hsdd/conventions.md</code> if you added it. It conflicts with the checkpoint&#39;s
+attribution rule, and the first checkpoint after the upgrade files it as a
+finding whose step removes it.</p>
 <h3 id="from-0110-to-0120"><a class="anchor" href="#from-0110-to-0120" aria-hidden="true" tabindex="-1">#</a>From 0.11.0 to 0.12.0</h3>
 <p>Reinstall the thirteen skills. Nothing is rewritten. The dropped phase
 status (<code>- **Status:** dropped (date, reason)</code> on a phase record) is
@@ -1665,11 +1807,11 @@ A checkpoint that runs before anyone has executed the marking step
 carries the step forward unchanged.</li>
 </ul>
 </article>
-    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-seal/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-sweep/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
   </div>
   <footer class="site-foot">
     <div class="foot-inner">
-      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/47a95ffc11a3bc7c5ef83d3ddf9fd7bd9cc4b008"><code>mpurbo/hsdd@47a95ff</code></a>, 2026-11-04.</p>
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/73a4d9e941bbd3dd3b6fbff27e2b64447a3c7c5b"><code>mpurbo/hsdd@73a4d9e</code></a>, 2026-11-05.</p>
       <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
     </div>
   </footer>

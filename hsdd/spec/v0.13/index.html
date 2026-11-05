@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="HSDD: Hierarchical Spec-Driven Development (v0.13 delta: the sweep, a mode of intake). Version 0.13.0 (draft).">
+  <title>HSDD: Hierarchical Spec-Driven Development (v0.13 delta: the sweep, a mode of intake) · HSDD</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 7L7 14M14 7L21 14M7 14L4 21M7 14L10 21M21 14L21 21' fill='none' stroke='%23475569' stroke-width='1.6'/%3E%3Crect x='10' y='3' width='8' height='6' rx='1.5' fill='%23e0e7ff' stroke='%234f46e5'/%3E%3Crect x='3' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='17' y='11' width='8' height='6' rx='1.5' fill='%23f3e8ff' stroke='%237c3aed'/%3E%3Crect x='1' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='8' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3Crect x='18' y='20' width='6' height='5' rx='1.5' fill='%23d1fae5' stroke='%23059669'/%3E%3C/svg%3E">
+  <meta property="og:title" content="HSDD: Hierarchical Spec-Driven Development (v0.13 delta: the sweep, a mode of intake) · HSDD">
+  <meta property="og:description" content="HSDD: Hierarchical Spec-Driven Development (v0.13 delta: the sweep, a mode of intake). Version 0.13.0 (draft).">
+  <meta property="og:type" content="website">
+  <script>try{var t=JSON.parse(localStorage.getItem("hsdd-guide")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../../assets/docs.css">
+  
+  <script src="../../assets/docs.js" defer></script>
+</head>
+<body class="kind-doc">
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="topbar">
+    <button class="tool contents-toggle" id="contents-toggle" aria-expanded="false" aria-controls="toc">Contents</button>
+    <a class="brand" href="../../" aria-label="HSDD documentation home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M14 7 L7 14 M14 7 L21 14 M7 14 L4 21 M7 14 L10 21 M21 14 L21 21" />
+        <rect x="10" y="3" width="8" height="6" rx="1.5" class="m-root" />
+        <rect x="3" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="17" y="11" width="8" height="6" rx="1.5" class="m-node" />
+        <rect x="1" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="8" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+        <rect x="18" y="20" width="6" height="5" rx="1.5" class="m-leaf" />
+      </svg>
+      <span class="brand-text"><strong>HSDD</strong><span>Hierarchical Spec-Driven Development</span></span>
+    </a>
+    <nav class="sitenav" id="sitenav" aria-label="HSDD documentation"><a href="../../guide/">Interactive guide</a><a href="../../users-guide/">User's guide</a><a href="../../tutorial/">Tutorials</a><a href="../../reference/" aria-current="page">Reference</a></nav>
+    <div class="tools">
+      <button class="tool menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sitenav">Menu</button>
+      <a class="tool icon" href="https://github.com/mpurbo/hsdd" aria-label="HSDD on GitHub" title="HSDD on GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="tool icon" id="theme-toggle" title="Theme (T)" aria-label="Theme: follow system">◐</button>
+    </div>
+  </header>
+  <div class="shell has-toc">
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#1-what-013-changes-and-why" data-id="1-what-013-changes-and-why">1. What 0.13 Changes and Why</a></li><li><a href="#2-vocabulary" data-id="2-vocabulary">2. Vocabulary</a></li><li><a href="#3-before-the-code-the-manual-class" data-id="3-before-the-code-the-manual-class">3. Before the Code: the manual Class</a></li><li><a href="#4-the-sweep" data-id="4-the-sweep">4. The Sweep</a></li><li><a href="#5-the-sweep-record" data-id="5-the-sweep-record">5. The Sweep Record</a></li><li><a href="#6-handoffs" data-id="6-handoffs">6. Handoffs</a></li><li><a href="#7-the-mode" data-id="7-the-mode">7. The Mode</a></li><li><a href="#8-edits-to-existing-skills" data-id="8-edits-to-existing-skills">8. Edits to Existing Skills</a></li><li><a href="#9-compatibility" data-id="9-compatibility">9. Compatibility</a></li><li><a href="#10-evidence-informative" data-id="10-evidence-informative">10. Evidence (informative)</a></li><li><a href="#11-decisions" data-id="11-decisions">11. Decisions</a></li><li><a href="#12-acceptance" data-id="12-acceptance">12. Acceptance</a></li></ol></nav>
+    <main id="main" tabindex="-1"><header class="doc-head">
+      <p class="eyebrow">Specification · v0.13 delta</p>
+      <h1>HSDD: Hierarchical Spec-Driven Development (v0.13 delta: the sweep, a mode of intake)</h1>
+      
+      <ul class="chips"><li class="chip flow">Version 0.13.0 (draft)</li><li class="chip">For review</li><li class="chip">2026-11-05</li></ul>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-sweep/spec/hsdd-spec-v0_13.md"><code>spec/hsdd-spec-v0_13.md</code></a> on GitHub</p>
+    </header>
+    <article class="prose"><blockquote>
+<p>Delta specification. It gives <code>hsdd-intake</code> a second mode, the sweep, and
+a fifth class, <code>manual</code>, so that one skill is the door for every change
+after launch whatever its size and whether or not the code exists yet. A
+request too small for a phase is answered with a node and a commit
+trailer, no record; after it ships, the sweep reads a range of commits,
+sets aside what is already attributed, classifies the rest by two tests,
+writes one record, and hands off only what earned a phase or an intake.
+Read it against v0.10.2, v0.11.0 and v0.12.0; only the changes are stated
+here. Everything in those documents not touched below still stands.</p>
+</blockquote>
+<p><strong>Version:</strong> 0.13.0 (draft)<br><strong>Status:</strong> For review<br><strong>Date:</strong> 2026-11-05<br><strong>Owner:</strong> Purbo Mohamad<br><strong>Drafted from:</strong> the owner&#39;s request of 2026-11-05 for a lane below the
+phase, FT-4&#39;s field report (v0.12.0 chapter 8), the manual lane the user&#39;s
+guide describes as a project convention (v0.12.0 §9.2 deferred its
+promotion), and the owner&#39;s decision of the same day that the lane is a
+mode of <code>hsdd-intake</code>, not a fourteenth skill (chapter 10). No project has
+run the lane yet; chapter 11 marks every decision accordingly. This
+document, v0.10.2, v0.11.0 and v0.12.0 are the whole input for implementing
+the release.<br><strong>Supersedes (in part):</strong> v0.10.0 §1.5&#39;s skill table (the <code>hsdd-intake</code> row
+and the chain diagram&#39;s intake line), §11.2&#39;s authority list (one value
+added), §11.2&#39;s class table (one row added), §7.2&#39;s sizing ceiling
+(retro phases exempted), §11.8&#39;s bypass path (steps 2 to 4), §12.7&#39;s
+code-vs-plan and intake-record passes (sweep records read and closed),
+§14.1&#39;s layout tree (one directory and one file pattern added), §15.1&#39;s
+compatibility table (rows added), §16.3&#39;s and §18.1&#39;s scripts rule (a new
+mode admitted), chapter 18 (rows added) and chapter 19 (terms added);
+v0.11.0 §12.1&#39;s unattended table for <code>hsdd-intake</code> (one row added); v0.12.0
+§9.2&#39;s deferred row on the <code>manual</code> intake class and the commit-trailer
+lane (taken up here). All other provisions are unchanged.</p>
+<hr>
+<h2 id="1-what-013-changes-and-why"><a class="anchor" href="#1-what-013-changes-and-why" aria-hidden="true" tabindex="-1">#</a>1. What 0.13 Changes and Why</h2>
+<h3 id="11-the-problem"><a class="anchor" href="#11-the-problem" aria-hidden="true" tabindex="-1">#</a>1.1 The problem</h3>
+<p>After launch most changes are small: a font size, a line of copy, a log
+line, a null check. The method&#39;s unit of record is the phase, and a phase
+costs the same for a twenty-line fix as for a feature: an intake or a
+backfill finding, a phase-plan append, a reconcile, a verification doc, a
+sign-off. FT-4 showed what happens when that cost exceeds a team&#39;s
+tolerance: the fixes ship, the tree stops describing the code, and the
+repair that rebuilds history one retro phase per change (v0.10.0 §11.8)
+costs more review than the work it records. v0.12.0 answered the recovery
+with the seal. It did not answer the steady state that made the seal
+necessary, and the user&#39;s guide&#39;s manual lane, written as a project
+convention, still costs one retro phase and one retroactive verification
+doc per fix.</p>
+<p>The method needs a lane whose cost per change is one table row, with a test
+that says when a change has earned more. The guide already names the first
+test: the contract surface, not the diff size. This document adds the
+second, a change that makes a claim in the tree false, and gives both a
+home.</p>
+<p>The home matters. A developer with a change should have one question to
+answer, &quot;where does this go?&quot;, and one skill that answers it, in either
+tense: before the code exists, and after it shipped. If the answer before
+the code is &quot;a phase&quot; and the answer after it is &quot;a row&quot;, developers learn
+to skip the question. So the lane is intake&#39;s, in both tenses: a class for
+the request that is below the line, and a mode for the commits that already
+landed.</p>
+<h3 id="12-what-this-release-adds"><a class="anchor" href="#12-what-this-release-adds" aria-hidden="true" tabindex="-1">#</a>1.2 What this release adds</h3>
+<ul>
+<li><strong>The <code>manual</code> class</strong> (chapter 3): <code>hsdd-intake</code>&#39;s answer to a request
+that, as described, moves no contract surface and stales no claim, inside
+one node, after launch. The answer is a node and a commit trailer, no
+record; the change ships on the implementation repository&#39;s main line
+and the sweep attributes it.</li>
+<li><strong>The sweep</strong> (chapter 4), <code>hsdd-intake</code>&#39;s second mode: an operation over
+a range of commits on an implementation repository&#39;s main line. A script
+sets aside the commits that are already attributed, detects moves of the
+contract surface, and proposes a node for each remaining commit; the
+agent applies one bounded test, whether the diff makes a claim in the
+owning node&#39;s closure stale; the result is one class per commit: <code>log</code>,
+<code>retro</code> or <code>intake</code>.</li>
+<li><strong>The sweep record</strong> (chapter 5): a dated management document, one per
+repository per run, that cites every commit in the range with its node
+and class. A <code>log</code> row is the whole record of that commit. The record
+closes when its handoffs have landed.</li>
+<li><strong>Handoffs</strong> (chapter 6): one retro phase per node per record for the
+<code>retro</code> rows, with its reconcile and its retroactive verification doc
+signed by delegation; one run of intake&#39;s request mode per <code>intake</code> row
+under the new authority <code>commit</code>; and a listing for the owner of commits
+no node owns.</li>
+<li><strong>The mode&#39;s packaging</strong> (chapter 7): a script bundled with <code>hsdd-intake</code>
+for the first time, under an amended scripts rule; the sweep&#39;s procedure
+in a file beside <code>SKILL.md</code>, read only in sweep mode.</li>
+<li><strong>Edits to three skills&#39; text and one template</strong> (chapter 8): the
+checkpoint reads and closes sweep records and routes an unswept range to
+a sweep instead of a retro phase per commit; phase planning&#39;s append mode
+writes a retro phase over several commits; the conventions template names
+the new paths; the user&#39;s guide&#39;s small-fixes section is rewritten.</li>
+</ul>
+<h3 id="13-what-it-does-not-change"><a class="anchor" href="#13-what-it-does-not-change" aria-hidden="true" tabindex="-1">#</a>1.3 What it does not change</h3>
+<ul>
+<li><strong>The skill count.</strong> Thirteen skills. <code>hsdd-intake</code> gains a mode and a
+class the way <code>hsdd-spec</code> has graft and promotion modes and
+<code>hsdd-phase-plan</code> has append mode.</li>
+<li><strong>Intake&#39;s request mode</strong> for anything above the line. A request that
+moves a surface, needs a node, or reshapes the tree is routed as v0.10.0
+chapter 11 says, record first; the <code>manual</code> class is the one class that
+writes no record, and chapter 3 says why.</li>
+<li><strong>The core invariant (v0.10.0 §1.3)</strong> and the definition of done. A <code>log</code>
+row claims nothing about verification; it says only which node a commit
+happened in. Nothing a sweep writes counts as done.</li>
+<li><strong>The dividing line.</strong> A change that moves a route, schema, topic or
+table is not small whatever its line count; it goes through request mode
+and a contract bump as before. The sweep detects the move and hands off;
+it never classifies such a commit <code>log</code>.</li>
+<li><strong>Human review.</strong> A sweep names the person it answers to, and the
+classification is theirs. A retro phase still gets its verification doc
+and its sign-off; the checkpoint still lists delegated ones to ratify.</li>
+<li><strong>Artifact formats (v0.10.0 §15.3).</strong> The sweep record is a new
+management document; the intake record gains nothing. <code>commit</code> and
+<code>manual</code> are new values of existing fields.</li>
+<li><strong>The intent of the scripts boundary (v0.10.0 §16.3, §18.1).</strong> The rule
+read &quot;bundled with a new skill only; no script changes an existing
+skill&#39;s behavior&quot;. It now reads &quot;bundled with a new skill or a new mode
+of an existing skill, and never changing an existing mode&#39;s behavior&quot;.
+Request mode runs no script; sweep mode runs one; the classifiers it
+reuses are copies kept identical by a test.</li>
+<li><strong>Before launch, nothing.</strong> A fix made before launch belongs to the phase
+it fixes, on that phase&#39;s branch (v0.10.0 §11.8). <code>manual</code> and the sweep
+apply after launch, like backfill.</li>
+</ul>
+<h3 id="14-versions"><a class="anchor" href="#14-versions" aria-hidden="true" tabindex="-1">#</a>1.4 Versions</h3>
+<p>v0.13.0 follows v0.12.0 as a minor release. The v1.0 release criterion
+(v0.10.0 chapter 17, the published case study) is unchanged.</p>
+<h3 id="15-how-to-read-this-document"><a class="anchor" href="#15-how-to-read-this-document" aria-hidden="true" tabindex="-1">#</a>1.5 How to read this document</h3>
+<p>Chapters 2 to 9 are normative. Chapter 10 is the evidence the design rests
+on and is informative. Chapter 11 states the decisions and what is
+deferred, chapter 12 the acceptance criteria. <strong>Must</strong> and <strong>never</strong> are
+requirements; <strong>should</strong> is a default. A section number without a version
+prefix refers to this document; &quot;v0.10.0 §n&quot; reads that section&#39;s 0.10.2
+text, &quot;v0.11.0 §n&quot; reads v0.11.0, and &quot;v0.12.0 §n&quot; reads v0.12.0.</p>
+<hr>
+<h2 id="2-vocabulary"><a class="anchor" href="#2-vocabulary" aria-hidden="true" tabindex="-1">#</a>2. Vocabulary</h2>
+<ul>
+<li><strong>Launched.</strong> As v0.10.0 §11.8: the system runs in production; an adopted
+tree from adoption, a greenfield tree from the sealing of the campaign
+whose gate includes launch.</li>
+<li><strong>Request mode.</strong> <code>hsdd-intake</code> as v0.10.0 chapter 11 defines it: one
+change request, routed before the code exists, record first. Its classes
+are <code>local</code>, <code>cross-node</code>, <code>new-capability</code>, <code>structural</code> and, from this
+release, <code>manual</code> (chapter 3).</li>
+<li><strong>Sweep mode.</strong> <code>hsdd-intake</code> over a range of commits that already
+shipped (chapter 4).</li>
+<li><strong>Main line of an implementation repository.</strong> The branch its merged
+work lands on, <code>main</code> unless the invocation names another. It is distinct
+from the spec repo&#39;s main line (v0.10.0 §14.2), where verification docs
+and records land.</li>
+<li><strong>Range.</strong> The commits on an implementation repository&#39;s main line
+between the end of the previous sweep of that repository and a named
+head, <code>{from}..{to}</code> in git&#39;s sense (§4.2).</li>
+<li><strong>Candidate commit.</strong> A commit in the range that the sweep must classify:
+not a merge, not governance-only, not attributed (§4.2).</li>
+<li><strong>Governance-only commit.</strong> A commit whose every changed path lies under
+the governance paths: <code>hsdd/</code> (the submodule pointer included, under the
+profile), <code>hsdd-context/</code> and <code>openspec/</code>.</li>
+<li><strong>Attributed commit.</strong> A commit that is governance-only, a merge, one
+whose message names a phase id of the tree, one whose sha a phase&#39;s Scope
+cites, or one that a sweep record has classified. After launch a commit that is none of these is scope
+creep (v0.10.0 §12.7).</li>
+<li><strong>Surface move.</strong> A diff that adds, removes or changes a route, a table,
+a topic or a schema file as the seam classifiers see them, or that
+touches a path under <code>hsdd/contract/</code> (§4.3).</li>
+<li><strong>Claim.</strong> A sentence in the owning node&#39;s closure that the code can make
+false without moving the surface: a phase&#39;s Scope or Verification line;
+the node header&#39;s Purpose, Owns, Does not own and Isolation strategy; a
+node decision; the Guarantees of a contract the node produces; the
+Decision of an ADR the node is governed by (§4.3). A produced contract&#39;s
+Interface is surface, not claim.</li>
+<li><strong>Sweep class.</strong> The sweep&#39;s disposition for a candidate: <code>log</code>, <code>retro</code>,
+<code>intake</code> or <code>unplaced</code> (§4.3, §4.4). Where this document says &quot;class&quot;
+about a commit, it means this; about a request, it means an intake class.</li>
+<li><strong>Sweep record.</strong> The management document of chapter 5.</li>
+<li><strong>Retro phase, backfill, delegated sign-off.</strong> As v0.10.0 §11.8, §12.7
+and §10.2 define them.</li>
+</ul>
+<hr>
+<h2 id="3-before-the-code-the-manual-class"><a class="anchor" href="#3-before-the-code-the-manual-class" aria-hidden="true" tabindex="-1">#</a>3. Before the Code: the <code>manual</code> Class</h2>
+<h3 id="31-the-class"><a class="anchor" href="#31-the-class" aria-hidden="true" tabindex="-1">#</a>3.1 The class</h3>
+<p>v0.10.0 §11.2&#39;s class table gains a row:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Class</th>
+<th>Means</th>
+<th>Routes to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>manual</code></td>
+<td>after launch, a request that, as described, moves no route, schema, topic or table, stales no claim of the owning node&#39;s closure, and lands inside one node</td>
+<td><strong>no skill, no record</strong>: the answer names the node and the commit trailer; the change ships on the implementation repository&#39;s main line and the sweep attributes it (chapter 4)</td>
+</tr>
+</tbody></table></div>
+<p>The tests are the sweep&#39;s two tests (§4.3), applied to the request as
+described instead of to a diff. &quot;Make the preview&#39;s total larger&quot; moves no
+surface and names nothing a Scope, Verification, Guarantee or header
+sentence says: <code>manual</code>. &quot;Rename the fee line to charge&quot; stales a
+Verification line that says &quot;shows the fee line&quot;: <code>local</code>, a phase.
+&quot;Add a preview endpoint&quot; moves a route: <code>local</code> or <code>cross-node</code> with a
+contract bump, as before. When the request&#39;s description does not let the
+skill tell, the class is not <code>manual</code>: the phase is the safe answer, and
+the sweep can still find later that the diff stayed below the line.</p>
+<h3 id="32-what-intake-answers"><a class="anchor" href="#32-what-intake-answers" aria-hidden="true" tabindex="-1">#</a>3.2 What intake answers</h3>
+<p>For a <code>manual</code> request the skill writes nothing under <code>hsdd/</code>. Its report
+names:</p>
+<ul>
+<li>the node, found as v0.10.0 §11.2 finds a landing;</li>
+<li>the trailer the commit must carry, <code>HSDD-Node: {node-id}</code>, which is how
+the answer reaches the sweep (§4.4);</li>
+<li>that the change ships on the main line of the implementation repository
+and is attributed by <code>/hsdd-intake sweep</code> after it merges, by the
+developer or by a lead before the next checkpoint;</li>
+<li>the one condition under which the answer is void: if, while making the
+change, the developer finds it moves a route, schema, topic or table, the
+request comes back through request mode before it merges.</li>
+</ul>
+<p>An as-built landing is not promoted for a <code>manual</code> request: promotion waits
+for the first change request that needs a phase (v0.10.0 §6.4, §4.3 here). On
+that landing the second test is not applied, as §4.3 says of the sweep: only
+the surface decides. An open intake on the node does not change the answer:
+a <code>manual</code> change touches no plan and no contract, so request mode&#39;s
+collision rules have nothing to serialize and nothing to record, and the
+report names the open record so the developer expects the overlap.</p>
+<h3 id="33-why-no-record"><a class="anchor" href="#33-why-no-record" aria-hidden="true" tabindex="-1">#</a>3.3 Why no record</h3>
+<p>Request mode&#39;s rule is &quot;the record before the handoff&quot;, so that the routing
+is auditable (v0.10.0 §11.2). A <code>manual</code> request has no handoff to a skill,
+and the thing that would make it auditable, one record per font change, is
+the cost the lane exists to remove. The audit trail is the sweep row the
+commit will get, and the trailer carries intake&#39;s answer to it. A <code>manual</code>
+answer the developer never acts on leaves nothing behind, which is right: a
+request nobody made a change for was not a change. A <code>manual</code> answer whose
+commit never gets swept is caught by the checkpoint as an unswept range
+(chapter 8), the same as any other shipped commit.</p>
+<h3 id="34-under-hsdd-auto"><a class="anchor" href="#34-under-hsdd-auto" aria-hidden="true" tabindex="-1">#</a>3.4 Under <code>hsdd-auto</code></h3>
+<p><code>manual</code> is not an unattended class. An <code>hsdd-auto</code> intake segment is done
+only when the record exists with its handoff block (v0.11.0 §9.2), and a
+<code>judgement</code> is never a stop (v0.11.0 §8.2), so an unattended run cannot
+leave a request out of the tree. v0.11.0 §12.1&#39;s unattended table for
+<code>hsdd-intake</code> gains one row: a request that would be class <code>manual</code>,
+disposition <code>decide</code>: route it <code>local</code> and record the decision, class
+<code>judgement</code>. The owner sees in the segment&#39;s review that the run paid for a
+phase the interactive answer would not have, and nothing in <code>hsdd-auto</code>&#39;s
+scripts changes. Automating the sweep under <code>hsdd-auto</code> is deferred (§11.2).</p>
+<h3 id="35-before-launch"><a class="anchor" href="#35-before-launch" aria-hidden="true" tabindex="-1">#</a>3.5 Before launch</h3>
+<p><code>manual</code> does not exist before launch. A request on an unlaunched system
+that is too small for its own phase is routed <code>local</code> and appended to the
+phase it fixes, or folded into an unshipped phase&#39;s Scope by the owner.</p>
+<hr>
+<h2 id="4-the-sweep"><a class="anchor" href="#4-the-sweep" aria-hidden="true" tabindex="-1">#</a>4. The Sweep</h2>
+<h3 id="41-when-it-applies"><a class="anchor" href="#41-when-it-applies" aria-hidden="true" tabindex="-1">#</a>4.1 When it applies</h3>
+<p>A sweep applies to a launched system whose tree is current enough that the
+next change will read it: after adoption, after the launch campaign sealed,
+or after a seal (v0.12.0 §4.11). It is run by whoever merged the small
+changes, a developer at the end of the day or a lead before a checkpoint,
+over the same range with the same procedure; the record names who. It does
+not apply before launch, and it is not the way to deliver a request: a
+ticket, a PRD or an incident goes through request mode before the code is
+written. The sweep looks only backwards, at commits that exist on the main
+line.</p>
+<h3 id="42-the-range-and-the-candidates"><a class="anchor" href="#42-the-range-and-the-candidates" aria-hidden="true" tabindex="-1">#</a>4.2 The range and the candidates</h3>
+<p>The sweep reads one implementation repository&#39;s main line from <code>{from}</code> to
+<code>{to}</code>: every commit reachable from <code>{to}</code> and not from <code>{from}</code>, side
+branches included, since a merge commit is set aside and the commits it
+brought in are where the change is. <code>{to}</code> defaults to the main line&#39;s head. <code>{from}</code> defaults to the
+<code>{to}</code> of the newest sweep record for that repository (§5.1); the first
+sweep of a repository must name it, and the record says it did. A <code>--from</code>
+that is neither the previous record&#39;s <code>{to}</code> nor an ancestor of it is
+refused: it would leave commits between the two records that no sweep reads
+and no default ever reaches. An ancestor is accepted, and the overlap is
+set aside as classified. The records of one repository are therefore
+contiguous by construction, and &quot;the commits after the newest record&#39;s
+<code>{to}</code>&quot; is the whole unswept set. Under the standalone-spec-repo profile
+each implementation repository is swept on its own, from that repository,
+and the records land in the submodule.</p>
+<p>Of the commits in the range, the script sets aside, with a one-line listing
+each in the record:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Set aside</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>merge commits</td>
+<td>more than one parent</td>
+</tr>
+<tr>
+<td>governance-only commits</td>
+<td>every changed path is under <code>hsdd/</code>, <code>hsdd-context/</code> or <code>openspec/</code></td>
+</tr>
+<tr>
+<td>attributed commits</td>
+<td>the message&#39;s subject, body or a trailer names a phase id the tree&#39;s plan files define, as a whole token (not preceded or followed by a letter, a digit, <code>_</code> or <code>-</code>, and not followed by <code>.</code> and a digit); a message naming an id no plan defines is not attributed, and the record notes the unknown id</td>
+</tr>
+<tr>
+<td>commits a phase records</td>
+<td>a phase&#39;s Scope line cites the sha, at least seven characters, as a whole token: the retro phases of the legal bypass predate the commit&#39;s message, and their commits are recorded already; listed under <code>attributed</code></td>
+</tr>
+<tr>
+<td>classified commits</td>
+<td>a sweep record of this repository already lists the sha</td>
+</tr>
+</tbody></table></div>
+<p>Everything else is a candidate, and every candidate gets a row. The script
+never drops a candidate, and the agent never adds one. A range with no
+candidates writes no record: the report says so with the counts, and the
+next sweep&#39;s default <code>{from}</code> is unchanged.</p>
+<h3 id="43-the-two-tests"><a class="anchor" href="#43-the-two-tests" aria-hidden="true" tabindex="-1">#</a>4.3 The two tests</h3>
+<p>A candidate&#39;s class comes from two tests applied in order. The first is the
+script&#39;s, the second the agent&#39;s.</p>
+<p><strong>The surface test</strong> (script). Over the commit&#39;s changed paths taken
+together, the script extracts routes, topics and migration tables from the
+content before and after the commit with the seam classifiers of
+<code>hsdd-adopt</code>&#39;s extractor, copied verbatim; a difference in any of the three
+is a surface move. A route or topic is compared by its method and path, or
+its direction and name, never by its file or line, so moving a handler
+between files or reformatting one is no move. A migration file added,
+changed or removed is a move whatever it says, since the classifier sees
+only <code>CREATE TABLE</code> and an <code>ALTER TABLE</code> changes a table too. So is a schema
+file (proto, OpenAPI, GraphQL, Avro, JSON Schema) added, changed or
+removed, and so is any changed path under <code>hsdd/contract/</code>. A candidate
+with a surface move is class <strong><code>intake</code></strong>, with the move as its reason
+(<code>route added POST /payouts/preview</code>, <code>schema changed api/openapi.yaml</code>).
+The classifiers are regex candidates, as <code>hsdd-adopt</code> says of them: a move
+they miss is for the agent to raise, and a diff that changes what a
+produced contract&#39;s Interface describes is such a move whether or not they
+saw it; a move they report is never lowered by an agent.</p>
+<p><strong>The claim test</strong> (agent), for every candidate the first test left. The
+agent reads the diff and the owning node&#39;s closure, nothing wider: the
+node&#39;s spec file, the Scope and Verification lines of its phases, the
+Guarantees of the contracts the node produces, and the Decision of each
+ADR in its Governed by. If the diff makes any sentence there false or
+stale, the class is <strong><code>retro</code></strong>, and the reason names the claim by its
+location (<code>acme.web.checkout.4 Verification: &quot;shows the fee line&quot;</code>).
+Otherwise the class is <strong><code>log</code></strong>, and the row is the whole record of the
+commit. A copy change that renames what a Verification line names is
+<code>retro</code>; a font size is <code>log</code>; a log line is <code>log</code> unless a Guarantee speaks
+of logging. The agent writes the claim it found, never a judgment of worth:
+&quot;not worth recording&quot; is not a class, and the question the agent answers is
+the bounded one.</p>
+<p><strong>On an as-built node</strong> (<code>- **Adopted:** as-built</code>, v0.10.0 §6.1) the claim
+test is not applied. Its header is an unvalidated claim about intent
+(v0.10.0 §6.5), its <code>## Observed surface</code> is re-rendered by the
+checkpoint&#39;s drift pass, and it has no phases whose lines a diff could
+stale. A candidate placed on an as-built node is <code>log</code> unless the surface
+moved; a retro phase is never planned on an as-built node, and promotion
+waits for the first change request that needs a phase, as v0.10.0 §6.4
+says. Depth on demand holds for small fixes too.</p>
+<p>The agent may raise a class: <code>log</code> to <code>retro</code>, and either to <code>intake</code> when
+it reads a move the classifiers missed or when the paths span two nodes
+(§4.4). It never lowers one. A person who runs the sweep may lower any
+class before the record is committed, the agent&#39;s or the script&#39;s, with a
+change-log line <code>- YYYY-MM-DD: lowered {sha7} from {class} to {class} by {person}: {reason}</code>; a script-set
+<code>intake</code> lowered this way records a false positive of the classifiers (a
+route-like string in a comment, a <code>.schema.json</code> fixture), and the record&#39;s
+<code>Run by</code> line is who answers for it. After publication no class is lowered
+(§5.3).</p>
+<h3 id="44-placement"><a class="anchor" href="#44-placement" aria-hidden="true" tabindex="-1">#</a>4.4 Placement</h3>
+<p>Every candidate names the node it happened in, by this order of evidence:</p>
+<ol>
+<li>an <code>HSDD-Node:</code> trailer in the message naming an active node the tree
+defines, which is where a <code>manual</code> answer (§3.2) arrives; it is a hint
+and does not override <code>spans</code>;</li>
+<li>the script&#39;s proposal: exactly one node whose <code>## Observed surface</code>
+<code>modules:</code> line (v0.10.0 §6.2) covers every changed path; when the
+<code>modules:</code> lines of two nodes each cover some of the paths, the script
+sets <code>intake</code> with the reason <code>spans</code> (below);</li>
+<li>the agent&#39;s reading of the atlas (<code>hsdd/spec/</code> when there is none): each
+node&#39;s Isolation strategy, its phases&#39; Scope lines, and any <code>modules:</code>
+line, the same prompt the user&#39;s guide gives;</li>
+<li>the person running the sweep, asked once, for the commits the first
+three left.</li>
+</ol>
+<p>Paths that span two nodes make the commit <code>intake</code> with the reason <code>spans {node}, {node}</code>: two nodes is the first sign the change is not small, and
+the collision rules of v0.10.0 §11.7 belong to request mode. A commit whose
+paths are partly unowned is placed by the runner or not at all. A <code>retro</code> placed on an internal
+node or the root goes to the leaf-parent the runner names, and the claim test
+runs again there; when the runner names none, the row is <code>unplaced</code>. A commit no
+node owns and nobody places is <strong><code>unplaced</code></strong>, with the paths as its
+reason; it is listed for the owner (§6.3) and is never guessed onto a node.</p>
+<h3 id="45-who-runs-it-and-who-answers"><a class="anchor" href="#45-who-runs-it-and-who-answers" aria-hidden="true" tabindex="-1">#</a>4.5 Who runs it, and who answers</h3>
+<p>A sweep&#39;s <code>Run by</code> line names a person, or <code>{agent} for {person}</code>, the same
+rule as a sign-off (v0.10.0 §10.2). The classification is a judgment and
+must be answerable. The next checkpoint lists sweep records run by
+delegation since the last one in the same finding as delegated sign-offs,
+for the person to ratify. A developer sweeping their own merged fixes
+answers for them; a lead sweeping the week&#39;s range answers for the
+classification, not for the code.</p>
+<hr>
+<h2 id="5-the-sweep-record"><a class="anchor" href="#5-the-sweep-record" aria-hidden="true" tabindex="-1">#</a>5. The Sweep Record</h2>
+<h3 id="51-the-file"><a class="anchor" href="#51-the-file" aria-hidden="true" tabindex="-1">#</a>5.1 The file</h3>
+<p><code>hsdd/management/YYYY-MM-DD-sweep-{repo}-{to7}.md</code>: the date of the run,
+the repository&#39;s name, and the first seven characters of <code>{to}</code>. <code>{repo}</code>
+is <code>--repo</code> when the invocation gives it; else the last path segment of the
+<code>origin</code> remote&#39;s URL without <code>.git</code>, which is the same on every
+developer&#39;s machine; else the basename of the top-level directory, and the
+header&#39;s <code>Repository</code> line says which. The name is lower-cased with every
+character that is not a letter or digit replaced by <code>-</code>. It is the key
+under which records chain (§4.2) and the checkpoint matches them (chapter
+8), so it must not vary by clone. A name that contains <code>progress</code>,
+<code>execution-plan</code>, <code>milestones</code>, <code>atlas</code> or <code>intake</code> is refused with a
+request for <code>--repo</code>: the first four are words the reading aids read as a
+dated report, and <code>intake</code> would match the <code>*-intake-*</code> pattern request
+mode and the checkpoint read open intake records by. A sweep record is
+found by <code>YYYY-MM-DD-sweep-</code> at the start of its name, never by <code>-sweep-</code>
+anywhere, so an intake record whose slug contains the word stays an intake
+record. Like intake records (v0.10.0 §11.5) the record is dated,
+never superseded and outside the supersedes chain; records accumulate, one
+per repository per run. The newest record for a repository is the one with
+the latest date and, among records of one date, the one whose <code>{to}</code>
+descends from the others&#39; on the main line.</p>
+<h3 id="52-the-shape"><a class="anchor" href="#52-the-shape" aria-hidden="true" tabindex="-1">#</a>5.2 The shape</h3>
+<div class="code"><div class="code-tab"><span>markdown</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-markdown"># Sweep: {repo} {from7}..{to7}
+
+- **Date:** YYYY-MM-DD
+- **Repository:** {repo} ({main line branch}; named by --repo | origin | directory)
+- **Range:** {from}..{to} ({n} commits, {k} candidates; from named | from {previous record filename})
+- **Run by:** {person} | {agent} for {person} (delegated)
+- **Status:** open | closed (YYYY-MM-DD)
+
+## Commits
+
+| Commit | Node | Class | Reason | Subject |
+|--------|------|-------|--------|---------|
+| a1b2c3d | acme.web.checkout | log | none | checkout: larger total on the preview |
+| b2c3d4e | acme.web.checkout | retro | acme.web.checkout.4 Verification: &quot;shows the fee line&quot; | checkout: &quot;fee&quot; becomes &quot;charge&quot; |
+| c3d4e5f | acme.backend.payouts | intake | route added POST /payouts/preview | payouts: preview endpoint |
+| d4e5f6a | none | unplaced | src/legacy/report.ts | report: null check |
+
+## Not candidates
+- merges: {n} ({shas})
+- governance-only: {n} ({shas})
+- attributed: {sha} -&gt; {phase-id}, ...
+- classified by {filename}: {shas}
+- unknown phase id: {sha} names {id}
+
+## Routing
+**H1** (retro, acme.web.checkout):
+```text
+{the append prompt of §6.1, verbatim}
+```
+```text
+{the reconcile prompt of §6.1}
+```
+```text
+{the verification-doc prompt of §6.1, verbatim}
+```
+**H2** (intake, c3d4e5f):
+```text
+{the prompt of §6.2, verbatim}
+```
+
+## Produced
+- H1: acme.web.checkout.9
+- H2: 2026-11-06-intake-payouts-preview.md
+
+## Change log
+- YYYY-MM-DD: created; {k} candidates: {l} log, {r} retro, {i} intake, {u} unplaced</code></pre></div>
+<p>Every cell is one clause. The <code>Reason</code> cell is <code>none</code> for <code>log</code>, the claim&#39;s
+location for <code>retro</code>, the surface move or the spanned nodes for <code>intake</code>,
+the paths for <code>unplaced</code>. The <code>Subject</code> cell is the commit&#39;s subject line
+with any pipe character replaced by a slash. A category under
+<code>## Not candidates</code> with nothing in it reads <code>none</code>. <code>## Produced</code> reads
+<code>none</code> until a product lands. The record cites and never defines (v0.10.0
+§12.1): a reason names where a claim lives, not what the code now does;
+what the code now does is the retro phase&#39;s business.</p>
+<h3 id="53-edits-after-publication"><a class="anchor" href="#53-edits-after-publication" aria-hidden="true" tabindex="-1">#</a>5.3 Edits after publication</h3>
+<p>A published record accepts the two edits of v0.10.0 §12.2, ticking <code>Status</code>
+and appending to the change log, and one more, named here as the milestone
+absorb is named there: a person may edit the <code>Node</code> and <code>Class</code> cells of an
+<code>unplaced</code> row, and its <code>Reason</code> with them, with a change-log line naming
+the person and the new class, and with the handoff the new class needs
+appended to <code>## Routing</code>. Nothing else is edited in place; a wrong class on
+any other row is corrected by a change-log line, <code>- YYYY-MM-DD: raised {sha7} from {class} to {class} by {person}: {reason}</code>, and by the handoff it now
+needs, appended to <code>## Routing</code>. The row&#39;s class is then the last such line&#39;s,
+over its cell, and a raise on a closed record sets <code>Status</code> back to <code>open</code> in
+the same edit, so the checkpoint walks it again. No class is lowered after publication, by anyone: lowering happens before the
+commit (§4.3), and a published <code>intake</code> row&#39;s commit went to request mode,
+whose record says what it found. <code>check</code> and <code>commit</code> gate the first publication only:
+a published edit is committed with git directly, since the first change-log
+line keeps the counts of the day it was written.</p>
+<h3 id="54-closure"><a class="anchor" href="#54-closure" aria-hidden="true" tabindex="-1">#</a>5.4 Closure</h3>
+<p>A record <strong>closes</strong> when every <code>retro</code> and <code>intake</code> row, its class read as
+§5.3 says, has its product named in <code>## Produced</code> (a phase id whose Scope
+cites the record and lists the sha; an intake record whose <code>**Request:**</code>
+names the sha) and no <code>unplaced</code> row remains. Products are listed one per
+line, <code>- H{n}: {product}</code>, replacing <code>none</code>. Closure means the commits are attributed, not that the retro
+phases are done: a retro phase&#39;s done-ness is its node&#39;s ledger&#39;s business
+and its intake&#39;s, and the sweep record does not track it twice. A record
+with only <code>log</code> rows is written <code>closed</code> by the sweep itself, on the day it
+is created, with no change-log line beyond the first. Every other record is
+closed by <code>hsdd-checkpoint</code> (chapter 8), which appends the products and
+ticks the status; the sweep closes nothing it did not create closed.</p>
+<hr>
+<h2 id="6-handoffs"><a class="anchor" href="#6-handoffs" aria-hidden="true" tabindex="-1">#</a>6. Handoffs</h2>
+<h3 id="61-retro-one-phase-per-node-per-record"><a class="anchor" href="#61-retro-one-phase-per-node-per-record" aria-hidden="true" tabindex="-1">#</a>6.1 <code>retro</code>: one phase per node per record</h3>
+<p>For each node with <code>retro</code> rows, <code>## Routing</code> carries one handoff <code>H{n}</code>
+in three prompts, which the agent runs in order or hands to the person who
+will. The first appends the phase through <code>hsdd-phase-plan</code> append mode:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-phase-plan {node} per hsdd/management/{record}: add one retro phase
+for commits {sha}, {sha}. Scope lists each commit with the claim it staled
+(the record&#39;s Reason cells); Verification states the behavior as the code
+now has it; review tier gate-only; gate the node default. Plan nothing the
+commits did not do. If a commit moved a route, schema, topic or table, stop
+and say so: that is an intake, not a retro phase.</code></pre></div>
+<p>The second drains what the append emitted, usually nothing:
+<code>/hsdd-reconcile {node}</code>. The third writes the verification doc, with
+<code>{phase-id}</code> filled by the agent from the append&#39;s result:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Write hsdd/verify/{phase-id}.verification.md from
+hsdd/templates/verification.md for the retro phase. Commands to run: the
+node&#39;s gate. Observed: run it now, dated, and open with &quot;Retroactive:
+written after commits {sha}, {sha} shipped&quot;. Outstanding and Learnings per
+the template. Sign-off: {agent} for {person} (delegated), tier gate-only.
+Run the commands; do not invent an observation.</code></pre></div>
+<p><code>{person}</code> is the record&#39;s <code>Run by</code> person, who answers for the sweep and
+so for its retro docs; the checkpoint lists the delegated sign-off for them
+to ratify like any other (v0.10.0 §10.2). The phase is named <code>(retro)</code>,
+cites the record in its Scope (v0.10.0 §11.3 names the intake record the
+same way), and lists the shas. No phase context is written for it: the code
+exists. A retro phase is one phase per node per record however many
+commits it lists, and it is never split by commit. v0.10.0 §7.2&#39;s ceiling
+sizes the run and the review of work not yet done; a retro phase records
+work that is done, so the ceiling does not apply to it, and a commit list
+too long to read in one sitting is a sign the sweep ran too late, which the
+record&#39;s range shows. A retro phase is never planned on an as-built node
+(§4.3).</p>
+<h3 id="62-intake-one-request-mode-run-per-commit"><a class="anchor" href="#62-intake-one-request-mode-run-per-commit" aria-hidden="true" tabindex="-1">#</a>6.2 <code>intake</code>: one request-mode run per commit</h3>
+<p>For each <code>intake</code> row, one handoff to request mode, with the prompt:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake route {repo}@{sha} (commit): {subject}. Shipped {date} on the
+main line; the sweep found {reason}; per hsdd/management/{record}.</code></pre></div>
+<p><code>{date}</code> is the commit&#39;s date. <code>commit</code> is a new authority value (chapter 8): the request is the diff,
+already in production. Request mode classifies it as any other request,
+<code>local</code>, <code>cross-node</code>, <code>new-capability</code> or <code>structural</code>, never <code>manual</code>
+(the surface moved), reads the open intakes for collisions, writes its
+record and hands off; the phases it produces are retro phases, since the
+code shipped, and the contract bump it orders is the one the surface move
+already made in the code. The intake record&#39;s <code>**Request:**</code> line names
+<code>{repo}@{sha}</code>, which is how the checkpoint ties it back to the sweep
+record (§5.4), and joins the <code>Sources</code> of the nodes it governs like any
+request&#39;s path. <code>commit</code> is an authority of request mode only: <code>hsdd-spec</code>&#39;s
+root <code>## Sources</code> list and <code>hsdd-auto</code>&#39;s <code>authority</code> enum are unchanged, since
+a sweep&#39;s handoffs run interactively (§11.2).</p>
+<h3 id="63-unplaced-listed-for-the-owner"><a class="anchor" href="#63-unplaced-listed-for-the-owner" aria-hidden="true" tabindex="-1">#</a>6.3 <code>unplaced</code>: listed for the owner</h3>
+<p>An <code>unplaced</code> row has no handoff. The record lists it, the sweep&#39;s report
+names it, and the next checkpoint files it as a finding: code on no node is
+unadopted surface, and its plan step is <code>hsdd-adopt</code> on that surface
+(v0.10.0 §15.1&#39;s &quot;one case worth calling out&quot;), or a person placing the
+commit under §5.3. The record stays open until the row is placed.</p>
+<hr>
+<h2 id="7-the-mode"><a class="anchor" href="#7-the-mode" aria-hidden="true" tabindex="-1">#</a>7. The Mode</h2>
+<h3 id="71-role-and-packaging"><a class="anchor" href="#71-role-and-packaging" aria-hidden="true" tabindex="-1">#</a>7.1 Role and packaging</h3>
+<p>The sweep is <code>hsdd-intake</code>&#39;s second mode. <code>SKILL.md</code> gains the <code>manual</code>
+class in its class table and process (chapter 3), the unattended row of
+§3.4, and a short section that says when sweep mode applies, how it is
+selected (§7.2), and that its procedure is the file <code>sweep.md</code> beside
+<code>SKILL.md</code>, read only in sweep mode so that request-mode runs do not carry
+it. <code>sweep.md</code> tells the agent to run the script, to fill only the cells the
+script left, to apply the claim test as §4.3 states it and no wider test,
+to ask the runner for placements the evidence did not give, to fix a record
+<code>check</code> refused and run <code>check</code> again, and never to commit a record <code>check</code>
+refused. Its quality gates and anti-rationalization table are its own.</p>
+<p>The skill&#39;s <code>scripts/</code> directory, new in this release, holds <code>sweep.mjs</code>
+and <code>lib/</code>, Node 20 or later, no dependency, and eight files copied
+verbatim and kept byte-identical by a test in this repository: from
+<code>hsdd-adopt/scripts/</code>, the classifiers <code>routes.mjs</code>, <code>topics.mjs</code>,
+<code>migrations.mjs</code> and <code>schemas.mjs</code>, and <code>diff.mjs</code> with <code>walk.mjs</code>, which
+parse a <code>modules:</code> line as the drift pass does; from
+<code>hsdd-summary/scripts/</code>, <code>md.mjs</code> and <code>extract-plan.mjs</code>, which read node
+and phase ids as the seal and the reading aids do. The sweep then agrees
+with every other reader about what a route, a scope and a phase id are.
+The directory is copied verbatim to <code>hsdd/scripts/sweep/</code> under the
+bundled-script copy rule (v0.11.0 §4.3), named for the operation as
+<code>hsdd/scripts/seams/</code> is. Request mode never runs it, which is the
+condition the amended scripts rule sets (§1.3).</p>
+<h3 id="72-selecting-the-mode"><a class="anchor" href="#72-selecting-the-mode" aria-hidden="true" tabindex="-1">#</a>7.2 Selecting the mode</h3>
+<p>The first word of the skill&#39;s arguments selects it: <code>sweep</code> is sweep mode;
+<code>route</code>, a path, a URL, or a described request is request mode. The slash
+command stays a one-line delegator whose description names both. When the
+arguments name neither, and the text says the change already shipped (&quot;I
+merged&quot;, &quot;these commits&quot;, a sha or a range), the skill asks once which mode
+is meant, and never sweeps a request or routes a commit range without being
+told. A commit given to request mode is the <code>commit</code> authority (§6.2), one
+commit per request, and is how the sweep hands a surface move back.</p>
+<h3 id="73-invocation"><a class="anchor" href="#73-invocation" aria-hidden="true" tabindex="-1">#</a>7.3 Invocation</h3>
+<p>From an implementation repository&#39;s root, the directory that holds <code>hsdd/</code>:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep [--from SHA] [--to REF] [--main BRANCH] [--repo NAME] [--run-by NAME] [--today YYYY-MM-DD]
+
+node hsdd/scripts/sweep/sweep.mjs draft [--from SHA] [--to REF] [--main BRANCH] [--repo NAME] [--run-by NAME] [--today YYYY-MM-DD] [--write]
+node hsdd/scripts/sweep/sweep.mjs check hsdd/management/DATE-sweep-REPO-SHA7.md
+node hsdd/scripts/sweep/sweep.mjs commit hsdd/management/DATE-sweep-REPO-SHA7.md</code></pre></div>
+<p>The skill&#39;s arguments after <code>sweep</code> are the script&#39;s. A developer types it
+after merging; a lead types it before a checkpoint. An unattended sweep
+under <code>hsdd-auto</code> is deferred (§11.2).</p>
+<h3 id="74-the-steps"><a class="anchor" href="#74-the-steps" aria-hidden="true" tabindex="-1">#</a>7.4 The steps</h3>
+<p><strong><code>draft</code></strong> reads the range (§4.2), sets aside what §4.2 names, runs the
+surface test (§4.3) and the script&#39;s placement (§4.4 steps 1 and 2), and
+writes the record of §5.2 with every candidate row present: <code>intake</code> rows
+with their class and reason; other rows with <code>Class</code> and <code>Reason</code> as <code>?</code>;
+every row with <code>Node</code> filled where the evidence gave one, <code>none</code> on a
+<code>spans</code> row, and <code>?</code> otherwise. The header and the <code>## Not candidates</code>
+section are complete, <code>Run by</code> is <code>?</code> without <code>--run-by</code>, the first
+change-log line carries <code>?</code> for the counts only the agent can know, and
+<code>## Routing</code> and <code>## Produced</code> read <code>none</code>. Without
+<code>--write</code> the draft is printed and nothing is written; an existing record
+for the same repository and <code>{to}</code> is never overwritten, and a record of
+the repository with a <code>?</code> cell left refuses the draft until it is finished
+or deleted, since its rows would otherwise read as classified. A <code>--from</code> earlier
+than the previous record&#39;s <code>{to}</code> is accepted and the overlap lands under
+<code>classified by</code>; one later than it is refused (§4.2). A <code>--to</code> that is not
+on the main line, or a <code>--from</code> that is not an ancestor of <code>--to</code>, is
+refused before anything is read. The
+script reads the repository through git only; it never checks out, stashes
+or writes to the working tree: the before and after contents the
+classifiers read are materialized from <code>git show</code> into a temporary
+directory outside the repository, removed afterwards. A range with no
+candidates writes nothing (§4.2).</p>
+<p><strong>The agent</strong> then fills every <code>?</code>: the node by §4.4 step 3, asking the
+runner (step 4) for what the tree does not answer; the class and reason by
+the claim test. It raises classes as §4.3 allows and lowers none. It fills
+the change-log line&#39;s counts and <code>Run by</code>, from the invocation or by asking
+the runner once. It writes <code>## Routing</code> from the rows, one handoff per node with <code>retro</code> rows and one
+per <code>intake</code> row, with the prompts of chapter 6 verbatim, in table order,
+numbered <code>H{n}</code>, each headed <code>**H{n}** ({class}, {node or sha}):</code>, a
+<code>retro</code> handoff carrying the three prompts of §6.1. For a record whose
+rows are all <code>log</code> it leaves <code>## Routing</code> at <code>none</code> and ticks <code>Status</code> to
+<code>closed</code> with the record&#39;s date.</p>
+<p><strong><code>check</code></strong> reads the record back against a fresh <code>draft</code> of the range its
+header names, with the record under check left out of the classified set,
+and refuses, naming the row, when: a candidate has no row or a row has no
+candidate; a cell is still <code>?</code>; a class is not one of the four; a <code>retro</code>
+or <code>intake</code> row&#39;s reason is <code>none</code>; a row the draft set <code>intake</code> is
+anything else and no change-log line names its sha as lowered by a person
+(§4.3); a <code>log</code> row&#39;s sha appears in a handoff; a <code>retro</code> or <code>intake</code> row
+has no handoff whose first prompt names its sha; a <code>retro</code> row&#39;s node is
+as-built, or internal, or the root, where append mode has no plan to write
+into; a node named is not in the tree, is retired on a <code>log</code> or <code>retro</code> row,
+or is <code>none</code> on a <code>log</code> or <code>retro</code> row; <code>Run by</code> is empty or a template placeholder; the first change-log
+line&#39;s counts disagree with the table; <code>Status</code> is <code>closed</code> on a record
+with a <code>retro</code>, <code>intake</code> or <code>unplaced</code> row, or <code>open</code> on a record with only
+<code>log</code> rows. A prompt names a sha only at chapter 6&#39;s sha positions, <code>commits {sha}, {sha}</code>
+and <code>{repo}@{sha}</code>, read across line breaks: the record&#39;s own filename ends in
+<code>{to7}</code>, and a subject may quote any sha, so neither counts. <code>check</code> exits
+non-zero and writes nothing; the agent fixes the record and runs it again.</p>
+<p><strong><code>commit</code></strong> runs <code>check</code>, then commits the record alone with the message
+<code>sweep: {repo} {from7}..{to7}</code>; anything else staged stays staged. Under
+the profile the commit lands inside the submodule and the pointer is bumped
+in the implementation repository; the step refuses while the submodule&#39;s
+HEAD is detached (v0.10.0 §14.4 rule 1, as the seal does). It never pushes. Under the
+profile the runner pushes inside <code>hsdd/</code> before pushing the implementation
+repository, as every governance edit is pushed, or the pointer names a commit
+no clone has.
+The agent then runs the handoffs of <code>## Routing</code> in order, or hands the
+prompts to the person who will.</p>
+<h3 id="75-files"><a class="anchor" href="#75-files" aria-hidden="true" tabindex="-1">#</a>7.5 Files</h3>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Path</th>
+<th>Written by</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>skills/hsdd-intake/sweep.md</code></td>
+<td>this repository</td>
+<td>the sweep&#39;s procedure, read in sweep mode only</td>
+</tr>
+<tr>
+<td><code>skills/hsdd-intake/scripts/</code></td>
+<td>this repository</td>
+<td><code>sweep.mjs</code>, <code>lib/</code>, the eight copies of §7.1</td>
+</tr>
+<tr>
+<td><code>hsdd/scripts/sweep/</code></td>
+<td>the first sweep in a project, by copy</td>
+<td>the same</td>
+</tr>
+<tr>
+<td><code>hsdd/management/YYYY-MM-DD-sweep-{repo}-{to7}.md</code></td>
+<td><code>draft</code>, then the agent, then <code>commit</code> after <code>check</code>; <code>hsdd-checkpoint</code> appends <code>## Produced</code> and ticks <code>Status</code></td>
+<td>the record</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="8-edits-to-existing-skills"><a class="anchor" href="#8-edits-to-existing-skills" aria-hidden="true" tabindex="-1">#</a>8. Edits to Existing Skills</h2>
+<p>Each is a change to the skill&#39;s text only. <code>hsdd-intake</code>&#39;s own changes are
+chapters 3 and 7.</p>
+<ul>
+<li><strong><code>hsdd-checkpoint</code>.</strong> The code-vs-plan pass reads every sweep record of
+each implementation repository. After launch, among the commits reachable
+from the head of the repository&#39;s own main branch, as the record&#39;s
+<code>**Repository:**</code> line names it, side branches included, a commit that is
+a merge, is governance-only, names a phase id, is cited by a phase&#39;s Scope,
+or is a row in a sweep record is attributed; a <code>log</code> row needs nothing further, and a
+commit trailer attributes nothing on its own. Every other commit since
+the newest record&#39;s <code>{to}</code>, or since launch when there is none, is one
+backfill finding per repository naming the unswept range, whose plan step
+is <code>/hsdd-intake sweep --from {sha}</code>, never a retro phase per commit. <code>{sha}</code>
+is the newest record&#39;s <code>{to}</code>, or with no record the last commit of the
+launch, which the step&#39;s owner names, since <code>{from}</code> itself is not swept. The
+two-checkpoint escalation of v0.10.0 §11.8 stands. The intake-record pass
+gains the sweep records: for each open record, append to <code>## Produced</code>
+the phase ids whose Scope cites it and the intake records whose
+<code>**Request:**</code> names one of its shas, tick <code>closed (date)</code> when §5.4 holds, and file as findings an <code>unplaced</code> row (plan step:
+<code>hsdd-adopt</code> on the paths, or a person placing it), a record still open
+two checkpoints after its date with a handoff not landed, a sha two
+records both classify, and two consecutive records of one repository
+whose ranges leave a gap (§4.2). Sweep records run by delegation since the last
+checkpoint join the delegated sign-offs&#39; finding. Sweep records are
+outside the chain rules, like intake records and the seal plan. Where a
+project&#39;s <code>conventions.md</code> still carries the user&#39;s guide&#39;s <code>## Manual lane (project convention)</code> paragraph, this rule takes precedence over it,
+and the first checkpoint after the upgrade files the paragraph as a
+finding whose step removes it (§9.1).</li>
+<li><strong><code>hsdd-phase-plan</code>.</strong> Append mode&#39;s retro phase may record several
+commits from one sweep record: its Scope cites the record and lists each
+sha with the claim it staled; one retro phase per node per record, never
+one per commit; review tier gate-only unless the prompt says otherwise.
+Append Mode&#39;s retro-phase rule admits a sweep record or an intake record
+of authority <code>commit</code> where it names the finding id.</li>
+<li><strong><code>hsdd-spec</code>&#39;s <code>conventions.md</code> template.</strong> The layout gains
+<code>hsdd/scripts/sweep/</code>; <code>hsdd/management/</code> names <code>hsdd-intake</code> as the
+writer of sweep records beside intake records; the profile section&#39;s
+repository list names each repository by the name §5.1 derives, so the
+list and the records agree.</li>
+</ul>
+<p>The user&#39;s guide&#39;s &quot;Small fixes and small requests on a launched system&quot;
+section is rewritten over the two tenses: ask intake first and get <code>manual</code>
+or a phase; or make the change and sweep it. The &quot;fix already made&quot; path
+and the <code>## Manual lane (project convention)</code> paragraph become the sweep;
+the <code>HSDD-Node:</code> trailer stays as the placement hint §4.4 reads and the
+carrier of a <code>manual</code> answer. <code>HSDD-Kind:</code> is read by nothing and the guide
+stops recommending it; a project that writes it loses nothing. The guide&#39;s
+Upgrading section tells a project that added the convention paragraph to
+remove it.</p>
+<hr>
+<h2 id="9-compatibility"><a class="anchor" href="#9-compatibility" aria-hidden="true" tabindex="-1">#</a>9. Compatibility</h2>
+<h3 id="91-upgrading-to-v0130-is-additive"><a class="anchor" href="#91-upgrading-to-v0130-is-additive" aria-hidden="true" tabindex="-1">#</a>9.1 Upgrading to v0.13.0 is additive</h3>
+<p>Upgrading means reinstalling the thirteen skills. No existing artifact is
+rewritten. v0.10.0 §15.1&#39;s table gains these rows:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Change</th>
+<th>Effect on an existing ≥0.6.1 project</th>
+<th>Implemented in v0.13.0 by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The <code>manual</code> class (chapter 3)</td>
+<td>From the next request forward; no record is written for it, so nothing existing changes.</td>
+<td><code>hsdd-intake</code></td>
+</tr>
+<tr>
+<td>Sweep mode and <code>hsdd/scripts/sweep/</code> (chapters 4 to 7)</td>
+<td>Opt-in. A project that never sweeps is unaffected: its post-launch commits with no phase are backfill findings as before, and the finding&#39;s step now names a sweep.</td>
+<td><code>hsdd-intake</code>; <code>hsdd-checkpoint</code></td>
+</tr>
+<tr>
+<td>The sweep record (chapter 5)</td>
+<td>A new management document outside the chain rules; the reading aids ignore it by its slug.</td>
+<td><code>hsdd-intake</code>, <code>hsdd-checkpoint</code></td>
+</tr>
+<tr>
+<td>The <code>commit</code> authority (§6.2)</td>
+<td>A new value of an existing field; existing records are unchanged.</td>
+<td><code>hsdd-intake</code></td>
+</tr>
+<tr>
+<td>A retro phase over several commits (§6.1)</td>
+<td>Forward-only: retro phases already planned stand.</td>
+<td><code>hsdd-phase-plan</code></td>
+</tr>
+<tr>
+<td>The amended scripts rule (§1.3)</td>
+<td>None on any project: request mode runs no script.</td>
+<td>the specification</td>
+</tr>
+<tr>
+<td>The manual lane as a project convention (user&#39;s guide, 0.12)</td>
+<td>A project that adopted the convention is conformant; its trailers are read as hints, its same-day retro phases stand, and its first sweep names its own <code>--from</code>. Its <code>## Manual lane</code> paragraph conflicts with chapter 8&#39;s attribution rule, so the first checkpoint after the upgrade files it as a finding whose step removes it.</td>
+<td><code>hsdd-intake</code>; <code>hsdd-checkpoint</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="92-artifact-stability"><a class="anchor" href="#92-artifact-stability" aria-hidden="true" tabindex="-1">#</a>9.2 Artifact stability</h3>
+<p>The sweep record joins v0.10.0 §15.3&#39;s frozen set when v0.13.0 is released:
+its header lines, its five table columns in their order, and its four
+section headings. Later releases may add optional header lines, columns to
+the right of <code>Subject</code>, or sections after <code>## Change log</code> only. The intake
+record is unchanged; <code>manual</code> and <code>commit</code> are values, not fields.</p>
+<h3 id="93-edits-to-earlier-text"><a class="anchor" href="#93-edits-to-earlier-text" aria-hidden="true" tabindex="-1">#</a>9.3 Edits to earlier text</h3>
+<ul>
+<li>v0.10.0 §1.5: the <code>hsdd-intake</code> row reads &quot;Route an incoming change
+request into the existing tree and record the routing; answer a request
+below the line with a node and a trailer; sweep the shipped commits after
+launch (chapter 11, and v0.13.0)&quot;; the chain diagram&#39;s intake line reads
+<code>hsdd-intake      (every change after) -&gt; routes a request into the tree, or sweeps shipped commits</code>.
+The skill count stays thirteen.</li>
+<li>v0.10.0 §11.2: the authority list gains <code>commit</code>; the class table gains
+the <code>manual</code> row of §3.1.</li>
+<li>v0.10.0 §7.2: the ceiling does not apply to a retro phase, which records
+work already done (§6.1).</li>
+<li>v0.10.0 §11.8: steps 2 to 4 read: the checkpoint&#39;s code-vs-plan pass
+files one backfill finding per repository naming the unswept range; its
+step is a sweep; the sweep&#39;s <code>retro</code> and <code>intake</code> rows produce the retro
+phases, with verification docs written after the fact and marked
+retroactive; a <code>log</code> row needs none. Step 5 stands.</li>
+<li>v0.10.0 §12.7: the code-vs-plan and intake-record passes read as chapter
+8&#39;s first bullet.</li>
+<li>v0.10.0 §14.1: the layout tree gains <code>hsdd/scripts/sweep/</code> and
+<code>hsdd/management/YYYY-MM-DD-sweep-{repo}-{to7}.md</code>.</li>
+<li>v0.10.0 §16.3 (the <code>hsdd</code> CLI row) and §18.1 (the Scripts row): &quot;bundled
+with a new skill only; no script changes an existing skill&#39;s behavior&quot;
+becomes &quot;bundled with a new skill or a new mode of an existing skill;
+no script changes an existing mode&#39;s behavior&quot;.</li>
+<li>v0.10.0 §18.1: this document&#39;s §11.1 rows are appended.</li>
+<li>v0.10.0 chapter 19: this document&#39;s §9.4 terms are appended.</li>
+<li>v0.11.0 §12.1: <code>hsdd-intake</code>&#39;s unattended table gains §3.4&#39;s row.</li>
+<li>v0.12.0 §9.2: the row on the <code>manual</code> intake class and the commit-trailer
+lane is struck; this document is its promotion.</li>
+</ul>
+<h3 id="94-glossary-additions"><a class="anchor" href="#94-glossary-additions" aria-hidden="true" tabindex="-1">#</a>9.4 Glossary additions</h3>
+<p>Request mode, sweep mode, range, candidate commit, governance-only commit,
+attributed commit, surface move, claim, sweep class, sweep record: each as
+chapter 2 defines them. <code>manual</code>: the intake class of chapter 3.</p>
+<hr>
+<h2 id="10-evidence-informative"><a class="anchor" href="#10-evidence-informative" aria-hidden="true" tabindex="-1">#</a>10. Evidence (informative)</h2>
+<h3 id="101-what-ft-4-and-the-manual-lane-showed"><a class="anchor" href="#101-what-ft-4-and-the-manual-lane-showed" aria-hidden="true" tabindex="-1">#</a>10.1 What FT-4 and the manual lane showed</h3>
+<p>FT-4 (v0.12.0 §8.1) is the released system whose tree went stale because
+its developers fixed QA findings by hand faster than phases could be
+planned, and whose owner found the one-retro-phase-per-change repair more
+expensive than the work it recorded. The seal answered the recovery. The
+user&#39;s guide then described a manual lane as a project convention: a fix
+that moves no contract surface may ship before its phase exists, carries
+<code>HSDD-Node</code> and <code>HSDD-Kind</code> trailers, and gets a same-day retro phase with a
+retroactive verification doc. v0.12.0 §9.2 deferred promoting the lane to a
+rule until a project had run it for a release.</p>
+<p>The owner&#39;s request of 2026-11-05 said why the lane as described would not
+be run: for a font size, a copy change or a log line, a retro phase and a
+verification doc are the ceremony the lane was meant to remove, only moved
+to the same day. The request proposed a file of commit shas and a skill to
+bulk-intake them, deciding per entry whether the change was worth
+recording. Three observations shaped what this document does with it:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Observation</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A hand-kept file of shas duplicates the git log, drifts from it, and costs an edit per fix, which is the friction the lane exists to remove.</td>
+<td>The input is a range on the main line; the previous record supplies the default start (§4.2).</td>
+</tr>
+<tr>
+<td>&quot;Worth recording&quot; as an open judgment is the question the method cannot answer well in an agent; the dividing lines the guide already names are tests an agent can apply.</td>
+<td>Two tests, surface and claim, the first by script and the second bounded to the owning node&#39;s closure (§4.3).</td>
+</tr>
+<tr>
+<td>The one-retro-phase-per-change shape failed in FT-4 by volume, not by kind: a phase is the right record for a change that staled a claim and the wrong one for a change that staled nothing.</td>
+<td>Three classes; <code>log</code> is one row; <code>retro</code> is one phase per node per record (§4.3, §6.1).</td>
+</tr>
+</tbody></table></div>
+<h3 id="102-why-a-mode-not-a-skill"><a class="anchor" href="#102-why-a-mode-not-a-skill" aria-hidden="true" tabindex="-1">#</a>10.2 Why a mode, not a skill</h3>
+<p>The first draft of this document made the sweep a fourteenth skill,
+<code>hsdd-sweep</code>, on the rules as written: scripts ship with a new skill only
+(v0.10.0 §16.3, §18.1), and one artifact gets one skill (§1.5). The owner
+asked what a developer would have to remember, and the question exposed a
+gap. A developer who asked intake first about a font-size change would have
+been given a <code>local</code> class and a phase; one who made the change and swept
+it would have been given one row. A lane that rewards skipping the question
+teaches developers to skip it. The fix is one door in both tenses: intake
+answers &quot;where does this go?&quot; before the code with <code>manual</code> (chapter 3) and
+after the code with the sweep (chapter 4), using the same two tests on the
+request&#39;s description and on the diff.</p>
+<p>Two rules bent to make room. The scripts rule&#39;s intent, that a proven path
+never grows a script dependency, survives in the amended wording: request
+mode runs no script (§1.3). The one-artifact rule already has
+<code>hsdd-checkpoint</code>&#39;s four views as a deliberate exception, and the sweep
+record is a routing record like the intake record, written by the skill
+whose job is routing. The cost accepted is a larger skill: <code>sweep.md</code>
+beside <code>SKILL.md</code>, read only in sweep mode, keeps request-mode runs from
+paying for it.</p>
+<h3 id="103-what-has-not-been-shown"><a class="anchor" href="#103-what-has-not-been-shown" aria-hidden="true" tabindex="-1">#</a>10.3 What has not been shown</h3>
+<p>No project has run a sweep or received a <code>manual</code> answer. The claim test
+has not been measured for agreement between an agent and a person over a
+real week of commits, the surface classifiers have been exercised only on
+<code>hsdd-adopt</code>&#39;s fixtures, and whether developers ask intake first or sweep
+after is unknown. The first field run should record, in its records&#39; change
+logs, every class a person lowered, since each is a case the agent judged
+too strictly, and every <code>log</code> row a later checkpoint found to have staled a
+claim, since each is a case it judged too loosely; and it should count the
+<code>manual</code> answers against the sweep rows that followed them. Chapter 11
+marks every decision <code>reasoned-only</code>.</p>
+<hr>
+<h2 id="11-decisions"><a class="anchor" href="#11-decisions" aria-hidden="true" tabindex="-1">#</a>11. Decisions</h2>
+<h3 id="111-settled"><a class="anchor" href="#111-settled" aria-hidden="true" tabindex="-1">#</a>11.1 Settled</h3>
+<p>Provenance as v0.10.0 chapter 18 defines it.</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Question</th>
+<th>Decision</th>
+<th>Provenance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Where the lane lives</td>
+<td>A mode and a class of <code>hsdd-intake</code>: one door for a change in either tense; a fourteenth skill was drafted and withdrawn (§10.2).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A request below the line, before the code</td>
+<td>Class <code>manual</code>: a node and a trailer, no record, no skill handoff; the sweep row is its record (chapter 3).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Where small post-launch changes are recorded</td>
+<td>In a sweep record, one row per commit; a phase only when a claim went stale; an intake only when the surface moved (chapters 4 to 6).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>The sweep&#39;s input</td>
+<td>A commit range on an implementation repository&#39;s main line, defaulting from the previous record; never a hand-kept file (§4.2).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>What &quot;worth recording&quot; means</td>
+<td>Two bounded tests, surface then claim; the agent names the claim or the move, never a worth; the same tests read a request&#39;s description in request mode (§3.1, §4.3).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Who applies which test</td>
+<td>The script applies the surface test and proposes placement from <code>modules:</code> lines; the agent applies the claim test over the owning node&#39;s closure and places from the tree; the runner places what the tree does not answer (§4.3, §4.4).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Lowering a class</td>
+<td>Never by an agent; a person may before the record is committed, the script&#39;s <code>intake</code> included, with a change-log line that <code>check</code> reads; never after publication (§4.3, §5.3, §7.4).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A small fix on an as-built node</td>
+<td><code>log</code> unless the surface moved: no claim test, no retro phase, no promotion for a shipped fix or a <code>manual</code> request (§3.2, §4.3).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A <code>manual</code> request on a node with an open intake</td>
+<td>Stays <code>manual</code>: it touches no plan and no contract, so there is nothing to serialize; the report names the open record (§3.2).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A commit two nodes own</td>
+<td><code>intake</code>: collisions belong to request mode (§4.4).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A commit no node owns</td>
+<td><code>unplaced</code>, listed for the owner, never guessed onto a node; a person may place it in the record after publication (§4.4, §5.3, §6.3).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>The record&#39;s grain</td>
+<td>One per repository per run, dated, never superseded, named by repository and <code>{to}</code> (§5.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td><code>{repo}</code></td>
+<td><code>--repo</code>, else the origin remote&#39;s basename, else the directory&#39;s; refused when it carries a reserved word (§5.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Closure</td>
+<td>When every handoff&#39;s product is named and no row is unplaced; done-ness of the retro phases is not the record&#39;s to track (§5.4).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A range with no candidates</td>
+<td>No record; the next default <code>{from}</code> is unchanged (§4.2).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Retro phase grain</td>
+<td>One per node per record, listing its commits; never one per commit (§6.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>What the retro handoff runs</td>
+<td>The append, the reconcile and the retroactive verification doc, signed by delegation for the <code>Run by</code> person (§6.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>The retro phase and the sizing ceiling</td>
+<td>Exempt: it records done work; a long commit list is evidence the sweep ran late (§6.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>A <code>log</code> row&#39;s verification</td>
+<td>None; the row claims only where the commit happened (§1.3, §4.3).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>The scripts rule</td>
+<td>Amended: a script may ship with a new mode of an existing skill, and never changes an existing mode&#39;s behavior; request mode runs none (§1.3, §9.3).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Where the sweep&#39;s procedure lives</td>
+<td><code>sweep.md</code> beside <code>SKILL.md</code>, read in sweep mode only (§7.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>How the mode is selected</td>
+<td>By the first argument; ambiguity is asked once, never guessed (§7.2).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>The script&#39;s and the agent&#39;s edit surfaces</td>
+<td>The script owns the record&#39;s structure and the <code>intake</code> rows; the agent fills <code>?</code> cells and writes <code>## Routing</code>; a person&#39;s lowering is logged; <code>check</code> refuses anything else (§7.4).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>How the script reads the tree</td>
+<td>Through copies of the extractor&#39;s and the summary engine&#39;s parsers, byte-identical to their sources (§7.1).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Who answers for a classification</td>
+<td>The <code>Run by</code> person; a delegated run is listed for ratification like a delegated sign-off (§4.5).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td><code>manual</code> under <code>hsdd-auto</code></td>
+<td>Not an unattended class: the step routes the request <code>local</code> and records a <code>judgement</code> decision; <code>hsdd-auto</code>&#39;s scripts do not change (§3.4).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>The checkpoint&#39;s backfill step</td>
+<td>A sweep over the unswept range, not a retro phase per commit (chapter 8).</td>
+<td>reasoned-only</td>
+</tr>
+<tr>
+<td>Commit trailers</td>
+<td><code>HSDD-Node:</code> is read as a placement hint and carries a <code>manual</code> answer; nothing is required; <code>HSDD-Kind:</code> is not read (§3.2, §4.4, chapter 8).</td>
+<td>reasoned-only</td>
+</tr>
+</tbody></table></div>
+<h3 id="112-deferred"><a class="anchor" href="#112-deferred" aria-hidden="true" tabindex="-1">#</a>11.2 Deferred</h3>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Deferred</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A <code>sweep</code> step kind under <code>hsdd-auto</code></td>
+<td>The agent&#39;s part has two ask points (a placement the tree does not give, and a class it would lower) that the stop policy can carry; the first field runs should show how often they fire before a step kind is written. The record already carries its handoffs in <code>## Routing</code> and admits an <code>hsdd-handoffs</code> block later, as intake&#39;s does. The <code>intake</code> step kind&#39;s target is a request path, so a sweep is not that kind.</td>
+</tr>
+<tr>
+<td>A <code>**Launched:**</code> line in conventions, as the default <code>--from</code> of a repository&#39;s first sweep, the checkpoint&#39;s launch test and the guard on <code>manual</code></td>
+<td>Today launch is inferred (v0.10.0 §11.8) and the first sweep names its start. One line would make all three mechanical; whether anyone forgets the first <code>--from</code> or asks for <code>manual</code> before launch is for the field to show.</td>
+</tr>
+<tr>
+<td>A claim test by script</td>
+<td>It needs claims a script can read, which v0.10.0 §1.4&#39;s structural anchors give for Scope and Verification lines but not for prose; the judgment layer the v0.11 and v0.12 deferred lists name is where a structured claim would come from.</td>
+</tr>
+<tr>
+<td>A per-node maintenance ledger</td>
+<td>Derivable from the sweep records and git; a living appended file is a third in-place-edit model the management layer does not have. Written only if readers ask for it.</td>
+</tr>
+<tr>
+<td>A verification doc field for external evidence</td>
+<td>Unchanged from v0.12.0 §9.2; a retro phase over several commits makes the field more useful, not less.</td>
+</tr>
+<tr>
+<td>Sweep records on the reading aids</td>
+<td>The checkpoint page reads the progress report and plan; a sweep&#39;s effect is a line in the report&#39;s code-vs-plan section, which the page already renders. A sweep view waits for a release that touches the summary scripts.</td>
+</tr>
+<tr>
+<td>A sweep across several repositories in one record</td>
+<td>One record per repository keeps the range, the default start and the closure per repository; a lead sweeping two repositories runs the command twice. Merged records return if that proves tiresome.</td>
+</tr>
+<tr>
+<td>Reading sweep records at the seal</td>
+<td>A tree swept weekly does not go stale. If a sealed tree ever has open sweep records, the seal&#39;s <code>close</code> should close them too; the first such seal decides.</td>
+</tr>
+<tr>
+<td>A minimal <code>manual</code> record</td>
+<td>Chapter 3 writes none. If the field shows developers want intake&#39;s answer on file before they commit, a one-line entry in the next sweep record&#39;s <code>## Not candidates</code>, or a <code>manual</code> line in a running file, is the cheapest shape; the trailer serves until then.</td>
+</tr>
+</tbody></table></div>
+<h3 id="113-rejected"><a class="anchor" href="#113-rejected" aria-hidden="true" tabindex="-1">#</a>11.3 Rejected</h3>
+<ul>
+<li><strong>A fourteenth skill.</strong> Drafted first on the rules as written, withdrawn
+for the entry-point and tense argument of §10.2. The rules it honored are
+the owner&#39;s, and the owner amended one and read the other&#39;s existing
+exception.</li>
+<li><strong>A hand-kept file of commit shas as the input.</strong> It is a copy of the git
+log that can drift from it, and an edit per fix is the friction the lane
+removes. The curation it would carry lives in trailers and in the
+runner&#39;s answers.</li>
+<li><strong>A mode of <code>hsdd-checkpoint</code>.</strong> The checkpoint already finds unphased
+commits, but it is periodic, expensive and read-only toward governance;
+the sweep is event-driven, cheap, and must hand off into governance.
+FT-4&#39;s owner found the checkpoint&#39;s output more than a person reads;
+tying the cheap lane to it would make the lane unused.</li>
+<li><strong>An intake record for a <code>manual</code> request.</strong> One record per font change
+is the ceremony the class removes; the sweep row records the commit, and
+the trailer records intake&#39;s answer.</li>
+<li><strong>&quot;Worth recording&quot; as the agent&#39;s question.</strong> Unbounded, unauditable,
+and the kind of judgment the method keeps with people. The bounded tests
+are auditable by anyone who reads the row.</li>
+<li><strong>Not recording <code>log</code> commits at all.</strong> Then they are scope creep at
+every checkpoint, or the checkpoint must learn to ignore them, and the
+tree&#39;s attribution is incomplete in a way nobody can see. One row is the
+cheapest honest attribution.</li>
+<li><strong>A verification doc per <code>log</code> commit.</strong> The ceremony the lane exists to
+remove; a <code>log</code> row claims nothing a doc would verify.</li>
+<li><strong>One retro phase per commit.</strong> FT-4&#39;s repair shape; it fails by volume.</li>
+<li><strong>A required commit trailer.</strong> A commit without one still gets
+classified; a lane that requires discipline at commit time is the lane
+that gets skipped under pressure, which is when it matters. A <code>manual</code>
+answer asks for the trailer, and a commit that forgot it is placed by the
+other three steps of §4.4.</li>
+<li><strong>A living per-repository ledger instead of dated records.</strong> A third
+in-place-edit model; dated records follow the intake precedent, and the
+<code>{to}</code> in the name gives the next sweep its start without parsing.</li>
+<li><strong>Guessing the mode.</strong> A request swept, or a range routed, is a wrong
+artifact written with confidence; one question costs less.</li>
+</ul>
+<hr>
+<h2 id="12-acceptance"><a class="anchor" href="#12-acceptance" aria-hidden="true" tabindex="-1">#</a>12. Acceptance</h2>
+<h3 id="121-script-tests"><a class="anchor" href="#121-script-tests" aria-hidden="true" tabindex="-1">#</a>12.1 Script tests</h3>
+<p>Under <code>test/</code>, with Node&#39;s built-in test runner and a fixture under
+<code>test/helpers/</code> holding a git repository with a tree of two nodes that both
+carry an <code>## Observed surface</code> whose <code>modules:</code> line names a prefix, one
+promoted with phases and one as-built, and a main line of commits that
+cover: a merge; a governance-only commit; a submodule pointer bump under a
+profile variant; a commit whose message names a phase id, one whose trailer
+does, and one naming an id no plan defines; a commit adding a route, one
+changing a schema file, one adding a migration with a table, one adding a
+topic producer, each in a file whose other lines also change; a copy change
+in a routes file that moves no route; a log line; a commit under the
+as-built node&#39;s prefix that would stale a header sentence; a commit
+spanning both nodes&#39; prefixes; a commit under a path no node owns; a commit
+carrying <code>HSDD-Node:</code>; a commit a later retro phase&#39;s Scope cites by sha. At least:</p>
+<ul>
+<li>the range: default <code>--from</code> from the newest record of the repository, and
+the overlap under <code>classified by</code>; a first sweep with no record and no
+<code>--from</code> is refused; a <code>--from</code> after the previous record&#39;s <code>{to}</code> is
+refused as a gap; a <code>--to</code> off the main line and a non-ancestor <code>--from</code>
+are refused before anything is read; a range of only set-aside commits
+writes nothing and exits 0 with the counts.</li>
+<li>the set-aside: merges, governance-only commits (the gitlink included),
+attributed commits with the boundary rule, unknown ids noted, a commit a
+phase&#39;s Scope cites by sha under <code>attributed</code>.</li>
+<li>the surface test: each of the four moves is <code>intake</code> with the stated
+reason; the copy change in the routes file is not; a path under
+<code>hsdd/contract/</code> is; the working tree is untouched and no temporary
+directory is left behind.</li>
+<li>placement: the trailer first, then a unique <code>modules:</code> match, then <code>?</code>;
+both prefixes give <code>intake</code> with <code>spans</code> by script; no node gives <code>?</code>,
+never a guess.</li>
+<li>the as-built rule: the commit under the as-built node&#39;s prefix drafts
+with the node proposed; filled <code>retro</code> by a test, <code>check</code> refuses it;
+filled <code>log</code>, it passes.</li>
+<li>the draft: every candidate has a row, cells as §7.4 says, the header and
+the <code>## Not candidates</code> section complete; nothing written without
+<code>--write</code>; an existing record for the same <code>{to}</code> is not overwritten.</li>
+<li><code>check</code>: each refusal of §7.4 on a record edited to trigger it, naming
+the row; a conformant record passes; the record under check is not
+counted against itself; a script-set <code>intake</code> lowered with a change-log
+line passes and without one is refused; an all-<code>log</code> record must be
+<code>closed</code> and any other <code>open</code>.</li>
+<li><code>commit</code>: the record alone, unrelated staged files left staged; the
+message; under the profile, inside the submodule with the pointer bumped
+afterwards, and refused while the submodule&#39;s HEAD is detached.</li>
+<li>the slug: <code>{repo}</code> from <code>--repo</code>, else the origin remote&#39;s basename, else
+the directory&#39;s, normalized as §5.1 says; a name carrying a reserved word
+is refused.</li>
+<li>the eight copies of §7.1 are byte-identical to their sources.</li>
+<li>a skill-text test of the shape of <code>hsdd-auto</code>&#39;s: every <code>sweep.mjs</code> command
+<code>sweep.md</code> and the intake <code>SKILL.md</code> name is one the script accepts.</li>
+</ul>
+<h3 id="122-documentation-and-skill-texts"><a class="anchor" href="#122-documentation-and-skill-texts" aria-hidden="true" tabindex="-1">#</a>12.2 Documentation and skill texts</h3>
+<p><code>hsdd-intake</code>&#39;s <code>SKILL.md</code> carries the <code>manual</code> row and its process step,
+the §3.4 unattended row, and a sweep-mode section of at most 40 lines that
+selects the mode and names <code>sweep.md</code>; <code>sweep.md</code> under 200 lines with the
+claim test and the as-built rule stated as §4.3 states them, its own
+quality gates, and an anti-rationalization table whose first row is the
+worth judgment; the slash command&#39;s description names both modes and stays
+one line; the two skill texts and the template of chapter 8 carry their
+edits; the user&#39;s guide&#39;s small-fixes section is rewritten over the two
+tenses, and the third situation in &quot;Outside the loop&quot; names them; the
+README&#39;s <code>hsdd-intake</code> row names both modes, its fenced chain block gains the
+sweep line, and its skill count stays thirteen; the interactive guide&#39;s skill map describes intake&#39;s
+two modes; the changelog entry names the upgrade effects of §9.1.</p>
+<h3 id="123-live-acceptance"><a class="anchor" href="#123-live-acceptance" aria-hidden="true" tabindex="-1">#</a>12.3 Live acceptance</h3>
+<p>On a launched tree, run by a person: one <code>manual</code> answer from request mode
+for a described small change, the change made with the trailer and merged;
+then one sweep over a real range that contains it, with the record
+committed and the handoffs run: the <code>manual</code> commit placed by its trailer
+and classified <code>log</code>, and among the other candidates at least one <code>retro</code>
+and one <code>intake</code> row, the retro phase appended and its retroactive
+verification doc signed, the intake record written, and the next checkpoint
+closing the sweep record with no finding against it other than the
+delegated-run listing. The record&#39;s change log notes every class the
+person lowered (§10.3).</p>
+</article>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-sweep/spec/hsdd-spec-v0_13.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+  </div>
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/73a4d9e941bbd3dd3b6fbff27e2b64447a3c7c5b"><code>mpurbo/hsdd@73a4d9e</code></a>, 2026-11-05.</p>
+      <p class="foot-links"><a href="../../changelog/">Changelog</a><a href="../../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../../">Purbo Mohamad</a></p>
+    </div>
+  </footer>
+</body>
+</html>

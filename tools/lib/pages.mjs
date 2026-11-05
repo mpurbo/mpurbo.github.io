@@ -235,7 +235,7 @@ export function referencePage({ out, shell, tocHtml, build, skills, commands, gu
       <div class="faq">${guide.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div>
 
       <h2 id="specification"><a class="anchor" href="#specification" aria-hidden="true" tabindex="-1">#</a>Specification</h2>
-      <p>The specification holds the full model and every settled decision with its provenance. Read v0.10 as the whole method, then the deltas: v0.11 for unattended runs and v0.12 for sealing a released tree; the <a href="${u("spec/index.html")}">specification index</a> lists each by chapter.</p>
+      <p>The specification holds the full model and every settled decision with its provenance. Read v0.10 as the whole method, then the deltas: v0.11 for unattended runs, v0.12 for sealing a released tree, and v0.13 for small changes after launch; the <a href="${u("spec/index.html")}">specification index</a> lists each by chapter.</p>
       <div class="grid two">${specs.map((s) => `<a class="card k-flow" href="${u(`spec/${s.slug}/index.html`)}"><span class="num">Version ${esc(s.info.version)}</span><h3>${esc(s.info.title)}</h3><p>${s.chapters.length} chapters${s.info.status ? ` · ${esc(s.info.status)}` : ""}</p><span class="go">Read →</span></a>`).join("")}</div>
 
       <h2 id="changelog"><a class="anchor" href="#changelog" aria-hidden="true" tabindex="-1">#</a>Changelog</h2>
@@ -303,14 +303,14 @@ export function specIndexPage({ out, shell, build, specs, ghTree }) {
     <header class="doc-head" style="margin-top:40px">
       <p class="eyebrow">Reference</p>
       <h1>Specification</h1>
-      <p class="lede">The full model and every settled decision, with its provenance. v0.10 is the complete current specification; v0.11 is a delta on it that adds <code>hsdd-auto</code>, and v0.12 a delta that adds <code>hsdd-seal</code> and the dropped phase status. Read them in that order.</p>
+      <p class="lede">The full model and every settled decision, with its provenance. v0.10 is the complete current specification; v0.11 is a delta on it that adds <code>hsdd-auto</code>, v0.12 a delta that adds <code>hsdd-seal</code> and the dropped phase status, and v0.13 a delta that gives <code>hsdd-intake</code> the <code>manual</code> class and sweep mode. Read them in that order.</p>
       <p class="source">The superseded delta series, v0.1 to v0.9, remains in <a href="${ghTree("spec")}"><code>spec/</code></a> on GitHub as history. Nothing requires reading it.</p>
     </header>
     ${specs.map(block).join("")}`;
   return shell({
     out, active: "reference", build, kind: "index",
     title: "Specification · HSDD",
-    description: "The HSDD methodology specification: v0.10, the complete current specification, the v0.11 delta that adds unattended runs, and the v0.12 delta that adds sealing a released tree.",
+    description: "The HSDD methodology specification: v0.10, the complete current specification, the v0.11 delta that adds unattended runs, the v0.12 delta that adds sealing a released tree, and the v0.13 delta that adds the sweep for small changes after launch.",
     body,
   });
 }
