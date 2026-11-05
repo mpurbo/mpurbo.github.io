@@ -38,13 +38,13 @@
     </div>
   </header>
   <div class="shell has-toc">
-    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#before-you-start" data-id="before-you-start">Before you start</a></li><li><a href="#how-hsdd-works" data-id="how-hsdd-works">How HSDD works</a><ol><li><a href="#plain-openspec-vs-hsdd" data-id="plain-openspec-vs-hsdd">Plain OpenSpec vs HSDD</a></li><li><a href="#the-hsdd-workflow" data-id="the-hsdd-workflow">The HSDD workflow</a></li><li><a href="#review-tiers" data-id="review-tiers">Review tiers</a></li><li><a href="#where-everything-lives" data-id="where-everything-lives">Where everything lives</a></li></ol></li><li><a href="#example-1-a-simple-project-single-level" data-id="example-1-a-simple-project-single-level">Example 1: A simple project (single level)</a><ol><li><a href="#step-1-spec-it" data-id="step-1-spec-it">Step 1: Spec it</a></li><li><a href="#step-2-one-contract" data-id="step-2-one-contract">Step 2: One contract</a></li><li><a href="#step-3-phase-plan" data-id="step-3-phase-plan">Step 3: Phase-plan</a></li><li><a href="#step-4-configure-run-review" data-id="step-4-configure-run-review">Step 4: Configure, run, review</a></li></ol></li><li><a href="#example-2-a-multi-level-system" data-id="example-2-a-multi-level-system">Example 2: A multi-level system</a><ol><li><a href="#step-1-decompose-the-root" data-id="step-1-decompose-the-root">Step 1: Decompose the root</a></li><li><a href="#step-2-recurse-into-the-backend" data-id="step-2-recurse-into-the-backend">Step 2: Recurse into the backend</a></li><li><a href="#step-3-contracts-and-a-decision" data-id="step-3-contracts-and-a-decision">Step 3: Contracts and a decision</a></li><li><a href="#step-4-phase-plan-the-leaf-parent" data-id="step-4-phase-plan-the-leaf-parent">Step 4: Phase-plan the leaf-parent</a></li><li><a href="#step-5-configure-and-switch-phase-context" data-id="step-5-configure-and-switch-phase-context">Step 5: Configure and switch phase context</a></li><li><a href="#step-6-run-verify-parallelize" data-id="step-6-run-verify-parallelize">Step 6: Run, verify, parallelize</a></li><li><a href="#step-7-parallel-leaf-parents-worktrees-reconcile" data-id="step-7-parallel-leaf-parents-worktrees-reconcile">Step 7: Parallel leaf-parents, worktrees, reconcile</a></li><li><a href="#step-8-execute-phases-on-branches" data-id="step-8-execute-phases-on-branches">Step 8: Execute phases on branches</a></li><li><a href="#the-resulting-tree" data-id="the-resulting-tree">The resulting tree</a></li></ol></li><li><a href="#example-3-a-brownfield-system-adopt-intake-promote" data-id="example-3-a-brownfield-system-adopt-intake-promote">Example 3: A brownfield system (adopt, intake, promote)</a><ol><li><a href="#step-1-extract-the-seams" data-id="step-1-extract-the-seams">Step 1: Extract the seams</a></li><li><a href="#step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written" data-id="step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written">Step 2: Confirm the tree before any node spec or contract is written</a></li><li><a href="#step-3-as-built-node-specs" data-id="step-3-as-built-node-specs">Step 3: As-built node specs</a></li><li><a href="#step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach" data-id="step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach">Step 4: Contracts at v0, with what the fixtures do not reach</a></li><li><a href="#step-5-prove-the-tree-and-stop" data-id="step-5-prove-the-tree-and-stop">Step 5: Prove the tree, and stop</a></li><li><a href="#step-6-route-the-prd-through-intake" data-id="step-6-route-the-prd-through-intake">Step 6: Route the PRD through intake</a></li><li><a href="#step-7-promote-the-node-then-phase-plan-it" data-id="step-7-promote-the-node-then-phase-plan-it">Step 7: Promote the node, then phase-plan it</a></li><li><a href="#step-8-living-with-a-mixed-tree" data-id="step-8-living-with-a-mixed-tree">Step 8: Living with a mixed tree</a></li><li><a href="#the-other-way-in-a-governed-tree-with-unadopted-surroundings" data-id="the-other-way-in-a-governed-tree-with-unadopted-surroundings">The other way in: a governed tree with unadopted surroundings</a></li></ol></li><li><a href="#running-the-project" data-id="running-the-project">Running the project</a><ol><li><a href="#two-roles" data-id="two-roles">Two roles</a></li><li><a href="#the-weekly-checkpoint" data-id="the-weekly-checkpoint">The weekly checkpoint</a></li><li><a href="#reading-aids" data-id="reading-aids">Reading aids</a></li><li><a href="#milestones" data-id="milestones">Milestones</a></li><li><a href="#open-questions" data-id="open-questions">Open questions</a></li><li><a href="#multi-repo-projects" data-id="multi-repo-projects">Multi-repo projects</a></li><li><a href="#adopting-on-a-project-already-underway" data-id="adopting-on-a-project-already-underway">Adopting on a project already underway</a></li></ol></li><li><a href="#unattended-runs" data-id="unattended-runs">Unattended runs</a><ol><li><a href="#first-run" data-id="first-run">First run</a></li><li><a href="#plan-and-intake-segments" data-id="plan-and-intake-segments">Plan and intake segments</a></li><li><a href="#the-stop-policy" data-id="the-stop-policy">The stop policy</a></li><li><a href="#answering-stopmd" data-id="answering-stopmd">Answering STOP.md</a></li><li><a href="#reviewing-a-segment" data-id="reviewing-a-segment">Reviewing a segment</a></li><li><a href="#isolation-on-claude-code" data-id="isolation-on-claude-code">Isolation on Claude Code</a></li></ol></li><li><a href="#outside-the-loop" data-id="outside-the-loop">Outside the loop</a><ol><li><a href="#estimating-in-pe-before-the-first-spec" data-id="estimating-in-pe-before-the-first-spec">Estimating in PE before the first spec</a></li><li><a href="#a-knowledge-base-beside-the-tree" data-id="a-knowledge-base-beside-the-tree">A knowledge base beside the tree</a></li><li><a href="#small-fixes-and-small-requests-on-a-launched-system" data-id="small-fixes-and-small-requests-on-a-launched-system">Small fixes and small requests on a launched system</a></li><li><a href="#sealing-a-released-tree" data-id="sealing-a-released-tree">Sealing a released tree</a></li></ol></li><li><a href="#tips" data-id="tips">Tips</a></li><li><a href="#upgrading" data-id="upgrading">Upgrading</a><ol><li><a href="#from-0120-to-0130" data-id="from-0120-to-0130">From 0.12.0 to 0.13.0</a></li><li><a href="#from-0110-to-0120" data-id="from-0110-to-0120">From 0.11.0 to 0.12.0</a></li><li><a href="#from-0102-to-0110" data-id="from-0102-to-0110">From 0.10.2 to 0.11.0</a></li><li><a href="#from-0101-to-0102" data-id="from-0101-to-0102">From 0.10.1 to 0.10.2</a></li><li><a href="#from-0100-to-0101" data-id="from-0100-to-0101">From 0.10.0 to 0.10.1</a></li><li><a href="#from-061-or-later-to-0100" data-id="from-061-or-later-to-0100">From 0.6.1 or later to 0.10.0</a></li></ol></li></ol><div class="toc-foot"><a href="../guide/">Interactive guide →</a><a href="../tutorial/">Tutorials →</a><a href="../reference/">Skills and glossary →</a></div></nav>
+    <nav class="toc" id="toc" aria-label="On this page"><p class="toc-label">On this page</p><ol class="toc-list"><li><a href="#before-you-start" data-id="before-you-start">Before you start</a></li><li><a href="#how-hsdd-works" data-id="how-hsdd-works">How HSDD works</a><ol><li><a href="#plain-openspec-vs-hsdd" data-id="plain-openspec-vs-hsdd">Plain OpenSpec vs HSDD</a></li><li><a href="#the-hsdd-workflow" data-id="the-hsdd-workflow">The HSDD workflow</a></li><li><a href="#review-tiers" data-id="review-tiers">Review tiers</a></li><li><a href="#where-everything-lives" data-id="where-everything-lives">Where everything lives</a></li></ol></li><li><a href="#example-1-a-simple-project-single-level" data-id="example-1-a-simple-project-single-level">Example 1: A simple project (single level)</a><ol><li><a href="#step-1-spec-it" data-id="step-1-spec-it">Step 1: Spec it</a></li><li><a href="#step-2-one-contract" data-id="step-2-one-contract">Step 2: One contract</a></li><li><a href="#step-3-phase-plan" data-id="step-3-phase-plan">Step 3: Phase-plan</a></li><li><a href="#step-4-configure-run-review" data-id="step-4-configure-run-review">Step 4: Configure, run, review</a></li></ol></li><li><a href="#example-2-a-multi-level-system" data-id="example-2-a-multi-level-system">Example 2: A multi-level system</a><ol><li><a href="#step-1-decompose-the-root" data-id="step-1-decompose-the-root">Step 1: Decompose the root</a></li><li><a href="#step-2-recurse-into-the-backend" data-id="step-2-recurse-into-the-backend">Step 2: Recurse into the backend</a></li><li><a href="#step-3-contracts-and-a-decision" data-id="step-3-contracts-and-a-decision">Step 3: Contracts and a decision</a></li><li><a href="#step-4-phase-plan-the-leaf-parent" data-id="step-4-phase-plan-the-leaf-parent">Step 4: Phase-plan the leaf-parent</a></li><li><a href="#step-5-configure-and-switch-phase-context" data-id="step-5-configure-and-switch-phase-context">Step 5: Configure and switch phase context</a></li><li><a href="#step-6-run-verify-parallelize" data-id="step-6-run-verify-parallelize">Step 6: Run, verify, parallelize</a></li><li><a href="#step-7-parallel-leaf-parents-worktrees-reconcile" data-id="step-7-parallel-leaf-parents-worktrees-reconcile">Step 7: Parallel leaf-parents, worktrees, reconcile</a></li><li><a href="#step-8-execute-phases-on-branches" data-id="step-8-execute-phases-on-branches">Step 8: Execute phases on branches</a></li><li><a href="#the-resulting-tree" data-id="the-resulting-tree">The resulting tree</a></li></ol></li><li><a href="#example-3-a-brownfield-system-adopt-intake-promote" data-id="example-3-a-brownfield-system-adopt-intake-promote">Example 3: A brownfield system (adopt, intake, promote)</a><ol><li><a href="#step-1-extract-the-seams" data-id="step-1-extract-the-seams">Step 1: Extract the seams</a></li><li><a href="#step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written" data-id="step-2-confirm-the-tree-before-any-node-spec-or-contract-is-written">Step 2: Confirm the tree before any node spec or contract is written</a></li><li><a href="#step-3-as-built-node-specs" data-id="step-3-as-built-node-specs">Step 3: As-built node specs</a></li><li><a href="#step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach" data-id="step-4-contracts-at-v0-with-what-the-fixtures-do-not-reach">Step 4: Contracts at v0, with what the fixtures do not reach</a></li><li><a href="#step-5-prove-the-tree-and-stop" data-id="step-5-prove-the-tree-and-stop">Step 5: Prove the tree, and stop</a></li><li><a href="#step-6-route-the-prd-through-intake" data-id="step-6-route-the-prd-through-intake">Step 6: Route the PRD through intake</a></li><li><a href="#step-7-promote-the-node-then-phase-plan-it" data-id="step-7-promote-the-node-then-phase-plan-it">Step 7: Promote the node, then phase-plan it</a></li><li><a href="#step-8-living-with-a-mixed-tree" data-id="step-8-living-with-a-mixed-tree">Step 8: Living with a mixed tree</a></li><li><a href="#the-other-way-in-a-governed-tree-with-unadopted-surroundings" data-id="the-other-way-in-a-governed-tree-with-unadopted-surroundings">The other way in: a governed tree with unadopted surroundings</a></li></ol></li><li><a href="#running-the-project" data-id="running-the-project">Running the project</a><ol><li><a href="#two-roles" data-id="two-roles">Two roles</a></li><li><a href="#the-weekly-checkpoint" data-id="the-weekly-checkpoint">The weekly checkpoint</a></li><li><a href="#reading-aids" data-id="reading-aids">Reading aids</a></li><li><a href="#milestones" data-id="milestones">Milestones</a></li><li><a href="#open-questions" data-id="open-questions">Open questions</a></li><li><a href="#multi-repo-projects" data-id="multi-repo-projects">Multi-repo projects</a></li><li><a href="#adopting-on-a-project-already-underway" data-id="adopting-on-a-project-already-underway">Adopting on a project already underway</a></li></ol></li><li><a href="#unattended-runs" data-id="unattended-runs">Unattended runs</a><ol><li><a href="#first-run" data-id="first-run">First run</a></li><li><a href="#plan-and-intake-segments" data-id="plan-and-intake-segments">Plan and intake segments</a></li><li><a href="#the-stop-policy" data-id="the-stop-policy">The stop policy</a></li><li><a href="#answering-stopmd" data-id="answering-stopmd">Answering STOP.md</a></li><li><a href="#reviewing-a-segment" data-id="reviewing-a-segment">Reviewing a segment</a></li><li><a href="#isolation-on-claude-code" data-id="isolation-on-claude-code">Isolation on Claude Code</a></li></ol></li><li><a href="#outside-the-loop" data-id="outside-the-loop">Outside the loop</a><ol><li><a href="#estimating-in-pe-before-the-first-spec" data-id="estimating-in-pe-before-the-first-spec">Estimating in PE before the first spec</a></li><li><a href="#a-knowledge-base-beside-the-tree" data-id="a-knowledge-base-beside-the-tree">A knowledge base beside the tree</a></li><li><a href="#small-fixes-and-small-requests-on-a-launched-system" data-id="small-fixes-and-small-requests-on-a-launched-system">Small fixes and small requests on a launched system</a></li><li><a href="#sealing-a-released-tree" data-id="sealing-a-released-tree">Sealing a released tree</a></li></ol></li><li><a href="#tips" data-id="tips">Tips</a></li><li><a href="#upgrading" data-id="upgrading">Upgrading</a><ol><li><a href="#from-0130-to-0131" data-id="from-0130-to-0131">From 0.13.0 to 0.13.1</a></li><li><a href="#from-0120-to-0130" data-id="from-0120-to-0130">From 0.12.0 to 0.13.0</a></li><li><a href="#from-0110-to-0120" data-id="from-0110-to-0120">From 0.11.0 to 0.12.0</a></li><li><a href="#from-0102-to-0110" data-id="from-0102-to-0110">From 0.10.2 to 0.11.0</a></li><li><a href="#from-0101-to-0102" data-id="from-0101-to-0102">From 0.10.1 to 0.10.2</a></li><li><a href="#from-0100-to-0101" data-id="from-0100-to-0101">From 0.10.0 to 0.10.1</a></li><li><a href="#from-061-or-later-to-0100" data-id="from-061-or-later-to-0100">From 0.6.1 or later to 0.10.0</a></li></ol></li></ol><div class="toc-foot"><a href="../guide/">Interactive guide →</a><a href="../tutorial/">Tutorials →</a><a href="../reference/">Skills and glossary →</a></div></nav>
     <main id="main" tabindex="-1"><header class="doc-head">
       <p class="eyebrow">User's guide</p>
       <h1>HSDD User&#39;s Guide</h1>
       
       
-      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-sweep/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
+      <p class="source">Source: <a href="https://github.com/mpurbo/hsdd/blob/main/docs/users-guide.md"><code>docs/users-guide.md</code></a> on GitHub</p>
     </header>
     <article class="prose"><p>This guide shows HSDD on three worked examples, then covers running a
 project week to week. Each example goes prompt by prompt: what you type,
@@ -1371,25 +1371,135 @@ filed-answer rule exists for that. And a public tree over a private wiki
 leaks nothing as long as Sources lines stay one line and a pointer, which
 is what the rule already says.</p>
 <h3 id="small-fixes-and-small-requests-on-a-launched-system"><a class="anchor" href="#small-fixes-and-small-requests-on-a-launched-system" aria-hidden="true" tabindex="-1">#</a>Small fixes and small requests on a launched system</h3>
-<p>After launch most changes are small, and the planning chain costs the same
-for a twenty-line fix as for a feature. <code>hsdd-intake</code> takes a change in
-either tense: ask it before the code exists, or sweep the commits after they
-shipped. A change that moves no surface and stales no claim costs one table
-row. Both tenses apply only after launch. Before it, a fix belongs to the
-phase it fixes, on that phase&#39;s branch, and backfill does not exist yet.</p>
-<p>The dividing line is the contract surface, not the diff size. A change that
-moves no route, schema, topic or table is invisible to every other node by
-construction, so the tree needs one thing from it: which node it happened
-in. A change that moves one is not small whatever its line count; it goes
-through <code>hsdd-intake</code> and a contract bump.</p>
-<p>The second test is the claim: a sentence in the owning node&#39;s closure that
-the code can make false without moving the surface, such as a phase&#39;s Scope
-or Verification line, a Guarantee of a contract the node produces, or the
-Decision of an ADR that governs it. A change that stales a claim earns a
-phase, because the tree now says something the code no longer does. On an
-as-built node the second test is not applied: only the surface decides, and
-promotion waits for the first change that needs a phase.</p>
-<p><strong>Which node?</strong> When you do not know:</p>
+<p>After launch, most changes are small: a font size, a line of copy, a log
+line, a null check. A full phase costs the same for a twenty-line fix as for
+a feature, so HSDD gives these changes a cheaper path. Come back to this
+section whenever you have a change and are not sure what to do with it.</p>
+<p>Everything here applies only after launch. Before launch, a fix belongs to
+the phase it fixes, on that phase&#39;s branch.</p>
+<h4 id="how-hsdd-intake-handles-a-change"><a class="anchor" href="#how-hsdd-intake-handles-a-change" aria-hidden="true" tabindex="-1">#</a>How <code>hsdd-intake</code> handles a change</h4>
+<p><code>hsdd-intake</code> is the one skill you need for any change after launch. You do
+not decide how big the change is: the skill does that for you. It has two
+modes, and the mode depends on whether the code exists yet.</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Mode</th>
+<th>Use it when</th>
+<th>Command</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Request mode</td>
+<td>the code does not exist yet</td>
+<td><code>/hsdd-intake route ...</code></td>
+<td>a class that says what the change needs</td>
+</tr>
+<tr>
+<td>Sweep mode</td>
+<td>the commits are already on the main branch</td>
+<td><code>/hsdd-intake sweep</code></td>
+<td>a sweep record with one row per commit</td>
+</tr>
+</tbody></table></div>
+<p>Both modes ask the same two questions about a change:</p>
+<ol>
+<li><strong>Does the change move the contract surface?</strong> The surface is what other
+nodes can see: routes, schemas, topics and tables. A change that moves
+the surface is not small, however few lines it has. It needs an intake
+and a contract bump.</li>
+<li><strong>Does the change make a claim in the tree false?</strong> A claim is a sentence
+in the tree that the code can make false without moving the surface: a
+phase&#39;s Scope or Verification line, a Guarantee of a contract the node
+produces, or the Decision of an ADR that governs the node. Suppose a
+Verification line says &quot;the preview shows the fee line&quot;, and you rename
+that line to &quot;charge&quot;. The sentence is now false, so the change needs a
+phase, because the tree must not say something the code no longer does.</li>
+</ol>
+<p>When both answers are no, no other node can see the change, and the tree
+needs only one fact from it: which node it happened in. Before the code,
+intake writes nothing. After the code, the sweep writes one table row. On an
+as-built node the second question is not asked: only the surface
+decides, and promotion waits for the first change that needs a phase.</p>
+<p>Sweep mode asks one more question before these two, because it looks at
+commits that already exist: is this commit the work of a phase? Many commits
+on the main branch are. <a href="#when-several-developers-commit-at-the-same-time">When several developers commit at the same
+time</a> explains how it
+decides.</p>
+<p>The answers give the change a class.</p>
+<p><strong>Classes in request mode:</strong></p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Class</th>
+<th>Means</th>
+<th>What happens next</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>manual</code></td>
+<td>no surface moved, no claim made false, inside one node</td>
+<td>Nothing is written. You get a node and a commit trailer, and you make the change.</td>
+</tr>
+<tr>
+<td><code>local</code></td>
+<td>fits inside one leaf-parent and needs a phase</td>
+<td>A record, then a phase on that node.</td>
+</tr>
+<tr>
+<td><code>cross-node</code></td>
+<td>touches the surfaces of several nodes</td>
+<td>A record, a contract bump or an ADR, then a phase on each node.</td>
+</tr>
+<tr>
+<td><code>new-capability</code></td>
+<td>needs a node that does not exist</td>
+<td>A record, a new node under the existing parent, then its phases.</td>
+</tr>
+<tr>
+<td><code>structural</code></td>
+<td>the shape of the tree is wrong for this change</td>
+<td>A record with the options written down, and a person decides.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Classes in sweep mode,</strong> one per commit:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Class</th>
+<th>Means</th>
+<th>What it costs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>log</code></td>
+<td>no surface moved, no claim made false</td>
+<td>One row, which is the whole record of the commit.</td>
+</tr>
+<tr>
+<td><code>phase</code></td>
+<td>the commit is the work of a phase</td>
+<td>One row that names the phase. The phase&#39;s own gate and verification doc cover the commit.</td>
+</tr>
+<tr>
+<td><code>retro</code></td>
+<td>no surface moved, and the diff makes the claim in the row false</td>
+<td>One phase per node per record, however many commits it lists, with its reconcile and a retroactive verification doc signed by delegation.</td>
+</tr>
+<tr>
+<td><code>intake</code></td>
+<td>a surface moved, or the paths span two nodes</td>
+<td>One run of request mode per row, with authority <code>commit</code>. The phases it produces are retro phases, and the contract bump it orders is the one the code already made.</td>
+</tr>
+<tr>
+<td><code>unplaced</code></td>
+<td>no node owns the paths and nobody placed the commit</td>
+<td>No handoff. The report names the row, the next checkpoint files it as a finding whose step is <code>hsdd-adopt</code> on the paths, and the record stays open until a person places the row, which <code>hsdd-adopt</code> alone does not do.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Which node?</strong> Both modes need to know which node owns the code. When you
+do not know, ask:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Read hsdd/management/atlas.md (hsdd/spec/ if there is no atlas). Which node
 owns these paths: src/payouts/schedule.ts,
 src/payouts/__tests__/schedule.test.ts? Use each node&#39;s Isolation strategy,
@@ -1397,12 +1507,14 @@ its phases&#39; Scope lines, and any `modules:` line under an Observed surface.
 Answer with one node id and the phases whose Scope names these files, or
 say the paths span two nodes and name both. Write nothing.</code></pre></div>
 <p>Two nodes is the first sign the change is not small.</p>
-<p><strong>Ask first.</strong> Before the code exists, route the request, however small:</p>
+<h4 id="before-the-code-exists-ask-hsdd-intake-first"><a class="anchor" href="#before-the-code-exists-ask-hsdd-intake-first" aria-hidden="true" tabindex="-1">#</a>Before the code exists: ask <code>hsdd-intake</code> first</h4>
+<p>Route the request, however small it looks:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake route docs/tickets/PAY-431.md (ticket): add the merchant id to
 the log line when a payout preview fails. Small, inside payouts.</code></pre></div>
-<p>Intake applies both tests to the request as described. This one moves no
-surface and stales no claim, so it is class <code>manual</code>, and the skill writes
-nothing under <code>hsdd/</code>. Its report:</p>
+<p><strong>If the answer is <code>manual</code>.</strong> Intake asks both questions about the request
+as you described it. This request moves no surface and makes no claim false,
+so it is class <code>manual</code>, and the skill writes nothing under <code>hsdd/</code>. Its
+report:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Class manual, no record.
 Node: acme.backend.payouts
 Trailer: HSDD-Node: acme.backend.payouts
@@ -1414,35 +1526,37 @@ request mode before it merges.</code></pre></div>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">payouts: merchant id in the preview failure log
 
 HSDD-Node: acme.backend.payouts</code></pre></div>
-<p>There is no record because the sweep row the commit will get is the audit
-trail. The trailer carries intake&#39;s answer to that row: it places the commit
-on a node and attributes nothing on its own. <code>manual</code> is an interactive
-answer: <code>/hsdd-auto intake</code> routes the same request <code>local</code> and records the
-decision, so the segment&#39;s review shows a phase the interactive answer would
-not have paid for.</p>
-<p>When the description does not let intake tell, the class is not <code>manual</code>:
-the phase is the safe answer, and a sweep can still find later that the diff
-stayed below the line. &quot;Rename the fee line to charge&quot; is a different case.
-It stales a Verification line that says &quot;shows the fee line&quot;, so it is
-<code>local</code>, a phase.</p>
-<p><strong>A request above the line</strong> (a ticket, a product ask) goes through intake
-as always; the saving is in what you ask the next skills for. Route it:</p>
+<p>There is no record, because the row the commit gets in the next sweep is the
+audit trail. The trailer only tells the sweep which node the commit belongs
+to. It does not attribute the commit on its own.</p>
+<p>You get <code>manual</code> only when you run the skill yourself. An unattended run
+(<code>/hsdd-auto intake</code>) never answers <code>manual</code>: it routes the same request as
+<code>local</code> and records that decision, and the segment review then shows a phase
+you did not need.</p>
+<p><strong>If intake cannot tell.</strong> When your description does not settle the two
+questions, the class is not <code>manual</code>. A phase is the safe answer, and a sweep
+can still find later that the diff was small.</p>
+<p><strong>If the change needs a phase.</strong> A product request is a different case.
+PAY-412, &quot;show the fee line in the payout preview&quot;, adds behavior the tree
+must describe, so its class is <code>local</code>: a phase. It goes through intake as
+usual. The saving is in asking the next skills for the smallest phase. Route
+it:</p>
 <blockquote>
 <p><code>/hsdd-intake</code> route <code>docs/tickets/PAY-412.md</code> (ticket): merchants want
 the payout preview to show the fee line. Small, inside payouts.</p>
 </blockquote>
 <p>The record lands as class <code>local</code> with the handoff prompt written in it.
-Run it, asking for the smallest phase the rules allow:</p>
+Run it, and ask for the smallest phase the rules allow:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-phase-plan acme.backend.payouts per
 hsdd/management/2026-11-02-intake-pay-412.md: append the phases this ticket
 needs. I expect one, review tier spot-check, gate &quot;npm test -- payouts&quot;,
 Verification: the preview shows the fee line for a scheduled payout. If you
 need more than one phase or a contract change, say why before writing.</code></pre></div>
-<p>Then <code>/hsdd-reconcile acme.backend.payouts</code> drains the pending section (a
-lone appended phase with no governance updates makes this a few seconds),
+<p>Then <code>/hsdd-reconcile acme.backend.payouts</code> drains the pending section. A
+lone appended phase with no governance updates takes a few seconds.
 <code>/hsdd-phase acme.backend.payouts.9</code> writes the context, and the fix runs as
-a cycle or by hand. However it was made, the phase is done when its
-verification doc is on main:</p>
+a cycle or by hand. Either way, the phase is done when its verification doc
+is on main:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">Write hsdd/verify/acme.backend.payouts.9.verification.md from
 hsdd/templates/verification.md for the fix in commit 8c1e4f2: the commands
 that prove it, what you observe when you run them now (dated), Outstanding
@@ -1451,25 +1565,36 @@ Claude for {owner} (delegated), tier spot-check. Run the commands; do not
 invent an observation.</code></pre></div>
 <p>The next checkpoint appends the phase to the record&#39;s <code>## Produced</code>, ticks
 the record closed, and lists the delegated sign-off for the owner to
-ratify. To spend no attention on the chain at all, run it unattended and
-review the segment report&#39;s decisions in one sitting:</p>
+ratify. If you do not want to run these steps one by one, run the chain
+unattended
+and read its decisions afterwards in one sitting:</p>
 <blockquote>
 <p><code>/hsdd-auto intake docs/tickets/PAY-412.md --authority ticket --stop-policy decide-and-record</code></p>
 </blockquote>
-<p><strong>Already made.</strong> A hotfix or a QA finding fixed on the spot is the legal
-bypass the spec names: ship it, then sweep it. A merged <code>manual</code> answer ends
-here too. From the implementation repository&#39;s root, the directory that
-holds <code>hsdd/</code>:</p>
+<h4 id="after-the-code-is-on-the-main-branch-run-a-sweep"><a class="anchor" href="#after-the-code-is-on-the-main-branch-run-a-sweep" aria-hidden="true" tabindex="-1">#</a>After the code is on the main branch: run a sweep</h4>
+<p>Run a sweep for a hotfix, for a QA finding you fixed on the spot, and for a
+change that got a <code>manual</code> answer. The spec calls the first two the legal
+bypass: ship the fix, then sweep it. From the implementation repository&#39;s
+root, the directory that holds <code>hsdd/</code>:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep --run-by &quot;Dewi Lestari&quot;</code></pre></div>
-<p>The first sweep copies the script to <code>hsdd/scripts/sweep/</code>, which needs Node
-20 or later. The script sets aside merges, governance-only commits, commits
-whose message names a phase id, commits a phase&#39;s Scope cites, and commits an
-earlier record classified.
-Every other commit is a candidate and gets a row. The script applies the
-surface test to the diff and proposes a node, from the <code>HSDD-Node:</code> trailer
-or the one <code>modules:</code> line that covers every path. The agent applies the
-claim test and fills what the script left, asking you once for the nodes the
-tree does not answer. The result is
+<p>Your first sweep also needs a starting point: see
+<a href="#the-first-sweep">The first sweep</a>. The first sweep also copies the script
+into <code>hsdd/scripts/sweep/</code>. The script needs Node 20 or later.</p>
+<p><strong>What a sweep does:</strong></p>
+<ol>
+<li>The script reads every commit from the end of the previous sweep to the
+head of the main branch.</li>
+<li>It sets aside the commits that need no row: merges, governance-only
+commits, commits whose message names a phase id, commits a phase&#39;s Scope
+cites, and commits an earlier record classified.</li>
+<li>Every other commit gets a row. The script checks each one for a surface
+move and proposes a node, from the <code>HSDD-Node:</code> trailer or from the one
+<code>modules:</code> line that covers every path.</li>
+<li>The agent asks whether the commit is the work of a phase, then whether it
+makes a claim false, and fills in the rest of the row. It asks you once
+about anything the tree cannot answer.</li>
+</ol>
+<p>The result is a record such as
 <code>hsdd/management/2026-11-12-sweep-acme-be-e91b2d4.md</code>:</p>
 <div class="tbl-wrap"><table class="tbl">
 <thead>
@@ -1487,6 +1612,13 @@ tree does not answer. The result is
 <td>log</td>
 <td>none</td>
 <td>payouts: merchant id in the preview failure log</td>
+</tr>
+<tr>
+<td>b81f3c2</td>
+<td>acme.backend.payouts</td>
+<td>phase</td>
+<td>acme.backend.payouts.10</td>
+<td>payouts: schedule preview shell</td>
 </tr>
 <tr>
 <td>5d2b9a0</td>
@@ -1510,72 +1642,121 @@ tree does not answer. The result is
 <td>report: null check</td>
 </tr>
 </tbody></table></div>
-<p>What each class costs:</p>
-<div class="tbl-wrap"><table class="tbl">
-<thead>
-<tr>
-<th>Class</th>
-<th>Means</th>
-<th>Costs</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>log</code></td>
-<td>no surface move, no claim staled</td>
-<td>one row, the whole record of the commit</td>
-</tr>
-<tr>
-<td><code>retro</code></td>
-<td>no surface move, the diff stales the claim the reason names</td>
-<td>one phase per node per record, however many commits it lists, with its reconcile and a retroactive verification doc signed by delegation</td>
-</tr>
-<tr>
-<td><code>intake</code></td>
-<td>a surface move, or paths that span two nodes</td>
-<td>one run of request mode per row, authority <code>commit</code>; the phases it produces are retro phases, and the contract bump it orders is the one the code already made</td>
-</tr>
-<tr>
-<td><code>unplaced</code></td>
-<td>no node owns the paths and nobody placed the commit</td>
-<td>no handoff: the report names it, the next checkpoint files it as a finding whose step is <code>hsdd-adopt</code> on the paths, and the record stays open until a person places the row, which <code>hsdd-adopt</code> alone does not do</td>
-</tr>
-</tbody></table></div>
-<p>The record&#39;s <code>## Routing</code> section carries the filled prompts for the <code>retro</code>
-and <code>intake</code> rows, which the agent runs in order or hands to whoever will.
-The agent may raise a class and never lowers one. You may lower any class
-before the record is committed, with a change-log line that names you; after
-publication nobody lowers a class. <code>check</code> and <code>commit</code> gate first
-publication: <code>check</code> reads the record back against a fresh draft of its range
-and refuses with the row named, and <code>commit</code> commits the record alone and
-never pushes. Under the profile, push inside <code>hsdd/</code> before pushing the
-implementation repository, as every governance edit is pushed, or the pointer
-names a commit no clone has. A later edit, such as placing an <code>unplaced</code> row,
-is committed with git directly. The next checkpoint closes the record once every <code>retro</code>
-and <code>intake</code> row has its product in <code>## Produced</code> and no <code>unplaced</code> row
-remains; a record of only <code>log</code> rows is written closed by the sweep itself.</p>
-<p>The sweep reads one contiguous range, from the end of the previous sweep to
-the head, not one range per problem. If a colleague merged three commits
-after your hotfix, the sweep classifies all four. On the first sweep, name
-the start with <code>--from</code>, which is itself not swept, so give the last commit
-of the launch:</p>
+<p><strong>What happens next.</strong> The record&#39;s <code>## Routing</code> section holds the filled
+prompts for the <code>retro</code> and <code>intake</code> rows. The agent runs them in order, or
+hands them to whoever will. <code>log</code> and <code>phase</code> rows need nothing more, and a
+record of only those rows is written closed by the sweep itself. The next
+checkpoint closes any other record once every <code>retro</code> and <code>intake</code> row has
+its product in <code>## Produced</code> and no <code>unplaced</code> row remains.</p>
+<p><strong>Changing a class.</strong> Raising a class means moving it toward more work, such
+as from <code>log</code> to <code>retro</code>. The agent may raise a class but never lowers one.
+You may lower any class before the record is committed, with a change-log line
+that names you. After the record is published, nobody lowers a class.</p>
+<p><strong>Committing the record.</strong> <code>check</code> and <code>commit</code> guard the first commit of the
+record.
+<code>check</code> reads the record back against a fresh draft of its range and refuses
+with the row named. <code>commit</code> commits the record alone and never pushes.
+Under the standalone-spec-repo profile, push inside <code>hsdd/</code> first and the
+implementation repository second, as with every governance edit. Otherwise
+the submodule pointer names a commit that no other clone has. A later edit,
+such as placing an <code>unplaced</code> row, is committed
+with git directly.</p>
+<h5 id="the-first-sweep"><a class="anchor" href="#the-first-sweep" aria-hidden="true" tabindex="-1">#</a>The first sweep</h5>
+<p>On the first sweep, name the start with <code>--from</code>. The commit you name is not
+swept itself, so give the last commit of the launch:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep --from 3fa81c0 --run-by &quot;Dewi Lestari&quot;</code></pre></div>
-<p>A <code>--from</code> later than the previous record&#39;s end is refused, because it would
-leave commits no sweep reads. An earlier one is accepted, and the overlap is
-set aside as classified. A range with no candidates writes no record.</p>
-<p><strong>Who runs it.</strong> Whoever merged the small changes: a developer after
-merging, a lead before a checkpoint, over the same range with the same
-procedure. The record&#39;s <code>Run by</code> line names a person, who answers for the
-classification; a lead sweeping the week&#39;s range does not answer for the
-code. When nobody reads the record, run it by delegation:</p>
+<p>Later sweeps start where the previous record ended. A <code>--from</code> later than the
+previous record&#39;s end is refused, because it would leave commits no sweep
+reads. An earlier one is accepted, and the overlap is set aside as
+classified. A range with no candidates writes no record.</p>
+<h5 id="who-runs-it-and-how-often"><a class="anchor" href="#who-runs-it-and-how-often" aria-hidden="true" tabindex="-1">#</a>Who runs it, and how often</h5>
+<p>Anyone can run a sweep: a developer after merging, or a lead before a
+checkpoint, with the same command and the same steps. The record&#39;s <code>Run by</code>
+line names a person, who answers for the classification. A lead who sweeps
+the week&#39;s commits does not answer for the code. When an agent runs the
+sweep and no person reads the record before it is
+committed, name the delegation:</p>
 <div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">/hsdd-intake sweep --run-by &quot;Claude for {person} (delegated)&quot;</code></pre></div>
 <p>The next checkpoint lists a delegated sweep with the delegated sign-offs, for
 that person to ratify.</p>
-<p>Waiting for the checkpoint is allowed. A range nobody swept is one backfill
+<p>You may wait for the checkpoint. Commits nobody swept become one backfill
 finding per repository, whose plan step is <code>/hsdd-intake sweep --from {sha}</code>,
 never a retro phase per commit. With sweeps in place, run <code>/hsdd-checkpoint</code>
 scoped after a batch of fixes, naming the commits, and full only before a
-release. The spec&#39;s own cadence rule allows it: weekly is a convention, not
-a mechanism.</p>
+release. Weekly is a convention, not a mechanism.</p>
+<h4 id="when-several-developers-commit-at-the-same-time"><a class="anchor" href="#when-several-developers-commit-at-the-same-time" aria-hidden="true" tabindex="-1">#</a>When several developers commit at the same time</h4>
+<p>On a team the main branch is a mix. Ana delivers a phase for one intake,
+Budi delivers a phase for another, and Citra merges a small fix between
+their commits. A sweep handles this, and nobody has to coordinate anything
+first.</p>
+<p><strong>One range for everyone.</strong> A sweep reads one continuous range, from the end
+of the previous sweep to the head, not one range per developer or per
+problem. The author of a commit plays no part: each row lands on a node by
+the paths it touched. If a colleague merged three commits after your hotfix,
+the sweep classifies all four. One person can sweep everyone&#39;s commits.</p>
+<p><strong>Put the phase id in every commit of a phase.</strong> This is the one habit that
+matters:</p>
+<div class="code"><div class="code-tab"><span>text</span><button class="copy" type="button" aria-label="Copy this block">Copy</button></div><pre><code class="language-text">acme.backend.payouts.10: schedule preview totals</code></pre></div>
+<p>A commit that names its phase needs no row, no question and no judgment.
+<code>hsdd-config</code> writes this rule into every phase context, so an agent running
+a phase follows it. Hand-written commits are the ones that forget.</p>
+<p><strong>When a phase commit does not name its phase.</strong> The agent reads the phases
+of the owning node. The commit is the work of a phase when the diff lies
+within what the phase&#39;s Scope says, and the commit is no later than the
+phase&#39;s sign-off.
+The row then gets class <code>phase</code>, with the phase id as its reason. Three rules
+keep this honest:</p>
+<ul>
+<li>Sharing a node is not enough. A small fix on a node with an open phase is
+not that phase&#39;s work.</li>
+<li>A phase whose verification doc is signed does not take later commits. A fix
+after the sign-off is an ordinary row.</li>
+<li>A commit that touches two nodes stays <code>intake</code>, because a phase belongs to
+one node.</li>
+</ul>
+<p>A phase often moves the surface on purpose, for example by adding a route it
+planned. The script still marks that commit <code>intake</code>, and the agent changes
+it to <code>phase</code> when the phase&#39;s Scope or Produces accounts for the move. When
+the agent cannot tell, it asks you once. A commit nobody claims for a phase
+goes on to the second question.</p>
+<p>One week on <code>acme.backend.payouts</code>:</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>Commit subject</th>
+<th>Author</th>
+<th>What the sweep does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>acme.backend.payouts.10: schedule preview totals</code></td>
+<td>Ana</td>
+<td>sets it aside: the message names the phase</td>
+</tr>
+<tr>
+<td><code>payouts: schedule preview shell</code></td>
+<td>Ana</td>
+<td>a <code>phase</code> row: the Scope of <code>acme.backend.payouts.10</code> describes it</td>
+</tr>
+<tr>
+<td><code>payouts: larger font on the total</code></td>
+<td>Citra</td>
+<td>a <code>log</code> row: no phase describes it, and no claim is false</td>
+</tr>
+<tr>
+<td><code>acme.backend.ledger.7: release a hold</code></td>
+<td>Budi</td>
+<td>sets it aside: the message names the phase</td>
+</tr>
+</tbody></table></div>
+<p><strong>Two people sweeping.</strong> A sweep starts where the newest record ends, so
+pull before you sweep, and under the profile update <code>hsdd/</code> as well. When two
+people sweep the same commits, both records list them, and the next
+checkpoint files that as a finding. Nothing blocks it, so agree who sweeps.
+The simplest answer is one person, such as a lead before a checkpoint.</p>
+<p><strong>Work still on a branch.</strong> A sweep reads only the main branch, so commits on
+an unmerged branch wait. When the branch merges, the merge is set aside, and
+the commits it brought in enter the next sweep&#39;s range like any others.</p>
 <h3 id="sealing-a-released-tree"><a class="anchor" href="#sealing-a-released-tree" aria-hidden="true" tabindex="-1">#</a>Sealing a released tree</h3>
 <p>This is for a system that shipped, that QA verified, and whose tree then
 went stale: verification docs unsigned, phases planned and never built,
@@ -1719,6 +1900,16 @@ business logic, integrations, and security. Let scaffolding be <code>gate-only</
 rewritten. Each release&#39;s entry in the <a href="../changelog/">changelog</a> has the
 full list of changes. The notes below say what changes for a project in
 flight, newest release first.</p>
+<h3 id="from-0130-to-0131"><a class="anchor" href="#from-0130-to-0131" aria-hidden="true" tabindex="-1">#</a>From 0.13.0 to 0.13.1</h3>
+<p>Reinstall the thirteen skills. Nothing is rewritten. A sweep now tells the
+work of a phase from a small fix: such a commit gets a <code>phase</code> row, even when
+it names no phase id. Records already written stand. A first change-log line
+with no phase count reads as zero. The checkpoint attributes phase work again,
+so a backfill finding that named only phase work closes without a sweep. That
+is all a project that never sweeps sees of this release. Every commit of a
+phase should now
+name its phase id. Phases switched after the upgrade get that line in their
+Discipline. A phase context already written is a record and is not rewritten.</p>
 <h3 id="from-0120-to-0130"><a class="anchor" href="#from-0120-to-0130" aria-hidden="true" tabindex="-1">#</a>From 0.12.0 to 0.13.0</h3>
 <p>Reinstall the thirteen skills. Nothing is rewritten. The <code>manual</code> class
 applies from the next request forward and writes no record. Sweep mode is
@@ -1807,11 +1998,11 @@ A checkpoint that runs before anyone has executed the marking step
 carries the step forward unchanged.</li>
 </ul>
 </article>
-    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/feat/hsdd-sweep/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
+    <footer class="doc-foot"><span>Edit or comment on <a href="https://github.com/mpurbo/hsdd/blob/main/docs/users-guide.md">GitHub</a>.</span><a href="#main">Back to top ↑</a></footer></main>
   </div>
   <footer class="site-foot">
     <div class="foot-inner">
-      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/73a4d9e941bbd3dd3b6fbff27e2b64447a3c7c5b"><code>mpurbo/hsdd@73a4d9e</code></a>, 2026-11-05.</p>
+      <p>HSDD is open source under the <a href="https://github.com/mpurbo/hsdd/blob/main/LICENSE">Apache License 2.0</a>. Built from <a href="https://github.com/mpurbo/hsdd/commit/e842491da7789e8b24c586b0ff41982f01dabed9"><code>mpurbo/hsdd@e842491</code></a>, 2026-11-05.</p>
       <p class="foot-links"><a href="../changelog/">Changelog</a><a href="../spec/">Specification</a><a href="https://github.com/mpurbo/hsdd">GitHub</a><a href="../../">Purbo Mohamad</a></p>
     </div>
   </footer>
